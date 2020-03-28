@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false
+};
+
+export const ServiceUrls = {
+	amSerive: "https://equal-spectacles.glitch.me",
+	mSerive: "https://gmgraphql.glitch.me/graphql"
 };
 
 /*

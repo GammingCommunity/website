@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: "app-root",
+	template: "<router-outlet></router-outlet>"
 })
-export class AppComponent {
-  title = 'web-client';
-}
+export class AppComponent {}
