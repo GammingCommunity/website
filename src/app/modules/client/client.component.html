@@ -1,23 +1,15 @@
-<div class="top-light img" style="background-image: url(/assets/img/top-light.png)"></div>
-
-<header>
+<!-- <header>
 	<svg width="40px" height="40px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
 		style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
 		<g transform="matrix(-6.60965e-17,1,1,6.61098e-17,5.9952e-15,-1.42109e-14)">
 			<path
+				#logo
 				d="M21.667,73.809L21.667,33.867L49.997,17.679L78.334,33.867L78.334,66.13L49.997,82.321L35,73.75L35,41.604L49.997,33.034L65,41.604L65,58.392L49.997,66.963L48.334,66.013L48.334,49.343L56.716,44.551L49.997,40.713L41.667,45.476L41.667,69.88L49.997,74.642L71.667,62.259L71.667,37.737L49.997,25.358L28.334,37.737L28.334,77.617L49.997,90L85,70L85,30L49.997,10L15,30L15,70L21.667,73.809Z"
 				style="fill-rule:nonzero;"></path>
 		</g>
 	</svg>
-	<div class="navs">
-		<div class="navs-items active" data-toggle="tooltip" tooltip-content="Trò chơi">
-			<i class="fas fa-gamepad fa-2x"></i>
-		</div>
-		<div class="navs-items" data-toggle="tooltip" tooltip-content="Mạng xã hội">
-			<i class="fas fa-globe fa-2x"></i>
-		</div>
-	</div>
+	
 	<div class="row" *ngIf="profile">
 		<div class="btn btn-lg btn-light btn-w rounded-circle">Gửi phản hồi của bạn</div>
 		<i class="fas fa-comment btn btn-lg btn-light rounded-circle"></i>
@@ -26,117 +18,28 @@
 			[ngStyle]="{'background-image':'url('+profile.avatarUrl+')'}">
 		</div>
 	</div>
-</header>
+</header> -->
 
-<!-- joined room -->
-<nav class="joined-rooms">
-	<div class="head">
-		<label>Phòng đã tham gia</label>
-		<div class="row">
-			<i class="fas fa-search mr-1 btn rounded-circle"></i>
-			<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
-		</div>
-	</div>
+<div class="navs">
+	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items': true, 'active': redirectLink === 'game-channel'}" data-toggle="tooltip" tooltip-content="Trò chơi">
+		<i class="fas fa-gamepad fa-2x"></i>
+	</a>
+	<a class="navs-items" data-toggle="tooltip" [ngClass]="{'navs-items': true, 'active': redirectLink === 'ss'}" tooltip-content="Mạng xã hội">
+		<i class="fas fa-globe fa-2x"></i>
+	</a>
+	<a (click)='redirectTo("profile")' [ngClass]="{'navs-items': true, 'active': redirectLink === 'profile'}" data-toggle="tooltip" tooltip-content="Mạng xã hội">
+		<i class="fas fa-user fa-2x"></i>
+	</a>
+</div>
 
-	<div class="body">
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/14.jpg)"></div>
-			<div class="info">
-				<p>Battlefield 1</p>
-				<p>#162</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/10.jpg)"></div>
-			<div class="info">
-				<p>Minecraft</p>
-				<p>#113</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/9.jpg)"></div>
-			<div class="info">
-				<p>Left 4 Dead 2</p>
-				<p>#33</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/13.jpg)"></div>
-			<div class="info">
-				<p>War of Tanks</p>
-				<p>#55</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/12.jpg)"></div>
-			<div class="info">
-				<p>Start Craft</p>
-				<p>#123</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/16.jpg)"></div>
-			<div class="info">
-				<p>Battlefield 4</p>
-				<p>#5</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/11.jpg)"></div>
-			<div class="info">
-				<p>Titanfall 2</p>
-				<p>#192</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover">
-			<div class="img" style="background-image: url(img/11.jpg)"></div>
-			<div class="info">
-				<p>TitanfallTitanfallTitanfallTitanfall
-					HuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuy</p>
-				<p>#192</p>
-			</div>
-		</div>
-
-	</div>
-
-	<div class="footer">
-		<div class="btn btn-lg btn-w" (click)="fetchFriends()">Tìm phòng</div>
-	</div>
-</nav>
-
-<!-- friends -->
-<nav class="friends">
-	<div class="head">
-		<label>Bạn bè</label>
-		<div class="row">
-			<i class="fas fa-search mr-1 btn rounded-circle"></i>
-			<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
-		</div>
-	</div>
-	<div class="body" *ngIf="friends">
-
-		<div class="friends-items hover" *ngFor="let friend of friends" data-id="{{ friend.id }}">
-			<div class="img" [ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
-			<p class="name">{{ friend.name }}</p>
-		</div>
-
-	</div>
-
-	<div class="footer">
-		<div class="btn btn-lg btn-w">Kết bạn</div>
-	</div>
-</nav>
 
 <article>
 	<div class="background img" style="background-image: url(/assets/img/9.jpg)"></div>
 
 	<router-outlet></router-outlet>
 </article>
+
+<!-- friends -->
+<nav class="friends">
+	<app-friends></app-friends>
+</nav>

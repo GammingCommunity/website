@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginHttpService } from "./login.http.service";
-import { LoggingResultStatus } from "./login.dto";
+import { LoggingResultStatus, LoggingResult } from "./login.dto";
+import { AuthService } from "src/app/common/services/auth.service";
 
 @Component({
 	selector: "app-login",
@@ -8,10 +9,13 @@ import { LoggingResultStatus } from "./login.dto";
 	styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-	loginName: String;
-	password: String;
+	private loginName: string;
+	private password: string;
 
-	constructor(private thisHttpService: LoginHttpService) {}
+	constructor(
+		private thisHttpService: LoginHttpService,
+		private auth: AuthService
+	) {}
 
 	ngOnInit() {}
 
@@ -19,8 +23,13 @@ export class LoginComponent implements OnInit {
 		this.thisHttpService.login(
 			this.loginName,
 			this.password,
-			(status: LoggingResultStatus) => {
-				switch (status) {
+			(result: LoggingResult) => {
+				switch (result.status) {
+					case LoggingResultStatus.SUCCESS:
+						this.auth.setSessionToken(result.token);
+						this.redirectToGameChannelPage();
+						break;
+
 					case LoggingResultStatus.WRONG_PWD:
 						alert("Sai mat khau");
 						break;
@@ -30,10 +39,14 @@ export class LoginComponent implements OnInit {
 						break;
 
 					default:
-						alert(status);
+						alert(result);
 						break;
 				}
 			}
 		);
+	}
+
+	redirectToGameChannelPage() {
+		window.location.href = "/client/game-channel";
 	}
 }

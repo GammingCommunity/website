@@ -1,58 +1,38 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { MyFriend, MyProfile } from "./client.dto";
+import { Apollo } from 'apollo-angular';
+import { MyProfile } from "./client.dto";
 import { AuthService } from "src/app/common/services/auth.service";
-import { GraphqlService } from "src/app/common/services/graphql.service";
-import { ServiceUrls } from "src/environments/environment";
+import gql from 'graphql-tag';
+import { HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+const MY_PROFILE = gql`
+  query {getThisAccount{ id, name, avatar_url }}
+`;
 
 @Injectable({
 	providedIn: "root"
 })
 export class ClientHttpService {
-	readonly amsUrl: string = ServiceUrls.amSerive;
+	readonly ssToken: string;
+	readonly tokenTitle: string;
 
 	constructor(
-		private http: HttpClient,
-		private graphQl: GraphqlService,
+		private apollo: Apollo,
 		private auth: AuthService
-	) {}
-
-	fetchProfile(callback: Function) {
-		this.graphQl
-			.query(this.amsUrl, `getThisAccount{ id, name, avatar_url }`, {
-				token: this.auth.getSessionToken()
-			})
-			.subscribe(response => {
-				if (response && response.data && response.data.getThisAccount) {
-					callback(new MyProfile(response.data.getThisAccount));
-				}
-			});
+	) {
+		this.ssToken = this.auth.getSessionToken();
+		this.tokenTitle = this.auth.getTokenTitle();
 	}
 
-	fetchFriends(callback: Function) {
-		this.graphQl
-			.query(this.amsUrl, `getFriends{ friend{ id, name, avatar_url }}`, {
-				token: this.auth.getSessionToken()
-			})
-			.subscribe(response => {
-				if (
-					response &&
-					response.data &&
-					response.data.getFriends &&
-					response.data.getFriends
-				) {
-					let friends = [];
-					const rawList = response.data.getFriends;
-
-					rawList.forEach(item => {
-						let rawFriend = item.friend;
-						if (rawFriend) {
-							friends.push(new MyFriend(rawFriend));
-						}
-					});
-
-					callback(friends);
-				}
-			});
+	fetchProfile() {
+		return this.apollo.use('accountManagementService').query<any>({
+			query: MY_PROFILE,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			}
+		}).pipe(map(
+			({ data }): MyProfile => new MyProfile(data.getThisAccount)
+		));
 	}
 }

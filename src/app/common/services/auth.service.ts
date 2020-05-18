@@ -5,11 +5,16 @@ import { Router } from '@angular/router';
 	providedIn: "root"
 })
 export class AuthService {
-	private readonly sessionToken: String = localStorage.getItem("token");
+	private readonly sessionToken: string = localStorage.getItem("token");
+	private readonly tokenTitle: string = 'token';
 
-	constructor(private router: Router) {}
+	constructor(private router: Router) { }
 
-	getSessionToken(): String | null {
+	getTokenTitle(): string {
+		return this.tokenTitle;
+	}
+
+	getSessionToken(): string | null {
 		if (this.sessionToken) {
 			return this.sessionToken;
 		} else {
@@ -18,7 +23,7 @@ export class AuthService {
 		}
 	}
 
-	setSessionToken(token: string){
+	setSessionToken(token: string) {
 		localStorage.setItem("token", token);
 	}
 }

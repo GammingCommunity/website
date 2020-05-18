@@ -1,0 +1,87 @@
+<h1>profile</h1>
+<table style="width:100%" *ngIf='profile'>
+	<tr>
+		<th>id</th>
+		<td>{{ profile.id }}</td>
+	</tr>
+	<tr>
+		<th>describe</th>
+		<td>{{ profile.describe }}</td>
+
+	</tr>
+	<tr>
+		<th>avatar</th>
+		<td>{{ profile.avatarUrl }}</td>
+
+	</tr>
+	<tr>
+
+		<th>name</th>
+		<td>{{ profile.name }}</td>
+	</tr>
+	<tr>
+		<th>updated_at</th>
+		<td>{{ profile.updatedAt }}</td>
+
+	</tr>
+	<tr>
+		<th>created_at</th>
+		<td>{{ profile.createdAt }}</td>
+
+	</tr>
+	<tr>
+		<th>status</th>
+		<td>{{ profile.status }}</td>
+		
+	</tr>
+	<tr>
+		<th>role</th>
+		<td>{{ profile.role }}</td>
+		
+	</tr>
+	<tr>
+		<th>birthyear</th>
+		<td>{{ profile.birthyear }}</td>
+
+	</tr>
+	<tr>
+		<th>birthmouth</th>
+		<td>{{ profile.birthmonth }}</td>
+
+	</tr>
+	<tr>
+		<th>phone</th>
+		<td>{{ profile.phone }}</td>
+		
+	</tr>
+	<tr>
+		<th>email</th>
+		<td>{{ profile.email }}</td>
+
+	</tr>
+	
+</table>
+
+<h1>Setting</h1>
+<table style="width:100%" *ngIf='profile'>
+	<tr>
+		<th>anonymous</th>
+		<td>{{ profile.setting.anonymous }}</td>
+	</tr>
+	<tr>
+		<th>birthmounth</th>
+		<td>{{ profile.setting.birthmonthPrivacy }}</td>
+	</tr>
+	<tr>
+		<th>birthyear</th>
+		<td>{{ profile.setting.birthyearPrivacy }}</td>
+	</tr>
+	<tr>
+		<th>email</th>
+		<td>{{ profile.setting.emailPrivacy }}</td>
+	</tr>
+	<tr>
+		<th>phone</th>
+		<td>{{ profile.setting.phonePrivacy }}</td>
+	</tr>
+</table>

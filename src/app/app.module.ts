@@ -1,26 +1,56 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing.module";
-import { LoginComponent } from "./modules/login/login.component";
-import { RegisterComponent } from "./modules/register/register.component";
-import { SocketIoModule, SocketIoConfig } from "ng2-socket-io";
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderService } from './common/dialogs/loader/loader.service';
+import { LoaderComponent } from './common/dialogs/loader/loader.component';
+import { TimeoutInterceptor, DEFAULT_TIMEOUT } from './interceptors/timeout.interceptor';
+import { AlertComponent } from './common/dialogs/alert/alert.component';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ServiceUrls } from 'src/environments/environment';
-
-const socketIoConfig: SocketIoConfig = { url: ServiceUrls.mSerive, options: {} };
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AlertService } from './common/dialogs/alert/alert.service';
+import { DialogService } from './common/dialogs/popup/popup.service';
 
 @NgModule({
-	declarations: [AppComponent, LoginComponent, RegisterComponent],
+	declarations: [
+		AppComponent,
+		LoaderComponent,
+		AlertComponent
+	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
 		HttpClientModule,
-		FormsModule,
-		SocketIoModule.forRoot(socketIoConfig)
+		ApolloModule,
+		HttpLinkModule
 	],
+	providers: [
+		LoaderService,
+		AlertService,
+		DialogService,
+		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
+		{ provide: DEFAULT_TIMEOUT, useValue: 90100 }
+	],
+	entryComponents: [LoaderComponent],
 	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+	constructor(apollo: Apollo, httpLink: HttpLink) {
+		apollo.create({
+			link: httpLink.create({ uri: ServiceUrls.accountManagement}),
+			cache: new InMemoryCache()
+		}, 'accountManagementService');
+		apollo.create({
+			link: httpLink.create({ uri: ServiceUrls.main}),
+			cache: new InMemoryCache()
+		}, 'mainService');
+	}
+}

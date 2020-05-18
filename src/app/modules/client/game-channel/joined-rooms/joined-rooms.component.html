@@ -1,0 +1,9 @@
+<p>joined-rooms works!</p>
+<div class="friends-items hover" *ngFor="let room of joinedRooms" data-id="{{ room.id }}">
+	<div class="img" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
+	<p class="name">{{ room.name }}</p>
+</div>
+
+<div #dropdown class="dropdown">dropdown</div>
+
+<input type="text">

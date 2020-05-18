@@ -7,8 +7,9 @@ export const environment = {
 };
 
 export const ServiceUrls = {
-	amSerive: "https://equal-spectacles.glitch.me",
-	mSerive: "https://gmgraphql.glitch.me/graphql"
+	accountManagement: "http://hutech.tech/graphql",
+	chat: "https://socketchat.glitch.me",
+	main: "https://gmgraphql.glitch.me/graphql"
 };
 
 /*

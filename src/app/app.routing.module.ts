@@ -1,20 +1,24 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from "./modules/login/login.component";
-import { RegisterComponent } from "./modules/register/register.component";
+import { AlertComponent } from './common/dialogs/alert/alert.component';
+import { LoaderComponent } from './common/dialogs/loader/loader.component';
 
 const routes: Routes = [
 	{
-		path: "",
+		path: "client",
 		loadChildren: "./modules/client/client.module#ClientModule"
 	},
 	{
-		path: "login",
-		component: LoginComponent
+		path: "",
+		loadChildren: "./modules/component/component.module#ComponentModule"
 	},
 	{
-		path: "register",
-		component: RegisterComponent
+		path: "loading",
+		component: LoaderComponent,
+	},
+	{
+		path: "alert",
+		component: AlertComponent,
 	}
 ];
 

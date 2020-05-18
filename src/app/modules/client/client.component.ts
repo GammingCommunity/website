@@ -1,29 +1,37 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { MyFriend, MyProfile } from "./client.dto";
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
+import { MyProfile } from "./client.dto";
 import { ClientHttpService } from "./client.http.service";
+import { Router } from '@angular/router';
 
 @Component({
 	selector: "client-root",
 	templateUrl: "./client.component.html",
 	styleUrls: ["./client.component.css"]
 })
-export class ClientComponent implements OnInit, AfterViewInit {
-	friends: MyFriend[];
-	profile: MyProfile;
+export class ClientComponent implements OnInit {
+	private profile: MyProfile;
+	private redirectLink: string;
+	private readonly baseUrl: string = 'client/';  
 
-	ngOnInit() {}
+	constructor(
+		private clientHttpService: ClientHttpService,
+		private router: Router
+	) {
+		this.redirectTo('game-channel');
+	}
 
-	ngAfterViewInit() {
-		this.fetchFriends();
+	ngOnInit() {
 		this.fetchProfile();
 	}
 
-	constructor(private thisHttpService: ClientHttpService) {}
-
-	fetchFriends() {
-		this.thisHttpService.fetchFriends(data => (this.friends = data));
+	redirectTo(link: string) {
+		this.router.navigate([this.baseUrl + link]);
+		this.redirectLink = link;
 	}
-	fetchProfile() {
-		this.thisHttpService.fetchProfile(data => (this.profile = data));
+
+	protected fetchProfile() {
+		this.clientHttpService.fetchProfile().subscribe(data => {
+			this.profile = data;
+		});
 	}
 }

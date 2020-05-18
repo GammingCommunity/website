@@ -1,0 +1,7 @@
+<p>friend-chat works!</p>
+<div class="body" *ngIf="chatFriend">
+
+	<div class="img" [ngStyle]="{'background-image':'url('+chatFriend.avatarUrl+')'}"></div>
+	<p class="name">{{ chatFriend.name }}</p>
+
+</div>
