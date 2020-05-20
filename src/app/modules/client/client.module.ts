@@ -11,11 +11,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { FriendChatComponent } from './friends/friend-chat/friend-chat.component';
 import { FriendChatService } from './friends/friend-chat/friend-chat.service';
 import { RoomChatComponent } from './game-channel/room-chat/room-chat.component';
-import { ProfileDropdownComponent } from './profile-dropdown/profile-dropdown.component';
+import { IconsModule } from './client.feather-icon.module';
 
 @NgModule({
-	declarations: [ClientComponent, GameChannelComponent, FriendsComponent, JoinedRoomsComponent, GameRoomsComponent, ProfileComponent, FriendChatComponent, RoomChatComponent, ProfileDropdownComponent],
-	imports: [ClientRoutingModule, CommonModule],
+	declarations: [
+		ClientComponent, 
+		GameChannelComponent, 
+		FriendsComponent, 
+		JoinedRoomsComponent, 
+		GameRoomsComponent, 
+		ProfileComponent, 
+		FriendChatComponent, 
+		RoomChatComponent		
+	],
+	imports: [IconsModule, ClientRoutingModule, CommonModule],
 	providers: [ChatService, FriendChatService]
 })
 export class ClientModule { }

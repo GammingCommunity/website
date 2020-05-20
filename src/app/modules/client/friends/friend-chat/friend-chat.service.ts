@@ -5,20 +5,21 @@ import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Friend } from './friend-chat.dto';
+import { MyFriend } from '../friends.dto';
 
 @Injectable({
 	providedIn: "root"
 })
 export class FriendChatService {
-	private chatToCallback: (id: number) => void;
+	private showingChatBoxFunc: (selectedFriend: MyFriend) => void;
 	
 	constructor() { }
 
-	setChatToCallback(callback: (id: number) => void){
-		this.chatToCallback = callback;
+	setShowingChatBoxCallback(callback: (selectedFriend: MyFriend) => void){
+		this.showingChatBoxFunc = callback;
 	}
 
-	callChatTo(id: number){
-		this.chatToCallback(id);
+	callShowingChatBoxFunc(selectedFriend: MyFriend){
+		this.showingChatBoxFunc(selectedFriend);
 	}
 }

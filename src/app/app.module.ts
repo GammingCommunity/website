@@ -15,19 +15,24 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ServiceUrls } from 'src/environments/environment';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AlertService } from './common/dialogs/alert/alert.service';
-import { DialogService } from './common/dialogs/popup/popup.service';
+import { DialogService } from './common/dialogs/dialog.service';
+import { ProfileDropdownComponent } from './modules/client/profile-dropdown/profile-dropdown.component';
+import { IconsModule } from './modules/client/client.feather-icon.module';
+import { FriendChatComponent } from './modules/client/friends/friend-chat/friend-chat.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoaderComponent,
-		AlertComponent
+		AlertComponent,
+		ProfileDropdownComponent
 	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
 		HttpClientModule,
 		ApolloModule,
+		IconsModule,
 		HttpLinkModule
 	],
 	providers: [
@@ -37,19 +42,19 @@ import { DialogService } from './common/dialogs/popup/popup.service';
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
-		{ provide: DEFAULT_TIMEOUT, useValue: 90100 }
+		{ provide: DEFAULT_TIMEOUT, useValue: 10000 }
 	],
-	entryComponents: [LoaderComponent],
+	entryComponents: [LoaderComponent, ProfileDropdownComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule {
 	constructor(apollo: Apollo, httpLink: HttpLink) {
 		apollo.create({
-			link: httpLink.create({ uri: ServiceUrls.accountManagement}),
+			link: httpLink.create({ uri: ServiceUrls.accountManagement }),
 			cache: new InMemoryCache()
 		}, 'accountManagementService');
 		apollo.create({
-			link: httpLink.create({ uri: ServiceUrls.main}),
+			link: httpLink.create({ uri: ServiceUrls.main }),
 			cache: new InMemoryCache()
 		}, 'mainService');
 	}

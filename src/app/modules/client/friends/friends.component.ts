@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
 import { Friend } from './friend-chat/friend-chat.dto';
@@ -10,22 +10,37 @@ import { FriendChatService } from './friend-chat/friend-chat.service';
 	styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
+	@ViewChild('mainContainer', { static: true }) mainContainerElementRef: ElementRef;
+	@ViewChild('container', { static: true }) containerElementRef: ElementRef;
+	private containerIsExpand: boolean = true;
 	private friends: MyFriend[] = [];
-	private chatToFunc: (callback: (id: number) => void) => void;
-	private selectedFriendId: number;
 
-	constructor(private friendsHttpService: FriendsHttpService, private friendChatService: FriendChatService) {
-		this.chatToFunc = (callback) => {
-			callback(this.selectedFriendId);
-		}
-	}
+	constructor(private friendsHttpService: FriendsHttpService, private friendChatService: FriendChatService) { }
 
 	ngOnInit() {
 		this.fetchFriends();
 	}
 
-	openChatTo(id: number) {
-		this.friendChatService.callChatTo(id);
+	openChatBox(selectedFriend: MyFriend) {
+		this.friendChatService.callShowingChatBoxFunc(selectedFriend);
+		this.collapseContainer();
+	}
+
+	resizeMaicontainer(){
+		if (this.containerIsExpand){
+			this.mainContainerElementRef.nativeElement.style.width = '10px';
+		}else {
+			this.mainContainerElementRef.nativeElement.style.width = '300px';
+		}
+		this.containerIsExpand = !this.containerIsExpand;
+	}
+	
+	collapseContainer(){
+		this.containerElementRef.nativeElement.style.width = '60px';
+	}
+	
+	expandContainer(){
+		this.containerElementRef.nativeElement.style.width = '100%';
 	}
 
 	protected fetchFriends() {

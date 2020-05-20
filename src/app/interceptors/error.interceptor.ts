@@ -7,10 +7,17 @@ import { Observable } from 'rxjs';
 import { LoaderService } from '../common/dialogs/loader/loader.service';
 import { tap, finalize } from 'rxjs/operators';
 import { AlertService } from '../common/dialogs/alert/alert.service';
+import { DebugConfigs } from 'src/environments/environment';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 	constructor(private loaderService: LoaderService, private alretService: AlertService) { }
+
+	protected alertError(message: string){
+		if(DebugConfigs.isAlert){
+			this.alretService.show(message);
+		}
+	}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		this.loaderService.start();
@@ -26,7 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 							errors.forEach(error =>{
 								messages += error.message + '\n';
 							});
-							this.alretService.show(messages);
+							this.alertError(messages);
 						} else {
 							// console.log('event:');
 							// console.log(event);
@@ -36,9 +43,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 				error => {
 					// console.log(error);
 					if(error.hasOwnProperty('message')){
-						this.alretService.show(error.message);
+						this.alertError(error.message);
 					} else {
-						this.alretService.show(error.toString());
+						this.alertError(error.toString());
 					}
 				}
 			),

@@ -6,6 +6,16 @@ export const environment = {
 	production: false
 };
 
+export const DebugConfigs = {
+	isAlert: true
+}
+
+export const CssConfigs = {
+	errorPopupZIndex: 3000,
+	loaderZIndex: 2000,
+	dropdownMenuZIndex: 1000
+}
+
 export const ServiceUrls = {
 	accountManagement: "http://hutech.tech/graphql",
 	chat: "https://socketchat.glitch.me",

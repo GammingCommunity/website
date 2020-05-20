@@ -1,0 +1,23 @@
+.container {
+	background-color: goldenrod;
+}
+
+li a {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	padding: 6px;
+	margin: 1px 10px;
+	list-style-type: none;
+}
+
+i-feather {
+	margin: 7px;
+}

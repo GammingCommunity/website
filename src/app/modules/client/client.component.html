@@ -20,15 +20,15 @@
 	</div>
 </header> -->
 
-<div class="navs">
+<div class="navs" #navs>
 	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items': true, 'active': redirectLink === 'game-channel'}" data-toggle="tooltip" tooltip-content="Trò chơi">
-		<i class="fas fa-gamepad fa-2x"></i>
+		<i-feather name="coffee"></i-feather>
 	</a>
 	<a class="navs-items" data-toggle="tooltip" [ngClass]="{'navs-items': true, 'active': redirectLink === 'ss'}" tooltip-content="Mạng xã hội">
-		<i class="fas fa-globe fa-2x"></i>
+		<i-feather name="globe"></i-feather>
 	</a>
-	<a (click)='redirectTo("profile")' [ngClass]="{'navs-items': true, 'active': redirectLink === 'profile'}" data-toggle="tooltip" tooltip-content="Mạng xã hội">
-		<i class="fas fa-user fa-2x"></i>
+	<a #profileDropdown class="navs-items" data-toggle="tooltip" tooltip-content="Mạng xã hội">
+		<i-feather name="user"></i-feather>
 	</a>
 </div>
 

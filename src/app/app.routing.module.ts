@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AlertComponent } from './common/dialogs/alert/alert.component';
 import { LoaderComponent } from './common/dialogs/loader/loader.component';
+import { FriendChatComponent } from './modules/client/friends/friend-chat/friend-chat.component';
 
 const routes: Routes = [
 	{
@@ -15,10 +16,6 @@ const routes: Routes = [
 	{
 		path: "loading",
 		component: LoaderComponent,
-	},
-	{
-		path: "alert",
-		component: AlertComponent,
 	}
 ];
 

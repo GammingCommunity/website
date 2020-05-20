@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef, AfterViewChecked } from "@angular/core";
 import { MyProfile } from "./client.dto";
 import { ClientHttpService } from "./client.http.service";
 import { Router } from '@angular/router';
+import { ProfileDropdownUIService } from './profile-dropdown/profile-dropdown.ui.service';
 
 @Component({
 	selector: "client-root",
@@ -9,19 +10,23 @@ import { Router } from '@angular/router';
 	styleUrls: ["./client.component.css"]
 })
 export class ClientComponent implements OnInit {
+	@ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
+	@ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
 	private profile: MyProfile;
 	private redirectLink: string;
 	private readonly baseUrl: string = 'client/';  
 
 	constructor(
 		private clientHttpService: ClientHttpService,
-		private router: Router
+		private router: Router,
+		private profileDropdownUIService: ProfileDropdownUIService
 	) {
 		this.redirectTo('game-channel');
 	}
-
+	
 	ngOnInit() {
 		this.fetchProfile();
+		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER);
 	}
 
 	redirectTo(link: string) {

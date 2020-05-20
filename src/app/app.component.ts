@@ -1,7 +1,7 @@
 import { Component, ViewContainerRef } from "@angular/core";
 import { LoaderService } from './common/dialogs/loader/loader.service';
 import { AlertService } from './common/dialogs/alert/alert.service';
-import { DialogService } from './common/dialogs/popup/popup.service';
+import { DialogService } from './common/dialogs/dialog.service';
 
 @Component({
 	selector: "app-root",
