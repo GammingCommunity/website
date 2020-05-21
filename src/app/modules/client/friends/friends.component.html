@@ -1,8 +1,19 @@
-<div class="main-container" #mainContainer>
-	<button (click)='resizeMaicontainer()'>hgjhgjhgj</button>
-	<div class="container" #container>
+<div class="main-container" [@changeMainContainerState]="mainContainerState">
+	<button class="main-btn-resize" (click)='resizeMainContainer()'>
+		<div *ngIf="mainContainerState === 'expand'; else elseBlock">
+			<i-feather name="chevron-right"></i-feather>
+		</div>
+		<ng-template #elseBlock>
+			<i-feather name="chevron-left"></i-feather>
+		</ng-template>
+	</button>
+	<div class="container" [@changeContainerState]="containerState">
 		<div class="head">
-			<button (click)='expandContainer()'>hgjhgjhgj</button>
+			<div *ngIf="containerState != 'expand'">
+				<button class="btn-resize" (click)='expandContainer()'>
+					<i-feather name="chevron-left"></i-feather>
+				</button>
+			</div>
 			<label>Bạn bè</label>
 			<div class="row">
 				<i class="fas fa-search mr-1 btn rounded-circle"></i>

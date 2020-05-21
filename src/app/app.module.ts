@@ -18,7 +18,7 @@ import { AlertService } from './common/dialogs/alert/alert.service';
 import { DialogService } from './common/dialogs/dialog.service';
 import { ProfileDropdownComponent } from './modules/client/profile-dropdown/profile-dropdown.component';
 import { IconsModule } from './modules/client/client.feather-icon.module';
-import { FriendChatComponent } from './modules/client/friends/friend-chat/friend-chat.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -33,7 +33,8 @@ import { FriendChatComponent } from './modules/client/friends/friend-chat/friend
 		HttpClientModule,
 		ApolloModule,
 		IconsModule,
-		HttpLinkModule
+		HttpLinkModule,
+		BrowserAnimationsModule
 	],
 	providers: [
 		LoaderService,

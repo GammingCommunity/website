@@ -24,20 +24,19 @@
 	border-top: 3px solid var(--highlight);
 }
 
-/* sidebar */
-
-nav {
+app-friends {
 	position: fixed;
 	z-index: 3;
 	top: 0;
-	overflow: auto;
-	width: 300px;
-	height: 100%;
+	right: 0;
+	
 	display: flex;
 	flex-direction: column;
+	
+	height: 100%;
 }
 
-nav>.body {
+app-friends>.body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -80,13 +79,6 @@ article {
 	}
 }
 
-/* friends */
-
-nav.friends {
-	right: 0;
-}
-
 .navs-items {
 	text-decoration: none;
 }
-

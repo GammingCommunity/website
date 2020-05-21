@@ -30,11 +30,19 @@
 
 .main-container {
 	position: relative;
-	overflow: hidden;
 	float: right;
 }
 
-.container {
+.main-btn-resize {
+	position: absolute;
+	left: -25px;
+	top: 4px;
+	border: none;
+	background-color: transparent;
+	transform: scale(1.1);
+}
+
+.btn-resize {
 	position: absolute;
 	right: 0;
 	z-index: 1;
