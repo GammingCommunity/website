@@ -5,22 +5,11 @@
 	border-radius: 999px;
 }
 
-:host {
-	display: flex;
-	flex-direction: column;
-	width: 300px;
-	height: 100vh;
-	background-color: black;
-	color: black;
-}
-
 .friend-chat-head {
 	display: flex;
 	align-items: center;
-
 	width: 100%;
 	max-width: 100%;
-
 	background-color: blueviolet;
 	padding: 15px;
 }
@@ -37,10 +26,8 @@
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-
 	width: 100%;
 	height: 300px;
-
 	background-color: green;
 	overflow: auto;
 	padding: 15px;
@@ -64,7 +51,6 @@
 	align-items: flex-start;
 	width: 100%;
 	background-color: blue;
-
 	padding: 15px;
 }
 
@@ -72,13 +58,11 @@ textarea {
 	width: 80%;
 	height: 40px;
 	resize: none;
-
 	border-radius: 6px;
 }
 
-button{
+button {
 	margin-left: 10px;
-
 	background-color: transparent;
 	border: none;
 }

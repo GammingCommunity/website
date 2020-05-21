@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
-import { Friend } from './friend-chat/friend-chat.dto';
 import { FriendChatService } from './friend-chat/friend-chat.service';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 
@@ -10,31 +9,37 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 	templateUrl: './friends.component.html',
 	styleUrls: ['./friends.component.css'],
 	animations: [
-		trigger('changeMainContainerState', [
+		trigger('changeFriendsContainerState', [
 			state('expand', style({
 				width: '300px'
 			})),
 			state('collapse', style({
 				width: '60px'
 			})),
-			transition('*=>expand', animate('200ms ease')),
-			transition('*=>collapse', animate('200ms ease'))
+			transition('*=>expand', animate('140ms ease')),
+			transition('*=>collapse', animate('140ms ease'))
 		]),
-		trigger('changeContainerState', [
+		trigger('changeChatBoxState', [
 			state('expand', style({
-				width: '100%'
+				width: '360px'
+			})),
+			state('middle-expand', style({
+				width: '240px'
 			})),
 			state('collapse', style({
-				width: '60px'
+				width: '0',
+				marginRight: '0',
 			})),
-			transition('*=>expand', animate('200ms ease')),
-			transition('*=>collapse', animate('200ms ease'))
+			transition('*=>expand', animate('140ms ease')),
+			transition('*=>collapse', animate('140ms ease'))
 		])
 	]
 })
 export class FriendsComponent implements OnInit {
-	private mainContainerState: string = 'expand';
-	private containerState: string = 'expand';
+	private mainContainerIsExpanding: boolean = true;
+	private chatBoxIsOpening: boolean = false;
+	private friendsContainerState: string = 'expand';
+	private chatBoxState: string = 'middle-expand';
 	private friends: MyFriend[] = [];
 
 	constructor(private friendsHttpService: FriendsHttpService, private friendChatService: FriendChatService) { }
@@ -45,24 +50,38 @@ export class FriendsComponent implements OnInit {
 
 	openChatBox(selectedFriend: MyFriend) {
 		this.friendChatService.callShowingChatBoxFunc(selectedFriend);
-		this.collapseContainer();
+		this.expandChatBox();
 	}
 
-	resizeMainContainer(){
-		if (this.mainContainerState === 'expand'){
-			this.mainContainerState = 'collapse';
-			this.containerState = 'collapse';
+	resizeMainContainer() {
+		this.mainContainerIsExpanding = !this.mainContainerIsExpanding;
+
+		if (this.mainContainerIsExpanding) {
+			if (this.chatBoxIsOpening){
+				this.chatBoxState = 'expand';
+				this.friendsContainerState = 'collapse';
+			} else {
+				this.chatBoxState = 'middle-expand';
+				this.friendsContainerState = 'expand';
+			}
 		} else {
-			this.mainContainerState = 'expand';
+			this.chatBoxState = 'collapse';
+			this.friendsContainerState = 'collapse';
 		}
 	}
 	
-	collapseContainer(){
-		this.containerState = 'collapse';
+	expandFriendsContainer() {
+		this.chatBoxState = 'middle-expand';
+		this.friendsContainerState = 'expand';
+		this.chatBoxIsOpening = false;
+		this.mainContainerIsExpanding = true;
 	}
 	
-	expandContainer(){
-		this.containerState = 'expand';
+	expandChatBox() {
+		this.chatBoxState = 'expand';
+		this.friendsContainerState = 'collapse';
+		this.chatBoxIsOpening = true;
+		this.mainContainerIsExpanding = true;
 	}
 
 	protected fetchFriends() {

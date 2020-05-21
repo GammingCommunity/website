@@ -1,16 +1,17 @@
-<div class="main-container" [@changeMainContainerState]="mainContainerState">
-	<button class="main-btn-resize" (click)='resizeMainContainer()'>
-		<div *ngIf="mainContainerState === 'expand'; else elseBlock">
-			<i-feather name="chevron-right"></i-feather>
-		</div>
-		<ng-template #elseBlock>
-			<i-feather name="chevron-left"></i-feather>
-		</ng-template>
-	</button>
-	<div class="container" [@changeContainerState]="containerState">
+<button class="main-btn-resize" (click)='resizeMainContainer()'>
+	<div *ngIf="mainContainerIsExpanding; else elseBlock">
+		<i-feather name="chevron-right"></i-feather>
+	</div>
+	<ng-template #elseBlock>
+		<i-feather name="chevron-left"></i-feather>
+	</ng-template>
+</button>
+
+<div class="main-container">
+	<div class="friends-container" [@changeFriendsContainerState]="friendsContainerState">
 		<div class="head">
-			<div *ngIf="containerState != 'expand'">
-				<button class="btn-resize" (click)='expandContainer()'>
+			<div *ngIf="friendsContainerState != 'expand'">
+				<button class="btn-resize" (click)='expandFriendsContainer()'>
 					<i-feather name="chevron-left"></i-feather>
 				</button>
 			</div>
@@ -35,6 +36,5 @@
 		</div>
 	</div>
 
-
-	<app-friend-chat></app-friend-chat>
+	<app-friend-chat [@changeChatBoxState]="chatBoxState"></app-friend-chat>
 </div>
