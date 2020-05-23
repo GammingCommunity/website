@@ -3,6 +3,7 @@ import { MyProfile } from "./client.dto";
 import { ClientHttpService } from "./client.http.service";
 import { Router } from '@angular/router';
 import { ProfileDropdownUIService } from './profile-dropdown/profile-dropdown.ui.service';
+import { FeedbackUIService } from './feedback/feedback.ui.service';
 
 @Component({
 	selector: "client-root",
@@ -14,29 +15,35 @@ export class ClientComponent implements OnInit {
 	@ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
 	private profile: MyProfile;
 	private redirectLink: string;
-	private readonly baseUrl: string = 'client/';  
+	private readonly baseUrl: string = '/client';
 
 	constructor(
 		private clientHttpService: ClientHttpService,
 		private router: Router,
+		private feedbackUIService: FeedbackUIService,
+		private viewContainerRef: ViewContainerRef,
 		private profileDropdownUIService: ProfileDropdownUIService
 	) {
-		this.redirectTo('game-channel');
+		this.feedbackUIService.setViewContainerRef(this.viewContainerRef);
 	}
-	
+
 	ngOnInit() {
 		this.fetchProfile();
-		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER);
 	}
 
 	redirectTo(link: string) {
-		this.router.navigate([this.baseUrl + link]);
+		this.router.navigateByUrl(`${this.baseUrl}/${link}`);
 		this.redirectLink = link;
 	}
 
 	protected fetchProfile() {
 		this.clientHttpService.fetchProfile().subscribe(data => {
 			this.profile = data;
+			this.initProfileDropdown(data);
 		});
+	}
+
+	protected initProfileDropdown(profile: MyProfile) {
+		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER, profile);
 	}
 }

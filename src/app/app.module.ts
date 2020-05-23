@@ -19,12 +19,14 @@ import { DialogService } from './common/dialogs/dialog.service';
 import { ProfileDropdownComponent } from './modules/client/profile-dropdown/profile-dropdown.component';
 import { IconsModule } from './modules/client/client.feather-icon.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeedbackComponent } from './modules/client/feedback/feedback.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoaderComponent,
 		AlertComponent,
+		FeedbackComponent,
 		ProfileDropdownComponent
 	],
 	imports: [
@@ -43,9 +45,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
-		{ provide: DEFAULT_TIMEOUT, useValue: 10000 }
+		{ provide: DEFAULT_TIMEOUT, useValue: 100000 }
 	],
-	entryComponents: [LoaderComponent, ProfileDropdownComponent],
+	entryComponents: [
+		LoaderComponent, 
+		ProfileDropdownComponent, 
+		FeedbackComponent, 
+		AlertComponent
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

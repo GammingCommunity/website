@@ -12,19 +12,28 @@ import { FriendChatComponent } from './friends/friend-chat/friend-chat.component
 import { FriendChatService } from './friends/friend-chat/friend-chat.service';
 import { RoomChatComponent } from './game-channel/room-chat/room-chat.component';
 import { IconsModule } from './client.feather-icon.module';
+import { SettingsComponent } from './settings/settings.component';
+import { FormsModule } from '@angular/forms';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
 	declarations: [
-		ClientComponent, 
-		GameChannelComponent, 
-		FriendsComponent, 
-		JoinedRoomsComponent, 
-		GameRoomsComponent, 
-		ProfileComponent, 
-		FriendChatComponent, 
-		RoomChatComponent		
+		ClientComponent,
+		GameChannelComponent,
+		FriendsComponent,
+		JoinedRoomsComponent,
+		GameRoomsComponent,
+		ProfileComponent,
+		FriendChatComponent,
+		RoomChatComponent,
+		SettingsComponent
 	],
-	imports: [IconsModule, ClientRoutingModule, CommonModule],
+	imports: [
+		IconsModule,
+		ClientRoutingModule,
+		FormsModule,
+		CommonModule
+	],
 	providers: [ChatService, FriendChatService]
 })
 export class ClientModule { }

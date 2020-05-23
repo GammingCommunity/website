@@ -1,6 +1,7 @@
 <div class="container">
-	<h1 class="mb-3">Đăng nhập</h1>
+	<h1 class="mb-3 title">Đăng nhập</h1>
 	<input type="text" placeholder="tên đăng nhập" [(ngModel)]="loginName">
-	<input type="password" [(ngModel)]="password">
-	<div class="btn btn-w mt-3" (click)="log()">Đăng nhập</div>
+	<input type="password" placeholder="password"  [(ngModel)]="password">
+	<input #focusing class="btn btn-w mt-3" (click)="log()" type='submit' value="Đăng nhập">
+	<a routerLink="/registor">đăng ký</a>
 </div>

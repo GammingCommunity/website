@@ -1,0 +1,9 @@
+
+<div class="container">
+	<h1 class="mb-3 title">Đăng ky</h1>
+	<input type="text" placeholder="tên" [(ngModel)]="account.name">
+	<input type="text" placeholder="tên đăng nhập" [(ngModel)]="account.loginName">
+	<input type="text" placeholder="password" [(ngModel)]="account.pass">
+	<button class="btn btn-w mt-3" (click)='register()'>register</button>
+	<a routerLink="/login">đăng nhập</a>
+</div>

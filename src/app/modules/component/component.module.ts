@@ -4,9 +4,10 @@ import { ComponentRoutingModule } from "./component.routing.module";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
 import { TestComponent } from './test/test.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-	declarations: [LoginComponent, TestComponent],
+	declarations: [LoginComponent, TestComponent, RegisterComponent],
 	imports: [ComponentRoutingModule, CommonModule, FormsModule],
 	providers: []
 })

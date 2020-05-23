@@ -15,15 +15,19 @@ export class AuthService {
 	}
 
 	getSessionToken(): string | null {
-		if (this.sessionToken) {
+		if (this.sessionToken && this.sessionToken != '') {
 			return this.sessionToken;
 		} else {
-			this.router.navigateByUrl("/login");
+			window.location.href = "/login";
 			return null;
 		}
 	}
 
 	setSessionToken(token: string) {
-		localStorage.setItem("token", token);
+		localStorage.setItem(this.tokenTitle, token);
+	}
+
+	removeSessionToken() {
+		localStorage.removeItem(this.tokenTitle);
 	}
 }

@@ -1,87 +1,101 @@
-<h1>profile</h1>
-<table style="width:100%" *ngIf='profile'>
+<h1>newProfile</h1>
+<table style="width:100%" *ngIf='newProfile'>
 	<tr>
 		<th>id</th>
-		<td>{{ profile.id }}</td>
+		<td>{{ newProfile.id }}</td>
 	</tr>
 	<tr>
 		<th>describe</th>
-		<td>{{ profile.describe }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.describe">
+		</td>
 
 	</tr>
 	<tr>
 		<th>avatar</th>
-		<td>{{ profile.avatarUrl }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.avatarUrl">
+		</td>
 
 	</tr>
 	<tr>
-
 		<th>name</th>
-		<td>{{ profile.name }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.name">
+		</td>
 	</tr>
 	<tr>
 		<th>updated_at</th>
-		<td>{{ profile.updatedAt }}</td>
+		<td>{{ newProfile.updatedAt }}</td>
 
 	</tr>
 	<tr>
 		<th>created_at</th>
-		<td>{{ profile.createdAt }}</td>
+		<td>{{ newProfile.createdAt }}</td>
 
 	</tr>
 	<tr>
 		<th>status</th>
-		<td>{{ profile.status }}</td>
+		<td>{{ newProfile.status }}</td>
 		
 	</tr>
 	<tr>
 		<th>role</th>
-		<td>{{ profile.role }}</td>
+		<td>{{ newProfile.role }}</td>
 		
 	</tr>
 	<tr>
 		<th>birthyear</th>
-		<td>{{ profile.birthyear }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.birthyear">
+		</td>
 
 	</tr>
 	<tr>
 		<th>birthmouth</th>
-		<td>{{ profile.birthmonth }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.birthmonth">
+		</td>
 
 	</tr>
 	<tr>
 		<th>phone</th>
-		<td>{{ profile.phone }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.phone">
+		</td>
 		
 	</tr>
 	<tr>
 		<th>email</th>
-		<td>{{ profile.email }}</td>
+		<td>
+			<input type="text" [(ngModel)]="newProfile.email">
+		</td>
 
 	</tr>
 	
 </table>
 
 <h1>Setting</h1>
-<table style="width:100%" *ngIf='profile'>
+<table style="width:100%" *ngIf="newProfile && newProfile.setting">
 	<tr>
 		<th>anonymous</th>
-		<td>{{ profile.setting.anonymous }}</td>
+		<td>{{ newProfile.setting.anonymous }}</td>
 	</tr>
 	<tr>
 		<th>birthmounth</th>
-		<td>{{ profile.setting.birthmonthPrivacy }}</td>
+		<td>{{ newProfile.setting.birthmonthPrivacy }}</td>
 	</tr>
 	<tr>
 		<th>birthyear</th>
-		<td>{{ profile.setting.birthyearPrivacy }}</td>
+		<td>{{ newProfile.setting.birthyearPrivacy }}</td>
 	</tr>
 	<tr>
 		<th>email</th>
-		<td>{{ profile.setting.emailPrivacy }}</td>
+		<td>{{ newProfile.setting.emailPrivacy }}</td>
 	</tr>
 	<tr>
 		<th>phone</th>
-		<td>{{ profile.setting.phonePrivacy }}</td>
+		<td>{{ newProfile.setting.phonePrivacy }}</td>
 	</tr>
 </table>
+<button class="btn btn-w" (click)="updateProfile()">submit</button>

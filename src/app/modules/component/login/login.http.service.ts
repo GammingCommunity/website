@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { GraphqlService } from "src/app/common/services/graphql.service";
 import { ServiceUrls } from "src/environments/environment";
 import { LoggingResult, LoggingResultStatus } from "./login.dto";
+import gql from 'graphql-tag';
+import { map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
 
 @Injectable({
 	providedIn: "root"
@@ -9,30 +12,21 @@ import { LoggingResult, LoggingResultStatus } from "./login.dto";
 export class LoginHttpService {
 	private readonly amsUrl: string = ServiceUrls.accountManagement;
 
-	constructor(private graphql: GraphqlService) {}
+	constructor(private apollo: Apollo) { }
 
 	login(
 		name: string,
-		pass: string,
-		callback: (result: LoggingResult) => void
+		pass: string
 	) {
-		this.graphql.query(
-			{
-				url: this.amsUrl,
-				query: `login(username: "${name}", pwd: "${pass}"){token, status}`
-			},
-			data => {
-				const result =
-					data && data.login
-						? new LoggingResult(data.login)
-						: new LoggingResult({
-								status: LoggingResultStatus.FAIL,
-								token: null,
-								describe: null
-						  });
-
-				callback(result);
-			}
-		);
+		return this.apollo.use('accountManagementService').query<any>({
+			query: gql`
+				query 
+				{
+					login(username: "${name}", pwd: "${pass}"){token, status}
+				}
+			`
+		}).pipe(map(
+			({ data }): LoggingResult => new LoggingResult(data.login)
+		));
 	}
 }

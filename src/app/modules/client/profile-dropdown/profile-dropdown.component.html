@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [@fadeInOut]>
 	<ul (click)='destroy()'>
 		<li>
 			<a routerLink="/client/profile">
@@ -8,35 +8,35 @@
 		</li>
 		<li>
 
-			<a href="">
-				<i-feather name="coffee"></i-feather>
+			<a (click)='showFeedback()'>
+				<i-feather name="send"></i-feather>
 				feedback
 			</a>
 		</li>
 		<li>
 
-			<a href="">
+			<a routerLink="/client/settings">
 				<i-feather name="settings"></i-feather>
 				setting
 			</a>
 		</li>
 		<li>
 
-			<a href="">
+			<a >
 				<i-feather name="help-circle"></i-feather>
 				help
 			</a>
 		</li>
 		<li>
 
-			<a href="">
+			<a >
 				<i-feather name="moon" class="someclass"></i-feather>
 				dark mode
 			</a>
 		</li>
 		<li>
 
-			<a href="">
+			<a (click)='logOut()'>
 				<i-feather name="log-out" class="someclass"></i-feather>
 				log out
 			</a>

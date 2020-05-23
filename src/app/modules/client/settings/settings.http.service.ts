@@ -4,20 +4,12 @@ import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Profile, AccountEditingResult } from './profile.dto';
+import { Settings, AccountEditingResult } from './settings.dto';
 
-const PROFILE = gql`
+const GET_SETTINGS = gql`
 	query{
 		getThisAccount {
 			id
-			name
-			avatar_url
-			describe
-			email
-			phone
-			birthmonth
-			birthyear
-			role
 			setting {
 				anonymous
 				birthmonth_privacy
@@ -25,9 +17,6 @@ const PROFILE = gql`
 				email_privacy
 				phone_privacy
 			}
-			status
-			created_at
-			updated_at
 		}
 	}
 `;
@@ -35,7 +24,7 @@ const PROFILE = gql`
 @Injectable({
 	providedIn: "root"
 })
-export class ProfileHttpService {
+export class SettingsHttpService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
@@ -47,29 +36,29 @@ export class ProfileHttpService {
 		this.tokenTitle = this.auth.getTokenTitle();
 	}
 
-	fetchProfile() {
+	fetchSettings() {
 		return this.apollo.use('accountManagementService').query<any>({
-			query: PROFILE,
+			query: GET_SETTINGS,
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
 		}).pipe(map(
-			({ data }): Profile => new Profile(data.getThisAccount)
+			({ data }): Settings => new Settings(data.getThisAccount.setting)
 		));
 	}
 
-	updateProfile(profile: Profile) {
+	updateSettings(settings: Settings) {
 		return this.apollo.use('accountManagementService').mutate<any>({
 			mutation: gql`
 				mutation{
 					editThisAccount(account:{
-						name: "${profile.name}"
-						describe: "${profile.describe}"
-						avatar_url: "${profile.avatarUrl}"
-						email: "${profile.email}"
-						phone: "${profile.phone}"
-						birthmonth: "${profile.birthmonth}"
-						birthyear: "${profile.birthyear}"
+						setting:{
+							anonymous:${settings.anonymous}
+							birthyear_privacy:${settings.birthmonthPrivacy}
+							birthyear_privacy:${settings.birthyearPrivacy}
+							email_privacy:${settings.emailPrivacy}
+							phone_privacy:${settings.phonePrivacy}
+						}
 					}){
 						status
 						describe

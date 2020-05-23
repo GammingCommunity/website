@@ -1,6 +1,7 @@
 import { Injectable, ComponentFactoryResolver, ViewContainerRef, Injector, ElementRef, ViewRef } from "@angular/core";
 import { DialogService } from 'src/app/common/dialogs/dialog.service';
 import { ProfileDropdownComponent } from './profile-dropdown.component';
+import { MyProfile } from '../client.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -10,11 +11,12 @@ export class ProfileDropdownUIService extends DialogService {
 		super(factoryResolver);
 	}
 
-	init(viewContainerRef: ViewContainerRef, anchorElement: ElementRef) {
+	init(viewContainerRef: ViewContainerRef, anchorElement: ElementRef, currentAccount: MyProfile) {
 		return super.addDialogComponentToComponentPuttingEvent(
 			ProfileDropdownComponent,
 			anchorElement,
-			viewContainerRef
+			viewContainerRef,
+			{ currentAccount: currentAccount }
 		);
 	}
 }

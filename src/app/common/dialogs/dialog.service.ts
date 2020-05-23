@@ -38,7 +38,7 @@ export class DialogService {
 			outFocus = true
 		},
 	): ViewRef {
-		viewContainerRef = viewContainerRef != null ? viewContainerRef : this.viewContainerRef;
+		viewContainerRef = viewContainerRef ? viewContainerRef : this.viewContainerRef;
 
 		const factory = this.factoryResolver.resolveComponentFactory(dialogType);
 		const componentIndex = Date.now();

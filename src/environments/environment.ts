@@ -19,7 +19,8 @@ export const CssConfigs = {
 export const ServiceUrls = {
 	accountManagement: "http://hutech.tech/graphql",
 	chat: "https://socketchat.glitch.me",
-	main: "https://gmgraphql.glitch.me/graphql"
+	feedback: "https://gravel-sunny-resistance.glitch.me",
+	main: "https://gmgraphql.glitch.me/graphql" 
 };
 
 /*

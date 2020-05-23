@@ -71,9 +71,13 @@ export class FriendsComponent implements OnInit {
 	}
 	
 	expandFriendsContainer() {
-		this.chatBoxState = 'middle-expand';
-		this.friendsContainerState = 'expand';
-		this.chatBoxIsOpening = false;
+		if (this.chatBoxIsOpening && !this.mainContainerIsExpanding){
+			this.chatBoxState = 'expand';
+			this.friendsContainerState = 'collapse';
+		}else {
+			this.chatBoxState = 'middle-expand';
+			this.friendsContainerState = 'expand';
+		}
 		this.mainContainerIsExpanding = true;
 	}
 	
