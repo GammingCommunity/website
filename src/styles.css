@@ -3,9 +3,7 @@ body {
 	position: relative;
 
 	width: 100vw;
-	min-width: 800px;
 	height: 100vh;
-	min-height: 400px;
 }
 
 :root {
@@ -347,7 +345,7 @@ body * {
 	box-sizing: inherit;
 	color: inherit;
 }
-
+/* 
 ::-webkit-scrollbar {
 	width: 7px;
 	height: 7px;
@@ -358,7 +356,7 @@ body * {
 ::-webkit-scrollbar-thumb {
 	background-color: var(--bg6);
 	border-radius: 7px;
-}
+} */
 
 textarea::placeholder,
 input::placeholder {

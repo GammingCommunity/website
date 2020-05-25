@@ -1,9 +1,108 @@
-<p>joined-rooms works!</p>
-<div class="friends-items hover" *ngFor="let room of joinedRooms" data-id="{{ room.id }}">
-	<div class="img" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
-	<p class="name">{{ room.name }}</p>
-</div>
+<button class="btn-resize" (click)='resizeContainer()'>
+	<div *ngIf="containerState !== 'expand'; else elseBlock">
+		<i-feather name="chevron-right"></i-feather>
+	</div>
+	<ng-template #elseBlock>
+		<i-feather name="chevron-left"></i-feather>
+	</ng-template>
+</button>
 
-<div #dropdown class="dropdown">dropdown</div>
+<!-- <div class="container" [@changeContainerState]="containerState">
+	<div class="joined-room-head">
 
-<input type="text">
+	</div>
+	<div class="joined-room-body">
+		<div class="friends-items hover" *ngFor="let room of joinedRooms" data-id="{{ room.id }}">
+			<div class="img" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
+			<p class="name">{{ room.name }}</p>
+		</div>
+	</div>
+	<div class="joined-room-footer">
+
+	</div>
+</div> -->
+
+
+<!-- joined room -->
+<nav class="joined-rooms" [@changeContainerState]="containerState">
+	<div class="head">
+		<label>Phòng đã tham gia</label>
+		<div class="row">
+			<i class="fas fa-search mr-1 btn rounded-circle"></i>
+			<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
+		</div>
+	</div>
+
+	<div class="body">
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Battlefield 1</p>
+				<p>#162</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Minecraft</p>
+				<p>#113</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Left 4 Dead 2</p>
+				<p>#33</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>War of Tanks</p>
+				<p>#55</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Start Craft</p>
+				<p>#123</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Battlefield 4</p>
+				<p>#5</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>Titanfall 2</p>
+				<p>#192</p>
+			</div>
+		</div>
+
+		<div class="joined-rooms-items hover">
+			<div class="img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)"></div>
+			<div class="info">
+				<p>TitanfallTitanfallTitanfallTitanfall
+					HuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuy</p>
+				<p>#192</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<div class="btn btn-lg btn-content">Tìm phòng</div>
+	</div>
+</nav>

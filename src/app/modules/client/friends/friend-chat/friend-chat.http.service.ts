@@ -21,26 +21,5 @@ export class FriendChatHttpService {
 		this.tokenTitle = this.auth.getTokenTitle();
 	}
 
-	// fetchFriend(id: number) {
-	// 	return this.apollo.use('accountManagementService').query<any>({
-	// 		query: gql`
-	// 			query{
-	// 				lookAccount(ids:[${id}]){
-	// 					account{
-	// 						id
-	// 						name
-	// 						avatar_url
-	// 					}
-	// 				}
-	// 			}
-	// 		`,
-	// 		context: {
-	// 			headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
-	// 		}
-	// 	}).pipe(map(
-	// 		({ data }): Friend => new Friend(data.lookAccount[0].account)
-	// 	));
-	// }
-
 	
 }

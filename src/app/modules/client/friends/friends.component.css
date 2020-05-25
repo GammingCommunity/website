@@ -24,20 +24,17 @@
 	margin-top: 30px;
 }
 
-:host {
-	height: 100vh;
-}
-
 .main-container {
 	position: relative;
 	float: right;
 
 	height: 100%;
+	margin-left: 27px;
 }
 
 .main-btn-resize {
 	position: absolute;
-	left: -25px;
+	left: 0;
 	top: 4px;
 	border: none;
 	background-color: transparent;

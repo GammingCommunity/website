@@ -1,4 +1,5 @@
 <div class="box" [@fadeInOut]>
-	<p class="message">{{ message }}</p>
+	<textarea [(ngModel)]="feedback.content"></textarea>
 	<button class="btn-ok" (click)='destroy()'>OK</button>
+	<button class="btn-ok" (click)='sendFeedback()'>Send</button>
 </div>

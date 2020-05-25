@@ -16,8 +16,8 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 			state('collapse', style({
 				width: '60px'
 			})),
-			transition('*=>expand', animate('140ms ease')),
-			transition('*=>collapse', animate('140ms ease'))
+			transition('*=>expand', animate('100ms ease')),
+			transition('*=>collapse', animate('100ms ease'))
 		]),
 		trigger('changeChatBoxState', [
 			state('expand', style({
@@ -27,11 +27,10 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 				width: '240px'
 			})),
 			state('collapse', style({
-				width: '0',
-				marginRight: '0',
+				width: '0'
 			})),
-			transition('*=>expand', animate('140ms ease')),
-			transition('*=>collapse', animate('140ms ease'))
+			transition('*=>expand', animate('100ms ease')),
+			transition('*=>collapse', animate('100ms ease'))
 		])
 	]
 })

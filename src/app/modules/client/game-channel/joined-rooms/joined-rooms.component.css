@@ -1,10 +1,60 @@
-.img {
-	width: 100px;
-	height: 100px;
+:host {
+	position: relative;
 }
 
-.dropdown {
-	background-color: green;
-	width: 100px;
-	height: 100px;
+.btn-resize {
+	position: absolute;
+	right: 0;
+	top: 4px;
+	border: none;
+	background-color: transparent;
+	transform: scale(1.1);
+}
+
+.joined-rooms {
+	background-color: rebeccapurple;
+	height: 100%;
+	margin-right: 27px;
+}
+
+.joined-rooms-items {
+	display: flex;
+	width: 100%;
+	padding: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.joined-rooms-items .img {
+	width: 64px;
+	min-width: 64px;
+	height: 64px;
+	border-radius: var(--rounded);
+	transition: all .4s ease;
+}
+
+.joined-rooms-items:hover .img {
+	width: 84px;
+	min-width: 84px;
+}
+
+.joined-rooms-items .info {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	overflow: hidden;
+	height: 64px;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+
+.joined-rooms-items .info * {
+	overflow: inherit;
+	white-space: inherit;
+}
+
+.joined-rooms .footer {
+	margin-top: 30px;
 }

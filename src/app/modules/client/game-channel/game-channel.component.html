@@ -1,5 +1,19 @@
-<p>game-channel works!</p>
-
 <app-joined-rooms></app-joined-rooms>
-<app-game-rooms></app-game-rooms>
-<app-room-chat></app-room-chat>
+<div class="container">
+	<div class="child-left">
+		<select class="game-channel-list">
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="mercedes">Mercedes</option>
+			<option value="audi">Audi</option>
+		</select>
+
+		<button class="match-friends">saldjfcvnl</button>
+
+		<app-room-global-chat></app-room-global-chat>
+		<app-room-private-chat></app-room-private-chat>
+	</div>
+	<div class="child-right">
+		<app-game-rooms></app-game-rooms>
+	</div>
+</div>

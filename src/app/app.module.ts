@@ -20,6 +20,7 @@ import { ProfileDropdownComponent } from './modules/client/profile-dropdown/prof
 import { IconsModule } from './modules/client/client.feather-icon.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './modules/client/feedback/feedback.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { FeedbackComponent } from './modules/client/feedback/feedback.component'
 		HttpClientModule,
 		ApolloModule,
 		IconsModule,
+		FormsModule,
 		HttpLinkModule,
 		BrowserAnimationsModule
 	],

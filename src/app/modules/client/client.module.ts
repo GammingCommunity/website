@@ -10,11 +10,11 @@ import { ChatService } from 'src/app/common/services/chat.service';
 import { ProfileComponent } from './profile/profile.component';
 import { FriendChatComponent } from './friends/friend-chat/friend-chat.component';
 import { FriendChatService } from './friends/friend-chat/friend-chat.service';
-import { RoomChatComponent } from './game-channel/room-chat/room-chat.component';
 import { IconsModule } from './client.feather-icon.module';
 import { SettingsComponent } from './settings/settings.component';
 import { FormsModule } from '@angular/forms';
-import { FeedbackComponent } from './feedback/feedback.component';
+import { RoomGlobalChatComponent } from './game-channel/room-global-chat/room-global-chat.component';
+import { RoomPrivateChatComponent } from './game-channel/room-private-chat/room-private-chat.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +25,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
 		GameRoomsComponent,
 		ProfileComponent,
 		FriendChatComponent,
-		RoomChatComponent,
+		RoomGlobalChatComponent,
+		RoomPrivateChatComponent,
 		SettingsComponent
 	],
 	imports: [
