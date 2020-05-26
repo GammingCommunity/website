@@ -55,5 +55,5 @@ app-room-private-chat{
 	left: 0;
 	top: 0;
 	background-color: wheat;
-	z-index: 10;
+	z-index: 2;
 }

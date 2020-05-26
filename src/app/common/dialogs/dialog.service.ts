@@ -16,7 +16,7 @@ export class DialogService {
 	addDialogComponentToComponentPuttingEvent(
 		dialogType: Type<any>,
 		anchorElement: ElementRef,
-		viewContainerRef: ViewContainerRef,
+		viewContainerRef: any = null,
 		data: any = null,
 		outFocus: boolean = true
 	) {
@@ -38,6 +38,7 @@ export class DialogService {
 			outFocus = true
 		},
 	): ViewRef {
+		const isMovingDialog: boolean = anchorElement && viewContainerRef;
 		viewContainerRef = viewContainerRef ? viewContainerRef : this.viewContainerRef;
 
 		const factory = this.factoryResolver.resolveComponentFactory(dialogType);
@@ -60,7 +61,8 @@ export class DialogService {
 			}
 		}
 
-		if (anchorElement) {
+		//move dialog to anchorElement
+		if (isMovingDialog) {
 			const bonus = 1;
 			const y = anchorElement.nativeElement.offsetTop + anchorElement.nativeElement.offsetHeight + bonus;
 			const x = anchorElement.nativeElement.offsetLeft + bonus;

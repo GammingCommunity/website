@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChil
 import { JoinedRoom } from './joined-rooms.dto';
 import { JoinedRoomsHttpService } from './joined-rooms.http.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat.ui.service';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -23,6 +24,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class JoinedRoomsComponent implements OnInit {
 	private joinedRooms: JoinedRoom[] = [];
 	private containerState: string = 'expand';
+	public showPrivateChat: (data: any) => void;
 
 	constructor(private joinedRoomHttpService: JoinedRoomsHttpService) { }
 
@@ -31,7 +33,7 @@ export class JoinedRoomsComponent implements OnInit {
 	}
 
 	resizeContainer() {
-		if (this.containerState === 'expand'){
+		if (this.containerState === 'expand') {
 			this.containerState = 'collapse';
 		} else {
 			this.containerState = 'expand';

@@ -1,0 +1,5 @@
+<div class="box" [@fadeInOut]>
+	<input [(ngModel)]="searchKey">
+	<button class="btn-ok" (click)='destroy()'>Exit</button>
+	<button class="btn-ok" (click)='search()' *ngIf='searchKey'>Search</button>
+</div>

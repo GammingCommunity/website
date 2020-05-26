@@ -1,1 +1,42 @@
-<div class="container"></div>
+<div class="chat-rooms">
+	<div class="background img" style="background-image: url(img/9.jpg)"></div>
+
+	<div class="chat-rooms-head">
+		<button (click)='hide()'>Exit</button>
+		<div class="img" style="background-image: url(img/9.jpg)"></div>
+		<div class="chat-rooms-head-info">
+			<p class="chat-rooms-items-name">Nào mình cùng lên xe buýt</p>
+			<p class="chat-rooms-items-id">1</p>
+		</div>
+	</div>
+	<hr>
+
+	<div class="chat-rooms-body">
+		<div class="chat-rooms-boxs">
+			<div class="chat-rooms-views">
+
+				<div class="messages">
+					<div class="messages-head">
+						<div class="messages-avatar img" style="background-image: url(img/101.jpg)"></div>
+						<p class="messages-name">awdawkduh</p>
+						<div class="messages-options">
+							<i class="fas fa-search mr-1 btn btn-sm rounded-circle"></i>
+							<i class="fas fa-ellipsis-h btn btn-sm rounded-circle mr-0"></i>
+						</div>
+					</div>
+					<pre class="messages-body wrap">awdawdawdawd</pre>
+				</div>
+
+
+			</div>
+			<hr>
+			<div class="chat-rooms-inputs">
+				<textarea class="chat-rooms-input" placeholder="Viết gì đó..." onkeyup="updateMessagesBoxLength()"
+					onkeydown="send(event)"></textarea>
+				<p class="chat-rooms-input-length ml-2">0</p>
+				<i class="far fa-smile pl-2"></i>
+			</div>
+		</div>
+		<app-room-private-chat-options></app-room-private-chat-options>
+	</div>
+</div>

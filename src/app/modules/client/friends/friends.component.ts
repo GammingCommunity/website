@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
-import { FriendChatService } from './friend-chat/friend-chat.service';
+import { FriendChatUIService } from './friend-chat/friend-chat.ui.service';
 import { trigger, state, transition, animate, style } from '@angular/animations';
+import { SearchFriendsUIService } from './search-friends/search-friends.ui.service';
 
 @Component({
 	selector: 'app-friends',
@@ -35,20 +36,26 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 	]
 })
 export class FriendsComponent implements OnInit {
+	@ViewChild('searchFriendBtn', { static: true }) searchFriendBtnER: ElementRef;
 	private mainContainerIsExpanding: boolean = true;
 	private chatBoxIsOpening: boolean = false;
 	private friendsContainerState: string = 'expand';
 	private chatBoxState: string = 'middle-expand';
 	private friends: MyFriend[] = [];
 
-	constructor(private friendsHttpService: FriendsHttpService, private friendChatService: FriendChatService) { }
+	constructor(
+		private friendsHttpService: FriendsHttpService,
+		private searchFriendsUIService: SearchFriendsUIService,
+		private friendChatUIService: FriendChatUIService
+	) { }
 
 	ngOnInit() {
 		this.fetchFriends();
+		this.initSearchFriendsPopup();
 	}
 
 	openChatBox(selectedFriend: MyFriend) {
-		this.friendChatService.callShowingChatBoxFunc(selectedFriend);
+		this.friendChatUIService.showChatBoxFunc(selectedFriend);
 		this.expandChatBox();
 	}
 
@@ -56,7 +63,7 @@ export class FriendsComponent implements OnInit {
 		this.mainContainerIsExpanding = !this.mainContainerIsExpanding;
 
 		if (this.mainContainerIsExpanding) {
-			if (this.chatBoxIsOpening){
+			if (this.chatBoxIsOpening) {
 				this.chatBoxState = 'expand';
 				this.friendsContainerState = 'collapse';
 			} else {
@@ -68,23 +75,27 @@ export class FriendsComponent implements OnInit {
 			this.friendsContainerState = 'collapse';
 		}
 	}
-	
+
 	expandFriendsContainer() {
-		if (this.chatBoxIsOpening && !this.mainContainerIsExpanding){
+		if (this.chatBoxIsOpening && !this.mainContainerIsExpanding) {
 			this.chatBoxState = 'expand';
 			this.friendsContainerState = 'collapse';
-		}else {
+		} else {
 			this.chatBoxState = 'middle-expand';
 			this.friendsContainerState = 'expand';
 		}
 		this.mainContainerIsExpanding = true;
 	}
-	
+
 	expandChatBox() {
 		this.chatBoxState = 'expand';
 		this.friendsContainerState = 'collapse';
 		this.chatBoxIsOpening = true;
 		this.mainContainerIsExpanding = true;
+	}
+
+	protected initSearchFriendsPopup() {
+		this.searchFriendsUIService.init(this.searchFriendBtnER);
 	}
 
 	protected fetchFriends() {

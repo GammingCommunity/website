@@ -7,13 +7,6 @@ import { map } from 'rxjs/operators';
 import { FeedbackServiceResponse, Feedback } from './feedback.dto';
 import { ServiceUrls } from 'src/environments/environment';
 
-const MY_FRIENDS = gql`
-  	query 
-	{
-		getFriends{ friend{ id, name, avatar_url }}
-	}
-`;
-
 @Injectable({
 	providedIn: "root"
 })

@@ -4,6 +4,7 @@ import { ClientHttpService } from "./client.http.service";
 import { Router } from '@angular/router';
 import { ProfileDropdownUIService } from './profile-dropdown/profile-dropdown.ui.service';
 import { FeedbackUIService } from './feedback/feedback.ui.service';
+import { SearchFriendsUIService } from './friends/search-friends/search-friends.ui.service';
 
 @Component({
 	selector: "client-root",
@@ -22,9 +23,11 @@ export class ClientComponent implements OnInit {
 		private router: Router,
 		private feedbackUIService: FeedbackUIService,
 		private viewContainerRef: ViewContainerRef,
-		private profileDropdownUIService: ProfileDropdownUIService
+		private profileDropdownUIService: ProfileDropdownUIService,
+		private searchFriendsUIService: SearchFriendsUIService
 	) {
 		this.feedbackUIService.setViewContainerRef(this.viewContainerRef);
+		this.searchFriendsUIService.setViewContainerRef(this.viewContainerRef);
 	}
 
 	ngOnInit() {

@@ -1,0 +1,12 @@
+<button class="btn-resize" (click)='resizeContainer()'>
+	<div *ngIf="containerState === 'expand'; else elseBlock">
+		<i-feather name="chevron-right"></i-feather>
+	</div>
+	<ng-template #elseBlock>
+		<i-feather name="chevron-left"></i-feather>
+	</ng-template>
+</button>
+
+<div class="container"  [@changeContainerState]="containerState">
+	<p>room-private-chat-options works!</p>
+</div>

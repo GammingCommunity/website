@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 260px;
+	min-width: 260px;
+	height: 100%;
+	overflow: hidden;
+}
+
+:host {
+	position: relative;
+}
+
+.btn-resize {
+	position: absolute;
+	left: -25px;
+	top: 4px;
+	border: none;
+	background-color: transparent;
+	transform: scale(1.1);
+}

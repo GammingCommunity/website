@@ -1,5 +1,152 @@
 :host {
 	width: 100%;
 	height: 100%;
-	margin: 20px;
+}
+
+.chat-rooms {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+}
+
+.chat-rooms-head {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: var(--secondary-text);
+}
+
+.chat-rooms-head .img {
+	width: 64px;
+	min-width: 64px;
+	height: 64px;
+	margin-right: 10px;
+}
+
+.chat-rooms-items-name, .chat-rooms-items-id {
+	white-space: nowrap;
+}
+
+.chat-rooms-head-info {
+	flex-grow: 1;
+	overflow: hidden;
+}
+
+.chat-rooms-items-id::before {
+	content: "#";
+}
+
+.chat-rooms-body {
+	flex-grow: 1;
+	display: flex;
+	overflow: auto;
+	width: 100%;
+}
+
+.chat-rooms-boxs {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	height: 100%;
+	margin-right: 30px;
+}
+
+.chat-rooms-views {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 30px;
+	margin-right: 10px;
+}
+
+.chat-rooms-inputs {
+	display: flex;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.chat-rooms-input {
+	flex-grow: 1;
+	overflow: hidden;
+	height: 60px;
+	background-color: transparent;
+	border: none;
+	resize: none;
+}
+
+/* messages */
+
+.messages {
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.messages.right {
+	align-self: flex-end;
+}
+
+.messages-head {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	width: 100%;
+	margin-bottom: 4px;
+}
+
+.messages.right .messages-head {
+	justify-content: flex-end;
+}
+
+.messages-avatar {
+	width: 24px;
+	min-width: 24px;
+	height: 24px;
+	border-radius: var(--rounded-circle);
+}
+
+.messages-name {
+	flex-shrink: 1;
+	overflow: hidden;
+	margin-left: 6px;
+	margin-right: 6px;
+	font-size: var(--text-size-sm);
+	font-weight: bold;
+	color: var(--secondary-text);
+	white-space: nowrap;
+}
+
+.messages-options {
+	display: flex;
+	opacity: 0;
+	transition: all .2s ease;
+}
+
+.messages:hover .messages-options {
+	opacity: 1;
+}
+
+.messages-body {
+	display: inline-block;
+	max-width: calc(100% - 30px);
+	padding: 5px 10px;
+	margin-left: 16px;
+	background-color: var(--bg9);
+	border-radius: var(--rounded);
+}
+
+.messages.right .messages-body {
+	margin-left: 0;
+	margin-right: 16px;
+	float: right;
+	background-color: var(--bg6);
 }

@@ -21,6 +21,9 @@ import { IconsModule } from './modules/client/client.feather-icon.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './modules/client/feedback/feedback.component';
 import { FormsModule } from '@angular/forms';
+import { SearchFriendsComponent } from './modules/client/friends/search-friends/search-friends.component';
+import { SearchFriendsUIService } from './modules/client/friends/search-friends/search-friends.ui.service';
+import { ProfileDropdownUIService } from './modules/client/profile-dropdown/profile-dropdown.ui.service';
 
 @NgModule({
 	declarations: [
@@ -28,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 		LoaderComponent,
 		AlertComponent,
 		FeedbackComponent,
+		SearchFriendsComponent,
 		ProfileDropdownComponent
 	],
 	imports: [
@@ -47,12 +51,13 @@ import { FormsModule } from '@angular/forms';
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
-		{ provide: DEFAULT_TIMEOUT, useValue: 100000 }
+		{ provide: DEFAULT_TIMEOUT, useValue: 3000 }
 	],
 	entryComponents: [
 		LoaderComponent, 
 		ProfileDropdownComponent, 
 		FeedbackComponent, 
+		SearchFriendsComponent, 
 		AlertComponent
 	],
 	bootstrap: [AppComponent]
