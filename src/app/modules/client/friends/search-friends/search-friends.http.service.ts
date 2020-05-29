@@ -1,11 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ViewContainerRef, ViewRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { map, tap, finalize, switchMap } from 'rxjs/operators';
 import { ServiceUrls } from 'src/environments/environment';
 import { AccountLookingResult } from './search-friends.dto';
+import { LoaderService } from 'src/app/common/dialogs/loader/loader.service';
+import { LocalLoader } from 'src/app/common/dialogs/loader/loader.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -13,18 +15,95 @@ import { AccountLookingResult } from './search-friends.dto';
 export class SearchFriendsHttpService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
-	readonly feedbackUrl: string;
 
 	constructor(
 		private apollo: Apollo,
+		private loaderService: LoaderService,
 		private auth: AuthService
 	) {
 		this.ssToken = this.auth.getSessionToken();
 		this.tokenTitle = this.auth.getTokenTitle();
-		this.feedbackUrl = ServiceUrls.feedback;
 	}
 
-	search(searchKey: string) {
+	sendFriendRequest(id: number) {
+		return this.apollo.use('accountManagementService').mutate<any>({
+			mutation: gql`
+				mutation 
+				{
+					sendFriendRequest(receiver_id: ${id})
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): boolean => data.sendFriendRequest
+		));
+	}
+
+	unsendFriendRequest(id: number) {
+		return this.apollo.use('accountManagementService').mutate<any>({
+			mutation: gql`
+				mutation 
+				{
+					removeFriendRequest(receiver_id: ${id})
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): boolean => data.removeFriendRequest
+		));
+	}
+
+	acceptFriendRequest(id: number) {
+		return this.apollo.use('accountManagementService').mutate<any>({
+			mutation: gql`
+				mutation 
+				{
+					confirmFriendRequest(sender_id: ${id}, is_confirm: true)
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): boolean => data.confirmFriendRequest
+		));
+	}
+
+	cancelFriendRequest(id: number) {
+		return this.apollo.use('accountManagementService').mutate<any>({
+			mutation: gql`
+				mutation 
+				{
+					confirmFriendRequest(sender_id: ${id}, is_confirm: false)
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): boolean => data.confirmFriendRequest
+		));
+	}
+
+	search(searchKey: string, viewContainerRef: ViewContainerRef) {
+		const loader: ViewRef = this.loaderService.addLocalLoader(viewContainerRef).loaderVR;
+
 		return this.apollo.use('accountManagementService').query<any>({
 			query: gql`
 				query 
@@ -41,18 +120,28 @@ export class SearchFriendsHttpService {
 				}
 			`,
 			context: {
-				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+				headers: new HttpHeaders()
+					.set(this.tokenTitle, this.ssToken)
+					.set('Cache-Control', 'no-cache, no-store, must-revalidate, post-check = 0, pre - check=0')
+					.set('Pragma', 'no-cache')
+					.set('Expires', '0')
+			},
+			variables: {
+				isUseGlobalLoader: false
 			}
-		}).pipe(map(
-			({ data }): AccountLookingResult[] => {
-				let accountLookingResults: AccountLookingResult[] = [];
+		}).pipe(
+			map(
+				({ data }): AccountLookingResult[] => {
+					let accountLookingResults: AccountLookingResult[] = [];
 
-				data.searchAccounts.forEach(accountLookingResult => {
-					accountLookingResults.push(new AccountLookingResult(accountLookingResult));
-				})
+					data.searchAccounts.forEach(accountLookingResult => {
+						accountLookingResults.push(new AccountLookingResult(accountLookingResult));
+					})
 
-				return accountLookingResults;
-			}
-		));
+					return accountLookingResults;
+				}
+			),
+			finalize(() => loader.destroy())
+		);
 	}
 }

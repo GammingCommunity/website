@@ -13,9 +13,7 @@ export class SearchFriendsUIService extends DialogService {
 	init(anchorElement: ElementRef) {
 		return super.addDialogComponentToComponentPuttingEvent(
 			SearchFriendsComponent,
-			anchorElement,
-			null,
-			{ outFocus: false }
+			anchorElement
 		);
 	}
 }

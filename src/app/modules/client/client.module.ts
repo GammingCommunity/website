@@ -18,6 +18,8 @@ import { RoomPrivateChatComponent } from './game-channel/room-private-chat/room-
 import { RoomPrivateChatOptionsComponent } from './game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
 import { SearchFriendsComponent } from './friends/search-friends/search-friends.component';
 import { SearchFriendsUIService } from './friends/search-friends/search-friends.ui.service';
+import { LookAccountComponent } from './look-account/look-account.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
 	declarations: [
@@ -32,12 +34,16 @@ import { SearchFriendsUIService } from './friends/search-friends/search-friends.
 		RoomPrivateChatComponent,
 		SettingsComponent,
 		RoomPrivateChatOptionsComponent,
+		LookAccountComponent,
 	],
 	imports: [
 		IconsModule,
 		ClientRoutingModule,
 		FormsModule,
-		CommonModule
+		CommonModule,
+		TranslateModule.forChild({
+			defaultLanguage: 'vi'
+		})
 	],
 	providers: [
 		ChatService,

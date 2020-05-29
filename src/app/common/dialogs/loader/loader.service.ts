@@ -1,44 +1,63 @@
-import { Injectable, ComponentFactoryResolver, ViewContainerRef, ViewRef } from "@angular/core";
+import { Injectable, ComponentFactoryResolver, ViewContainerRef, ViewRef, Type } from "@angular/core";
 import { LoaderComponent } from './loader.component';
+import { DialogService } from '../dialog.service';
+import { LocalLoader } from './loader.dto';
 
 @Injectable({
 	providedIn: "root"
 })
-export class LoaderService {
-	private viewContainerRef: ViewContainerRef;
-	private loaderNumber: number = 0;
-	private loaderId: number;
+export class LoaderService extends DialogService {
+	private globalLoaderIds: any[] = [];
+	private localLoaders: LocalLoader[] = [];
+	private globalLoaderRef: ViewRef;
 
-	constructor(private factoryResolver: ComponentFactoryResolver) { }
-
-	setViewContainerRef(viewContainerRef: ViewContainerRef) {
-		this.viewContainerRef = viewContainerRef;
+	constructor(protected factoryResolver: ComponentFactoryResolver) {
+		super(factoryResolver);
 	}
 
-	start() {
-		if (this.loaderNumber === 0) {
-			this.putLoaderComponentToComponent();
+	start(id) {
+		if (this.globalLoaderIds.length === 0) {
+			this.globalLoaderRef = this.putDialogComponentToComponent(LoaderComponent, { destroyIfOutFocus: false });
 		}
 
-		this.loaderNumber++;
+		this.globalLoaderIds.push(id);
 	}
 
-	end() {
-		this.loaderNumber--;
+	end(id) {
+		this.removeAnGlobalLoaderId(id);
 
-		if (this.loaderNumber === 0) {
-			this.viewContainerRef.remove(this.loaderId);
+		if (this.globalLoaderIds.length === 0 && this.globalLoaderRef) {
+			this.globalLoaderRef.destroy();
 		}
 	}
 
-	protected setLoaderId(viewContainerRef: ViewContainerRef, viewRef: ViewRef) {
-		this.loaderId = viewContainerRef.indexOf(viewRef);
+	addLocalLoader(viewContainerRef: ViewContainerRef): LocalLoader {
+		const id = Date.now();
+		const loader = this.putDialogComponentToComponent(LoaderComponent, { viewContainerRef: viewContainerRef });
+		const locolLoader = new LocalLoader(id, loader);
+		this.localLoaders.push(locolLoader);
+		return locolLoader;
 	}
 
-	protected putLoaderComponentToComponent() {
-		const factory = this.factoryResolver.resolveComponentFactory(LoaderComponent);
-		const component = factory.create(this.viewContainerRef.parentInjector);
-		const viewRef = this.viewContainerRef.insert(component.hostView);
-		this.setLoaderId(this.viewContainerRef, viewRef);
+	destroyLocalLoader(id: number) {
+		const localLoader = this.localLoaders.find(item => item.loaderId === id);
+		if (localLoader) {
+			localLoader.loaderVR.destroy();
+			this.removeAnLocalLoader(localLoader);
+		}
+	}
+
+	protected removeAnGlobalLoaderId(id) {
+		const index = this.globalLoaderIds.indexOf(id);
+		if (index > -1) {
+			this.globalLoaderIds.splice(index, 1);
+		}
+	}
+
+	protected removeAnLocalLoader(localLoader: LocalLoader) {
+		const index = this.localLoaders.indexOf(localLoader);
+		if (index > -1) {
+			this.localLoaders.splice(index, 1);
+		}
 	}
 }

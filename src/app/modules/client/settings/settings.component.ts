@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { SettingsHttpService } from './settings.http.service';
 import { Settings, AccountEditingResultStatus } from './settings.dto';
 import { AccountPrivacyType } from 'src/app/common/constants/account';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { ObjectHelper } from 'src/app/common/helpers/object';
+import { ClientCommonComponent } from '../client.common-component';
+import { SettingsLanguage } from './settings.language';
 
 @Component({
 	selector: 'app-settings',
 	templateUrl: './settings.component.html',
 	styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent extends ClientCommonComponent implements OnInit {
 	private oldSettings: Settings;
 	private newSettings: Settings;
 	private accountPrivacyList: string[];
 
-	constructor(private settingsHttpService: SettingsHttpService, private alertService: AlertService) {
+	constructor(
+		protected injector: Injector,
+		private settingsHttpService: SettingsHttpService
+	) {
+		super(injector);
+		SettingsLanguage.define(this.translateService);
 		this.accountPrivacyList = AccountPrivacyType.createList();
 	}
 

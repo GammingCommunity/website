@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing.module";
@@ -12,7 +12,7 @@ import { AlertComponent } from './common/dialogs/alert/alert.component';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ServiceUrls } from 'src/environments/environment';
+import { ServiceUrls, environment } from 'src/environments/environment';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AlertService } from './common/dialogs/alert/alert.service';
 import { DialogService } from './common/dialogs/dialog.service';
@@ -22,8 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './modules/client/feedback/feedback.component';
 import { FormsModule } from '@angular/forms';
 import { SearchFriendsComponent } from './modules/client/friends/search-friends/search-friends.component';
-import { SearchFriendsUIService } from './modules/client/friends/search-friends/search-friends.ui.service';
-import { ProfileDropdownUIService } from './modules/client/profile-dropdown/profile-dropdown.ui.service';
+import { RequestLoggerInterceptor } from './interceptors/request-logger.interceptor';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { PreventCacheInterceptor } from './interceptors/prevent-cache.interceptor';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,10 @@ import { ProfileDropdownUIService } from './modules/client/profile-dropdown/prof
 		IconsModule,
 		FormsModule,
 		HttpLinkModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		TranslateModule.forRoot({
+			defaultLanguage: 'en'
+		})
 	],
 	providers: [
 		LoaderService,
@@ -51,7 +55,8 @@ import { ProfileDropdownUIService } from './modules/client/profile-dropdown/prof
 		{ provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
-		{ provide: DEFAULT_TIMEOUT, useValue: 3000 }
+		{ provide: HTTP_INTERCEPTORS, useClass: RequestLoggerInterceptor, multi: true },
+		{ provide: DEFAULT_TIMEOUT, useValue: environment.requestTimeOut }
 	],
 	entryComponents: [
 		LoaderComponent, 

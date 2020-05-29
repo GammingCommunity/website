@@ -16,7 +16,8 @@ export class ProfileDropdownUIService extends DialogService {
 			ProfileDropdownComponent,
 			anchorElement,
 			viewContainerRef,
-			{ currentAccount: currentAccount }
+			{ currentAccount: currentAccount },
+			true
 		);
 	}
 }

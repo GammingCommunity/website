@@ -1,4 +1,4 @@
-<h1>newProfile</h1>
+<h1>{{ 'ProfileLanguage.PROFILE' | translate}}</h1>
 <table style="width:100%" *ngIf='newProfile'>
 	<tr>
 		<th>id</th>
@@ -75,7 +75,7 @@
 	
 </table>
 
-<h1>Setting</h1>
+<h1>{{ 'ProfileLanguage.SETTING' | translate}}</h1>
 <table style="width:100%" *ngIf="newProfile && newProfile.setting">
 	<tr>
 		<th>anonymous</th>

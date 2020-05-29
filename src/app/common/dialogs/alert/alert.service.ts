@@ -11,6 +11,6 @@ export class AlertService extends DialogService {
 	}
 
 	show(message: string) {
-		super.putDialogComponentToComponent(AlertComponent, { message: message }, {outFocus: false});
+		super.putDialogComponentToComponent(AlertComponent, { }, { message: message });
 	}
 }

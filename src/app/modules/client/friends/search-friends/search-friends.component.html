@@ -1,5 +1,36 @@
-<div class="box" [@fadeInOut]>
+<div class="container" [@fadeInOut] #container>
 	<input [(ngModel)]="searchKey">
 	<button class="btn-ok" (click)='destroy()'>Exit</button>
-	<button class="btn-ok" (click)='search()' *ngIf='searchKey'>Search</button>
-</div>
+	<button class="btn-ok" (click)='search()' *ngIf='searchKey'>{{ 'SearchFriendLanguage.SEARCH' | translate}}</button>
+
+	<div #loaderLocation></div>
+
+	<div class="searched-list" *ngIf='lookedAccounts'>
+		<div class="searched" *ngFor='let lookedAccount of lookedAccounts'
+			(click)='redirectToAccount(lookedAccount.id)'>
+			<div class="img" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
+			<div class="info">
+				<p>{{ lookedAccount.name }}</p>
+				<p>{{ lookedAccount.describe }}</p>
+				<p>{{ lookedAccount.relationship }}</p>
+				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND">
+					{{ 'SearchFriendLanguage.FRIEND' | translate}}
+				</div>
+				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND_REQUEST">
+					<button (click)='unsendFriendRequest(lookedAccount.id)'
+						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.UNFRIEND_REQUEST' | translate}}</button>
+				</div>
+				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST">
+					<button (click)='acceptFriendRequest(lookedAccount.id)'
+						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.CONFIRM' | translate}}</button>
+					<button (click)='cancelFriendRequest(lookedAccount.id)'
+						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.CANCEL' | translate}}</button>
+				</div>
+				<div *ngIf="lookedAccount.relationship === accountRelationShipType.STRANGER">
+					<button (click)='sendFriendRequest(lookedAccount.id)'
+						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.MAKE_FRIEND' | translate}}</button>
+				</div>
+			</div>
+		</div>
+
+	</div>

@@ -11,16 +11,9 @@ import { ServiceUrls } from 'src/environments/environment';
 	providedIn: "root"
 })
 export class FeedbackHttpService {
-	readonly ssToken: string;
-	readonly tokenTitle: string;
 	readonly feedbackUrl: string;
 
-	constructor(
-		private http: HttpClient,
-		private auth: AuthService
-	) {
-		this.ssToken = this.auth.getSessionToken();
-		this.tokenTitle = this.auth.getTokenTitle();
+	constructor(private http: HttpClient) {
 		this.feedbackUrl = ServiceUrls.feedback;
 	}
 

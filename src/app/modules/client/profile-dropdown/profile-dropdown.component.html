@@ -1,37 +1,39 @@
 <div class="container" [@fadeInOut]>
-	<ul (click)='destroy()'>
+	<ul>
 		<li>
 			<a routerLink="/client/profile">
 				<i-feather name="info"></i-feather>
-				thong tin
+				{{ 'ProfileDropdownLanguage.MY_PROFILE' | translate}}
 			</a>
 		</li>
 		<li>
 
 			<a (click)='showFeedback()'>
 				<i-feather name="send"></i-feather>
-				feedback
+				{{ 'ProfileDropdownLanguage.FEEDBACK' | translate}}
 			</a>
 		</li>
 		<li>
 
 			<a routerLink="/client/settings">
 				<i-feather name="settings"></i-feather>
-				setting
+				{{ 'ProfileDropdownLanguage.SETTING' | translate}}
 			</a>
 		</li>
 		<li>
-
-			<a >
+			<a>
 				<i-feather name="moon" class="someclass"></i-feather>
 				dark mode
 			</a>
 		</li>
 		<li>
+			<input type="checkbox" value="None" id="slideThree" name="check" checked (click)='checked($event)'/>
+		</li>
+		<li>
 
 			<a (click)='logOut()'>
 				<i-feather name="log-out" class="someclass"></i-feather>
-				log out
+				{{ 'ProfileDropdownLanguage.LOGOUT' | translate}}
 			</a>
 		</li>
 	</ul>

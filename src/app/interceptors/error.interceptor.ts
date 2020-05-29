@@ -5,54 +5,44 @@ import {
 
 import { Observable } from 'rxjs';
 import { LoaderService } from '../common/dialogs/loader/loader.service';
-import { tap, finalize } from 'rxjs/operators';
+import { tap, finalize, retry } from 'rxjs/operators';
 import { AlertService } from '../common/dialogs/alert/alert.service';
-import { DebugConfigs } from 'src/environments/environment';
+import { DebugConfigs, environment } from 'src/environments/environment';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-	constructor(private loaderService: LoaderService, private alretService: AlertService) { }
+	constructor(private alretService: AlertService) { }
 
-	protected alertError(message: string){
-		if(DebugConfigs.isAlert){
+	protected alertError(message: string) {
+		if (DebugConfigs.isAlert) {
 			this.alretService.show(message);
 		}
 	}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		this.loaderService.start();
 		return next.handle(req).pipe(
 			tap(
-				// Succeeds when there is a response; ignore other events
 				event => {
-						// For graphql
-						if (event instanceof HttpResponse && event.body.hasOwnProperty('errors')){
-							const errors = event.body.errors;
-							let messages = '';
-							
-							errors.forEach(error =>{
-								messages += error.message + '\n';
-							});
-							this.alertError(messages);
-						} else {
-							// console.log('event:');
-							// console.log(event);
-						}
+					if (event instanceof HttpResponse && event.body.hasOwnProperty('errors')) {
+						const errors = event.body.errors;
+						let messages = '';
+
+						errors.forEach(error => {
+							messages += error.message + '\n';
+						});
+						this.alertError(messages);
+					}
 				},
-				// Operation failed; error is an HttpErrorResponse
 				error => {
 					// console.log(error);
-					if(error.hasOwnProperty('message')){
+					if (error.hasOwnProperty('message')) {
 						this.alertError(error.message);
 					} else {
 						this.alertError(error.toString());
 					}
 				}
 			),
-			// Log when response observable either completes or errors
-			finalize(() => {
-				this.loaderService.end();
-			})
+			retry(environment.requestRetryTime)
 		);
 	}
 }

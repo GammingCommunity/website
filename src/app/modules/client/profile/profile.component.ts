@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Profile, AccountEditingResultStatus } from './profile.dto';
 import { ProfileHttpService } from './profile.http.service';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { ObjectHelper } from 'src/app/common/helpers/object';
+import { ProfileLanguage } from './profile.language';
+import { ClientCommonComponent } from '../client.common-component';
 
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
 	styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent extends ClientCommonComponent implements OnInit {
 	private oldProfile: Profile;
 	private newProfile: Profile;
 
 	constructor(
 		private profileHttpService: ProfileHttpService,
-		private alertService: AlertService
-	) { }
+		protected injector: Injector
+	) {
+		super(injector);
+		ProfileLanguage.define(this.translateService);
+	}
 
 	ngOnInit() {
 		this.profileHttpService.fetchProfile().subscribe(profile => {

@@ -1,8 +1,11 @@
-import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild, Injector } from '@angular/core';
 import { JoinedRoom } from './joined-rooms.dto';
 import { JoinedRoomsHttpService } from './joined-rooms.http.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat.ui.service';
+import { TranslateService } from '@ngx-translate/core';
+import { JoinedRoomsLanguage } from './joined-rooms.language';
+import { ClientCommonComponent } from '../../client.common-component';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -21,12 +24,18 @@ import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat
 		])
 	]
 })
-export class JoinedRoomsComponent implements OnInit {
+export class JoinedRoomsComponent extends ClientCommonComponent implements OnInit {
 	private joinedRooms: JoinedRoom[] = [];
 	private containerState: string = 'expand';
 	public showPrivateChat: (data: any) => void;
 
-	constructor(private joinedRoomHttpService: JoinedRoomsHttpService) { }
+	constructor(
+		protected injector: Injector,
+		private joinedRoomHttpService: JoinedRoomsHttpService
+	) {
+		super(injector);
+		JoinedRoomsLanguage.define(this.translateService);
+	}
 
 	ngOnInit() {
 		this.fetchJoinedRooms();

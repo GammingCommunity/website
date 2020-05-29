@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@ngx-translate/core": "^12.1.2",
     "angular-feather": "^6.0.10",
     "apollo-angular": "^1.9.1",
     "apollo-angular-link-http": "^1.10.0",

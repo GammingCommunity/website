@@ -1,0 +1,82 @@
+<table style="width:100%" *ngIf='lookingAccount'>
+	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
+		{{ 'LookAccountLanguage.FRIEND' | translate}}
+	</div>
+	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND_REQUEST">
+		<button (click)='unsendFriendRequest(lookingAccount.id)'
+			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.UNFRIEND_REQUEST' | translate}}</button>
+	</div>
+	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST">
+		<button (click)='acceptFriendRequest(lookingAccount.id)'
+			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CONFIRM' | translate}}</button>
+		<button (click)='cancelFriendRequest(lookingAccount.id)'
+			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CANCEL' | translate}}</button>
+	</div>
+	<div *ngIf="lookingAccount.relationship === accountRelationShipType.STRANGER">
+		<button (click)='sendFriendRequest(lookingAccount.id)'
+			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.MAKE_FRIEND' | translate}}</button>
+	</div>
+	<tr>
+		<th>id</th>
+		<td>{{ lookingAccount.id }}</td>
+	</tr>
+	<tr>
+		<th>describe</th>
+		<td>
+			{{lookingAccount.describe}}
+		</td>
+
+	</tr>
+	<tr>
+		<th>avatar</th>
+		<td>
+			<div class="img" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}"></div>
+		</td>
+
+	</tr>
+	<tr>
+		<th>name</th>
+		<td>
+			{{lookingAccount.name}}
+		</td>
+	</tr>
+	<tr>
+		<th>created_at</th>
+		<td>{{ lookingAccount.createdAt }}</td>
+
+	</tr>
+	<tr>
+		<th>relationship</th>
+		<td>{{ lookingAccount.relationship }}</td>
+
+	</tr>
+	<tr>
+		<th>birthyear</th>
+		<td>
+			{{lookingAccount.birthyear}}
+		</td>
+
+	</tr>
+	<tr>
+		<th>birthmouth</th>
+		<td>
+			{{lookingAccount.birthmonth}}
+		</td>
+
+	</tr>
+	<tr>
+		<th>phone</th>
+		<td>
+			{{lookingAccount.phone}}
+		</td>
+
+	</tr>
+	<tr>
+		<th>email</th>
+		<td>
+			{{lookingAccount.email}}
+		</td>
+
+	</tr>
+
+</table>

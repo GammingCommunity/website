@@ -13,8 +13,8 @@ export class FeedbackUIService extends DialogService {
 	show(accountId: number) {
 		return super.putDialogComponentToComponent(
 			FeedbackComponent,
-			{ accountId: accountId },
-			{ outFocus: false }
+			{ destroyIfOutFocus: false },
+			{ accountId: accountId }
 		);
 	}
 }

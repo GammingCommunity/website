@@ -18,42 +18,49 @@ export class DialogService {
 		anchorElement: ElementRef,
 		viewContainerRef: any = null,
 		data: any = null,
-		outFocus: boolean = true
+		destroyIfOutFocus: boolean = false
 	) {
 		anchorElement.nativeElement.addEventListener('click', (event) => {
-			this.putDialogComponentToComponent(dialogType, data, {
-				anchorElement: anchorElement,
-				viewContainerRef: viewContainerRef,
-				outFocus: outFocus
-			});
+			this.putDialogComponentToComponent(
+				dialogType,
+				{
+					anchorElement: anchorElement,
+					viewContainerRef: viewContainerRef,
+					destroyIfOutFocus: destroyIfOutFocus
+				},
+				data
+			);
 		});
 	}
 
 	putDialogComponentToComponent(
 		dialogType: Type<any>,
-		data: any = null,
 		{
 			anchorElement = null,
 			viewContainerRef = null,
-			outFocus = true
+			destroyIfOutFocus = false
 		},
+		data = null,
 	): ViewRef {
 		const isMovingDialog: boolean = anchorElement && viewContainerRef;
 		viewContainerRef = viewContainerRef ? viewContainerRef : this.viewContainerRef;
 
 		const factory = this.factoryResolver.resolveComponentFactory(dialogType);
 		const componentIndex = Date.now();
-		const component = factory.create(Injector.create([
-			{
-				provide: 'destroy', useValue: () => viewContainerRef.remove(componentIndex)
-			},
-			{
-				provide: 'data', useValue: data
-			}
-		]));
+		const component = factory.create(Injector.create({
+			providers: [
+				{
+					provide: 'destroy', useValue: () => component.destroy()
+				},
+				{
+					provide: 'data', useValue: data
+				}
+			],
+			parent: viewContainerRef.injector
+		}));
 		const viewRefResult: ViewRef = viewContainerRef.insert(component.hostView, componentIndex);
 
-		if (outFocus) {
+		if (destroyIfOutFocus) {
 			if (anchorElement) {
 				this.addOutFocusEventListener(component, componentIndex);
 			} else {
@@ -79,12 +86,15 @@ export class DialogService {
 			this.dialogs[componentIndex] = { wasClicked: false };
 		}
 
-		window.addEventListener('click', (event) => {
+		const handler = event => {
 			if (componentIndex && !this.dialogs[componentIndex].wasClicked) {
 				this.dialogs[componentIndex].wasClicked = true;
 			} else if (!dialogComponentRef.location.nativeElement.contains(event.target)) {
+				window.removeEventListener('click', handler);
 				dialogComponentRef.destroy();
 			}
-		});
+		};
+
+		window.addEventListener('click', handler);
 	}
 }

@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { FeedbackUIService } from '../feedback/feedback.ui.service';
 import { MyProfile } from '../client.dto';
+import { ClientCommonComponent } from '../client.common-component';
+import { TranslateService } from '@ngx-translate/core';
+import { ProfileDropdownLanguage } from './profile-dropdown.language';
 
 @Component({
 	selector: 'app-profile-dropdown',
@@ -20,23 +23,28 @@ import { MyProfile } from '../client.dto';
 		])
 	]
 })
-export class ProfileDropdownComponent {
+export class ProfileDropdownComponent extends ClientCommonComponent {
 	private destroy: () => void;
 	private currentAccount: MyProfile;
 
 	constructor(
-		private injector: Injector,
+		protected injector: Injector,
 		private router: Router,
 		private feedbackUIService: FeedbackUIService,
 		private authService: AuthService
 	) {
-		const data = this.injector.get('data');
-		this.destroy = this.injector.get('destroy');
-		this.currentAccount = data.currentAccount;
+		super(injector);
+		ProfileDropdownLanguage.define(this.translateService);
+		const data = injector.get('data');
+		this.destroy = injector.get('destroy');
 	}
 
 	showFeedback() {
-		this.feedbackUIService.show(this.currentAccount.id);
+		this.feedbackUIService.show(this.currentAccount ? this.currentAccount.id : -1);
+	}
+
+	checked(event) {
+		this.translateService.use(event.target.checked ? 'vi' : 'en');
 	}
 
 	logOut() {

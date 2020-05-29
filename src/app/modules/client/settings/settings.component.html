@@ -1,4 +1,4 @@
-<h1>Setting</h1>
+<h1>{{ 'SettingsLanguage.SETTING' | translate}}</h1>
 <table style="width:100%" *ngIf='newSettings'>
 	<tr>
 		<th>anonymous</th>
@@ -37,4 +37,4 @@
 			</select></td>
 	</tr>
 </table>
-<button class="btn btn-w" (click)='updateSettings()'>update</button>
+<button class="btn btn-w" (click)='updateSettings()'>{{ 'SettingsLanguage.UPDATE' | translate}}</button>

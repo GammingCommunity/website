@@ -1,5 +1,5 @@
 <div class="box" [@fadeInOut]>
 	<textarea [(ngModel)]="feedback.content"></textarea>
-	<button class="btn-ok" (click)='destroy()'>OK</button>
-	<button class="btn-ok" (click)='sendFeedback()'>Send</button>
+	<button class="btn-ok" (click)='destroy()'>x</button>
+	<button class="btn-ok" (click)='sendFeedback()'>{{ 'FeedbackLanguage.SEND' | translate}}</button>
 </div>

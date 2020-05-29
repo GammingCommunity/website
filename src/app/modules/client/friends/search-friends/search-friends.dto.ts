@@ -14,7 +14,7 @@ export class AccountLookingResult {
 	relationship: string;
 
 	constructor(rawData = null){
-		if (rawData){
+		if (rawData && rawData.account){
 			this.id = rawData.account.id;
 			this.name = rawData.account.name;
 			this.avatarUrl = rawData.account.avatar_url;

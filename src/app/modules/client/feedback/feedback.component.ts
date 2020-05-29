@@ -3,6 +3,8 @@ import { FeedbackHttpService } from './feedback.http.service';
 import { Feedback, FeedbackServiceResponseTypes } from './feedback.dto';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { FeedbackLanguage } from './feedback.language';
+import { ClientCommonComponent } from '../client.common-component';
 
 @Component({
 	selector: 'app-feedback',
@@ -29,19 +31,19 @@ import { trigger, transition, style, animate } from '@angular/animations';
 		])
 	],
 })
-export class FeedbackComponent implements OnInit {
+export class FeedbackComponent extends ClientCommonComponent implements OnInit {
 	private destroy: () => void;
 	private feedback: Feedback = new Feedback();
 
 	constructor(
-		private injector: Injector,
-		private alertService: AlertService,
+		protected injector: Injector,
 		private feedbackHttpService: FeedbackHttpService
 	) {
+		super(injector);
 		const data = this.injector.get('data');
 		this.destroy = this.injector.get('destroy');
 		this.feedback.accountId = data.accountId;
-
+		FeedbackLanguage.define(this.translateService);
 	}
 
 	ngOnInit() {

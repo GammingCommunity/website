@@ -1,9 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef, Injector } from '@angular/core';
 import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
 import { FriendChatUIService } from './friend-chat/friend-chat.ui.service';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { SearchFriendsUIService } from './search-friends/search-friends.ui.service';
+import { ClientCommonComponent } from '../client.common-component';
+import { FriendsLanguage } from './friends.language';
 
 @Component({
 	selector: 'app-friends',
@@ -35,7 +37,7 @@ import { SearchFriendsUIService } from './search-friends/search-friends.ui.servi
 		])
 	]
 })
-export class FriendsComponent implements OnInit {
+export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('searchFriendBtn', { static: true }) searchFriendBtnER: ElementRef;
 	private mainContainerIsExpanding: boolean = true;
 	private chatBoxIsOpening: boolean = false;
@@ -44,10 +46,14 @@ export class FriendsComponent implements OnInit {
 	private friends: MyFriend[] = [];
 
 	constructor(
+		protected injector: Injector,
 		private friendsHttpService: FriendsHttpService,
 		private searchFriendsUIService: SearchFriendsUIService,
 		private friendChatUIService: FriendChatUIService
-	) { }
+	) {
+		super(injector);
+		FriendsLanguage.define(this.translateService);
+	}
 
 	ngOnInit() {
 		this.fetchFriends();

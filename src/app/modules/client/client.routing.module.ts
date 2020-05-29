@@ -4,6 +4,7 @@ import { ClientComponent } from "./client.component";
 import { GameChannelComponent } from "./game-channel/game-channel.component";
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
+import { LookAccountComponent } from './look-account/look-account.component';
 
 const routes: Routes = [
 	{
@@ -21,6 +22,10 @@ const routes: Routes = [
 			{
 				path: "profile",
 				component: ProfileComponent
+			},
+			{
+				path: "look/:id",
+				component: LookAccountComponent
 			},
 			{
 				path: "settings",
