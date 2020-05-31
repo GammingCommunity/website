@@ -1,37 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
 	position: relative;
-
 	width: 100vw;
 	height: 100vh;
+	background-color: var(--bg9);
 }
 
 :root {
 	/* background color */
-	--bg9: rgba(255, 255, 255, 0.05);
-	--bg8: rgba(255, 255, 255, 0.1);
-	--bg7: rgba(255, 255, 255, 0.15);
-	--bg6: rgba(255, 255, 255, 0.2);
-	--bg5: rgba(255, 255, 255, 0.25);
-	--bg4: rgba(255, 255, 255, 0.3);
-	--bg3: rgba(255, 255, 255, 0.35);
-	--bg2: rgba(255, 255, 255, 0.4);
-	--bg1: rgba(255, 255, 255, 0.45);
+	--bg9: rgb(19, 19, 20);
+	--bg8: rgb(32, 32, 36);
+	--bg7: rgb(53, 54, 58);
+	--bg6: rgb(65, 67, 73);
+	--bg5: rgb(77, 77, 92);
+	--bg4: rgb(115, 115, 138);
 	/* text color */
 	--primary-text: #e4e6eb;
-	--secondary-text: #b2b4b9;
+	--secondary-text: #a6a8ad;
 	/* shadow */
 	--shd: 3px 6px 8px rgba(0, 0, 0, 0.55);
 	--shd-inset: inset 3px 6px 4px rgba(0, 0, 0, 0.85);
 	--shd-lg: 8px 16px 18px rgba(0, 0, 0, 0.45);
 	--shd-sm: 1px 2px 5px rgba(0, 0, 0, 0.8);
-	--shd-highlight: 3px 6px 8px rgba(0, 0, 0, 0.45),
-		inset 3px 6px 8px rgba(0, 0, 0, 0.9);
+	--shd-highlight: 3px 6px 8px rgba(0, 0, 0, 0.45), inset 3px 6px 8px rgba(0, 0, 0, 0.9);
 	/* text size */
-	--text-size-sm: 12px;
-	--text-size-lg: 17px;
+	--text-size-sm: 15px;
+	--text-size: 18px;
+	--text-size-lg: 21px;
 	/* highlight */
-	--highlight: #66f3d4;
+	--highlight9: #050011;
+	--highlight8: #11003a;
+	--highlight7: #1b0058;
+	--highlight6: #270081;
+	--highlight5: #270081;
+	--highlight4: #2e009b;
+	--highlight3: #3700b3;
 	--border-highlight: 4px solid var(--highlight);
 	/* border radius */
 	--rounded-sm: 5px;
@@ -44,23 +48,19 @@ body {
 	margin: 0 !important;
 }
 
-.mt-0,
-.my-0 {
+.mt-0, .my-0 {
 	margin-top: 0 !important;
 }
 
-.mr-0,
-.mx-0 {
+.mr-0, .mx-0 {
 	margin-right: 0 !important;
 }
 
-.mb-0,
-.my-0 {
+.mb-0, .my-0 {
 	margin-bottom: 0 !important;
 }
 
-.ml-0,
-.mx-0 {
+.ml-0, .mx-0 {
 	margin-left: 0 !important;
 }
 
@@ -68,23 +68,19 @@ body {
 	margin: 0.25rem !important;
 }
 
-.mt-1,
-.my-1 {
+.mt-1, .my-1 {
 	margin-top: 0.25rem !important;
 }
 
-.mr-1,
-.mx-1 {
+.mr-1, .mx-1 {
 	margin-right: 0.25rem !important;
 }
 
-.mb-1,
-.my-1 {
+.mb-1, .my-1 {
 	margin-bottom: 0.25rem !important;
 }
 
-.ml-1,
-.mx-1 {
+.ml-1, .mx-1 {
 	margin-left: 0.25rem !important;
 }
 
@@ -92,23 +88,19 @@ body {
 	margin: 0.5rem !important;
 }
 
-.mt-2,
-.my-2 {
+.mt-2, .my-2 {
 	margin-top: 0.5rem !important;
 }
 
-.mr-2,
-.mx-2 {
+.mr-2, .mx-2 {
 	margin-right: 0.5rem !important;
 }
 
-.mb-2,
-.my-2 {
+.mb-2, .my-2 {
 	margin-bottom: 0.5rem !important;
 }
 
-.ml-2,
-.mx-2 {
+.ml-2, .mx-2 {
 	margin-left: 0.5rem !important;
 }
 
@@ -116,23 +108,19 @@ body {
 	margin: 1rem !important;
 }
 
-.mt-3,
-.my-3 {
+.mt-3, .my-3 {
 	margin-top: 1rem !important;
 }
 
-.mr-3,
-.mx-3 {
+.mr-3, .mx-3 {
 	margin-right: 1rem !important;
 }
 
-.mb-3,
-.my-3 {
+.mb-3, .my-3 {
 	margin-bottom: 1rem !important;
 }
 
-.ml-3,
-.mx-3 {
+.ml-3, .mx-3 {
 	margin-left: 1rem !important;
 }
 
@@ -140,23 +128,19 @@ body {
 	margin: 1.5rem !important;
 }
 
-.mt-4,
-.my-4 {
+.mt-4, .my-4 {
 	margin-top: 1.5rem !important;
 }
 
-.mr-4,
-.mx-4 {
+.mr-4, .mx-4 {
 	margin-right: 1.5rem !important;
 }
 
-.mb-4,
-.my-4 {
+.mb-4, .my-4 {
 	margin-bottom: 1.5rem !important;
 }
 
-.ml-4,
-.mx-4 {
+.ml-4, .mx-4 {
 	margin-left: 1.5rem !important;
 }
 
@@ -164,23 +148,19 @@ body {
 	margin: 3rem !important;
 }
 
-.mt-5,
-.my-5 {
+.mt-5, .my-5 {
 	margin-top: 3rem !important;
 }
 
-.mr-5,
-.mx-5 {
+.mr-5, .mx-5 {
 	margin-right: 3rem !important;
 }
 
-.mb-5,
-.my-5 {
+.mb-5, .my-5 {
 	margin-bottom: 3rem !important;
 }
 
-.ml-5,
-.mx-5 {
+.ml-5, .mx-5 {
 	margin-left: 3rem !important;
 }
 
@@ -188,23 +168,19 @@ body {
 	padding: 0 !important;
 }
 
-.pt-0,
-.py-0 {
+.pt-0, .py-0 {
 	padding-top: 0 !important;
 }
 
-.pr-0,
-.px-0 {
+.pr-0, .px-0 {
 	padding-right: 0 !important;
 }
 
-.pb-0,
-.py-0 {
+.pb-0, .py-0 {
 	padding-bottom: 0 !important;
 }
 
-.pl-0,
-.px-0 {
+.pl-0, .px-0 {
 	padding-left: 0 !important;
 }
 
@@ -212,23 +188,19 @@ body {
 	padding: 0.25rem !important;
 }
 
-.pt-1,
-.py-1 {
+.pt-1, .py-1 {
 	padding-top: 0.25rem !important;
 }
 
-.pr-1,
-.px-1 {
+.pr-1, .px-1 {
 	padding-right: 0.25rem !important;
 }
 
-.pb-1,
-.py-1 {
+.pb-1, .py-1 {
 	padding-bottom: 0.25rem !important;
 }
 
-.pl-1,
-.px-1 {
+.pl-1, .px-1 {
 	padding-left: 0.25rem !important;
 }
 
@@ -236,23 +208,19 @@ body {
 	padding: 0.5rem !important;
 }
 
-.pt-2,
-.py-2 {
+.pt-2, .py-2 {
 	padding-top: 0.5rem !important;
 }
 
-.pr-2,
-.px-2 {
+.pr-2, .px-2 {
 	padding-right: 0.5rem !important;
 }
 
-.pb-2,
-.py-2 {
+.pb-2, .py-2 {
 	padding-bottom: 0.5rem !important;
 }
 
-.pl-2,
-.px-2 {
+.pl-2, .px-2 {
 	padding-left: 0.5rem !important;
 }
 
@@ -260,23 +228,19 @@ body {
 	padding: 1rem !important;
 }
 
-.pt-3,
-.py-3 {
+.pt-3, .py-3 {
 	padding-top: 1rem !important;
 }
 
-.pr-3,
-.px-3 {
+.pr-3, .px-3 {
 	padding-right: 1rem !important;
 }
 
-.pb-3,
-.py-3 {
+.pb-3, .py-3 {
 	padding-bottom: 1rem !important;
 }
 
-.pl-3,
-.px-3 {
+.pl-3, .px-3 {
 	padding-left: 1rem !important;
 }
 
@@ -284,23 +248,19 @@ body {
 	padding: 1.5rem !important;
 }
 
-.pt-4,
-.py-4 {
+.pt-4, .py-4 {
 	padding-top: 1.5rem !important;
 }
 
-.pr-4,
-.px-4 {
+.pr-4, .px-4 {
 	padding-right: 1.5rem !important;
 }
 
-.pb-4,
-.py-4 {
+.pb-4, .py-4 {
 	padding-bottom: 1.5rem !important;
 }
 
-.pl-4,
-.px-4 {
+.pl-4, .px-4 {
 	padding-left: 1.5rem !important;
 }
 
@@ -308,23 +268,19 @@ body {
 	padding: 3rem !important;
 }
 
-.pt-5,
-.py-5 {
+.pt-5, .py-5 {
 	padding-top: 3rem !important;
 }
 
-.pr-5,
-.px-5 {
+.pr-5, .px-5 {
 	padding-right: 3rem !important;
 }
 
-.pb-5,
-.py-5 {
+.pb-5, .py-5 {
 	padding-bottom: 3rem !important;
 }
 
-.pl-5,
-.px-5 {
+.pl-5, .px-5 {
 	padding-left: 3rem !important;
 }
 
@@ -336,7 +292,7 @@ html * {
 body {
 	font-family: Roboto, Arial, sans-serif;
 	box-sizing: border-box;
-	font-size: 15px;
+	font-size: var(--text-size);
 	color: var(--primary-text);
 	line-height: 1.4;
 }
@@ -345,36 +301,41 @@ body * {
 	box-sizing: inherit;
 	color: inherit;
 }
-/* 
+
 ::-webkit-scrollbar {
 	width: 7px;
 	height: 7px;
-	background-color: var(--bg8);
+	background-color: var(--bg9);
 	border-radius: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
 	background-color: var(--bg6);
 	border-radius: 7px;
-} */
+}
 
-textarea::placeholder,
-input::placeholder {
+button, textarea, input {
+	font-size: var(--text-size);
+}
+
+textarea::placeholder, input::placeholder {
 	color: var(--secondary-text);
 }
 
+button {
+	border: none;
+}
+
+*:focus {
+	outline: none;
+}
+
 a {
-	transition: all 0.4s ease;
+	text-decoration: none;
 }
 
 a:hover {
-	color: var(--highlight);
 	text-decoration: underline var(--bg4);
-}
-
-hr {
-	border: none;
-	border-bottom: 1px solid var(--bg8);
 }
 
 select {
@@ -398,87 +359,60 @@ select {
 	word-wrap: break-word;
 }
 
-/* hover */
-.hover {
-	transition: all 0.2s ease;
+/* tooltip */
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
 }
 
-.hover:hover {
-	border-radius: var(--rounded);
-	border-left: 4px solid var(--highlight);
-	background-color: var(--bg8);
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 1px;
+	z-index: 1;
+	background-color: var(--bg5);
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
 }
 
 /* btn */
-.btn {
-	width: 30px;
-	min-width: 30px;
-	height: 30px;
-	min-height: 30px;
 
+.btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	background-color: var(--bg8);
+	background-color: var(--bg6);
 	cursor: pointer;
 	font-weight: bold;
 	border-radius: var(--rounded-sm);
-
-	margin-left: 5px;
-	margin-right: 5px;
-
-	transition: all 0.2s ease;
+	color: var(--secondary-text);
+	padding: 8px 24px;
+	border-radius: 6px;
+	transition: all .24s ease;
 }
 
-.btn-w {
-	width: unset;
-	min-width: unset;
-
-	padding: 0 10px;
-}
-
-.btn-sm {
-	width: 24px;
-	min-width: 24px;
-	height: 24px;
-	min-height: 24px;
-}
-
-.btn-sm.btn-w {
-	width: unset;
-	min-width: unset;
-
-	padding: 0 8px;
-}
-
-.btn-lg {
-	width: 40px;
-	min-width: 40px;
-	height: 40px;
-	min-height: 40px;
-}
-
-.btn-lg.btn-w {
-	width: unset;
-	min-width: unset;
-
-	padding: 0 15px;
+.btn-border {
+	border: solid 1px var(--bg6);
+	background-color: rgba(0, 0, 0, 0);
 }
 
 .btn:hover {
-	background-color: var(--bg7);
-}
-
-.btn-light {
-	background-color: var(--bg7) !important;
-}
-
-.btn-light:hover {
-	background-color: var(--bg6) !important;
+	background-color: var(--bg5);
 }
 
 /* rows */
+
 .row {
 	display: flex;
 	align-items: center;
@@ -486,6 +420,7 @@ select {
 }
 
 /* border radius */
+
 .rounded-sm {
 	border-radius: var(--rounded-sm);
 }
@@ -503,51 +438,50 @@ select {
 }
 
 /* background */
+
 .background {
 	position: absolute;
 	z-index: -1;
 	top: 0;
 	left: 0;
-
 	width: 100%;
 	height: 100%;
 }
 
 .background:after {
 	content: "";
-
 	position: absolute;
 	top: 0;
 	left: 0;
-
 	width: 100%;
 	height: 100%;
-
 	background-color: rgba(0, 0, 0, .9);
 }
 
 /* head */
+
 .head {
 	display: flex;
 	align-items: center;
-
 	color: var(--secondary-text);
-
 	margin-bottom: 30px;
 }
 
 .head label {
 	flex-grow: 1;
 	overflow: hidden;
-
 	margin-right: 10px;
-
 	font-weight: bold;
 	font-size: var(--text-size-lg);
 	white-space: nowrap;
 }
 
+.footer {
+	margin-top: 30px;
+}
+
 /* black layer */
+
 .black-layer {
 	position: relative;
 	z-index: 1;
@@ -559,32 +493,26 @@ select {
 
 .black-layer:after {
 	content: "";
-
 	position: absolute;
 	top: 0;
 	left: 0;
-
 	width: 100%;
 	height: 100%;
-
 	background-color: rgba(0, 0, 0, 0.8);
-
 	transition: all 0.2s ease;
 }
 
 /* tooltip */
+
 *[data-toggle="tooltip"] {
 	position: relative;
 }
 
 *[data-toggle="tooltip"]:hover:after {
 	content: attr(tooltip-content);
-
 	position: absolute;
 	top: calc(100% + 10px);
-
 	padding: 10px;
-
 	border-radius: var(--rounded-sm);
 	border: 1px solid var(--bg5);
 	background-color: var(--bg6);
@@ -592,3 +520,36 @@ select {
 	white-space: nowrap;
 }
 
+/* hr */
+
+.hr-bottom {
+	border-bottom: solid 1px black;
+}
+
+.hr-left {
+	border-left: solid 1px black;
+}
+
+.hr-right {
+	border-right: solid 1px black;
+}
+
+.hr-top {
+	border-top: solid 1px black;
+}
+
+.hr-bottom-light {
+	border-bottom: solid 1px var(--bg9);
+}
+
+.hr-left-light {
+	border-left: solid 1px var(--bg9);
+}
+
+.hr-right-light {
+	border-right: solid 1px var(--bg9);
+}
+
+.hr-top-light {
+	border-top: solid 1px var(--bg9);
+}

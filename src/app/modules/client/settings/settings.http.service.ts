@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Injector } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Settings, AccountEditingResult } from './settings.dto';
+import { ClientCommonService } from '../client.common-service';
 
 const GET_SETTINGS = gql`
 	query{
@@ -24,16 +25,16 @@ const GET_SETTINGS = gql`
 @Injectable({
 	providedIn: "root"
 })
-export class SettingsHttpService {
+export class SettingsHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
 	constructor(
-		private apollo: Apollo,
-		private auth: AuthService
+		protected injector: Injector
 	) {
-		this.ssToken = this.auth.getSessionToken();
-		this.tokenTitle = this.auth.getTokenTitle();
+		super(injector);
+		this.ssToken = this.authService.getSessionToken();
+		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
 	fetchSettings() {

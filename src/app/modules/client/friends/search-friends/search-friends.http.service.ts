@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, ViewRef } from "@angular/core";
+import { Injectable, ViewContainerRef, ViewRef, Injector } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
@@ -8,21 +8,21 @@ import { ServiceUrls } from 'src/environments/environment';
 import { AccountLookingResult } from './search-friends.dto';
 import { LoaderService } from 'src/app/common/dialogs/loader/loader.service';
 import { LocalLoader } from 'src/app/common/dialogs/loader/loader.dto';
+import { ClientCommonService } from '../../client.common-service';
 
 @Injectable({
 	providedIn: "root"
 })
-export class SearchFriendsHttpService {
+export class SearchFriendsHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
 	constructor(
-		private apollo: Apollo,
-		private loaderService: LoaderService,
-		private auth: AuthService
+		protected injector: Injector,
 	) {
-		this.ssToken = this.auth.getSessionToken();
-		this.tokenTitle = this.auth.getTokenTitle();
+		super(injector);
+		this.ssToken = this.authService.getSessionToken();
+		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
 	sendFriendRequest(id: number) {
@@ -120,12 +120,9 @@ export class SearchFriendsHttpService {
 				}
 			`,
 			context: {
-				headers: new HttpHeaders()
-					.set(this.tokenTitle, this.ssToken)
-					.set('Cache-Control', 'no-cache, no-store, must-revalidate, post-check = 0, pre - check=0')
-					.set('Pragma', 'no-cache')
-					.set('Expires', '0')
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			},
+			fetchPolicy: 'no-cache',
 			variables: {
 				isUseGlobalLoader: false
 			}
@@ -135,7 +132,9 @@ export class SearchFriendsHttpService {
 					let accountLookingResults: AccountLookingResult[] = [];
 
 					data.searchAccounts.forEach(accountLookingResult => {
-						accountLookingResults.push(new AccountLookingResult(accountLookingResult));
+						if(accountLookingResult.account){
+							accountLookingResults.push(new AccountLookingResult(accountLookingResult));
+						}
 					})
 
 					return accountLookingResults;

@@ -32,9 +32,9 @@
 		</div>
 
 		<div class="footer">
-			<div class="btn btn-lg btn-w" #searchFriendBtn>{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</div>
+			<div class="btn btn-border m-1" #searchFriendBtn>{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</div>
 		</div>
 	</div>
 
-	<app-friend-chat [@changeChatBoxState]="chatBoxState"></app-friend-chat>
+	<app-friend-chat [@changeChatBoxState]="chatBoxState" class="hr-left"></app-friend-chat>
 </div>

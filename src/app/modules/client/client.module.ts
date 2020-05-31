@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ViewContainerRef } from "@angular/core";
 import { ClientRoutingModule } from "./client.routing.module";
 import { ClientComponent } from "./client.component";
 import { CommonModule } from "@angular/common";
@@ -48,7 +48,7 @@ import { TranslateModule } from '@ngx-translate/core';
 	providers: [
 		ChatService,
 		FriendChatUIService,
-		SearchFriendsUIService
+		SearchFriendsUIService,
 	]
 })
 export class ClientModule { }

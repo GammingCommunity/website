@@ -1,25 +1,20 @@
-import { Injectable } from "@angular/core";
-import { Apollo } from 'apollo-angular';
-import { AuthService } from "src/app/common/services/auth.service";
-import gql from 'graphql-tag';
-import { HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Friend } from './friend-chat.dto';
+import { Injectable, Injector } from "@angular/core";
+import { ClientCommonService } from '../../client.common-service';
 
 @Injectable({
 	providedIn: "root"
 })
-export class FriendChatHttpService {
+export class FriendChatHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
 	constructor(
-		private apollo: Apollo,
-		private auth: AuthService
+		protected injector: Injector
 	) {
-		this.ssToken = this.auth.getSessionToken();
-		this.tokenTitle = this.auth.getTokenTitle();
+		super(injector);
+		this.ssToken = this.authService.getSessionToken();
+		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	
+
 }

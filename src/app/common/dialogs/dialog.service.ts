@@ -20,7 +20,7 @@ export class DialogService {
 		data: any = null,
 		destroyIfOutFocus: boolean = false
 	) {
-		anchorElement.nativeElement.addEventListener('click', (event) => {
+		anchorElement.nativeElement.addEventListener('mousedown', (event) => {
 			this.putDialogComponentToComponent(
 				dialogType,
 				{
@@ -90,11 +90,11 @@ export class DialogService {
 			if (componentIndex && !this.dialogs[componentIndex].wasClicked) {
 				this.dialogs[componentIndex].wasClicked = true;
 			} else if (!dialogComponentRef.location.nativeElement.contains(event.target)) {
-				window.removeEventListener('click', handler);
+				window.removeEventListener('mousedown', handler);
 				dialogComponentRef.destroy();
 			}
 		};
 
-		window.addEventListener('click', handler);
+		window.addEventListener('mousedown', handler);
 	}
 }

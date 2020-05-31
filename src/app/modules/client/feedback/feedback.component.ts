@@ -1,7 +1,6 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild, ElementRef, ViewContainerRef, OnDestroy } from '@angular/core';
 import { FeedbackHttpService } from './feedback.http.service';
 import { Feedback, FeedbackServiceResponseTypes } from './feedback.dto';
-import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FeedbackLanguage } from './feedback.language';
 import { ClientCommonComponent } from '../client.common-component';
@@ -31,12 +30,15 @@ import { ClientCommonComponent } from '../client.common-component';
 		])
 	],
 })
-export class FeedbackComponent extends ClientCommonComponent implements OnInit {
+export class FeedbackComponent extends ClientCommonComponent implements OnDestroy, OnInit {
+	@ViewChild('container', { static: true }) containerER: ElementRef;
+	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
 	private feedback: Feedback = new Feedback();
 
 	constructor(
 		protected injector: Injector,
+		private viewContainerRef: ViewContainerRef,
 		private feedbackHttpService: FeedbackHttpService
 	) {
 		super(injector);
@@ -47,11 +49,12 @@ export class FeedbackComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.addOutFocusListener(this.viewContainerRef, this.containerER, event => this.destroy());
 	}
 
 	sendFeedback() {
 		if (this.feedback.content) {
-			this.feedbackHttpService.sendFeedback(this.feedback).subscribe(result => {
+			this.feedbackHttpService.sendFeedback(this.feedback, this.loaderLocationVR).subscribe(result => {
 				if (result.status === FeedbackServiceResponseTypes.SUCCESSFUL) {
 					this.destroy();
 				} else {
@@ -59,5 +62,9 @@ export class FeedbackComponent extends ClientCommonComponent implements OnInit {
 				}
 			});
 		}
+	}
+
+	ngOnDestroy() {
+		this.removeOutFocusListenr(this.viewContainerRef);
 	}
 }

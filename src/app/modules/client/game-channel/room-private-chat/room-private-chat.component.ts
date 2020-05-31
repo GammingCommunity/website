@@ -12,8 +12,8 @@ export class RoomPrivateChatComponent extends ClientCommonComponent implements O
 
 	constructor(
 		protected injector: Injector,
-		private roomPrivateChatUIService: RoomPrivateChatUIService,
-		private viewContainerRef: ViewContainerRef
+		private viewContainerRef: ViewContainerRef,
+		private roomPrivateChatUIService: RoomPrivateChatUIService
 	) {
 		super(injector);
 		RoomPrivateChatLanguage.define(this.translateService);

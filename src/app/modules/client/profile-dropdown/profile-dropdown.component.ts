@@ -29,7 +29,6 @@ export class ProfileDropdownComponent extends ClientCommonComponent {
 
 	constructor(
 		protected injector: Injector,
-		private router: Router,
 		private feedbackUIService: FeedbackUIService,
 		private authService: AuthService
 	) {

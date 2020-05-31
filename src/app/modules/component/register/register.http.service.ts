@@ -27,7 +27,8 @@ export class RegisterHttpService {
 						status
 					}
 				}
-			`
+			`,
+			fetchPolicy: 'no-cache'
 		}).pipe(map(
 				({ data }): AccountRegistrationResult => new AccountRegistrationResult(data.register)
 			));

@@ -20,12 +20,10 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 	@ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
 	private profile: MyProfile;
 	private redirectLink: string;
-	private readonly baseUrl: string = '/client';
 
 	constructor(
 		protected injector: Injector,
 		private clientHttpService: ClientHttpService,
-		private router: Router,
 		private feedbackUIService: FeedbackUIService,
 		private viewContainerRef: ViewContainerRef,
 		private profileDropdownUIService: ProfileDropdownUIService,

@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Injector } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Profile, AccountEditingResult } from './profile.dto';
+import { ClientCommonService } from '../client.common-service';
 
 const PROFILE = gql`
 	query{
@@ -35,16 +36,16 @@ const PROFILE = gql`
 @Injectable({
 	providedIn: "root"
 })
-export class ProfileHttpService {
+export class ProfileHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
 	constructor(
-		private apollo: Apollo,
-		private auth: AuthService
+		protected injector: Injector
 	) {
-		this.ssToken = this.auth.getSessionToken();
-		this.tokenTitle = this.auth.getTokenTitle();
+		super(injector);
+		this.ssToken = this.authService.getSessionToken();
+		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
 	fetchProfile() {

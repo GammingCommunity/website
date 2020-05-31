@@ -15,19 +15,26 @@ export class LoaderInterceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		const loaderOptions = new LoaderOptions(req.body.variables);
-		let loaderId;
 
 		if (loaderOptions.isUseGlobalLoader) {
-			loaderId = Symbol();
-			this.loaderService.start(loaderId);
-		}
+			let isError = false;
+			const loaderId = Symbol();
 
-		return next.handle(req).pipe(
-			finalize(() => {
-				if (loaderId) {
+			this.loaderService.start(loaderId);
+
+			return next.handle(req).pipe(
+				tap(null, () => {
 					this.loaderService.end(loaderId);
-				}
-			})
-		);
+					isError = true;
+				}),
+				finalize(() => {
+					if (!isError) {
+						this.loaderService.end(loaderId);
+					}
+				})
+			);
+		} else {
+			return next.handle(req);
+		}
 	}
 }

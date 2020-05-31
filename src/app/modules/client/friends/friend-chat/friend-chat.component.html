@@ -1,4 +1,4 @@
-<div class="friend-chat-head" *ngIf='chatFriend'>
+<div class="friend-chat-head hr-bottom" *ngIf='chatFriend'>
 	<div class="img" [ngStyle]="{'background-image':'url('+chatFriend.avatarUrl+')'}"></div>
 	<p class="account-name nowrap">{{ chatFriend.name }}</p>
 </div>
@@ -189,7 +189,10 @@
 
 
 </div>
-<div class="friend-chat-footer">
-	<textarea class="chat-box" id="" cols="30" rows="10"></textarea>
-	<button><i-feather name="send"></i-feather></button>
+<div class="friend-chat-footer hr-top">
+	<textarea class="chat-box" id="" cols="30" rows="10"
+		placeholder="{{'FriendChatLanguage.TYPE_SOMETHING_HERE' | translate}}"></textarea>
+	<button>
+		<i-feather name="send"></i-feather>
+	</button>
 </div>

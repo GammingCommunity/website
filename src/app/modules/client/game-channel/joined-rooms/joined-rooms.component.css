@@ -4,7 +4,7 @@
 
 .btn-resize {
 	position: absolute;
-	right: 0;
+	right: 0px;
 	top: 4px;
 	border: none;
 	background-color: transparent;
@@ -12,9 +12,10 @@
 }
 
 .joined-rooms {
-	background-color: rebeccapurple;
 	height: 100%;
-	margin-right: 27px;
+	margin-right: 26px;
+	background-color: var(--bg9);
+	padding: 15px;
 }
 
 .joined-rooms-items {
@@ -53,8 +54,4 @@
 .joined-rooms-items .info * {
 	overflow: inherit;
 	white-space: inherit;
-}
-
-.joined-rooms .footer {
-	margin-top: 30px;
 }

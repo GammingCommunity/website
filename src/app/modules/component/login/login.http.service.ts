@@ -24,7 +24,8 @@ export class LoginHttpService {
 				{
 					login(username: "${name}", pwd: "${pass}"){token, status}
 				}
-			`
+			`, 
+			fetchPolicy: 'no-cache'
 		}).pipe(map(
 			({ data }): LoggingResult => new LoggingResult(data.login)
 		));

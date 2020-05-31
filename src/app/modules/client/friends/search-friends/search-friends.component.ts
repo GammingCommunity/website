@@ -1,5 +1,4 @@
 import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, OnDestroy } from '@angular/core';
-import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SearchFriendsHttpService } from './search-friends.http.service';
 import { AccountLookingResult, AccountRelationShipType } from './search-friends.dto';
@@ -15,11 +14,9 @@ import { SearchFriendLanguage } from './search-friend.language';
 		trigger('fadeInOut', [
 			transition(':enter', [
 				style({
-					width: '0px',
 					height: '0px'
 				}),
 				animate('100ms ease', style({
-					width: '800px',
 					height: '600px'
 				}))
 			]),
@@ -36,10 +33,8 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	@ViewChild('container', { static: true }) containerER: ElementRef;
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
-	private outFocusHandler: (event) => void;
-	private searchKey: string = 'a';
+	private searchKey: string = '';
 	private lookedAccounts: AccountLookingResult[] = [];
-	private readonly baseUrl: string = '/client';
 	private readonly lookAccountUrl: string = '/look';
 	private searchSubscription: Subscription;
 	private accountRelationShipType = AccountRelationShipType;
@@ -55,7 +50,7 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	}
 
 	ngOnInit() {
-		this.addOutFocusListener();
+		this.addOutFocusListener(this.viewContainerRef, this.containerER, event => this.destroy());
 	}
 
 	search() {
@@ -67,14 +62,14 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	}
 
 	ngOnDestroy() {
-		this.removeOutFocusListenr();
+		this.removeOutFocusListenr(this.viewContainerRef);
 		if (this.searchSubscription) {
 			this.searchSubscription.unsubscribe();
 		}
 	}
 
 	redirectToAccount(id) {
-		// window.open(this.baseUrl + this.lookAccountUrl + '/' + id);
+		window.open(this.baseUrl + this.lookAccountUrl + '/' + id);
 	}
 
 	sendFriendRequest(id) {
@@ -117,16 +112,11 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		});
 	}
 
-	protected addOutFocusListener() {
-		this.outFocusHandler = event => {
-			if (!this.containerER.nativeElement.contains(event.target)) {
-				this.destroy();
-			}
+	handleEnterToSearch(event){
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			this.search();
+			this.loaderLocationVR.element.nativeElement.focus();
 		}
-		this.viewContainerRef.element.nativeElement.addEventListener('click', this.outFocusHandler);
-	}
-
-	protected removeOutFocusListenr() {
-		this.viewContainerRef.element.nativeElement.removeEventListener('click', this.outFocusHandler);
 	}
 }

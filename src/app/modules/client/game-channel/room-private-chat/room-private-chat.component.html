@@ -1,7 +1,6 @@
 <div class="chat-rooms">
-	<div class="background img" style="background-image: url(img/9.jpg)"></div>
 
-	<div class="chat-rooms-head">
+	<div class="chat-rooms-head hr-bottom">
 		<button (click)='hide()'>Exit</button>
 		<div class="img" style="background-image: url(img/9.jpg)"></div>
 		<div class="chat-rooms-head-info">
@@ -9,7 +8,6 @@
 			<p class="chat-rooms-items-id">1</p>
 		</div>
 	</div>
-	<hr>
 
 	<div class="chat-rooms-body">
 		<div class="chat-rooms-boxs">
@@ -29,8 +27,7 @@
 
 
 			</div>
-			<hr>
-			<div class="chat-rooms-inputs">
+			<div class="chat-rooms-inputs hr-top">
 				<textarea class="chat-rooms-input" placeholder="Viết gì đó..." onkeyup="updateMessagesBoxLength()"
 					onkeydown="send(event)"></textarea>
 				<p class="chat-rooms-input-length ml-2">0</p>

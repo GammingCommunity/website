@@ -27,14 +27,13 @@
 .main-container {
 	position: relative;
 	float: right;
-
 	height: 100%;
-	margin-left: 27px;
+	margin-left: 26px;
 }
 
 .main-btn-resize {
 	position: absolute;
-	left: 0;
+	left: 0px;
 	top: 4px;
 	border: none;
 	background-color: transparent;
@@ -44,31 +43,26 @@
 .btn-resize {
 	width: 60px;
 	height: 60px;
-
 	background-color: transparent;
 	transform: scale(1.1);
 	border: none;
 }
 
-.friends-container{
+.friends-container {
 	position: absolute;
 	top: 0;
 	right: 0;
 	z-index: 1;
-
 	height: 100%;
-
-	background-color: palevioletred;
+	background-color: var(--bg8);
+	padding: 15px;
 }
 
 app-friend-chat {
 	position: relative;
-	
 	display: flex;
 	flex-direction: column;
-	
 	height: 100%;
-	
 	margin-right: 60px;
-	background-color: blueviolet;
+	background-color: var(--bg9);
 }

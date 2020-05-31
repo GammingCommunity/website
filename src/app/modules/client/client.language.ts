@@ -4,7 +4,7 @@ export class ClientLanguage {
 	static define(translateService: TranslateService) {
 		translateService.setTranslation('en', {
 			'ClientLanguage': {
-				'GAME': 'Game',
+				'GAME': 'Games',
 				'COMMUNITY': 'Community',
 			}
 		}, true);

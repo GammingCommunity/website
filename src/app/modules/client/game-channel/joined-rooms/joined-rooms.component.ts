@@ -14,10 +14,12 @@ import { ClientCommonComponent } from '../../client.common-component';
 	animations: [
 		trigger('changeContainerState', [
 			state('expand', style({
+				padding: '15px',
 				width: '300px'
 			})),
 			state('collapse', style({
-				width: '100px'
+				width: '100px',
+				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))

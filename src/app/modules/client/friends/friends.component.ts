@@ -14,10 +14,12 @@ import { FriendsLanguage } from './friends.language';
 	animations: [
 		trigger('changeFriendsContainerState', [
 			state('expand', style({
+				padding: '15px',
 				width: '300px'
 			})),
 			state('collapse', style({
-				width: '60px'
+				width: '60px',
+				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))
@@ -30,7 +32,7 @@ import { FriendsLanguage } from './friends.language';
 				width: '240px'
 			})),
 			state('collapse', style({
-				width: '0'
+				width: '0px'
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))

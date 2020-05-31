@@ -9,16 +9,18 @@ export class SearchFriendLanguage {
 				'CONFIRM': 'Confirm',
 				'CANCEL': 'Cancel',
 				'MAKE_FRIEND': 'Make friend',
+				'TYPE_HERE': 'Type here...',
 				'FRIEND': 'Friend',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'SearchFriendLanguage': {
-				'SEARCH': 'Tìm',
+				'SEARCH': 'Tìm ngay',
 				'UNFRIEND_REQUEST': 'Huỷ yêu cầu kết bạn',
 				'CONFIRM': 'Đồng ý',
 				'CANCEL': 'Huỷ',
 				'MAKE_FRIEND': 'Kết bạn',
+				'TYPE_HERE': 'Thông tin tìm kiếm...',
 				'FRIEND': 'Bạn bè',
 			}
 		}, true);

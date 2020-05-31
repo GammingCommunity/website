@@ -24,7 +24,6 @@ import { FormsModule } from '@angular/forms';
 import { SearchFriendsComponent } from './modules/client/friends/search-friends/search-friends.component';
 import { RequestLoggerInterceptor } from './interceptors/request-logger.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { PreventCacheInterceptor } from './interceptors/prevent-cache.interceptor';
 
 @NgModule({
 	declarations: [

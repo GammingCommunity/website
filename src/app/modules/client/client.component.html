@@ -21,21 +21,22 @@
 </header> -->
 
 <div class="navs" #navs>
-	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items': true, 'active': redirectLink === 'game-channel'}" data-toggle="tooltip" tooltip-content="Trò chơi">
+	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'game-channel'}">
 		<i-feather name="coffee"></i-feather>
+		<span class="tooltiptext">{{ 'ClientLanguage.GAME' | translate }}</span>
 	</a>
-	<a class="navs-items" data-toggle="tooltip" [ngClass]="{'navs-items': true, 'active': redirectLink === 'ss'}" tooltip-content="Mạng xã hội">
+	<a [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'ss'}">
 		<i-feather name="globe"></i-feather>
+		<span class="tooltiptext">{{ 'ClientLanguage.COMMUNITY' | translate }}</span>
 	</a>
-	<a #profileDropdown class="navs-items" data-toggle="tooltip" tooltip-content="Mạng xã hội">
+	<a #profileDropdown class="navs-items tooltip">
 		<i-feather name="user"></i-feather>
+		<span class="tooltiptext">{{ 'ClientLanguage.GAME' | translate }}</span>
 	</a>
 </div>
 
 
 <article>
-	<div class="background img" style="background-image: url(/assets/img/9.jpg)"></div>
-
 	<router-outlet></router-outlet>
 </article>
 
