@@ -2,19 +2,25 @@ import { TranslateService } from '@ngx-translate/core';
 import { Injector, ViewContainerRef, ElementRef } from '@angular/core';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { Router } from '@angular/router';
+import { MyProfile } from './client.dto';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 export class ClientCommonComponent {
 	protected readonly translateService: TranslateService;
 	protected readonly alertService: AlertService;
+	protected readonly authService: AuthService;
 	protected readonly baseUrl: string = '/client';
 	protected readonly router: Router;
-
+	protected readonly currentAccountId: number;
+	
 	protected outFocusHandler: (event) => void;
 
 	constructor(injector: Injector) {
 		this.translateService = injector.get(TranslateService);
 		this.alertService = injector.get(AlertService);
 		this.router = injector.get(Router);
+		this.authService = injector.get(AuthService);
+		this.currentAccountId = this.authService.getAccountId();
 	}
 
 	protected hideClickedELement(event) {

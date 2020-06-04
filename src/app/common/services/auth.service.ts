@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 	providedIn: "root"
 })
 export class AuthService {
-	private readonly sessionToken: string = localStorage.getItem("token");
 	private readonly tokenTitle: string = 'token';
+	private readonly sessionToken: string = localStorage.getItem(this.tokenTitle);
 
 	constructor(private router: Router) { }
 
@@ -23,6 +23,10 @@ export class AuthService {
 		}
 	}
 
+	getAccountId(): number {
+		return parseInt(this.parseJwt(this.sessionToken).id);
+	}
+
 	setSessionToken(token: string) {
 		localStorage.setItem(this.tokenTitle, token);
 	}
@@ -30,4 +34,14 @@ export class AuthService {
 	removeSessionToken() {
 		localStorage.removeItem(this.tokenTitle);
 	}
+
+	protected parseJwt(token) {
+		var base64Url = token.split('.')[1];
+		var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+		var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+
+		return JSON.parse(jsonPayload);
+	};
 }

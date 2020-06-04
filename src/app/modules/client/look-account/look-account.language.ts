@@ -6,20 +6,40 @@ export class LookAccountLanguage {
 			'LookAccountLanguage': {
 				'SEARCH': 'Search',
 				'UNFRIEND_REQUEST': 'Cancel friend request',
-				'CONFIRM': 'Confirm',
+				'CONFIRM': 'Confirm to be friends',
 				'CANCEL': 'Cancel',
 				'MAKE_FRIEND': 'Make friend',
 				'FRIEND': 'Friend',
+				'ABOUT': 'About',
+				'TIMELINE': 'Timeline',
+				'FRIENDS': 'Friends',
+				'PHOTOS': 'Photos',
+				'REQUESTING': 'requesting...',
+				'PHONE': 'Phone',
+				'BIRTHYEAR': 'Birth year',
+				'BIRTHMONTH': 'Birth month',
+				'CREATED_AT': 'Joined on',
+				'EMAIL': 'Email',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'LookAccountLanguage': {
 				'SEARCH': 'Tìm',
 				'UNFRIEND_REQUEST': 'Huỷ yêu cầu kết bạn',
-				'CONFIRM': 'Đồng ý',
+				'CONFIRM': 'Đồng ý làm bạn',
 				'CANCEL': 'Huỷ',
 				'MAKE_FRIEND': 'Kết bạn',
 				'FRIEND': 'Bạn bè',
+				'ABOUT': 'Về tôi',
+				'TIMELINE': 'Dòng thời gian',
+				'FRIENDS': 'Bạn bè',
+				'PHOTOS': 'Hình ảnh',
+				'REQUESTING': 'đang gửi...',
+				'PHONE': 'Điện thoại',
+				'BIRTHYEAR': 'Năm sinh',
+				'BIRTHMONTH': 'Tháng sinh',
+				'CREATED_AT': 'Đã tham gia từ',
+				'EMAIL': 'Email',
 			}
 		}, true);
 	}

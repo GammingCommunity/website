@@ -1,38 +1,41 @@
-<button class="main-btn-resize" (click)='resizeMainContainer()'>
+<div class="main-btn-resize" (click)='resizeMainContainer()'>
 	<div *ngIf="mainContainerIsExpanding; else elseBlock">
 		<i-feather name="chevron-right"></i-feather>
 	</div>
 	<ng-template #elseBlock>
 		<i-feather name="chevron-left"></i-feather>
 	</ng-template>
-</button>
+</div>
 
 <div class="main-container">
 	<div class="friends-container" [@changeFriendsContainerState]="friendsContainerState">
-		<div class="head">
+		<div class="">
 			<div *ngIf="friendsContainerState != 'expand'">
-				<button class="btn-resize" (click)='expandFriendsContainer()'>
+				<div class="btn-resize" (click)='expandFriendsContainer()'>
 					<i-feather name="chevron-left"></i-feather>
-				</button>
+				</div>
 			</div>
-			<label>{{ 'FriendsLanguage.FRIENDS' | translate}}</label>
-			<div class="row">
-				<i class="fas fa-search mr-1 btn rounded-circle"></i>
-				<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
-			</div>
+			<h4 *ngIf="friendsContainerState === 'expand'"><strong>{{ 'FriendsLanguage.FRIENDS' | translate}}</strong>
+			</h4>
 		</div>
 
-		<div class="body" *ngIf="friends">
+		<div class="my-4" *ngIf="friends">
 
-			<div class="friends-items hover" *ngFor="let friend of friends" (click)="openChatBox(friend)">
-				<div class="img" [ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
-				<p class="name">{{ friend.name }}</p>
+			<div [ngClass]="{'friends-items d-flex align-items-center rounded-lg p-2 my-1': true, 'active': this.selectedFriend === friend}"
+				*ngFor="let friend of friends" (click)="openChatBox(friend)">
+				<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
+				<strong class="pl-2" *ngIf="friendsContainerState === 'expand'">{{ friend.name }}</strong>
 			</div>
 
 		</div>
 
-		<div class="footer">
-			<div class="btn btn-border m-1" #searchFriendBtn>{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</div>
+		<div [style.width]="friendsContainerState != 'expand' ? '36px' : 'unset'"
+			[style.height]="friendsContainerState != 'expand' ? '36px' : 'unset'"
+			[ngClass]="{'btn d-flex justify-content-center': true, 'm-2': friendsContainerState != 'expand', 'btn-border': friendsContainerState === 'expand'}"
+			#searchFriendBtn>
+			<strong *ngIf="friendsContainerState === 'expand'">{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</strong>
+			<i-feather *ngIf="friendsContainerState != 'expand'" style="transform: scale(2);" name="user-plus">
+			</i-feather>
 		</div>
 	</div>
 

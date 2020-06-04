@@ -1,51 +1,10 @@
-.friends-items {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	padding: 10px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.friends-items .img {
-	width: 36px;
-	min-width: 36px;
-	height: 36px;
-	border-radius: 36px;
-}
-
-.friends-items .name {
-	padding-left: 10px;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.friends .footer {
-	margin-top: 30px;
+:host {
+	position: relative;
 }
 
 .main-container {
 	position: relative;
-	float: right;
 	height: 100%;
-	margin-left: 26px;
-}
-
-.main-btn-resize {
-	position: absolute;
-	left: 0px;
-	top: 4px;
-	border: none;
-	background-color: transparent;
-	transform: scale(1.1);
-}
-
-.btn-resize {
-	width: 60px;
-	height: 60px;
-	background-color: transparent;
-	transform: scale(1.1);
-	border: none;
 }
 
 .friends-container {
@@ -55,7 +14,6 @@
 	z-index: 1;
 	height: 100%;
 	background-color: var(--bg8);
-	padding: 15px;
 }
 
 app-friend-chat {
@@ -63,6 +21,46 @@ app-friend-chat {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	margin-right: 60px;
+	margin-right: 52px;
 	background-color: var(--bg9);
+}
+
+.friends-items {
+	cursor: pointer;
+	transition: all .6s ease;
+}
+
+.friends-items.active {
+	background-color: var(--highlight3) !important;
+}
+
+.friends-items:hover {
+	background-color: var(--bg7);
+}
+
+.friends-items .img {
+	width: 36px;
+	min-width: 36px;
+	height: 36px;
+}
+
+.main-btn-resize {
+	position: absolute;
+	left: -35px;
+	top: 4px;
+	border: none;
+	background-color: transparent;
+	transform: scale(1.1);
+	z-index: 9;
+}
+
+.btn-resize {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 52px;
+	height: 52px;
+	background-color: transparent;
+	transform: scale(1.1);
+	border: none;
 }

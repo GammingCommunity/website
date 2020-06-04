@@ -22,21 +22,27 @@
 
 <div class="navs" #navs>
 	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'game-channel'}">
-		<i-feather name="coffee"></i-feather>
-		<span class="tooltiptext">{{ 'ClientLanguage.GAME' | translate }}</span>
+		<i-feather class="mb-2" name="coffee"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>
+		</span>
 	</a>
 	<a [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'ss'}">
-		<i-feather name="globe"></i-feather>
-		<span class="tooltiptext">{{ 'ClientLanguage.COMMUNITY' | translate }}</span>
+		<i-feather class="mb-2" name="globe"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.COMMUNITY' | translate }}</strong>
+		</span>
 	</a>
 	<a #profileDropdown class="navs-items tooltip">
-		<i-feather name="user"></i-feather>
-		<span class="tooltiptext">{{ 'ClientLanguage.GAME' | translate }}</span>
+		<i-feather class="mb-2" name="user"></i-feather>
+		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
+			<strong>{{ 'ClientLanguage.OPTIONS' | translate }}</strong>
+		</span>
 	</a>
 </div>
 
 
-<article>
+<article class="w-100">
 	<router-outlet></router-outlet>
 </article>
 

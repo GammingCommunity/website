@@ -11,12 +11,12 @@ export class ProfileDropdownUIService extends DialogService {
 		super(factoryResolver);
 	}
 
-	init(viewContainerRef: ViewContainerRef, anchorElement: ElementRef, currentAccount: MyProfile) {
+	init(viewContainerRef: ViewContainerRef, anchorElement: ElementRef) {
 		return super.addDialogComponentToComponentPuttingEvent(
 			ProfileDropdownComponent,
 			anchorElement,
 			viewContainerRef,
-			{ currentAccount: currentAccount },
+			null,
 			true
 		);
 	}

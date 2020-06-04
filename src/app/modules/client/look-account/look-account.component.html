@@ -1,82 +1,97 @@
-<table style="width:100%" *ngIf='lookingAccount'>
-	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
-		{{ 'LookAccountLanguage.FRIEND' | translate}}
+
+<div class="container" *ngIf='lookingAccount'>
+	<div class="profile-head">
+		<div class="background img"
+			[ngStyle]="{'background-image':'url(https://scontent.fsgn1-1.fna.fbcdn.net/v/t31.0-8/23157257_1948916878697637_6090417402922194029_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=tZar1HW2EO8AX8A7HQj&_nc_ht=scontent.fsgn1-1.fna&oh=5379191f9463c9df6382b48b9b4b393a&oe=5EFADAD6)'}">
+		</div>
+		<h1 class="name">{{ lookingAccount.name }}</h1>
 	</div>
-	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND_REQUEST">
-		<button (click)='unsendFriendRequest(lookingAccount.id)'
-			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.UNFRIEND_REQUEST' | translate}}</button>
+	<div class="profile-tab pb-3 mb-5">
+		<div class="avatar img" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}"></div>
+
+		<div class="m-3">
+			<div class="mb-5">
+				<h2 class="highlight-text">{{ 'LookAccountLanguage.ABOUT' | translate}}</h2>
+				<p class="text-wrap">{{ lookingAccount.describe }}</p>
+			</div>
+			<p class="text-wrap" *ngIf='lookingAccount.birthyear'>
+				<i-feather class="pr-1" name="calendar"></i-feather>
+				{{ 'LookAccountLanguage.BIRTHYEAR' | translate}}:
+				<span class="highlight-text">{{lookingAccount.birthyear}}</span>
+			</p>
+			<p class="text-wrap" *ngIf='lookingAccount.birthmonth'>
+				<i-feather class="pr-1" name="calendar"></i-feather>
+				{{ 'LookAccountLanguage.BIRTHMONTH' | translate}}:
+				<span class="highlight-text">{{lookingAccount.birthmonth}}</span>
+			</p>
+			<p class="text-wrap" *ngIf='lookingAccount.phone'>
+				<i-feather class="pr-1" name="smartphone"></i-feather>
+				{{ 'LookAccountLanguage.PHONE' | translate}}:
+				<span class="highlight-text">{{lookingAccount.phone}}</span>
+			</p>
+			<p class="text-wrap" *ngIf='lookingAccount.email'>
+				<i-feather class="pr-1" name="at-sign"></i-feather>
+				{{ 'LookAccountLanguage.EMAIL' | translate}}:
+				<span class="highlight-text">{{lookingAccount.email}}</span>
+			</p>
+			<p class="text-wrap" *ngIf='lookingAccount.createdAt'>
+				<i-feather class="pr-1" name="clock"></i-feather>
+				{{ 'LookAccountLanguage.CREATED_AT' | translate}}:
+				<span class="highlight-text">{{lookingAccount.createdAt}}</span>
+			</p>
+		</div>
 	</div>
-	<div *ngIf="lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST">
-		<button (click)='acceptFriendRequest(lookingAccount.id)'
-			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CONFIRM' | translate}}</button>
-		<button (click)='cancelFriendRequest(lookingAccount.id)'
-			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CANCEL' | translate}}</button>
+	<div class="profile-body">
+		<div class="mt-4 d-flex justify-content-end">
+
+			<button class="btn btn-dark" *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
+				<i-feather name="user-check"></i-feather></button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FRIEND_REQUEST"
+				class="btn btn-border" (click)='unsendFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.UNFRIEND_REQUEST' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST"
+				class="btn btn-dark mr-2" (click)='acceptFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CONFIRM' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST"
+				class="btn btn-dark " (click)='cancelFriendRequest()'
+				(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.CANCEL' | translate}}</button>
+			<button
+				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.STRANGER"
+				class="btn btn-dark " (click)='sendFriendRequest()' (click)='hideClickedELement($event)'>
+				<i-feather class="pr-1" name="user-plus"></i-feather>
+				{{ 'LookAccountLanguage.MAKE_FRIEND' | translate}}
+			</button>
+
+			<div *ngIf="lookingAccount.isRequesting" class="d-inline-flex align-items-center">
+				{{ 'LookAccountLanguage.REQUESTING' | translate}}
+			</div>
+
+			<button class="btn btn-dark option-btn ml-2">
+				<i-feather name="more-horizontal"></i-feather>
+			</button>
+		</div>
+		<ul class="mt-4 nav nav-tabs">
+			<li class="nav-item">
+				<p class="nav-link active">
+					{{ 'LookAccountLanguage.TIMELINE' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'LookAccountLanguage.FRIENDS' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'LookAccountLanguage.PHOTOS' | translate}}
+				</p>
+			</li>
+		</ul>
+		<div class="posts">
+
+		</div>
 	</div>
-	<div *ngIf="lookingAccount.relationship === accountRelationShipType.STRANGER">
-		<button (click)='sendFriendRequest(lookingAccount.id)'
-			(click)='hideClickedELement($event)'>{{ 'LookAccountLanguage.MAKE_FRIEND' | translate}}</button>
-	</div>
-	<tr>
-		<th>id</th>
-		<td>{{ lookingAccount.id }}</td>
-	</tr>
-	<tr>
-		<th>describe</th>
-		<td>
-			{{lookingAccount.describe}}
-		</td>
-
-	</tr>
-	<tr>
-		<th>avatar</th>
-		<td>
-			<div class="img" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}"></div>
-		</td>
-
-	</tr>
-	<tr>
-		<th>name</th>
-		<td>
-			{{lookingAccount.name}}
-		</td>
-	</tr>
-	<tr>
-		<th>created_at</th>
-		<td>{{ lookingAccount.createdAt }}</td>
-
-	</tr>
-	<tr>
-		<th>relationship</th>
-		<td>{{ lookingAccount.relationship }}</td>
-
-	</tr>
-	<tr>
-		<th>birthyear</th>
-		<td>
-			{{lookingAccount.birthyear}}
-		</td>
-
-	</tr>
-	<tr>
-		<th>birthmouth</th>
-		<td>
-			{{lookingAccount.birthmonth}}
-		</td>
-
-	</tr>
-	<tr>
-		<th>phone</th>
-		<td>
-			{{lookingAccount.phone}}
-		</td>
-
-	</tr>
-	<tr>
-		<th>email</th>
-		<td>
-			{{lookingAccount.email}}
-		</td>
-
-	</tr>
-
-</table>
+</div>

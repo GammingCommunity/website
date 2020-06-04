@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchFriendsComponent } from './modules/client/friends/search-friends/search-friends.component';
 import { RequestLoggerInterceptor } from './interceptors/request-logger.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
 	declarations: [
@@ -43,11 +44,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 		FormsModule,
 		HttpLinkModule,
 		BrowserAnimationsModule,
-		TranslateModule.forRoot({
-			defaultLanguage: 'en'
-		})
+		TranslateModule.forRoot()
 	],
 	providers: [
+		CookieService,
 		LoaderService,
 		AlertService,
 		DialogService,

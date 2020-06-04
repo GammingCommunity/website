@@ -13,22 +13,23 @@ const PROFILE = gql`
 			id
 			name
 			avatar_url
+			cover_url
 			describe
 			email
 			phone
 			birthmonth
 			birthyear
-			role
-			setting {
-				anonymous
-				birthmonth_privacy
-				birthyear_privacy
-				email_privacy
-				phone_privacy
-			}
-			status
+			# role
+			# setting {
+			# 	anonymous
+			# 	birthmonth_privacy
+			# 	birthyear_privacy
+			# 	email_privacy
+			# 	phone_privacy
+			# }
+			# status
+			# updated_at
 			created_at
-			updated_at
 		}
 	}
 `;

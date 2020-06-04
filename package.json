@@ -28,6 +28,7 @@
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
+    "ngx-cookie-service": "^3.0.4",
     "rxjs": "~6.4.0",
     "socket.io-client": "^2.3.0",
     "svg-motion": "0.0.13",

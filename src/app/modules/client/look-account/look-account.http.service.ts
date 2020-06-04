@@ -110,6 +110,7 @@ export class LookAccountHttpService extends ClientCommonService {
 							id
 							name
 							avatar_url
+							cover_url
 							describe
 							email
 							phone

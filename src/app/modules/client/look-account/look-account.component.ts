@@ -29,54 +29,54 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 	}
 
 
-	sendFriendRequest(id) {
-		this.lookAccountHttpService.sendFriendRequest(id).subscribe(result => {
+	sendFriendRequest() {
+		this.lookingAccount.isRequesting = true;
+		this.lookAccountHttpService.sendFriendRequest(this.lookingAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				this.lookingAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
 			}
+			this.lookingAccount.isRequesting = false;
 		});
 	}
 
-	acceptFriendRequest(id) {
-		this.lookAccountHttpService.acceptFriendRequest(id).subscribe(result => {
+	acceptFriendRequest() {
+		this.lookingAccount.isRequesting = true;
+		this.lookAccountHttpService.acceptFriendRequest(this.lookingAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				this.lookingAccount.relationship = this.accountRelationShipType.FRIEND;
 			}
+			this.lookingAccount.isRequesting = false;
 		});
 	}
 
-	cancelFriendRequest(id) {
-		this.lookAccountHttpService.cancelFriendRequest(id).subscribe(result => {
+	cancelFriendRequest() {
+		this.lookingAccount.isRequesting = true;
+		this.lookAccountHttpService.cancelFriendRequest(this.lookingAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
 			}
+			this.lookingAccount.isRequesting = false;
 		});
 	}
 
-	unsendFriendRequest(id) {
-		this.lookAccountHttpService.unsendFriendRequest(id).subscribe(result => {
+	unsendFriendRequest() {
+		this.lookingAccount.isRequesting = true;
+		this.lookAccountHttpService.unsendFriendRequest(this.lookingAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
 			}
+			this.lookingAccount.isRequesting = false;
 		});
 	}
 
 	look() {
 		const lookingAccountId = Number(this.route.snapshot.paramMap.get('id'));
-		if (lookingAccountId) {
+		if (lookingAccountId && lookingAccountId !== this.currentAccountId) {
 			this.lookAccountHttpService.look(lookingAccountId).subscribe(lookedAccount => {
 				this.lookingAccount = lookedAccount;
 			});
 		} else {
-			console.log(lookingAccountId);
+			alert(this.currentAccountId);
 		}
 	}
 }

@@ -1,101 +1,95 @@
-<h1>{{ 'ProfileLanguage.PROFILE' | translate}}</h1>
-<table style="width:100%" *ngIf='newProfile'>
-	<tr>
-		<th>id</th>
-		<td>{{ newProfile.id }}</td>
-	</tr>
-	<tr>
-		<th>describe</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.describe">
-		</td>
 
-	</tr>
-	<tr>
-		<th>avatar</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.avatarUrl">
-		</td>
+<div class="container" *ngIf='oldProfile'>
+	<div class="profile-head">
+		<div class="background img"
+			[ngStyle]="{'background-image':'url(https://scontent.fsgn1-1.fna.fbcdn.net/v/t31.0-8/23157257_1948916878697637_6090417402922194029_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=tZar1HW2EO8AX8A7HQj&_nc_ht=scontent.fsgn1-1.fna&oh=5379191f9463c9df6382b48b9b4b393a&oe=5EFADAD6)'}">
+		</div>
+		<h2 class="name">{{ oldProfile.name }}</h2>
+	</div>
+	<div class="profile-tab pb-3 mb-5">
+		<div class="avatar img" [ngStyle]="{'background-image':'url('+oldProfile.avatarUrl+')'}"></div>
 
-	</tr>
-	<tr>
-		<th>name</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.name">
-		</td>
-	</tr>
-	<tr>
-		<th>updated_at</th>
-		<td>{{ newProfile.updatedAt }}</td>
+		<div class="m-3">
+			<div class="mb-5">
+				<h3 class="highlight-text">{{ 'ProfileLanguage.ABOUT' | translate}}</h3>
+				<p class="text-wrap">{{ oldProfile.describe }}</p>
+			</div>
+			<p class="text-wrap mb-4" *ngIf='oldProfile.birthyear'>
+				<i-feather class="pr-1" name="calendar"></i-feather>
+				{{ 'ProfileLanguage.BIRTHYEAR' | translate}}:
+				<span class="highlight-text">{{oldProfile.birthyear}}</span>
+			</p>
+			<p class="text-wrap mb-4" *ngIf='oldProfile.birthmonth'>
+				<i-feather class="pr-1" name="calendar"></i-feather>
+				{{ 'ProfileLanguage.BIRTHMONTH' | translate}}:
+				<span class="highlight-text">{{oldProfile.birthmonth}}</span>
+			</p>
+			<p class="text-wrap mb-4" *ngIf='oldProfile.phone'>
+				<i-feather class="pr-1" name="smartphone"></i-feather>
+				{{ 'ProfileLanguage.PHONE' | translate}}:
+				<span class="highlight-text">{{oldProfile.phone}}</span>
+			</p>
+			<p class="text-wrap mb-4" *ngIf='oldProfile.email'>
+				<i-feather class="pr-1" name="at-sign"></i-feather>
+				{{ 'ProfileLanguage.EMAIL' | translate}}:
+				<span class="highlight-text">{{oldProfile.email}}</span>
+			</p>
+			<p class="text-wrap mb-4" *ngIf='oldProfile.createdAt'>
+				<i-feather class="pr-1" name="clock"></i-feather>
+				{{ 'ProfileLanguage.CREATED_AT' | translate}}:
+				<span class="highlight-text">{{oldProfile.createdAt}}</span>
+			</p>
+		</div>
+	</div>
+	<div class="profile-body">
+		<div class="mt-4 d-flex justify-content-end">
+			<button class="btn btn-dark mr-2">
+				<i-feather class="pr-1" name="edit-3"></i-feather>
+				{{ 'ProfileLanguage.EDIT_PROFILE' | translate}}
+			</button>
+			<button class="btn btn-dark option-btn">
+				<i-feather name="more-horizontal"></i-feather>
+			</button>
+		</div>
+		<ul class="mt-4 nav nav-tabs">
+			<li class="nav-item">
+				<p class="nav-link active">
+					{{ 'ProfileLanguage.TIMELINE' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'ProfileLanguage.FRIENDS' | translate}}
+				</p>
+			</li>
+			<li class="nav-item">
+				<p class="nav-link">
+					{{ 'ProfileLanguage.PHOTOS' | translate}}
+				</p>
+			</li>
+		</ul>
 
-	</tr>
-	<tr>
-		<th>created_at</th>
-		<td>{{ newProfile.createdAt }}</td>
+		<div class="mt-5 mb-2 post-creating d-flex">
+			<div class="img mr-3 rounded-circle" [ngStyle]="{'background-image':'url('+oldProfile.avatarUrl+')'}"></div>
+			<textarea class="flex-grow-1 rounded border p-2" style="min-height: 100px;"
+				placeholder="{{ 'ProfileLanguage.TYPE_HERE' | translate}}"></textarea>
+		</div>
+		<div class="post-creating-toolbar">
+			<div class="btn btn-border d-inline-flex align-items-center mr-1">
+				<i-feather class="pr-1" name="image"></i-feather>
+				{{ 'ProfileLanguage.ADD_PHOTOS' | translate}}
+			</div>
+			<div class="btn btn-border d-inline-flex align-items-center ">
+				<i-feather class="pr-1" name="file-plus"></i-feather>
+				{{ 'ProfileLanguage.ADD_FILES' | translate}}
+			</div>
+			<div class="btn d-inline-flex align-items-center float-right highlight-text">
+				{{ 'ProfileLanguage.POST' | translate}}
+				<i-feather class="pl-1" name="wind"></i-feather>
+			</div>
+		</div>
+		<div class="posts">
 
-	</tr>
-	<tr>
-		<th>status</th>
-		<td>{{ newProfile.status }}</td>
-		
-	</tr>
-	<tr>
-		<th>role</th>
-		<td>{{ newProfile.role }}</td>
-		
-	</tr>
-	<tr>
-		<th>birthyear</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.birthyear">
-		</td>
-
-	</tr>
-	<tr>
-		<th>birthmouth</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.birthmonth">
-		</td>
-
-	</tr>
-	<tr>
-		<th>phone</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.phone">
-		</td>
-		
-	</tr>
-	<tr>
-		<th>email</th>
-		<td>
-			<input type="text" [(ngModel)]="newProfile.email">
-		</td>
-
-	</tr>
-	
-</table>
-
-<h1>{{ 'ProfileLanguage.SETTING' | translate}}</h1>
-<table style="width:100%" *ngIf="newProfile && newProfile.setting">
-	<tr>
-		<th>anonymous</th>
-		<td>{{ newProfile.setting.anonymous }}</td>
-	</tr>
-	<tr>
-		<th>birthmounth</th>
-		<td>{{ newProfile.setting.birthmonthPrivacy }}</td>
-	</tr>
-	<tr>
-		<th>birthyear</th>
-		<td>{{ newProfile.setting.birthyearPrivacy }}</td>
-	</tr>
-	<tr>
-		<th>email</th>
-		<td>{{ newProfile.setting.emailPrivacy }}</td>
-	</tr>
-	<tr>
-		<th>phone</th>
-		<td>{{ newProfile.setting.phonePrivacy }}</td>
-	</tr>
-</table>
-<button class="btn btn-w" (click)="updateProfile()">submit</button>
+		</div>
+	</div>
+</div>

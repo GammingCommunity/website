@@ -6,6 +6,7 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 import { SearchFriendsUIService } from './search-friends/search-friends.ui.service';
 import { ClientCommonComponent } from '../client.common-component';
 import { FriendsLanguage } from './friends.language';
+import { pipe } from 'rxjs';
 
 @Component({
 	selector: 'app-friends',
@@ -18,7 +19,7 @@ import { FriendsLanguage } from './friends.language';
 				width: '300px'
 			})),
 			state('collapse', style({
-				width: '60px',
+				width: '52px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
@@ -26,10 +27,10 @@ import { FriendsLanguage } from './friends.language';
 		]),
 		trigger('changeChatBoxState', [
 			state('expand', style({
-				width: '360px'
+				width: '352px'
 			})),
 			state('middle-expand', style({
-				width: '240px'
+				width: '248px'
 			})),
 			state('collapse', style({
 				width: '0px'
@@ -46,6 +47,7 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	private friendsContainerState: string = 'expand';
 	private chatBoxState: string = 'middle-expand';
 	private friends: MyFriend[] = [];
+	private selectedFriend: MyFriend;
 
 	constructor(
 		protected injector: Injector,
@@ -63,6 +65,7 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	openChatBox(selectedFriend: MyFriend) {
+		this.selectedFriend = selectedFriend;
 		this.friendChatUIService.showChatBoxFunc(selectedFriend);
 		this.expandChatBox();
 	}
@@ -107,7 +110,9 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	protected fetchFriends() {
-		this.friendsHttpService.fetchFriends().subscribe(data => {
+		this.friendsHttpService.fetchFriends()
+		.pipe()
+		.subscribe(data => {
 			this.friends = data;
 		})
 	}

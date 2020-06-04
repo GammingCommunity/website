@@ -18,8 +18,8 @@ import { SearchFriendLanguage } from './friends/search-friends/search-friend.lan
 export class ClientComponent extends ClientCommonComponent implements OnInit, AfterViewInit {
 	@ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
 	@ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
-	private profile: MyProfile;
 	private redirectLink: string;
+	private profile: MyProfile;
 
 	constructor(
 		protected injector: Injector,
@@ -40,7 +40,7 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 	}
 
 	ngAfterViewInit() {
-		this.initProfileDropdown(this.profile);
+		this.initProfileDropdown();
 	}
 
 	redirectTo(link: string) {
@@ -54,7 +54,7 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 		});
 	}
 
-	protected initProfileDropdown(profile: MyProfile) {
-		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER, profile);
+	protected initProfileDropdown() {
+		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER);
 	}
 }

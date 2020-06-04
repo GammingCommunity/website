@@ -1,31 +1,35 @@
 <div class="container" [@fadeInOut]>
 	<ul>
 		<li>
-			<a routerLink="/client/profile">
+			<a routerLink="/client/profile" (click)='destroy()'>
 				<i-feather name="info"></i-feather>
 				{{ 'ProfileDropdownLanguage.MY_PROFILE' | translate}}
 			</a>
 		</li>
 		<li>
 
-			<a (click)='showFeedback()'>
+			<a (click)='showFeedback()' (click)='destroy()'>
 				<i-feather name="send"></i-feather>
 				{{ 'ProfileDropdownLanguage.FEEDBACK' | translate}}
 			</a>
 		</li>
 		<li>
 
-			<a routerLink="/client/settings">
+			<a routerLink="/client/settings" (click)='destroy()'>
 				<i-feather name="settings"></i-feather>
 				{{ 'ProfileDropdownLanguage.SETTING' | translate}}
 			</a>
 		</li>
 		<li>
-			<input type="checkbox" value="None" id="slideThree" name="check" checked (click)='checked($event)'/>
+			<a (click)='changeLanguage()'>
+				<i-feather name="globe"></i-feather>
+				<p *ngIf='this.translateService.getDefaultLang() === "vi"'>Tiếng Việt</p>
+				<p *ngIf='this.translateService.getDefaultLang() === "en"'>English</p>
+			</a>
 		</li>
 		<li>
 
-			<a (click)='logOut()'>
+			<a (click)='logOut()' (click)='destroy()'>
 				<i-feather name="log-out" class="someclass"></i-feather>
 				{{ 'ProfileDropdownLanguage.LOGOUT' | translate}}
 			</a>

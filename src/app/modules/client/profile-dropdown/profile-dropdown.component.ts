@@ -8,6 +8,7 @@ import { MyProfile } from '../client.dto';
 import { ClientCommonComponent } from '../client.common-component';
 import { TranslateService } from '@ngx-translate/core';
 import { ProfileDropdownLanguage } from './profile-dropdown.language';
+import { LanguageService } from 'src/app/common/services/language.service';
 
 @Component({
 	selector: 'app-profile-dropdown',
@@ -25,25 +26,28 @@ import { ProfileDropdownLanguage } from './profile-dropdown.language';
 })
 export class ProfileDropdownComponent extends ClientCommonComponent {
 	private destroy: () => void;
-	private currentAccount: MyProfile;
 
 	constructor(
 		protected injector: Injector,
+		protected languageService: LanguageService,
 		private feedbackUIService: FeedbackUIService,
-		private authService: AuthService
 	) {
 		super(injector);
 		ProfileDropdownLanguage.define(this.translateService);
-		const data = injector.get('data');
 		this.destroy = injector.get('destroy');
 	}
-
+	
 	showFeedback() {
-		this.feedbackUIService.show(this.currentAccount ? this.currentAccount.id : -1);
+		this.feedbackUIService.show(this.currentAccountId);
 	}
-
-	checked(event) {
-		this.translateService.use(event.target.checked ? 'vi' : 'en');
+	
+	changeLanguage() {
+		if (this.translateService.getDefaultLang() === 'vi'){
+			this.translateService.setDefaultLang('en');
+		} else {
+			this.translateService.setDefaultLang('vi');
+		}
+		this.languageService.setCurrentLang(this.translateService.getDefaultLang());
 	}
 
 	logOut() {

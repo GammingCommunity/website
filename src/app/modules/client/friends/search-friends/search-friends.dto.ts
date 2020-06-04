@@ -12,6 +12,7 @@ export class AccountLookingResult {
 	avatarUrl: string;
 	describe: string;
 	relationship: string;
+	isRequesting: boolean = false;
 
 	constructor(rawData = null){
 		if (rawData && rawData.account){

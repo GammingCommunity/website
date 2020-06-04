@@ -1,41 +1,61 @@
-<div class="container" [@fadeInOut] #container>
-	<button class="exit-btn" (click)='destroy()'>x</button>
-	<div class="container-head">
-		<input class="searcher" (keyup)='handleEnterToSearch($event)' [(ngModel)]="searchKey"
+<div class="container px-5 rounded-lg" [@fadeInOut] #container>
+	<button class="exit-btn bg-transparent" (click)='destroy()'>
+		<i-feather name="x"></i-feather>
+	</button>
+	<div class="w-100 container-head d-flex align-items-center bg7">
+		<input class="searcher m-3 flex-grow-1" (keyup)='handleEnterToSearch($event)' [(ngModel)]="searchKey"
 			placeholder="{{'SearchFriendLanguage.TYPE_HERE' | translate}}">
-		<button class="search-btn btn" (click)='search()'
-			*ngIf='searchKey'>{{ 'SearchFriendLanguage.SEARCH' | translate}}</button>
+		<button class="btn btn-light mr-3 highlight-text" (click)='search()' *ngIf='searchKey'>
+			<i-feather name="search"></i-feather>
+			{{ 'SearchFriendLanguage.SEARCH' | translate}}
+		</button>
 	</div>
 
 	<div #loaderLocation></div>
 
-	<div class="searched-list" *ngIf='lookedAccounts'>
-		<div class="searched-item" *ngFor='let lookedAccount of lookedAccounts'
-			(click)='redirectToAccount(lookedAccount.id)'>
-			<div class="img" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
-			<div class="info">
-				<p class="name">{{ lookedAccount.name }}</p>
-				<p class="describe">{{ lookedAccount.describe }}</p>
+	<!-- list -->
+	<div class="w-100 h-100 d-flex flex-column overflow-auto mb-4 mt-5">
+		<!-- item -->
+		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
+			<a class="mr-3" target="_blank" rel="noopener noreferrer"
+				href="{{ baseUrl + '/look/' + lookedAccount.id }}">
+				<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}">
+				</div>
+			</a>
+			<div class="flex-grow-1 h-100">
+				<a target="_blank" rel="noopener noreferrer" href="{{ baseUrl + '/look/' + lookedAccount.id }}">
+					<strong>{{ lookedAccount.name }}</strong>
+				</a>
+				<p>{{ lookedAccount.describe }}</p>
 			</div>
 			<div class="tool">
-				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND">
-					{{ 'SearchFriendLanguage.FRIEND' | translate}}
+				<div *ngIf="lookedAccount.isRequesting; else notRequestingBlock">
+					{{ 'SearchFriendLanguage.REQUESTING' | translate}}
 				</div>
-				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND_REQUEST">
-					<button class="btn btn-border" (click)='unsendFriendRequest(lookedAccount.id)'
-						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.UNFRIEND_REQUEST' | translate}}</button>
-				</div>
-				<div *ngIf="lookedAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST">
-					<button class="btn btn-border" (click)='acceptFriendRequest(lookedAccount.id)'
-						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.CONFIRM' | translate}}</button>
-					<button class="btn btn-border" (click)='cancelFriendRequest(lookedAccount.id)'
-						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.CANCEL' | translate}}</button>
-				</div>
-				<div *ngIf="lookedAccount.relationship === accountRelationShipType.STRANGER">
-					<button class="btn btn-border" (click)='sendFriendRequest(lookedAccount.id)'
-						(click)='hideClickedELement($event)'>{{ 'SearchFriendLanguage.MAKE_FRIEND' | translate}}</button>
-				</div>
+				<ng-template #notRequestingBlock>
+					<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND">
+						<i-feather name="user-check"></i-feather>
+					</div>
+					<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND_REQUEST">
+						<button class="btn btn-border"
+							(click)='unsendFriendRequest(lookedAccount)'>{{ 'SearchFriendLanguage.UNFRIEND_REQUEST' | translate}}</button>
+					</div>
+					<div class="d-flex"
+						*ngIf="lookedAccount.relationship === accountRelationShipType.FROM_FRIEND_REQUEST">
+						<button class="btn btn-border mr-2"
+							(click)='acceptFriendRequest(lookedAccount)'>{{ 'SearchFriendLanguage.CONFIRM' | translate}}</button>
+						<button class="btn btn-border"
+							(click)='cancelFriendRequest(lookedAccount)'>{{ 'SearchFriendLanguage.CANCEL' | translate}}</button>
+					</div>
+					<div *ngIf="lookedAccount.relationship === accountRelationShipType.STRANGER">
+						<button class="btn btn-border"
+							(click)='sendFriendRequest(lookedAccount)'>{{ 'SearchFriendLanguage.MAKE_FRIEND' | translate}}</button>
+					</div>
+				</ng-template>
 			</div>
 		</div>
 
+		<div class="text-center h-100 d-flex align-items-center justify-content-center" *ngIf='lookedAccounts.length < 1'>{{ 'SearchFriendLanguage.EMPTY_RESULT' | translate}}
+		</div>
 	</div>
+</div>

@@ -13,7 +13,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 				style({
 					height: '0px'
 				}),
-				animate('100ms ease', style({
+				animate('400ms ease', style({
 					height: '200px'
 				}))
 			])

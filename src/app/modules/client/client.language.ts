@@ -6,12 +6,14 @@ export class ClientLanguage {
 			'ClientLanguage': {
 				'GAME': 'Games',
 				'COMMUNITY': 'Community',
+				'OPTIONS': 'Options',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'ClientLanguage': {
 				'GAME': 'Trò chơi',
 				'COMMUNITY': 'Cộng đồng',
+				'OPTIONS': 'Tùy chỉnh',
 			}
 		}, true);
 	}

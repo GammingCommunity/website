@@ -1,11 +1,11 @@
 .navs {
 	position: fixed;
-	z-index: 8;
-	top: -36px;
-	left: calc(50% - 80px);
-	height: 60px;
+	z-index: 20;
+	top: -28px;
+	left: calc(50% - 120px);
+	height: 50px;
 	display: flex;
-	opacity: .33;
+	opacity: .4;
 	background-color: var(--bg7);
 	border-radius: 0 0 20px 20px;
 	transition: all .32s ease;
@@ -30,21 +30,6 @@
 	background-color: var(--bg4);
 }
 
-app-friends {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-app-friends>.body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	overflow: auto;
-	padding-right: 30px;
-}
-
 :host {
 	display: flex;
 	width: 100vw;
@@ -52,13 +37,7 @@ app-friends>.body {
 	overflow: hidden;
 }
 
-/* article */
-
 article {
 	flex-grow: 1;
 	overflow: auto;
-}
-
-.navs-items {
-	text-decoration: none;
 }

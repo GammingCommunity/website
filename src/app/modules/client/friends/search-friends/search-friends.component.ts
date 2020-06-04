@@ -49,6 +49,11 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		SearchFriendLanguage.define(this.translateService);
 	}
 
+	protected hideClickedELement(event) {
+		event.target.style.display = 'none';
+		this.translateService.get('SearchFriendLanguage.REQUESTED').subscribe(text => event.target.parentElement.innerHTML = text);
+	}
+
 	ngOnInit() {
 		this.addOutFocusListener(this.viewContainerRef, this.containerER, event => this.destroy());
 	}
@@ -68,51 +73,48 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		}
 	}
 
-	redirectToAccount(id) {
-		window.open(this.baseUrl + this.lookAccountUrl + '/' + id);
-	}
+	sendFriendRequest(lookedAccount: AccountLookingResult) {
+		lookedAccount.isRequesting = true;
 
-	sendFriendRequest(id) {
-		this.searchFriendsHttpService.sendFriendRequest(id).subscribe(result => {
+		this.searchFriendsHttpService.sendFriendRequest(lookedAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				lookedAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
 			}
+			lookedAccount.isRequesting = false;
 		});
 	}
 
-	acceptFriendRequest(id) {
-		this.searchFriendsHttpService.acceptFriendRequest(id).subscribe(result => {
+	acceptFriendRequest(lookedAccount: AccountLookingResult) {
+		lookedAccount.isRequesting = true;
+		this.searchFriendsHttpService.acceptFriendRequest(lookedAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				lookedAccount.relationship = this.accountRelationShipType.FRIEND;
 			}
+			lookedAccount.isRequesting = false;
 		});
 	}
 
-	cancelFriendRequest(id) {
-		this.searchFriendsHttpService.cancelFriendRequest(id).subscribe(result => {
+	cancelFriendRequest(lookedAccount: AccountLookingResult) {
+		lookedAccount.isRequesting = true;
+		this.searchFriendsHttpService.cancelFriendRequest(lookedAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				lookedAccount.relationship = this.accountRelationShipType.STRANGER;
 			}
+			lookedAccount.isRequesting = false;
 		});
 	}
 
-	unsendFriendRequest(id) {
-		this.searchFriendsHttpService.unsendFriendRequest(id).subscribe(result => {
+	unsendFriendRequest(lookedAccount: AccountLookingResult) {
+		lookedAccount.isRequesting = true;
+		this.searchFriendsHttpService.unsendFriendRequest(lookedAccount.id).subscribe(result => {
 			if (result) {
-
-			} else {
-				alert(`line 24 - search-fiends.component.ts`);
+				lookedAccount.relationship = this.accountRelationShipType.STRANGER;
 			}
+			lookedAccount.isRequesting = false;
 		});
 	}
 
-	handleEnterToSearch(event){
+	handleEnterToSearch(event) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			this.search();

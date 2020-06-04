@@ -41,9 +41,7 @@ import { TranslateModule } from '@ngx-translate/core';
 		ClientRoutingModule,
 		FormsModule,
 		CommonModule,
-		TranslateModule.forChild({
-			defaultLanguage: 'vi'
-		})
+		TranslateModule.forChild()
 	],
 	providers: [
 		ChatService,

@@ -10,6 +10,7 @@ export class AccountLookingResult {
 	id: number;
 	name: string;
 	avatarUrl: string;
+	coverUrl: string;
 	describe: string;
 	email: string;
 	phone: string;
@@ -17,12 +18,14 @@ export class AccountLookingResult {
 	birthyear: string;
 	createdAt: string;
 	relationship: string;
+	isRequesting: boolean = false;
 
 	constructor(rawData = null){
 		if (rawData && rawData.account){
 			this.id = rawData.account.id;
 			this.name = rawData.account.name;
 			this.avatarUrl = rawData.account.avatar_url;
+			this.coverUrl = rawData.account.cover_url;
 			this.describe = rawData.account.describe;
 			this.email = rawData.account.email;
 			this.phone = rawData.account.phone;
