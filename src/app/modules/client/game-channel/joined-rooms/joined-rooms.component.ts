@@ -18,7 +18,7 @@ import { ClientCommonComponent } from '../../client.common-component';
 				width: '300px'
 			})),
 			state('collapse', style({
-				width: '100px',
+				width: '80px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),

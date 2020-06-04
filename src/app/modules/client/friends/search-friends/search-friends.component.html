@@ -14,13 +14,13 @@
 	<div #loaderLocation></div>
 
 	<!-- list -->
-	<div class="w-100 h-100 d-flex flex-column overflow-auto mb-4 mt-5">
+	<div class="w-100 h-100 d-flex flex-column overflow-auto px-3 mb-4 mt-5">
 		<!-- item -->
 		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
 			<a class="mr-3" target="_blank" rel="noopener noreferrer"
 				href="{{ baseUrl + '/look/' + lookedAccount.id }}">
-				<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}">
-				</div>
+				<div *ngIf='lookedAccount.avatarUrl' class="img rounded-lg" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
+				<div *ngIf='!lookedAccount.avatarUrl' class="img rounded-lg" [ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
 			</a>
 			<div class="flex-grow-1 h-100">
 				<a target="_blank" rel="noopener noreferrer" href="{{ baseUrl + '/look/' + lookedAccount.id }}">
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 
-		<div class="text-center h-100 d-flex align-items-center justify-content-center" *ngIf='lookedAccounts.length < 1'>{{ 'SearchFriendLanguage.EMPTY_RESULT' | translate}}
+		<div class="h-100 d-flex align-items-center justify-content-center" *ngIf='lookedAccounts.length < 1'>{{ 'SearchFriendLanguage.EMPTY_RESULT' | translate}}
 		</div>
 	</div>
 </div>

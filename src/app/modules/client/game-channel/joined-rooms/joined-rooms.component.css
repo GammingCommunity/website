@@ -1,5 +1,6 @@
 :host {
 	position: relative;
+	border-right: solid 1px var(--bg10);
 }
 
 .btn-resize {
@@ -12,46 +13,23 @@
 	z-index: 9;
 }
 
-.joined-rooms {
-	height: 100%;
-	background-color: var(--bg9);
-	padding: 15px;
-}
-
-.joined-rooms-items {
-	display: flex;
-	width: 100%;
-	padding: 10px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.joined-rooms-items .img {
+.room-items .img {
 	width: 64px;
 	min-width: 64px;
 	height: 64px;
-	border-radius: var(--rounded);
-	transition: all .4s ease;
+	transition: all .5s ease;
 }
 
-.joined-rooms-items:hover .img {
+.room-items {
+	cursor: pointer;
+	transition: all .5s ease;
+}
+
+.room-items:hover .img {
 	width: 84px;
 	min-width: 84px;
 }
 
-.joined-rooms-items .info {
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	overflow: hidden;
-	height: 64px;
-	padding-left: 10px;
-	white-space: nowrap;
-}
-
-.joined-rooms-items .info * {
-	overflow: inherit;
-	white-space: inherit;
+.room-items:hover {
+	background-color: var(--bg8);
 }

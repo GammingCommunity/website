@@ -466,7 +466,6 @@ mark, .mark {
 }
 
 code {
-	font-size: 87.5%;
 	color: #e83e8c;
 	word-wrap: break-word;
 }
@@ -477,7 +476,6 @@ a>code {
 
 kbd {
 	padding: 0.2rem 0.4rem;
-	font-size: 87.5%;
 	color: #fff;
 	background-color: #212529;
 	border-radius: 0.2rem;
@@ -491,7 +489,6 @@ kbd kbd {
 
 pre {
 	display: block;
-	font-size: 87.5%;
 	color: #212529;
 }
 
@@ -9655,6 +9652,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 :root {
 	/* background color */
+	--bg10: black;
 	--bg9: rgb(19, 19, 20);
 	--bg8: rgb(32, 32, 36);
 	--bg7: rgb(53, 54, 58);

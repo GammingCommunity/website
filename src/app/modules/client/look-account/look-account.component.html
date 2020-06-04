@@ -1,39 +1,51 @@
 
 <div class="container" *ngIf='lookingAccount'>
 	<div class="profile-head">
-		<div class="background img"
-			[ngStyle]="{'background-image':'url(https://scontent.fsgn1-1.fna.fbcdn.net/v/t31.0-8/23157257_1948916878697637_6090417402922194029_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=tZar1HW2EO8AX8A7HQj&_nc_ht=scontent.fsgn1-1.fna&oh=5379191f9463c9df6382b48b9b4b393a&oe=5EFADAD6)'}">
+		<!-- cover -->
+		<div *ngIf='lookingAccount.coverUrl' class="background img" [ngStyle]="{'background-image':'url('+lookingAccount.coverUrl+')'}">
+		</div>
+		<div *ngIf='!lookingAccount.coverUrl' class="background img" [ngStyle]="{'background-image':'url('+defaultCoverUrl+')'}">
 		</div>
 		<h1 class="name">{{ lookingAccount.name }}</h1>
 	</div>
 	<div class="profile-tab pb-3 mb-5">
-		<div class="avatar img" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}"></div>
+		<!-- avatar -->
+		<div *ngIf='lookingAccount.avatarUrl' class="img avatar" [ngStyle]="{'background-image':'url('+lookingAccount.avatarUrl+')'}">
+		</div>
+		<div *ngIf='!lookingAccount.avatarUrl' class="img avatar" [ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}">
+		</div>
 
 		<div class="m-3">
+			<!-- describe -->
 			<div class="mb-5">
 				<h2 class="highlight-text">{{ 'LookAccountLanguage.ABOUT' | translate}}</h2>
 				<p class="text-wrap">{{ lookingAccount.describe }}</p>
 			</div>
+			<!-- birthyear -->
 			<p class="text-wrap" *ngIf='lookingAccount.birthyear'>
 				<i-feather class="pr-1" name="calendar"></i-feather>
 				{{ 'LookAccountLanguage.BIRTHYEAR' | translate}}:
 				<span class="highlight-text">{{lookingAccount.birthyear}}</span>
 			</p>
+			<!-- birthmonth -->
 			<p class="text-wrap" *ngIf='lookingAccount.birthmonth'>
 				<i-feather class="pr-1" name="calendar"></i-feather>
 				{{ 'LookAccountLanguage.BIRTHMONTH' | translate}}:
 				<span class="highlight-text">{{lookingAccount.birthmonth}}</span>
 			</p>
+			<!-- phone -->
 			<p class="text-wrap" *ngIf='lookingAccount.phone'>
 				<i-feather class="pr-1" name="smartphone"></i-feather>
 				{{ 'LookAccountLanguage.PHONE' | translate}}:
 				<span class="highlight-text">{{lookingAccount.phone}}</span>
 			</p>
+			<!-- email -->
 			<p class="text-wrap" *ngIf='lookingAccount.email'>
 				<i-feather class="pr-1" name="at-sign"></i-feather>
 				{{ 'LookAccountLanguage.EMAIL' | translate}}:
 				<span class="highlight-text">{{lookingAccount.email}}</span>
 			</p>
+			<!-- createdAt -->
 			<p class="text-wrap" *ngIf='lookingAccount.createdAt'>
 				<i-feather class="pr-1" name="clock"></i-feather>
 				{{ 'LookAccountLanguage.CREATED_AT' | translate}}:
@@ -43,7 +55,7 @@
 	</div>
 	<div class="profile-body">
 		<div class="mt-4 d-flex justify-content-end">
-
+			<!-- friends buttons -->
 			<button class="btn btn-dark" *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
 				<i-feather name="user-check"></i-feather></button>
 			<button
@@ -64,15 +76,17 @@
 				<i-feather class="pr-1" name="user-plus"></i-feather>
 				{{ 'LookAccountLanguage.MAKE_FRIEND' | translate}}
 			</button>
-
+			<!-- loader -->
 			<div *ngIf="lookingAccount.isRequesting" class="d-inline-flex align-items-center">
 				{{ 'LookAccountLanguage.REQUESTING' | translate}}
 			</div>
-
+			<!-- options button -->
 			<button class="btn btn-dark option-btn ml-2">
 				<i-feather name="more-horizontal"></i-feather>
 			</button>
 		</div>
+
+		<!-- nav -->
 		<ul class="mt-4 nav nav-tabs">
 			<li class="nav-item">
 				<p class="nav-link active">
@@ -90,6 +104,7 @@
 				</p>
 			</li>
 		</ul>
+		<!-- posts -->
 		<div class="posts">
 
 		</div>

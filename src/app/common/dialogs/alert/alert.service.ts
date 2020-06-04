@@ -6,11 +6,17 @@ import { DialogService } from '../dialog.service';
 	providedIn: "root"
 })
 export class AlertService extends DialogService {
+	private
+
 	constructor(protected factoryResolver: ComponentFactoryResolver) {
 		super(factoryResolver);
 	}
 
-	show(message: string) {
-		super.putDialogComponentToComponent(AlertComponent, { }, { message: message });
+	show(message: string, buttonName: string = 'OK', callback: () => void = () => {}) {
+		super.putDialogComponentToComponent(AlertComponent, {}, {
+			message: message,
+			buttonName: buttonName,
+			callback: callback
+		});
 	}
 }

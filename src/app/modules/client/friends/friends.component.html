@@ -15,20 +15,30 @@
 					<i-feather name="chevron-left"></i-feather>
 				</div>
 			</div>
+			<!-- friends title -->
 			<h4 *ngIf="friendsContainerState === 'expand'"><strong>{{ 'FriendsLanguage.FRIENDS' | translate}}</strong>
 			</h4>
 		</div>
 
+		<!-- friends list -->
 		<div class="my-4" *ngIf="friends">
-
-			<div [ngClass]="{'friends-items d-flex align-items-center rounded-lg p-2 my-1': true, 'active': this.selectedFriend === friend}"
-				*ngFor="let friend of friends" (click)="openChatBox(friend)">
-				<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
-				<strong class="pl-2" *ngIf="friendsContainerState === 'expand'">{{ friend.name }}</strong>
+			<!-- friend items -->
+			<div class="d-flex align-items-center my-1" *ngFor="let friend of friends">
+				<div [ngClass]="{'friends-items rounded-lg p-2 d-flex align-items-center flex-grow-1 overflow-hidden': true, 'active': this.selectedFriend === friend}" (click)="openChatBox(friend)">
+					<!-- avatar -->
+					<div *ngIf='friend.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+friend.avatarUrl+')'}"></div>
+					<div *ngIf='!friend.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
+					<!-- name -->
+					<strong class="pl-2 text-nowrap overflow-hidden flex-grow-1 highlight-text" *ngIf="friendsContainerState === 'expand'">{{ friend.name }}</strong>
+				</div>
+				<!-- ,,, -->
+				<i-feather *ngIf="friendsContainerState === 'expand'" class="friends-options ml-1 rounded-lg" name="more-vertical"></i-feather>
 			</div>
 
 		</div>
-
+		<!-- make friend button -->
 		<div [style.width]="friendsContainerState != 'expand' ? '36px' : 'unset'"
 			[style.height]="friendsContainerState != 'expand' ? '36px' : 'unset'"
 			[ngClass]="{'btn d-flex justify-content-center': true, 'm-2': friendsContainerState != 'expand', 'btn-border': friendsContainerState === 'expand'}"

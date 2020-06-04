@@ -1,4 +1,4 @@
-.global-chats {
+/* .global-chats {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -75,4 +75,10 @@
 	background-color: var(--bg8);
 	border: none;
 }
+ */
 
+.img {
+	width: 26px;
+	min-width: 26px;
+	height: 26px;
+}

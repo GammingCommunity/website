@@ -13,9 +13,13 @@ import { DebugConfigs, environment } from 'src/environments/environment';
 export class ErrorInterceptor implements HttpInterceptor {
 	constructor(private alretService: AlertService) { }
 
-	protected alertError(message: string) {
+	protected alertError(message: string, callback: () => Observable<HttpEvent<any>>) {
 		if (DebugConfigs.isAlert) {
-			this.alretService.show(message);
+			this.alretService.show(message, 'Retry', () => {
+				callback().subscribe(() => {
+					this.alertError(message, callback);
+				});
+			});
 		}
 	}
 
@@ -30,15 +34,15 @@ export class ErrorInterceptor implements HttpInterceptor {
 						errors.forEach(error => {
 							messages += error.message + '\n';
 						});
-						this.alertError(messages);
+						this.alertError(messages, () => next.handle(req));
 					}
 				},
 				error => {
-					// console.log(error);
+					// console.log(error, () => next.handle(req));
 					if (error.hasOwnProperty('message')) {
-						this.alertError(error.message);
+						this.alertError(error.message, () => next.handle(req));
 					} else {
-						this.alertError(error.toString());
+						this.alertError(error.toString(), () => next.handle(req));
 					}
 				}
 			),

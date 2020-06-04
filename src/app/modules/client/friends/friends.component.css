@@ -23,18 +23,25 @@ app-friend-chat {
 	height: 100%;
 	margin-right: 52px;
 	background-color: var(--bg9);
+	border-left: 1px solid var(--bg10);
 }
 
-.friends-items {
+.friends-items, .friends-options {
 	cursor: pointer;
-	transition: all .6s ease;
+	transition: all .5s ease;
+}
+
+.friends-options {
+	width: 26px;
+	min-width: 26px;
+	height: 26px;
 }
 
 .friends-items.active {
 	background-color: var(--highlight3) !important;
 }
 
-.friends-items:hover {
+.friends-items:hover, .friends-options:hover {
 	background-color: var(--bg7);
 }
 
@@ -46,7 +53,7 @@ app-friend-chat {
 
 .main-btn-resize {
 	position: absolute;
-	left: -35px;
+	left: -27px;
 	top: 4px;
 	border: none;
 	background-color: transparent;

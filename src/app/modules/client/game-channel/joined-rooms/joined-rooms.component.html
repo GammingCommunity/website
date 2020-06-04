@@ -1,125 +1,54 @@
-<button class="btn-resize" (click)='resizeContainer()'>
+<div class="btn-resize" (click)='resizeContainer()'>
 	<div *ngIf="containerState !== 'expand'; else elseBlock">
 		<i-feather name="chevron-right"></i-feather>
 	</div>
 	<ng-template #elseBlock>
 		<i-feather name="chevron-left"></i-feather>
 	</ng-template>
-</button>
-
-<!-- <div class="container" [@changeContainerState]="containerState">
-	<div class="joined-room-head">
-
-	</div>
-	<div class="joined-room-body">
-		<div class="friends-items hover" *ngFor="let room of joinedRooms" data-id="{{ room.id }}">
-			<div class="img" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
-			<p class="name">{{ room.name }}</p>
-		</div>
-	</div>
-	<div class="joined-room-footer">
-
-	</div>
-</div> -->
+</div>
 
 
-<!-- joined room -->
-<nav class="joined-rooms hr-right" [@changeContainerState]="containerState">
-	<div class="head">
-		<label>{{'JoinedRoomsLanguage.JOINED_ROOMS' | translate}}</label>
-		<div class="row">
-			<i class="fas fa-search mr-1 btn rounded-circle"></i>
-			<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
-		</div>
+<nav class="d-flex flex-column" [@changeContainerState]="containerState">
+	<div class="d-flex align-items-center" *ngIf="containerState === 'expand'">
+		<!-- title -->
+		<strong>
+			<h4>{{'JoinedRoomsLanguage.JOINED_ROOMS' | translate}}</h4>
+		</strong>
 	</div>
 
-	<div class="body">
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
+	<!-- list -->
+	<div class="my-4 d-flex flex-column flex-grow-1 overflow-hidden">
+		<!-- item -->
+		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(1998)'>
+			<!-- image -->
+			<div class="img rounded-lg"
 				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
 			</div>
-			<div class="info">
-				<p>Battlefield 1</p>
-				<p>#162</p>
+			<!-- info -->
+			<div *ngIf="containerState === 'expand'" class="pl-2 flex-grow-1 overflow-hidden">
+				<div><strong class="highlight-text">Battlefield 1</strong></div>
+				<div>#162</div>
 			</div>
 		</div>
 
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(1998)'>
+			<div class="img rounded-lg"
+				style="background-image: url(https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png)">
 			</div>
-			<div class="info">
-				<p>Minecraft</p>
-				<p>#113</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>Left 4 Dead 2</p>
-				<p>#33</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>War of Tanks</p>
-				<p>#55</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>Start Craft</p>
-				<p>#123</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>Battlefield 4</p>
-				<p>#5</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>Titanfall 2</p>
-				<p>#192</p>
-			</div>
-		</div>
-
-		<div class="joined-rooms-items hover" (click)='showPrivateChat(1998)'>
-			<div class="img"
-				style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			</div>
-			<div class="info">
-				<p>TitanfallTitanfallTitanfallTitanfall
-					HuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuyHuy</p>
-				<p>#192</p>
+			<div *ngIf="containerState === 'expand'" class="pl-2 flex-grow-1 overflow-hidden">
+				<div><strong class="highlight-text">Adobe  a1</strong></div>
+				<div>#112</div>
 			</div>
 		</div>
 
 	</div>
 
-	<div class="footer">
-		<div class="btn btn-border m-1">{{'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</div>
-
+	<!-- quick search button -->
+	<div [style.width]="containerState != 'expand' ? '64px' : 'unset'"
+		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
+		[ngClass]="{'btn btn-border d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
+		#searchFriendBtn>
+		<strong *ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
+		<i-feather *ngIf="containerState != 'expand'" style="transform: scale(0.8);" name="search"></i-feather>
 	</div>
 </nav>

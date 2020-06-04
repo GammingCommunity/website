@@ -20,17 +20,17 @@ import { trigger, transition, style, animate } from '@angular/animations';
 		])
 	],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent {
 	private message: string = 'hello world';
-	private data: any;
+	private buttonName: string;
+	private callback: () => void;
 	private destroy: () => void;
 
 	constructor(private viewContainerRef: ViewContainerRef, private injector: Injector) {
-		this.data = this.injector.get('data');
+		const data = this.injector.get('data');
 		this.destroy = this.injector.get('destroy');
-	}
-
-	ngOnInit() {
-		this.message = this.data.message;
+		this.callback = data.callback;
+		this.buttonName = data.buttonName;
+		this.message = data.message;
 	}
 }
