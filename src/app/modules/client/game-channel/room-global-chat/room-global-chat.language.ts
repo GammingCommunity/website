@@ -5,11 +5,13 @@ export class RoomGlobalChatLanguage {
 		translateService.setTranslation('en', {
 			'RoomGlobalChatLanguage': {
 				'GLOBAL_CHAT': 'Global chat',
+				'TYPE_HERE': 'Type here...',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'RoomGlobalChatLanguage': {
 				'GLOBAL_CHAT': 'Chat chung',
+				'TYPE_HERE': 'Viết gì đó...',
 			}
 		}, true);
 	}

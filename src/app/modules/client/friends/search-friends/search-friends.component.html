@@ -17,21 +17,26 @@
 	<div class="w-100 h-100 d-flex flex-column overflow-auto px-3 mb-4 mt-5">
 		<!-- item -->
 		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
+			<!-- avatar -->
 			<a class="mr-3" target="_blank" rel="noopener noreferrer"
 				href="{{ baseUrl + '/look/' + lookedAccount.id }}">
 				<div *ngIf='lookedAccount.avatarUrl' class="img rounded-lg" [ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
 				<div *ngIf='!lookedAccount.avatarUrl' class="img rounded-lg" [ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
 			</a>
 			<div class="flex-grow-1 h-100">
+				<!-- name -->
 				<a target="_blank" rel="noopener noreferrer" href="{{ baseUrl + '/look/' + lookedAccount.id }}">
 					<strong>{{ lookedAccount.name }}</strong>
 				</a>
+				<!-- describe -->
 				<p>{{ lookedAccount.describe }}</p>
 			</div>
-			<div class="tool">
+			<div class="">
+				<!-- loader -->
 				<div *ngIf="lookedAccount.isRequesting; else notRequestingBlock">
 					{{ 'SearchFriendLanguage.REQUESTING' | translate}}
 				</div>
+				<!-- buttons -->
 				<ng-template #notRequestingBlock>
 					<div *ngIf="lookedAccount.relationship === accountRelationShipType.FRIEND">
 						<i-feather name="user-check"></i-feather>

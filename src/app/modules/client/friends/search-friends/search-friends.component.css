@@ -52,38 +52,3 @@
 	min-width: 64px;
 	height: 64px;
 }
-
-/* 
-.searched-item {
-	width: 100%;
-	display: flex;
-	border-bottom: solid 1px var(--bg7);
-	padding: 5px;
-	margin: 10px;
-	margin-bottom: 15px;
-	padding-bottom: 10px;
-	padding-top: 20px;
-	align-items: flex-end;
-}
-
-.searched-item .info {
-	flex-grow: 1;
-	margin: 1px 15px;
-	height: 100%;
-}
-
-.searched-item .info .name {
-	font-weight: bold;
-}
-
-.searched-item .info .describe {
-	color: var(--secondary-text);
-}
-
-.tool {
-	color: var(--secondary-text);
-}
-
-.tool * {
-	margin-top: 10px;
-} */

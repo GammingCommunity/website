@@ -1,144 +1,356 @@
-<!-- <div class="friends-items hover" *ngFor="let room of gameRooms" data-id="{{ room.id }}">
-	<div class="img" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
-	<p class="name">{{ room.name }}</p>
-</div> -->
-
-<!-- rooms -->
-<div class="rooms">
-	<div class="head">
-		<label>{{ 'GameRoomsLanguage.ROOMS_LIST' | translate}}</label>
-		<div class="row">
-			<i class="fas fa-search mr-1 btn rounded-circle"></i>
-			<i class="fas fa-ellipsis-h btn rounded-circle mr-0"></i>
+<div class="h-100 d-flex flex-column">
+	<div class="d-flex align-items-center mr-3">
+		<!-- title -->
+		<strong class="flex-grow-1">
+			<h5>{{ 'GameRoomsLanguage.ROOMS_LIST' | translate}}</h5>
+		</strong>
+		<!-- options button -->
+		<div class="btn bg-transparent">
+			<i-feather name="more-horizontal"></i-feather>
 		</div>
 	</div>
-	<div class="rooms-body">
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+	<!-- list -->
+	<div class="px-4 my-4 d-flex flex-column flex-grow-1 overflow-auto">
+		<!-- item -->
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
-		<div class="rooms-items black-layer img" style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
-			<p class="rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<div class="rooms-items-detail-info">
-				<i class="fas fa-globe-americas pr-2"></i>
-				<div class="member-num">
-					2/3
-					<i class="fas fa-users"></i>
-				</div>
-				<p class="rooms-items-id">1</p>
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
+			</div>
+		</div>
+
+		<div class="room-item mb-3 rounded-lg overflow-hidden"
+			style="background-image: url(https://i-xem.mkocdn.com/i.xem.sb/data/photo/2020/05/24/028/tuoi-gi-noi-tu-voi-tui-1590284578-400.jpg)">
+			<!-- name -->
+			<div class="m-3 overflow-hidden highlight-text"><strong>#11 - Nào mình cùng lên xe buýt</strong></div>
+			<!-- info -->
+			<div class="m-3 d-flex align-items-center">
+				<i-feather class="mr-4" name="globe"></i-feather>
+				<i-feather name="users"></i-feather>
+				<span>2/3</span>
 			</div>
 		</div>
 
 
 	</div>
 
-	<div class="rooms-footer">
-		<div class="btn btn-lg btn-content">Tạo phòng</div>
-	</div>
+	<!-- add room button -->
+	<div class="btn btn-border mx-4">{{ 'GameRoomsLanguage.ADD_ROOM' | translate}}</div>
 </div>

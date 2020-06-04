@@ -1,19 +1,28 @@
-<app-joined-rooms #joinedRooms></app-joined-rooms>
-<div class="container">
-	<div class="child-left">
-		<select class="game-channel-list">
-			<option value="volvo">Volvo</option>
-			<option value="saab">Saab</option>
-			<option value="mercedes">Mercedes</option>
-			<option value="audi">Audi</option>
-		</select>
+<div class="d-flex w-100 h-100">
+	<app-joined-rooms class="" #joinedRooms></app-joined-rooms>
+	<div class="ml-4 my-5 d-flex flex-grow-1 overflow-auto">
+		<div class="d-flex flex-column flex-grow-1 overflow-auto">
+			<!-- title -->
+			<strong class="flex-grow-1">
+				<h5>{{ 'RoomGlobalChatLanguage.GLOBAL_CHAT' | translate}}</h5>
+			</strong>
+			<div class="m-3 d-flex flex-column">
+				<!-- games list -->
+				<select class="game-channel-list">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</select>
+				<!-- ??? -->
+				<div class="my-4 btn">saldjfcvnl</div>
+			</div>
 
-		<button class="match-friends">saldjfcvnl</button>
-
-		<app-room-global-chat></app-room-global-chat>
-		<app-room-private-chat></app-room-private-chat>
-	</div>
-	<div class="child-right">
-		<app-game-rooms></app-game-rooms>
+			<app-room-global-chat class="flex-grow-1 overflow-auto"></app-room-global-chat>
+			<!-- <app-room-private-chat></app-room-private-chat> -->
+		</div>
+		<div class="pl-4 ml-4 border-left">
+			<app-game-rooms></app-game-rooms>
+		</div>
 	</div>
 </div>
