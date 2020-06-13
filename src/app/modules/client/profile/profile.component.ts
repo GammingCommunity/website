@@ -25,10 +25,12 @@ export class ProfileComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.profileHttpService.fetchProfile().subscribe(profile => {
-			this.oldProfile = profile;
-			this.newProfile = Object.assign(new Profile(), profile);
-		})
+		this.route.params.subscribe(() => {
+			this.profileHttpService.fetchProfile().subscribe(profile => {
+				this.oldProfile = profile;
+				this.newProfile = Object.assign(new Profile(), profile);
+			});
+		});
 	}
 
 	updateProfile() {

@@ -4,24 +4,24 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
 	selector: "common-alert",
-	templateUrl: "./alert.component.html",
-	styleUrls: ["./alert.component.css"],
-	styles: [`:host{z-index: ${CssConfigs.errorPopupZIndex} }`],
-	animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({
-					height: '0px'
-				}),
-				animate('400ms ease', style({
-					height: '200px'
-				}))
-			])
-		])
-	],
+	template: `
+		<div class="box">
+			<p class="text-wrap">{{ message }}</p>
+			<div class="d-flex">
+				<button class="btn mr-3" (click)='callback()' (click)='destroy()'>{{ buttonName }}</button>
+				<button class="btn btn-border" (click)='destroy()'>Cancel</button>
+			</div>
+		</div>
+	`,
+	styles: [`
+		.box {
+			width: 500px;
+			height: 240px;
+		}
+	`]
 })
 export class AlertComponent {
-	private message: string = 'hello world';
+	private message: string = '';
 	private buttonName: string;
 	private callback: () => void;
 	private destroy: () => void;

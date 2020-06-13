@@ -18,7 +18,7 @@ export class AuthService {
 		if (this.sessionToken && this.sessionToken != '') {
 			return this.sessionToken;
 		} else {
-			window.location.href = "/login";
+			window.location.href = "/component/login";
 			return null;
 		}
 	}

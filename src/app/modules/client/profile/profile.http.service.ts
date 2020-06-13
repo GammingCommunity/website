@@ -54,7 +54,8 @@ export class ProfileHttpService extends ClientCommonService {
 			query: PROFILE,
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
-			}
+			},
+			fetchPolicy: 'no-cache'
 		}).pipe(map(
 			({ data }): Profile => new Profile(data.getThisAccount)
 		));

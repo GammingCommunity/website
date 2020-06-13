@@ -2,6 +2,7 @@ import { Injectable, ComponentFactoryResolver, ViewContainerRef, ViewRef, Type }
 import { LoaderComponent } from './loader.component';
 import { DialogService } from '../dialog.service';
 import { LocalLoader } from './loader.dto';
+import { CssConfigs } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: "root"
@@ -17,7 +18,11 @@ export class LoaderService extends DialogService {
 
 	start(id) {
 		if (this.globalLoaderIds.length === 0) {
-			this.globalLoaderRef = this.putDialogComponentToComponent(LoaderComponent, { destroyIfOutFocus: false });
+			this.globalLoaderRef = this.putDialogComponentToComponentWithOptions({
+				dialogType: LoaderComponent,
+				useBackground: true,
+				zIndex: CssConfigs.loaderZIndex
+			});
 		}
 
 		this.globalLoaderIds.push(id);
@@ -31,9 +36,14 @@ export class LoaderService extends DialogService {
 		}
 	}
 
-	addLocalLoader(viewContainerRef: ViewContainerRef): LocalLoader {
+	addLocalLoader(viewContainerRef: ViewContainerRef, useBackground = true): LocalLoader {
 		const id = Date.now();
-		const loader = this.putDialogComponentToComponent(LoaderComponent, { viewContainerRef: viewContainerRef });
+		const loader = this.putDialogComponentToComponentWithOptions({
+			dialogType: LoaderComponent,
+			viewContainerRef: viewContainerRef,
+			useBackground: useBackground,
+			zIndex: CssConfigs.loaderZIndex
+		});
 		const locolLoader = new LocalLoader(id, loader);
 		this.localLoaders.push(locolLoader);
 		return locolLoader;

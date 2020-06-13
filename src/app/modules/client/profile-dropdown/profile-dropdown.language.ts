@@ -13,7 +13,7 @@ export class ProfileDropdownLanguage {
 		translateService.setTranslation('vi', {
 			'ProfileDropdownLanguage': {
 				'SETTING': 'Cài đặt',
-				'MY_PROFILE': 'Thông tin',
+				'MY_PROFILE': 'Trang cá nhân',
 				'FEEDBACK': 'Góp ý cho chúng tôi',
 				'LOGOUT': 'Đăng xuất',
 			}

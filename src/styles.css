@@ -9687,7 +9687,7 @@ body {
 
 ::-webkit-scrollbar {
 	width: 7px;
-	height: 7px;
+	height: 10px;
 	background-color: var(--bg9);
 	border-radius: 7px;
 }
@@ -9746,27 +9746,27 @@ button, input[type="submit"] {
 }
 
 .bg9 {
-	background-color: var(--bg9);
+	background-color: var(--bg9) !important;
 }
 
 .bg8 {
-	background-color: var(--bg8);
+	background-color: var(--bg8) !important;
 }
 
 .bg7 {
-	background-color: var(--bg7);
+	background-color: var(--bg7) !important;
 }
 
 .bg6 {
-	background-color: var(--bg6);
+	background-color: var(--bg6) !important;
 }
 
 .bg5 {
-	background-color: var(--bg5);
+	background-color: var(--bg5) !important;
 }
 
 .bg4 {
-	background-color: var(--bg4);
+	background-color: var(--bg4) !important;
 }
 
 /* tooltip */

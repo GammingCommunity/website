@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { LookAccountHttpService } from './look-account.http.service';
 import { ClientCommonComponent } from '../client.common-component';
 import { LookAccountLanguage } from './look-account.language';
+import { LookAccountOptionsDropdownComponent } from './look-account-options-dropdown/look-account-options-dropdown.component';
+import { CssConfigs } from 'src/environments/environment';
+import { LookAccountFriendedOptionsDropdownComponent } from './look-account-friended-options-dropdown/look-account-friended-options-dropdown.component';
 
 @Component({
 	selector: 'app-look-account',
@@ -17,7 +20,6 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 
 	constructor(
 		protected injector: Injector,
-		private route: ActivatedRoute,
 		private lookAccountHttpService: LookAccountHttpService
 	) {
 		super(injector);
@@ -25,7 +27,9 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 	}
 
 	ngOnInit() {
-		this.look();
+		this.route.params.subscribe(param => {
+			this.look(Number(param.id));
+		});
 	}
 
 
@@ -69,14 +73,39 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 		});
 	}
 
-	look() {
-		const lookingAccountId = Number(this.route.snapshot.paramMap.get('id'));
-		if (lookingAccountId && lookingAccountId !== this.currentAccountId) {
-			this.lookAccountHttpService.look(lookingAccountId).subscribe(lookedAccount => {
-				this.lookingAccount = lookedAccount;
-			});
-		} else {
-			alert(this.currentAccountId);
-		}
+	showLookAccountOptionsDropdown(event) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: LookAccountOptionsDropdownComponent,
+			anchorElement: event.target,
+			anchorTo: "right",
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.dropdownMenuZIndex,
+			popupOptions: {
+				classList: 'py-4 px-3 bg6',
+				width: 260,
+				useExitBtn: false
+			}
+		});
+	}
+
+	showLookAccountFriendedOptionsDropdown(event) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: LookAccountFriendedOptionsDropdownComponent,
+			anchorElement: event.target,
+			anchorTo: "right",
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.dropdownMenuZIndex,
+			popupOptions: {
+				classList: 'py-4 px-3 bg6',
+				width: 240,
+				useExitBtn: false
+			}
+		});
+	}
+
+	look(id: number) {
+		this.lookAccountHttpService.look(id).subscribe(lookedAccount => {
+			this.lookingAccount = lookedAccount;
+		});
 	}
 }

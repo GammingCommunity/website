@@ -5,21 +5,27 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
 	selector: "common-loader",
-	templateUrl: "./loader.component.html",
-	styleUrls: ["./loader.component.css"],
-	styles: [`:host{z-index: ${CssConfigs.loaderZIndex} }`],
-	animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({ opacity: 0 }),
-				animate('100ms ease', style({ opacity: 1 }))
-			]),
-			transition(':leave', [
-				animate('100ms ease', style({ opacity: 0 }))
-			])
-		])
-	],
-	host: { '[@fadeInOut]': 'in' }
+	template: `
+		<div class='box d-flex justify-content-center align-items-center'>
+			<svg>
+				<g transform="translate(22 21) scale(0.9 1)">
+					<path #spinner stroke="#3700b3" stroke-width="3" fill="transparent"
+						d="M20,0L0,10L0,30L20,40L40,30L40,10L30,5L10,15L10,25L20,30L30,25L30,15L20,20"></path>
+				</g>
+			</svg>
+		</div>
+	`,
+	styles: [`
+		.box {
+			background-color: var(--bg9);
+			border-radius: 6px;
+		}
+		svg {
+			transform: rotate(29deg);
+			width: 80px;
+			height: 80px;
+		}
+	`],
 })
 export class LoaderComponent implements OnInit, OnDestroy {
 	@ViewChild('spinner', { static: true }) private spinnerRef: ElementRef<HTMLElement>;

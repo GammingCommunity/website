@@ -14,7 +14,7 @@
 	<div #loaderLocation></div>
 	<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
 		<!-- avatar -->
-		<a class="mr-3" rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>
+		<a class="mr-3" rel="noopener noreferrer" routerLink="/look/{{lookedAccount.id}}" (click)='destroy()'>
 			<div *ngIf='lookedAccount.avatarUrl' class="img rounded-lg"
 				[ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
 			<div *ngIf='!lookedAccount.avatarUrl' class="img rounded-lg"
@@ -22,7 +22,7 @@
 		</a>
 		<div class="flex-grow-1 h-100">
 			<!-- name -->
-			<a rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>
+			<a rel="noopener noreferrer" routerLink="/look/{{lookedAccount.id}}" (click)='destroy()'>
 				<strong>{{ lookedAccount.name }}</strong>
 			</a>
 			<!-- describe -->

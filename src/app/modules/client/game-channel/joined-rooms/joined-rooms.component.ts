@@ -6,6 +6,8 @@ import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat
 import { TranslateService } from '@ngx-translate/core';
 import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
+import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
+import { CssConfigs } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -18,7 +20,7 @@ import { ClientCommonComponent } from '../../client.common-component';
 				width: '300px'
 			})),
 			state('collapse', style({
-				width: '80px',
+				width: '101px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
@@ -49,6 +51,19 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 		} else {
 			this.containerState = 'expand';
 		};
+	}
+
+	showSearchPopup() {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: SearchRoomsComponent,
+			useBackground: true,
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.popupZIndex,
+			popupOptions: {
+				width: '900px',
+				height: '700px',
+			}
+		});
 	}
 
 	protected fetchJoinedRooms() {

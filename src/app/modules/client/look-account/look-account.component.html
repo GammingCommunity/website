@@ -56,7 +56,7 @@
 	<div class="profile-body">
 		<div class="mt-4 d-flex justify-content-end">
 			<!-- friends buttons -->
-			<button class="btn btn-dark" *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
+			<button (click)='showLookAccountFriendedOptionsDropdown($event)' class="btn btn-dark" *ngIf="lookingAccount.relationship === accountRelationShipType.FRIEND">
 				<i-feather name="user-check"></i-feather></button>
 			<button
 				*ngIf="!lookingAccount.isRequesting && lookingAccount.relationship === accountRelationShipType.FRIEND_REQUEST"
@@ -81,7 +81,7 @@
 				{{ 'LookAccountLanguage.REQUESTING' | translate}}
 			</div>
 			<!-- options button -->
-			<button class="btn btn-dark option-btn ml-2">
+			<button (click)='showLookAccountOptionsDropdown($event)' class="btn btn-dark option-btn ml-2">
 				<i-feather name="more-horizontal"></i-feather>
 			</button>
 		</div>

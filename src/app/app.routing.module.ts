@@ -6,21 +6,17 @@ import { FriendChatComponent } from './modules/client/friends/friend-chat/friend
 
 const routes: Routes = [
 	{
-		path: "client",
+		path: "",
 		loadChildren: "./modules/client/client.module#ClientModule"
 	},
 	{
-		path: "",
+		path: "component",
 		loadChildren: "./modules/component/component.module#ComponentModule"
-	},
-	{
-		path: "loading",
-		component: LoaderComponent,
 	}
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
 	exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,37 +1,28 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewContainerRef, AfterViewChecked, Injector } from "@angular/core";
 import { MyProfile } from "./client.dto";
 import { ClientHttpService } from "./client.http.service";
-import { Router } from '@angular/router';
-import { ProfileDropdownUIService } from './profile-dropdown/profile-dropdown.ui.service';
-import { FeedbackUIService } from './feedback/feedback.ui.service';
-import { SearchFriendsUIService } from './friends/search-friends/search-friends.ui.service';
-import { TranslateService } from '@ngx-translate/core';
 import { ClientLanguage } from './client.language';
 import { ClientCommonComponent } from './client.common-component';
-import { SearchFriendLanguage } from './friends/search-friends/search-friend.language';
+import { ProfileDropdownComponent } from './profile-dropdown/profile-dropdown.component';
+import { CssConfigs } from 'src/environments/environment';
 
 @Component({
 	selector: "client-root",
 	templateUrl: "./client.component.html",
 	styleUrls: ["./client.component.css"]
 })
-export class ClientComponent extends ClientCommonComponent implements OnInit, AfterViewInit {
-	@ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
-	@ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
+export class ClientComponent extends ClientCommonComponent implements OnInit {
+	// @ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
+	// @ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
 	private redirectLink: string;
 	private profile: MyProfile;
 
 	constructor(
 		protected injector: Injector,
 		private clientHttpService: ClientHttpService,
-		private feedbackUIService: FeedbackUIService,
 		private viewContainerRef: ViewContainerRef,
-		private profileDropdownUIService: ProfileDropdownUIService,
-		private searchFriendsUIService: SearchFriendsUIService
 	) {
 		super(injector);
-		this.feedbackUIService.setViewContainerRef(this.viewContainerRef);
-		this.searchFriendsUIService.setViewContainerRef(this.viewContainerRef);
 		ClientLanguage.define(this.translateService);
 	}
 
@@ -39,12 +30,8 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 		this.fetchProfile();
 	}
 
-	ngAfterViewInit() {
-		this.initProfileDropdown();
-	}
-
 	redirectTo(link: string) {
-		this.router.navigateByUrl(`${this.baseUrl}/${link}`);
+		this.router.navigateByUrl(`/${link}`);
 		this.redirectLink = link;
 	}
 
@@ -54,7 +41,17 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 		});
 	}
 
-	protected initProfileDropdown() {
-		this.profileDropdownUIService.init(this.profileDropdownVR, this.profileDropdownER);
+	protected showProfileDropdown(event) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: ProfileDropdownComponent,
+			anchorElement: event.target,
+			destroyIfOutFocus: true,
+			anchorTo: 'left',
+			popupOptions: {
+				classList: 'py-4 px-3 bg6',
+				useExitBtn: false
+			},
+			zIndex: CssConfigs.dropdownMenuZIndex
+		});
 	}
 }

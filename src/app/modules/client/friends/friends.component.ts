@@ -3,10 +3,12 @@ import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
 import { FriendChatUIService } from './friend-chat/friend-chat.ui.service';
 import { trigger, state, transition, animate, style } from '@angular/animations';
-import { SearchFriendsUIService } from './search-friends/search-friends.ui.service';
 import { ClientCommonComponent } from '../client.common-component';
 import { FriendsLanguage } from './friends.language';
 import { pipe } from 'rxjs';
+import { SearchFriendsComponent } from './search-friends/search-friends.component';
+import { FriendItemDropdownComponent } from './friend-item-dropdown/friend-item-dropdown.component';
+import { CssConfigs } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-friends',
@@ -16,10 +18,10 @@ import { pipe } from 'rxjs';
 		trigger('changeFriendsContainerState', [
 			state('expand', style({
 				padding: '15px',
-				width: '300px'
+				width: '350px'
 			})),
 			state('collapse', style({
-				width: '52px',
+				width: '64px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
@@ -27,10 +29,10 @@ import { pipe } from 'rxjs';
 		]),
 		trigger('changeChatBoxState', [
 			state('expand', style({
-				width: '352px'
+				width: '402px'
 			})),
 			state('middle-expand', style({
-				width: '248px'
+				width: '298px'
 			})),
 			state('collapse', style({
 				width: '0px'
@@ -41,7 +43,6 @@ import { pipe } from 'rxjs';
 	]
 })
 export class FriendsComponent extends ClientCommonComponent implements OnInit {
-	@ViewChild('searchFriendBtn', { static: true }) searchFriendBtnER: ElementRef;
 	private mainContainerIsExpanding: boolean = true;
 	private chatBoxIsOpening: boolean = false;
 	private friendsContainerState: string = 'expand';
@@ -52,7 +53,6 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	constructor(
 		protected injector: Injector,
 		private friendsHttpService: FriendsHttpService,
-		private searchFriendsUIService: SearchFriendsUIService,
 		private friendChatUIService: FriendChatUIService
 	) {
 		super(injector);
@@ -61,13 +61,30 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 
 	ngOnInit() {
 		this.fetchFriends();
-		this.initSearchFriendsPopup();
 	}
 
 	openChatBox(selectedFriend: MyFriend) {
 		this.selectedFriend = selectedFriend;
 		this.friendChatUIService.showChatBoxFunc(selectedFriend);
 		this.expandChatBox();
+	}
+
+	showFriendItemDropdown(event, accountId: number) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: FriendItemDropdownComponent,
+			anchorElement: event.target,
+			anchorTo: "right",
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.dropdownMenuZIndex,
+			popupOptions:{
+				classList: 'py-3 px-2 bg6',
+				width: 280,
+				useExitBtn: false
+			},
+			data: {
+				accountId: accountId
+			}
+		});
 	}
 
 	resizeMainContainer() {
@@ -105,15 +122,24 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 		this.mainContainerIsExpanding = true;
 	}
 
-	protected initSearchFriendsPopup() {
-		this.searchFriendsUIService.init(this.searchFriendBtnER);
+	showSearchPopup() {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: SearchFriendsComponent,
+			useBackground: true,
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.popupZIndex,
+			popupOptions: {
+				width: '900px',
+				height: '700px',
+			}
+		});
 	}
 
 	protected fetchFriends() {
 		this.friendsHttpService.fetchFriends()
-		.pipe()
-		.subscribe(data => {
-			this.friends = data;
-		})
+			.pipe()
+			.subscribe(data => {
+				this.friends = data;
+			})
 	}
 }

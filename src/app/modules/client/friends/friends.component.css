@@ -26,19 +26,30 @@ app-friend-chat {
 	border-left: 1px solid var(--bg10);
 }
 
+.friends-list {
+	margin-right: -15px;
+	padding-right: 15px;
+}
+
 .friends-items, .friends-options {
 	cursor: pointer;
-	transition: all .5s ease;
+	transition: all .3s ease;
 }
 
 .friends-options {
-	width: 26px;
-	min-width: 26px;
-	height: 26px;
+	min-width: 36px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.friends-items.active {
-	background-color: var(--highlight3) !important;
+.friend-items-container{
+	transition: all .5s ease-out;
+}
+
+.friend-items-container.active {
+	border-left: solid 7px var(--highlight3);
 }
 
 .friends-items:hover, .friends-options:hover {
@@ -46,9 +57,9 @@ app-friend-chat {
 }
 
 .friends-items .img {
-	width: 36px;
-	min-width: 36px;
-	height: 36px;
+	width: 48px;
+	min-width: 48px;
+	height: 48px;
 }
 
 .main-btn-resize {
@@ -65,8 +76,8 @@ app-friend-chat {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 52px;
-	height: 52px;
+	width: 64px;
+	height: 64px;
 	background-color: transparent;
 	transform: scale(1.1);
 	border: none;

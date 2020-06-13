@@ -17,9 +17,9 @@ import { RoomGlobalChatComponent } from './game-channel/room-global-chat/room-gl
 import { RoomPrivateChatComponent } from './game-channel/room-private-chat/room-private-chat.component';
 import { RoomPrivateChatOptionsComponent } from './game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
 import { SearchFriendsComponent } from './friends/search-friends/search-friends.component';
-import { SearchFriendsUIService } from './friends/search-friends/search-friends.ui.service';
 import { LookAccountComponent } from './look-account/look-account.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DialogComponent } from 'src/app/common/dialogs/dialog.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +46,6 @@ import { TranslateModule } from '@ngx-translate/core';
 	providers: [
 		ChatService,
 		FriendChatUIService,
-		SearchFriendsUIService,
 	]
 })
 export class ClientModule { }

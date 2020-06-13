@@ -8,30 +8,9 @@ import { ClientCommonComponent } from '../client.common-component';
 @Component({
 	selector: 'app-feedback',
 	templateUrl: './feedback.component.html',
-	styleUrls: ['./feedback.component.css'],
-	animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({
-					width: '0px',
-					height: '0px'
-				}),
-				animate('100ms ease', style({
-					width: '400px',
-					height: '300px'
-				}))
-			]),
-			transition(':leave', [
-				animate('100ms ease', style({
-					width: '0px',
-					height: '0px'
-				}))
-			])
-		])
-	],
+	styleUrls: ['./feedback.component.css']
 })
-export class FeedbackComponent extends ClientCommonComponent implements OnDestroy, OnInit {
-	@ViewChild('container', { static: true }) containerER: ElementRef;
+export class FeedbackComponent extends ClientCommonComponent {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
 	private feedback: Feedback = new Feedback();
@@ -48,10 +27,6 @@ export class FeedbackComponent extends ClientCommonComponent implements OnDestro
 		FeedbackLanguage.define(this.translateService);
 	}
 
-	ngOnInit() {
-		this.addOutFocusListener(this.viewContainerRef, this.containerER, event => this.destroy());
-	}
-
 	sendFeedback() {
 		if (this.feedback.content) {
 			this.feedbackHttpService.sendFeedback(this.feedback, this.loaderLocationVR).subscribe(result => {
@@ -62,9 +37,5 @@ export class FeedbackComponent extends ClientCommonComponent implements OnDestro
 				}
 			});
 		}
-	}
-
-	ngOnDestroy() {
-		this.removeOutFocusListenr(this.viewContainerRef);
 	}
 }

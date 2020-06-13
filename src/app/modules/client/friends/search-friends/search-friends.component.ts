@@ -9,33 +9,13 @@ import { SearchFriendLanguage } from './search-friend.language';
 @Component({
 	selector: 'app-search-friends',
 	templateUrl: './search-friends.component.html',
-	styleUrls: ['./search-friends.component.css'],
-	animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({
-					height: '0px'
-				}),
-				animate('100ms ease', style({
-					height: '600px'
-				}))
-			]),
-			transition(':leave', [
-				animate('100ms ease', style({
-					width: '0px',
-					height: '0px'
-				}))
-			])
-		])
-	],
+	styleUrls: ['./search-friends.component.css']
 })
 export class SearchFriendsComponent extends ClientCommonComponent implements OnInit, OnDestroy {
-	@ViewChild('container', { static: true }) containerER: ElementRef;
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
 	private searchKey: string = '';
 	private lookedAccounts: AccountLookingResult[] = [];
-	private readonly lookAccountUrl: string = '/look';
 	private searchSubscription: Subscription;
 	private accountRelationShipType = AccountRelationShipType;
 
@@ -55,10 +35,13 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	}
 
 	ngOnInit() {
-		this.addOutFocusListener(this.viewContainerRef, this.containerER, event => this.destroy());
+		
 	}
 
 	search() {
+		this.unsubcribeSearch();
+		this.lookedAccounts = [];
+
 		if (this.searchKey) {
 			this.searchSubscription = this.searchFriendsHttpService.search(this.searchKey, this.loaderLocationVR).subscribe(lookedAccounts => {
 				this.lookedAccounts = lookedAccounts;
@@ -67,9 +50,13 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	}
 
 	ngOnDestroy() {
-		this.removeOutFocusListenr(this.viewContainerRef);
+		this.unsubcribeSearch();
+	}
+	
+	protected unsubcribeSearch(){
 		if (this.searchSubscription) {
 			this.searchSubscription.unsubscribe();
+			this.searchSubscription = null;
 		}
 	}
 
@@ -114,7 +101,7 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		});
 	}
 
-	handleEnterToSearch(event) {
+	handleEnterToSearch(event: KeyboardEvent) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			this.search();

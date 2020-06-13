@@ -16,9 +16,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 	protected alertError(message: string, callback: () => Observable<HttpEvent<any>>) {
 		if (DebugConfigs.isAlert) {
 			this.alretService.show(message, 'Retry', () => {
-				callback().subscribe(() => {
-					this.alertError(message, callback);
-				});
+				// callback().subscribe(() => {
+				// 	this.alertError(message, callback);
+				// });
+				window.location.reload();
 			});
 		}
 	}

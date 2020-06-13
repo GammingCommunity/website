@@ -1,5 +1,4 @@
 import { ViewRef, ViewContainerRef } from '@angular/core';
-import { type } from 'os';
 
 export class LocalLoader {
 	loaderId: number;

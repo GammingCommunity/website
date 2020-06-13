@@ -102,7 +102,7 @@ export class SearchFriendsHttpService extends ClientCommonService {
 	}
 
 	search(searchKey: string, viewContainerRef: ViewContainerRef) {
-		const loader: ViewRef = this.loaderService.addLocalLoader(viewContainerRef).loaderVR;
+		const loader: ViewRef = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
 
 		return this.apollo.use('accountManagementService').query<any>({
 			query: gql`

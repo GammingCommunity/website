@@ -15,6 +15,7 @@ export const DebugConfigs = {
 export const CssConfigs = {
 	errorPopupZIndex: 3000,
 	loaderZIndex: 2000,
+	popupZIndex: 1200,
 	dropdownMenuZIndex: 1000
 }
 

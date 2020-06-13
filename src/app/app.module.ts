@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
-
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing.module";
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
@@ -25,15 +24,25 @@ import { SearchFriendsComponent } from './modules/client/friends/search-friends/
 import { RequestLoggerInterceptor } from './interceptors/request-logger.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
+import { DialogComponent } from './common/dialogs/dialog.component';
+import { FriendItemDropdownComponent } from './modules/client/friends/friend-item-dropdown/friend-item-dropdown.component';
+import { LookAccountOptionsDropdownComponent } from './modules/client/look-account/look-account-options-dropdown/look-account-options-dropdown.component';
+import { LookAccountFriendedOptionsDropdownComponent } from './modules/client/look-account/look-account-friended-options-dropdown/look-account-friended-options-dropdown.component';
+import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms/search-rooms/search-rooms.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoaderComponent,
+		DialogComponent,
 		AlertComponent,
 		FeedbackComponent,
 		SearchFriendsComponent,
-		ProfileDropdownComponent
+		SearchRoomsComponent,
+		ProfileDropdownComponent,
+		LookAccountOptionsDropdownComponent,
+		LookAccountFriendedOptionsDropdownComponent,
+		FriendItemDropdownComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -60,8 +69,13 @@ import { CookieService } from 'ngx-cookie-service';
 	entryComponents: [
 		LoaderComponent, 
 		ProfileDropdownComponent, 
+		FriendItemDropdownComponent, 
+		LookAccountFriendedOptionsDropdownComponent, 
+		LookAccountOptionsDropdownComponent, 
 		FeedbackComponent, 
 		SearchFriendsComponent, 
+		SearchRoomsComponent, 
+		DialogComponent, 
 		AlertComponent
 	],
 	bootstrap: [AppComponent]
