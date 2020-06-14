@@ -41,6 +41,7 @@ import { RoomPrivateChatComponent } from './modules/client/game-channel/room-pri
 import { SettingsComponent } from './modules/client/settings/settings.component';
 import { RoomPrivateChatOptionsComponent } from './modules/client/game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
 import { LookAccountComponent } from './modules/client/look-account/look-account.component';
+import { AutofocusDirective } from './common/directives/autofocus.derective';
 
 @NgModule({
 	declarations: [
@@ -55,20 +56,8 @@ import { LookAccountComponent } from './modules/client/look-account/look-account
 		LookAccountOptionsDropdownComponent,
 		LookAccountFriendedOptionsDropdownComponent,
 		FriendItemDropdownComponent,
+		AutofocusDirective,
 	],
-	// exports:[
-	// 	AppComponent,
-	// 	LoaderComponent,
-	// 	DialogComponent,
-	// 	AlertComponent,
-	// 	FeedbackComponent,
-	// 	SearchFriendsComponent,
-	// 	SearchRoomsComponent,
-	// 	ProfileDropdownComponent,
-	// 	LookAccountOptionsDropdownComponent,
-	// 	LookAccountFriendedOptionsDropdownComponent,
-	// 	FriendItemDropdownComponent,
-	// ],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,

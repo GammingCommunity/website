@@ -1,5 +1,7 @@
-:host {
-	padding: 104px 80px 40px 80px;
+.search-container {
+	position: relative;
+	padding: 104px 90px 40px 90px;
+	height: 250px;
 }
 
 .container-head {
@@ -11,7 +13,7 @@
 }
 
 .searcher {
-	border-bottom: solid 3px var(--secondary-text);
+	border-bottom: solid 2px var(--secondary-text);
 }
 
 .searcher:focus {

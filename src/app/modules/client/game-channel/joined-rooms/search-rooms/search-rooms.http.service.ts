@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, ViewRef, Injector } from "@angular/core";
+import { Injectable, ViewContainerRef, ViewRef, Injector, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
@@ -8,6 +8,7 @@ import { ServiceUrls } from 'src/environments/environment';
 import { LoaderService } from 'src/app/common/dialogs/loader/loader.service';
 import { LocalLoader } from 'src/app/common/dialogs/loader/loader.dto';
 import { ClientCommonService } from '../../../client.common-service';
+import { Room } from './search-rooms.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -24,4 +25,47 @@ export class SearchRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
+	search(searchKey: string, searchOption: string, viewContainerRef: ViewContainerRef) {
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
+
+		return this.apollo.use('mainService').query<any>({
+			query: gql`
+				query 
+				{
+					searchRoom(query:"${searchKey}", option:${searchOption}){
+						code
+						_id
+						roomName
+						roomLogo
+						roomBackground
+						isJoin
+						isPrivate
+						isRequest
+						maxOfMember
+						countMember
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			fetchPolicy: 'no-cache',
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(
+			map(
+				({ data }): Room[] => {
+					let rooms: Room[] = [];
+
+					data.searchRoom.forEach(data => {
+						rooms.push(new Room(data));
+					})
+
+					return rooms;
+				}
+			),
+			finalize(() => loader.destroy())
+		);
+	}
 }

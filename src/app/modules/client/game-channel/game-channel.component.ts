@@ -14,6 +14,7 @@ import { GameChannelHttpService } from './game-channel.http.service';
 export class GameChannelComponent extends ClientCommonComponent implements AfterViewInit {
 	@ViewChild('joinedRooms', { static: true }) joinedRoomsComponent: JoinedRoomsComponent;
 	private gameChannels: GameChannel[];
+	private selectedGame: GameChannel;
 
 	constructor(
 		protected injector: Injector,
@@ -23,11 +24,15 @@ export class GameChannelComponent extends ClientCommonComponent implements After
 		super(injector);
 		GameChannelLanguage.define(this.translateService);
 
-
+		this.fetchGameChannels();
 	}
 
 	ngAfterViewInit() {
 		this.joinedRoomsComponent.showPrivateChat = this.roomPrivateChatUIService.showPrivateChatFunc;
+	}
+
+	handleGameChannelChange(){
+		console.log(this.selectedGame);
 	}
 
 	protected fetchGameChannels(){

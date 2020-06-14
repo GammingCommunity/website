@@ -1,5 +1,5 @@
-import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, OnDestroy } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, OnDestroy, OnChanges } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 import { SearchFriendsHttpService } from './search-friends.http.service';
 import { AccountLookingResult, AccountRelationShipType } from './search-friends.dto';
 import { Subscription } from 'rxjs';
@@ -9,9 +9,21 @@ import { SearchFriendLanguage } from './search-friend.language';
 @Component({
 	selector: 'app-search-friends',
 	templateUrl: './search-friends.component.html',
-	styleUrls: ['./search-friends.component.css']
+	styleUrls: ['./search-friends.component.css'],
+	animations: [
+		trigger('containerSizeStyle', [
+			state('expand', style({
+				height: '700px'
+			})),
+			state('collapse', style({
+				height: '250px'
+			})),
+			transition('*=>expand', animate('200ms ease')),
+			transition('*=>collapse', animate('200ms ease'))
+		])
+	]
 })
-export class SearchFriendsComponent extends ClientCommonComponent implements OnInit, OnDestroy {
+export class SearchFriendsComponent extends ClientCommonComponent implements OnChanges, OnInit, OnDestroy {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
 	private searchKey: string = '';
@@ -27,6 +39,10 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		super(injector);
 		this.destroy = this.injector.get('destroy');
 		SearchFriendLanguage.define(this.translateService);
+	}
+
+	ngOnChanges(){
+		alert(this.lookedAccounts.length);
 	}
 
 	protected hideClickedELement(event) {
@@ -47,6 +63,7 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 				this.lookedAccounts = lookedAccounts;
 			});
 		}
+		this.searchKey = '';
 	}
 
 	ngOnDestroy() {
@@ -105,7 +122,6 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 		if (this.searchKey.length > 0 && event.keyCode === 13) {
 			event.preventDefault();
 			this.search();
-			this.searchKey = '';
 		}
 	}
 }

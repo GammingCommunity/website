@@ -1,6 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { ClientCommonComponent } from '../../client.common-component';
 import { RoomGlobalChatLanguage } from './room-global-chat.language';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-room-global-chat',
@@ -20,13 +21,19 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 
 
 	handleEnterToSearch(event: KeyboardEvent) {
-		if (event.keyCode === 13) {
+		if (event.keyCode === 13 && !environment.production) {
 			event.preventDefault();
-			
-			if(this.searchKey.toLocaleLowerCase() === 'view'){
-				console.log(this.dialogService.getViewContainerRef());
-				this.searchKey = '';
+			event.stopPropagation();
+
+			switch (this.searchKey.toLocaleLowerCase()) {
+				case 'view':
+					console.log(this.dialogService.getViewContainerRef());
+					break;
+				case 'current url':
+					alert(this.router.url);
+					break;
 			}
+			this.searchKey = '';
 		}
 	}
 }

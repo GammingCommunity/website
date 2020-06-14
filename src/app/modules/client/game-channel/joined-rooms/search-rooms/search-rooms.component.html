@@ -1,12 +1,32 @@
-<div class="container-head d-flex align-items-center bg7">
-	<input class="searcher m-3 flex-grow-1" (keyup)='handleEnterToSearch($event)' [(ngModel)]="searchKey"
-		placeholder="{{'SearchRoomsLanguage.TYPE_HERE' | translate}}">
-	<button class="btn btn-light mr-3 highlight-text" (click)='search()' *ngIf='searchKey'>
-		<i-feather name="search"></i-feather>
-		{{ 'SearchRoomsLanguage.SEARCH' | translate}}
-	</button>
-</div>
+<div class="search-container" [@containerSizeStyle]="rooms.length > 0 ? 'expand' : 'collapse'">
+	<div class="container-head d-flex align-items-center bg7">
+		<input class="searcher m-3 flex-grow-1" (keyup)='handleEnterToSearch($event)' [(ngModel)]="searchKey"
+			placeholder="{{'SearchRoomsLanguage.TYPE_HERE' | translate}}" focusthis>
+		<button class="btn btn-light mr-3 highlight-text" (click)='search()' *ngIf='searchKey'>
+			<i-feather name="search"></i-feather>
+			{{ 'SearchRoomsLanguage.SEARCH' | translate}}
+		</button>
+	</div>
 
-<div class="row">
+	<div class="mb-3 px-2 d-flex justify-content-between">
+		<div class="d-flex align-items-center">
+			<p class="m-0">{{'SearchRoomsLanguage.GAME' | translate}}:</p>
+			<select class="ml-2 btn-border bg8">
+				<option *ngFor="let game of gameChannels" [ngValue]="">{{game.name}}</option>
+			</select>
+		</div>
+		<select [(ngModel)]="searchOption" class="btn-border bg8">
+			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_NAME">{{'SearchRoomsLanguage.BY_ROOM_NAME' | translate}}</option>
+			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_ID">{{'SearchRoomsLanguage.BY_ROOM_ID' | translate}}</option>
+		</select>
+	</div>
 
+	<!-- list -->
+	<div class="w-100 h-100 position-relative d-flex flex-column overflow-auto">
+		<!-- item -->
+		<div #loaderLocation></div>
+		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let room of rooms'>
+			{{room.name}}
+		</div>
+	</div>
 </div>

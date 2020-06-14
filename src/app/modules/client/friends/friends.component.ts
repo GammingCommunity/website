@@ -130,7 +130,6 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
 				width: '900px',
-				height: '700px',
 			}
 		});
 	}

@@ -1,5 +1,5 @@
 export class GameChannel {
-	id: number;
+	id: string;
 	name: string;
 	roomNumber: number;
 

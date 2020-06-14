@@ -63,7 +63,6 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
 				width: '900px',
-				height: '700px',
 			},
 			data: {
 				gameChannels: this.gameChannels

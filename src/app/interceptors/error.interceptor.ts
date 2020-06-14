@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-	HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse
+	HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -41,11 +41,40 @@ export class ErrorInterceptor implements HttpInterceptor {
 					}
 				},
 				error => {
-					// console.log(error, () => next.handle(req));
-					if (error.hasOwnProperty('message')) {
+					if(error.hasOwnProperty('error')){
+						if (error.error.hasOwnProperty('errors')){
+							if(error.error.errors[0] && error.error.errors[0].hasOwnProperty('message')){
+								const errors = error.error.errors;
+								let messages = '';
+	
+								errors.forEach(error => {
+									messages += error.message + '\n';
+								});
+								this.alertError(messages, () => next.handle(req));
+							} else {
+								this.alertError(JSON.stringify(error.error.errors), () => next.handle(req));
+							}
+						} else if (error.error.hasOwnProperty('message')){
+							this.alertError(error.error.message, () => next.handle(req));
+						} else {
+							this.alertError(JSON.stringify(error.error), () => next.handle(req));
+						}
+					} else if (error.hasOwnProperty('errors')){
+						if(error.errors[0] && error.errors[0].hasOwnProperty('message')){
+							const errors = error.errors;
+							let messages = '';
+
+							errors.forEach(error => {
+								messages += error.message + '\n';
+							});
+							this.alertError(messages, () => next.handle(req));
+						} else {
+							this.alertError(JSON.stringify(error.errors), () => next.handle(req));
+						}
+					} else if (error.hasOwnProperty('message')){
 						this.alertError(error.message, () => next.handle(req));
 					} else {
-						this.alertError(error.toString(), () => next.handle(req));
+						this.alertError(JSON.stringify(error), () => next.handle(req));
 					}
 				}
 			),

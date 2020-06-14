@@ -5,27 +5,19 @@ export class SearchRoomsLanguage {
 		translateService.setTranslation('en', {
 			'SearchRoomsLanguage': {
 				'SEARCH': 'Search',
-				'UNFRIEND_REQUEST': 'Cancel friend request',
-				'CONFIRM': 'Confirm to be friends',
-				'CANCEL': 'Cancel',
-				'MAKE_FRIEND': 'Make friend',
 				'TYPE_HERE': 'Type here...',
-				'FRIEND': 'Friend',
-				'EMPTY_RESULT': 'Empty!',
-				'REQUESTING': 'requesting...',
+				'BY_ROOM_NAME': 'Search by room name',
+				'BY_ROOM_ID': 'Search by room id',
+				'GAME': 'Game',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'SearchRoomsLanguage': {
 				'SEARCH': 'Tìm ngay',
-				'UNFRIEND_REQUEST': 'Huỷ yêu cầu kết bạn',
-				'CONFIRM': 'Đồng ý làm bạn',
-				'CANCEL': 'Huỷ',
-				'MAKE_FRIEND': 'Kết bạn',
 				'TYPE_HERE': 'Nhập thông tin tìm kiếm...',
-				'FRIEND': 'Bạn bè',
-				'EMPTY_RESULT': 'Rỗng!',
-				'REQUESTING': 'đang gửi...',
+				'BY_ROOM_NAME': 'Tìm theo tên phòng',
+				'BY_ROOM_ID': 'Tìm theo mã phòng',
+				'GAME': 'Tìm theo Game',
 			}
 		}, true);
 	}

@@ -27,7 +27,7 @@ export class GameChannelHttpService extends ClientCommonService {
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
-					countRoomOnEachGame{
+					countRoomOnEachGame(sort: DESC){
 						_id
 						name
 						count

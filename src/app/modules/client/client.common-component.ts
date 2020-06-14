@@ -15,6 +15,7 @@ export class ClientCommonComponent {
 	protected readonly route: ActivatedRoute;
 	protected readonly currentAccountId: number;
 	private readonly lookAccountUrl: string = '/look';
+	private readonly homeUrl: string = '/home';
 	private readonly settingsUrl: string = '/settings';
 	private readonly profileUrl: string = '/profile';
 	protected readonly defaultAvatarUrl: string = 'https://cdn.image4.io/mattstacey/f_auto/57882dae-888d-4c43-9dc5-924ae05b332c.png';

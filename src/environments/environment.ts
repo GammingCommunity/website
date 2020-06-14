@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: true,
+	production: false,
 	requestRetryTime: 0,
-	requestTimeOut: 10000
+	requestTimeOut: 8000
 };
 
 export const DebugConfigs = {

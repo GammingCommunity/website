@@ -8,11 +8,8 @@
 			</strong>
 			<div class="m-3 d-flex flex-column">
 				<!-- games list -->
-				<select class="game-channel-list">
-					<option value="volvo">Volvo</option>
-					<option value="saab">Saab</option>
-					<option value="mercedes">Mercedes</option>
-					<option value="audi">Audi</option>
+				<select [(ngModel)]="selectedGame" (ngModelChange)="handleGameChannelChange()" class="">
+					<option *ngFor="let game of gameChannels" [ngValue]="game">{{game.name}}</option>
 				</select>
 				<!-- ??? -->
 				<div class="my-4 btn">saldjfcvnl</div>

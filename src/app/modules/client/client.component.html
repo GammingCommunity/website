@@ -1,15 +1,15 @@
 
 <div class="navs shadow" #navs>
-	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'game-channel'}">
-		<i-feather class="mb-2" name="coffee"></i-feather>
+	<a (click)='redirectTo("home")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'home'}">
+		<i-feather class="mb-2" name="home"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
-			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>
+			<strong>Home</strong>
 		</span>
 	</a>
-	<a [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'ss'}">
-		<i-feather class="mb-2" name="globe"></i-feather>
+	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'game-channel'}">
+		<i-feather class="mb-2" name="box"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
-			<strong>{{ 'ClientLanguage.COMMUNITY' | translate }}</strong>
+			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>
 		</span>
 	</a>
 	<a (click)='showProfileDropdown($event)' class="navs-items tooltip">
