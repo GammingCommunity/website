@@ -8,6 +8,7 @@ import { LoaderService } from '../common/dialogs/loader/loader.service';
 import { tap, finalize, retry } from 'rxjs/operators';
 import { AlertService } from '../common/dialogs/alert/alert.service';
 import { DebugConfigs, environment } from 'src/environments/environment';
+import { DialogService } from '../common/dialogs/dialog.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -19,6 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 				// callback().subscribe(() => {
 				// 	this.alertError(message, callback);
 				// });
+				document.body.innerHTML = '';
 				window.location.reload();
 			});
 		}

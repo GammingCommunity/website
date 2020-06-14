@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, ViewRef, Injector } from "@angular/core";
+import { Injectable, ViewContainerRef, ViewRef, Injector, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
@@ -102,7 +102,7 @@ export class SearchFriendsHttpService extends ClientCommonService {
 	}
 
 	search(searchKey: string, viewContainerRef: ViewContainerRef) {
-		const loader: ViewRef = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
 
 		return this.apollo.use('accountManagementService').query<any>({
 			query: gql`

@@ -22,9 +22,14 @@ export class ProfileComponent extends ClientCommonComponent implements OnInit {
 	) {
 		super(injector);
 		ProfileLanguage.define(this.translateService);
-	}
 
+		this.initAutoFetchProfile();
+	}
+	
 	ngOnInit() {
+	}
+	
+	initAutoFetchProfile(){
 		this.route.params.subscribe(() => {
 			this.profileHttpService.fetchProfile().subscribe(profile => {
 				this.oldProfile = profile;

@@ -24,14 +24,18 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 	) {
 		super(injector);
 		LookAccountLanguage.define(this.translateService);
+
+		this.initAutoLook();
 	}
 
 	ngOnInit() {
+	}
+	
+	initAutoLook() {
 		this.route.params.subscribe(param => {
 			this.look(Number(param.id));
 		});
 	}
-
 
 	sendFriendRequest() {
 		this.lookingAccount.isRequesting = true;

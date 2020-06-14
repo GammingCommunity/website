@@ -11,7 +11,7 @@ import { CssConfigs } from 'src/environments/environment';
 	templateUrl: "./client.component.html",
 	styleUrls: ["./client.component.css"]
 })
-export class ClientComponent extends ClientCommonComponent implements OnInit {
+export class ClientComponent extends ClientCommonComponent implements OnInit, AfterViewInit {
 	// @ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
 	// @ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
 	private redirectLink: string;
@@ -24,10 +24,14 @@ export class ClientComponent extends ClientCommonComponent implements OnInit {
 	) {
 		super(injector);
 		ClientLanguage.define(this.translateService);
+		
+		this.fetchProfile();
 	}
 
 	ngOnInit() {
-		this.fetchProfile();
+	}
+	
+	ngAfterViewInit(){
 	}
 
 	redirectTo(link: string) {

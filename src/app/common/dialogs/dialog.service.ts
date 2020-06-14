@@ -15,6 +15,10 @@ export class DialogService {
 		this.viewContainerRef = viewContainerRef;
 	}
 
+	getViewContainerRef() {
+		return this.viewContainerRef;
+	}
+
 	addDialogComponentToComponentPuttingEvent(
 		{
 			dialogType,
@@ -30,7 +34,7 @@ export class DialogService {
 		},
 	) {
 		anchorElement.addEventListener('mousedown', (event: MouseEvent) => {
-			if (isPreventDefault){
+			if (isPreventDefault) {
 				event.stopPropagation();
 				event.preventDefault();
 			}
@@ -57,16 +61,16 @@ export class DialogService {
 		destroyCallback = null,
 		zIndex = null
 	}) {
-		const factory = this.factoryResolver.resolveComponentFactory(dialogType);
 		const componentIndex = Date.now();
-		const component = factory.create(Injector.create({
+		const factory = this.factoryResolver.resolveComponentFactory(dialogType);
+		const componentRef: ComponentRef<any> = viewContainerRef.createComponent(factory, componentIndex, Injector.create({
 			providers: [
 				{
 					provide: 'destroy', useValue: () => {
 						if (destroyCallback) {
 							destroyCallback();
 						}
-						component.destroy();
+						componentRef.destroy();
 					}
 				},
 				{
@@ -75,15 +79,13 @@ export class DialogService {
 			],
 			parent: viewContainerRef.injector
 		}));
-		const viewRefResult: ViewRef = viewContainerRef.insert(component.hostView, componentIndex);
-		if (zIndex){
-			component.location.nativeElement.style.zIndex = zIndex;
+		if (zIndex) {
+			componentRef.location.nativeElement.style.zIndex = zIndex;
 		}
 
 		return {
 			componentIndex: componentIndex,
-			component: component,
-			viewRefResult: viewRefResult,
+			componentRef: componentRef
 		}
 	}
 
@@ -99,9 +101,9 @@ export class DialogService {
 			data = null,
 			popupOptions = null
 		},
-	): ViewRef {
+	): ComponentRef<any> {
 		let result;
-		if (anchorTo){
+		if (anchorTo) {
 			viewContainerRef = null;
 		}
 
@@ -131,9 +133,9 @@ export class DialogService {
 
 		if (!useBackground && destroyIfOutFocus) {
 			if (anchorElement) {
-				this.addOutFocusEventListener(result.component, result.componentIndex);
+				this.addOutFocusEventListener(result.componentRef, result.componentIndex);
 			} else {
-				this.addOutFocusEventListener(result.component);
+				this.addOutFocusEventListener(result.componentRef);
 			}
 		}
 
@@ -143,20 +145,20 @@ export class DialogService {
 			const anchorElementRect = anchorElement.getBoundingClientRect();
 			const y = anchorElementRect.top + anchorElementRect.height + bonus;
 
-			result.component.location.nativeElement.style.top = y + 'px';
-			result.component.location.nativeElement.style.position = 'absolute';
+			result.componentRef.location.nativeElement.style.top = y + 'px';
+			result.componentRef.location.nativeElement.style.position = 'absolute';
 
 			if (anchorTo.toUpperCase() === 'LEFT') {
 				const x = anchorElementRect.left + bonus;
-				result.component.location.nativeElement.style.left = x + 'px';
+				result.componentRef.location.nativeElement.style.left = x + 'px';
 			} else {
-				const dialogWidth = (popupOptions && typeof popupOptions.width === 'number') ? popupOptions.width : result.component.location.nativeElement.offsetWidth;
+				const dialogWidth = (popupOptions && typeof popupOptions.width === 'number') ? popupOptions.width : result.componentRef.location.nativeElement.offsetWidth;
 				const x = anchorElementRect.left + anchorElementRect.width - dialogWidth;
-				result.component.location.nativeElement.style.left = x + 'px';
+				result.componentRef.location.nativeElement.style.left = x + 'px';
 			}
 		}
 
-		return result.viewRefResult;
+		return result.componentRef;
 	}
 
 	protected addOutFocusEventListener(dialogComponentRef: ComponentRef<any>, componentIndex: number = null) {

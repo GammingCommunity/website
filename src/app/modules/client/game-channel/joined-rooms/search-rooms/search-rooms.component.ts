@@ -2,6 +2,7 @@ import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, O
 import { SearchRoomsHttpService } from './search-rooms.http.service';
 import { ClientCommonComponent } from '../../../client.common-component';
 import { SearchRoomsLanguage } from './search-rooms.language';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-search-rooms',
@@ -12,6 +13,7 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private destroy: () => void;
 	private searchKey: string = '';
+	private searchSubscription: Subscription;
 
 	constructor(
 		protected injector: Injector,
@@ -32,33 +34,33 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 
 	}
 
-	// search() {
-	// 	this.unsubcribeSearch();
-	// 	this.lookedAccounts = [];
+	search() {
+		this.unsubcribeSearch();
+		// this.lookedAccounts = [];
 
-	// 	if (this.searchKey) {
-	// 		this.searchSubscription = this.SearchSearchRoomsHttpService.search(this.searchKey, this.loaderLocationVR).subscribe(lookedAccounts => {
-	// 			this.lookedAccounts = lookedAccounts;
-	// 		});
-	// 	}
-	// }
-
-	ngOnDestroy() {
-		// this.unsubcribeSearch();
+		// if (this.searchKey) {
+		// 	this.searchSubscription = this.SearchSearchRoomsHttpService.search(this.searchKey, this.loaderLocationVR).subscribe(lookedAccounts => {
+		// 		this.lookedAccounts = lookedAccounts;
+		// 	});
+		// }
 	}
 
-	// protected unsubcribeSearch(){
-	// 	if (this.searchSubscription) {
-	// 		this.searchSubscription.unsubscribe();
-	// 		this.searchSubscription = null;
-	// 	}
-	// }
+	ngOnDestroy() {
+		this.unsubcribeSearch();
+	}
 
-	// handleEnterToSearch(event: KeyboardEvent) {
-	// 	if (event.keyCode === 13) {
-	// 		event.preventDefault();
-	// 		this.search();
-	// 		this.loaderLocationVR.element.nativeElement.focus();
-	// 	}
-	// }
+	protected unsubcribeSearch(){
+		if (this.searchSubscription) {
+			this.searchSubscription.unsubscribe();
+			this.searchSubscription = null;
+		}
+	}
+
+	handleEnterToSearch(event: KeyboardEvent) {
+		if (this.searchKey.length > 0 && event.keyCode === 13) {
+			event.preventDefault();
+			this.search();
+			this.searchKey = '';
+		}
+	}
 }

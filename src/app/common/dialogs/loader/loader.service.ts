@@ -1,4 +1,4 @@
-import { Injectable, ComponentFactoryResolver, ViewContainerRef, ViewRef, Type } from "@angular/core";
+import { Injectable, ComponentFactoryResolver, ViewContainerRef, ViewRef, Type, ComponentRef } from "@angular/core";
 import { LoaderComponent } from './loader.component';
 import { DialogService } from '../dialog.service';
 import { LocalLoader } from './loader.dto';
@@ -10,7 +10,7 @@ import { CssConfigs } from 'src/environments/environment';
 export class LoaderService extends DialogService {
 	private globalLoaderIds: any[] = [];
 	private localLoaders: LocalLoader[] = [];
-	private globalLoaderRef: ViewRef;
+	private globalLoaderRef: ComponentRef<any>;
 
 	constructor(protected factoryResolver: ComponentFactoryResolver) {
 		super(factoryResolver);

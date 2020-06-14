@@ -20,6 +20,7 @@ import { SearchFriendsComponent } from './friends/search-friends/search-friends.
 import { LookAccountComponent } from './look-account/look-account.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogComponent } from 'src/app/common/dialogs/dialog.component';
+import { LoaderComponent } from 'src/app/common/dialogs/loader/loader.component';
 
 @NgModule({
 	declarations: [

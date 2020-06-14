@@ -29,6 +29,18 @@ import { FriendItemDropdownComponent } from './modules/client/friends/friend-ite
 import { LookAccountOptionsDropdownComponent } from './modules/client/look-account/look-account-options-dropdown/look-account-options-dropdown.component';
 import { LookAccountFriendedOptionsDropdownComponent } from './modules/client/look-account/look-account-friended-options-dropdown/look-account-friended-options-dropdown.component';
 import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms/search-rooms/search-rooms.component';
+import { ClientComponent } from './modules/client/client.component';
+import { GameChannelComponent } from './modules/client/game-channel/game-channel.component';
+import { FriendsComponent } from './modules/client/friends/friends.component';
+import { JoinedRoomsComponent } from './modules/client/game-channel/joined-rooms/joined-rooms.component';
+import { GameRoomsComponent } from './modules/client/game-channel/game-rooms/game-rooms.component';
+import { ProfileComponent } from './modules/client/profile/profile.component';
+import { FriendChatComponent } from './modules/client/friends/friend-chat/friend-chat.component';
+import { RoomGlobalChatComponent } from './modules/client/game-channel/room-global-chat/room-global-chat.component';
+import { RoomPrivateChatComponent } from './modules/client/game-channel/room-private-chat/room-private-chat.component';
+import { SettingsComponent } from './modules/client/settings/settings.component';
+import { RoomPrivateChatOptionsComponent } from './modules/client/game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
+import { LookAccountComponent } from './modules/client/look-account/look-account.component';
 
 @NgModule({
 	declarations: [
@@ -42,8 +54,21 @@ import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms
 		ProfileDropdownComponent,
 		LookAccountOptionsDropdownComponent,
 		LookAccountFriendedOptionsDropdownComponent,
-		FriendItemDropdownComponent
+		FriendItemDropdownComponent,
 	],
+	// exports:[
+	// 	AppComponent,
+	// 	LoaderComponent,
+	// 	DialogComponent,
+	// 	AlertComponent,
+	// 	FeedbackComponent,
+	// 	SearchFriendsComponent,
+	// 	SearchRoomsComponent,
+	// 	ProfileDropdownComponent,
+	// 	LookAccountOptionsDropdownComponent,
+	// 	LookAccountFriendedOptionsDropdownComponent,
+	// 	FriendItemDropdownComponent,
+	// ],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
@@ -67,15 +92,15 @@ import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms
 		{ provide: DEFAULT_TIMEOUT, useValue: environment.requestTimeOut }
 	],
 	entryComponents: [
-		LoaderComponent, 
-		ProfileDropdownComponent, 
-		FriendItemDropdownComponent, 
-		LookAccountFriendedOptionsDropdownComponent, 
-		LookAccountOptionsDropdownComponent, 
-		FeedbackComponent, 
-		SearchFriendsComponent, 
-		SearchRoomsComponent, 
-		DialogComponent, 
+		LoaderComponent,
+		ProfileDropdownComponent,
+		FriendItemDropdownComponent,
+		LookAccountFriendedOptionsDropdownComponent,
+		LookAccountOptionsDropdownComponent,
+		FeedbackComponent,
+		SearchFriendsComponent,
+		SearchRoomsComponent,
+		DialogComponent,
 		AlertComponent
 	],
 	bootstrap: [AppComponent]

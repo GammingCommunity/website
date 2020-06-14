@@ -22,6 +22,7 @@ export class RequestLoggerInterceptor implements HttpInterceptor {
 				event => {
 					if (!environment.production) {
 						console.log('\n\n\n');
+						console.log(new Date(Date.now()).toLocaleString());
 						console.log('%c HttpRequest: ', 'background: #222; color: #bada55');
 						console.log(httpRequest);
 						console.log('%c HttpResponse: ', 'background: #222; color: #bada55');

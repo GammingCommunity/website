@@ -8,6 +8,7 @@ import { RoomGlobalChatLanguage } from './room-global-chat.language';
 	styleUrls: ['./room-global-chat.component.css']
 })
 export class RoomGlobalChatComponent extends ClientCommonComponent implements OnInit {
+	private searchKey: string;
 
 	constructor(protected injector: Injector) {
 		super(injector);
@@ -17,4 +18,15 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 	ngOnInit() {
 	}
 
+
+	handleEnterToSearch(event: KeyboardEvent) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			
+			if(this.searchKey.toLocaleLowerCase() === 'view'){
+				console.log(this.dialogService.getViewContainerRef());
+				this.searchKey = '';
+			}
+		}
+	}
 }

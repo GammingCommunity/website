@@ -102,10 +102,10 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnI
 	}
 
 	handleEnterToSearch(event: KeyboardEvent) {
-		if (event.keyCode === 13) {
+		if (this.searchKey.length > 0 && event.keyCode === 13) {
 			event.preventDefault();
 			this.search();
-			this.loaderLocationVR.element.nativeElement.focus();
+			this.searchKey = '';
 		}
 	}
 }

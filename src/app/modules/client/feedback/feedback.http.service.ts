@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, ViewRef, Injector } from "@angular/core";
+import { Injectable, ViewContainerRef, ViewRef, Injector, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
@@ -23,7 +23,7 @@ export class FeedbackHttpService extends ClientCommonService {
 	}
 
 	sendFeedback(feedback: Feedback, viewContainerRef: ViewContainerRef) {
-		const loader: ViewRef = this.loaderService.addLocalLoader(viewContainerRef).loaderVR;
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef).loaderVR;
 		feedback['variables'] = { isUseGlobalLoader: false };
 
 		return this.http.post<FeedbackServiceResponse>(this.feedbackUrl + '/send', feedback).pipe(

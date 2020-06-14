@@ -34,7 +34,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
 	constructor(){
 		this.motion = new LineSvgMotion();
 	}
-
+	
 	ngOnInit() {
 		const spinnerElement = this.spinnerRef.nativeElement;
 		this.motion.animateLineGroup(spinnerElement.getAttribute('d'), spinnerElement, {
@@ -42,7 +42,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
 			time: 700
 		});
 	}
-
+	
 	ngOnDestroy() {
 		if (this.motion) {
 			this.motion.removeAllLineAnimation();

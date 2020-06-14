@@ -47,7 +47,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 		this.destroyIfOutFocus = data.destroyIfOutFocus;
 		this.dialogType = data.dialogType;
 	}
-
+	
 	ngOnInit() {
 		this.initPopup(this.initComponent());
 		if (this.useBackground){
@@ -102,7 +102,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 			viewContainerRef: this.insertedComponentLocationVR,
 			data: this.data,
 			destroyCallback: this.destroy
-		}).component;
+		}).componentRef;
 
 		return result;
 	}

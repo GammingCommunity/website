@@ -1,10 +1,10 @@
-import { ViewRef, ViewContainerRef } from '@angular/core';
+import { ViewRef, ViewContainerRef, ComponentRef } from '@angular/core';
 
 export class LocalLoader {
 	loaderId: number;
-	loaderVR: ViewRef;
+	loaderVR: ComponentRef<any>;
 
-	constructor(loaderId: number, loader: ViewRef) {
+	constructor(loaderId: number, loader: ComponentRef<any>) {
 		this.loaderId = loaderId;
 		this.loaderVR = loader;
 	}

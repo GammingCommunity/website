@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild, Injector } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild, Injector, Input } from '@angular/core';
 import { JoinedRoom } from './joined-rooms.dto';
 import { JoinedRoomsHttpService } from './joined-rooms.http.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -8,6 +8,7 @@ import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
+import { GameChannel } from '../game-channel.dto';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -29,6 +30,7 @@ import { CssConfigs } from 'src/environments/environment';
 	]
 })
 export class JoinedRoomsComponent extends ClientCommonComponent implements OnInit {
+	@Input() gameChannels: GameChannel[];
 	private joinedRooms: JoinedRoom[] = [];
 	private containerState: string = 'expand';
 	public showPrivateChat: (data: any) => void;
@@ -62,6 +64,9 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 			popupOptions: {
 				width: '900px',
 				height: '700px',
+			},
+			data: {
+				gameChannels: this.gameChannels
 			}
 		});
 	}
