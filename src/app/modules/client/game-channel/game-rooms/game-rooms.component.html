@@ -13,21 +13,21 @@
 	<!-- list -->
 	<div class="px-4 my-4 d-flex flex-column flex-grow-1 overflow-auto" >
 		<!-- item -->
-		<div class="room-item img mb-4 rounded-lg overflow-hidden" *ngFor='let room of gameRooms'
+		<div class="room-item img mb-4 rounded-lg overflow-hidden shadow" *ngFor='let room of gameRooms'
 			[ngStyle]="{'background-image':'url('+room.backgroundUrl+')'}">
+			<!-- loader -->
+			<div class="loader"></div>
 			<!-- name -->
-			<div class="m-3 overflow-hidden highlight-text"><strong>{{room.name}}</strong></div>
+			<h5 [ngClass]="{'room-title m-3 overflow-hidden font-weight-bold': true, 'highlight-text': !room.hasJoined && !room.isRequesting}">#{{room.code}} - {{room.name}}</h5>
 			<!-- info -->
 			<div class="m-3 d-flex align-items-center">
-				<i-feather *ngIf='room.isPrivate' name="key"></i-feather>
-				<i-feather *ngIf='!room.isPrivate' name="globe"></i-feather>
-				<i-feather class="mr-1 ml-4" name="users"></i-feather>
-				<p class="m-0">{{room.countMember}}/{{room.maxMember}}</p>
+				<i-feather *ngIf='room.isPrivate' class="mr-3" name="key"></i-feather>
+				<i-feather class="mr-1" name="users"></i-feather>
+				<p class="m-0 mr-3">{{room.countMember}}/{{room.maxMember}}</p>
+				<p *ngIf='room.hasJoined' class="m-0 highlight-text font-weight-bold">{{ 'GameRoomsLanguage.JOINED' | translate}}</p>
+				<p *ngIf='room.isRequesting' class="m-0 highlight-text font-weight-bold">{{ 'GameRoomsLanguage.REQUESTED' | translate}}</p>
 			</div>
 		</div>
 
 	</div>
-
-	<!-- add room button -->
-	<div class="btn btn-border mx-4">{{ 'GameRoomsLanguage.ADD_ROOM' | translate}}</div>
 </div>

@@ -41,10 +41,11 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	) {
 		super(injector);
 		JoinedRoomsLanguage.define(this.translateService);
+		
+		this.fetchJoinedRooms();
 	}
 
 	ngOnInit() {
-		this.fetchJoinedRooms();
 	}
 
 	resizeContainer() {

@@ -7,16 +7,6 @@ import { map } from 'rxjs/operators';
 import { JoinedRoom } from './joined-rooms.dto';
 import { ClientCommonService } from '../../client.common-service';
 
-const JOINED_ROOMS = gql`
-  	query{
-		getRoomJoin{
-			_id
-			roomName
-			roomLogo
-		}
-	}
-`;
-
 @Injectable({
 	providedIn: "root"
 })
@@ -34,7 +24,16 @@ export class JoinedRoomsHttpService extends ClientCommonService {
 
 	fetchJoinedRooms() {
 		return this.apollo.use('mainService').query<any>({
-			query: JOINED_ROOMS,
+			query: gql`
+				query{
+					getRoomJoin{
+						code
+						_id
+						roomName
+						roomLogo
+					}
+				}
+			`,
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}

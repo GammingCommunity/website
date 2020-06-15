@@ -32,9 +32,17 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	}
 
 	protected fetchGameRooms() {
-		this.gameRoomHttpService.fetchGameRooms(this.clientDataService.getCurrentGameChannel(this.homeUrl).id).subscribe(data => {
-			this.gameRooms = data;
-		});
+		const currentGameChannel = this.clientDataService.getCurrentGameChannel(this.homeUrl);
+		if(currentGameChannel.id){
+			this.gameRoomHttpService.fetchGameRooms(currentGameChannel.id).subscribe(data => {
+				this.gameRooms = data;
+			});
+		}
+	}
+
+	joinRoom(room: GameRoom){
+		room.isRequestingFromClient = true;
+		
 	}
 
 	// sendButtonClick() {

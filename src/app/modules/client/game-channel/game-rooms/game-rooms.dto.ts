@@ -10,6 +10,7 @@ export class GameRoom {
 	isPrivate: boolean;
 	maxMember: number;
 	countMember: number;
+	isRequestingFromClient: boolean = false;
 
 	constructor(rawData){
 		this.id = rawData._id;

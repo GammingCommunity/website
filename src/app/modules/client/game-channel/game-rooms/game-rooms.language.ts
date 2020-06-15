@@ -5,13 +5,15 @@ export class GameRoomsLanguage {
 		translateService.setTranslation('en', {
 			'GameRoomsLanguage': {
 				'ROOMS_LIST': 'Rooms list',
-				'ADD_ROOM': 'Add rooms',
+				'REQUESTED': 'Requested',
+				'JOINED': 'Joined',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'GameRoomsLanguage': {
 				'ROOMS_LIST': 'Phòng chat',
-				'ADD_ROOM': 'Tạo phòng',
+				'REQUESTED': 'Đã gửi yêu cầu',
+				'JOINED': 'Đã tham gia',
 			}
 		}, true);
 	}

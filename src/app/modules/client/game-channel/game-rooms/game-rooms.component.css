@@ -1,10 +1,17 @@
 
 
 	.room-item {
-		width: 450px;
+		width: 470px;
 		position: relative;
 		min-height: max-content;
 		cursor: pointer;
+	}
+
+	.room-item .loader{
+		position: absolute;
+		z-index: 9;
+		width: 100%;
+		height: 100%;
 	}
 
 	.room-item>div {
@@ -26,4 +33,9 @@
 
 	.room-item:hover::after {
 		opacity: .9;
+	}
+
+	.room-title{
+		position: relative;
+		z-index: 1;
 	}
