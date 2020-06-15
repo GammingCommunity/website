@@ -23,7 +23,7 @@ export class HomeGameDetailsComponent extends ClientCommonComponent implements O
 
 		this.homeGameDetailsUIService.seeGameDetailsFunc = (game: GameChannel) => {
 			this.game = game;
-			this.clientDataService.setCurrentGameChannel(game);
+			this.clientDataService.setCurrentGameChannelId(game.id);
 		};
 	}
 

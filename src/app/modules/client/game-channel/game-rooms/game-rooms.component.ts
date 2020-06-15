@@ -4,6 +4,7 @@ import { GameRoom } from './game-rooms.dto';
 import { ChatService } from 'src/app/common/services/chat.service';
 import { ClientCommonComponent } from '../../client.common-component';
 import { GameRoomsLanguage } from './game-rooms.language';
+import { SweetAlert } from 'src/app/common/helpers/sweet_alert';
 
 @Component({
 	selector: 'app-game-rooms',
@@ -32,17 +33,29 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	}
 
 	protected fetchGameRooms() {
-		const currentGameChannel = this.clientDataService.getCurrentGameChannel(this.homeUrl);
-		if(currentGameChannel.id){
-			this.gameRoomHttpService.fetchGameRooms(currentGameChannel.id).subscribe(data => {
+		const currentGameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
+		if (currentGameChannelId) {
+			this.gameRoomHttpService.fetchGameRooms(currentGameChannelId).subscribe(data => {
 				this.gameRooms = data;
 			});
 		}
 	}
 
-	joinRoom(room: GameRoom){
-		room.isRequestingFromClient = true;
-		
+	joinRoom(room: GameRoom) {
+		SweetAlert.display({
+			title: 'Are you sure!',
+			buttons: true,
+		}).then((isJoin) => {
+			if (isJoin) {
+				room.isRequestingFromClient = true;
+				this.gameRoomHttpService.joinRoom(room).subscribe(result => {
+					room.isRequestingFromClient = false;
+					if(result.success){
+						room.isRequesting = true;
+					}
+				})
+			}
+		});
 	}
 
 	// sendButtonClick() {

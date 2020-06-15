@@ -6,6 +6,7 @@ export class GameRoomsLanguage {
 			'GameRoomsLanguage': {
 				'ROOMS_LIST': 'Rooms list',
 				'REQUESTED': 'Requested',
+				'REQUESTING': 'Requesting...',
 				'JOINED': 'Joined',
 			}
 		}, true);
@@ -13,6 +14,7 @@ export class GameRoomsLanguage {
 			'GameRoomsLanguage': {
 				'ROOMS_LIST': 'Phòng chat',
 				'REQUESTED': 'Đã gửi yêu cầu',
+				'REQUESTING': 'Đang gửi...',
 				'JOINED': 'Đã tham gia',
 			}
 		}, true);

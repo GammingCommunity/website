@@ -19,7 +19,8 @@
 	<!-- list -->
 	<div class="my-4 d-flex flex-column flex-grow-1" style="overflow:auto;">
 		<!-- item -->
-		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(room.id)' *ngFor="let room of joinedRooms">
+		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(room.id)'
+			*ngFor="let room of joinedRooms">
 			<!-- image -->
 			<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}">
 			</div>
@@ -39,7 +40,8 @@
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
 		[ngClass]="{'btn btn-border mb-2 d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
-		<strong *ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
+		<i-feather style="transform: scale(0.9);" class="mr-2" name="search"></i-feather><strong
+			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
 		<i-feather *ngIf="containerState != 'expand'" style="transform: scale(0.9);" name="search"></i-feather>
 	</div>
 	<!-- add room button -->
@@ -47,7 +49,8 @@
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
 		[ngClass]="{'btn btn-border d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
-		<strong *ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.ADD_ROOM' | translate}}</strong>
+		<i-feather style="transform: scale(0.9);" class="mr-2" name="plus-circle"></i-feather><strong
+			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.ADD_ROOM' | translate}}</strong>
 		<i-feather *ngIf="containerState != 'expand'" style="transform: scale(0.9);" name="plus-circle"></i-feather>
 	</div>
 </nav>

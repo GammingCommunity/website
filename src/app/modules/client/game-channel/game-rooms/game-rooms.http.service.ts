@@ -4,7 +4,7 @@ import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { GameRoom } from './game-rooms.dto';
+import { GameRoom, JoiningRoomResult } from './game-rooms.dto';
 import { ClientCommonService } from '../../client.common-service';
 
 @Injectable({
@@ -54,5 +54,27 @@ export class GameRoomsHttpService extends ClientCommonService {
 				return rooms;
 			}
 		));
+	}
+
+	joinRoom(room: GameRoom) {
+		return this.apollo.use('mainService').mutate<any>({
+			mutation: gql`
+				mutation{
+					joinRoom(roomID:"${room.id}"){
+						payload
+						status
+						success
+						message
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): JoiningRoomResult => new JoiningRoomResult(data.joinRoom)));
 	}
 }

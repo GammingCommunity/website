@@ -40,7 +40,10 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 	}
 
 	redirectToGameChannel() {
-		this.router.navigateByUrl(this.gameChannelUrl + '/' + this.clientDataService.getCurrentGameChannel(this.homeUrl).id);
+		const gameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
+		if(gameChannelId){
+			this.router.navigateByUrl(this.gameChannelUrl + '/' + gameChannelId);
+		}
 	}
 
 	protected fetchProfile() {

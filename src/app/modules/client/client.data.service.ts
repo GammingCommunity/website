@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 	providedIn: "root"
 })
 export class ClientDataService extends ClientCommonService {
-	private currentGameChannel: GameChannel;
+	private currentGameChannelId: string;
 
 	constructor(
 		protected injector: Injector,
@@ -26,19 +26,19 @@ export class ClientDataService extends ClientCommonService {
 		super(injector);
 	}
 
-	setCurrentGameChannel(game: GameChannel) {
-		this.currentGameChannel = game;
+	setCurrentGameChannelId(id: string) {
+		this.currentGameChannelId = id;
 	}
 
-	getCurrentGameChannel(homeUrl: string): GameChannel {
-		if (this.currentGameChannel) {
-			return this.currentGameChannel;
+	getCurrentGameChannelId(homeUrl: string): string {
+		if (this.currentGameChannelId) {
+			return this.currentGameChannelId;
 		} else {
 			this.translateService.get('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES').subscribe(message => {
 				this.alertService.show(message);
 			});
 			this.router.navigateByUrl(homeUrl);
-			return new GameChannel();
+			return null;
 		}
 	}
 }

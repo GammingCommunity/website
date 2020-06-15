@@ -25,11 +25,8 @@ export class GameChannelComponent extends ClientCommonComponent implements After
 		GameChannelLanguage.define(this.translateService);
 
 		this.fetchGameChannels();
-	}
-
-	initAutoFetchProfile(){
 		this.route.params.subscribe(param => {
-			// param.id
+			this.clientDataService.setCurrentGameChannelId(param.id);
 		});
 	}
 

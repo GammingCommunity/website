@@ -25,3 +25,15 @@ export class GameRoom {
 		this.isPrivate = rawData.isPrivate;
 	}
 }
+
+export class JoiningRoomResult {
+	payload: string;
+	success: string;
+	message: string;
+
+	constructor(rawData){
+		this.payload = rawData.payload;
+		this.success = rawData.success;
+		this.message = rawData.message;
+	}
+}
