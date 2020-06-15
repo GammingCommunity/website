@@ -21,6 +21,7 @@ import { LookAccountComponent } from './look-account/look-account.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogComponent } from 'src/app/common/dialogs/dialog.component';
 import { LoaderComponent } from 'src/app/common/dialogs/loader/loader.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { LoaderComponent } from 'src/app/common/dialogs/loader/loader.component'
 		GameChannelComponent,
 		FriendsComponent,
 		JoinedRoomsComponent,
+		HomeComponent,
 		GameRoomsComponent,
 		ProfileComponent,
 		FriendChatComponent,

@@ -6559,6 +6559,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	background-color: transparent !important;
 }
 
+.border-lg {
+	border: 4px solid var(--bg6) !important;
+}
+
 .border {
 	border: 1px solid var(--bg5) !important;
 }

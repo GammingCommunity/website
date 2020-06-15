@@ -1,12 +1,11 @@
-
 <div class="navs shadow" #navs>
-	<a (click)='redirectTo("home")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'home'}">
+	<a [routerLink]='homeUrl' [ngClass]="{'navs-items tooltip': true, 'active': checkExistUrl(homeUrl)}">
 		<i-feather class="mb-2" name="home"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
 			<strong>Home</strong>
 		</span>
 	</a>
-	<a (click)='redirectTo("game-channel")' [ngClass]="{'navs-items tooltip': true, 'active': redirectLink === 'game-channel'}">
+	<a [routerLink]='gameChannelUrl' [ngClass]="{'navs-items mx-1 tooltip': true, 'active': checkExistUrl(gameChannelUrl)}">
 		<i-feather class="mb-2" name="box"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
 			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>

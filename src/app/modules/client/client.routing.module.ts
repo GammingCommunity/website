@@ -5,6 +5,7 @@ import { GameChannelComponent } from "./game-channel/game-channel.component";
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LookAccountComponent } from './look-account/look-account.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 	{
@@ -14,6 +15,10 @@ const routes: Routes = [
 			{
 				path: "",
 				redirectTo: "game-channel"
+			},
+			{
+				path: "home",
+				component: HomeComponent
 			},
 			{
 				path: "game-channel",

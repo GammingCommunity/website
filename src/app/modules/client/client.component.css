@@ -1,29 +1,35 @@
 .navs {
 	position: fixed;
 	z-index: 20;
-	top: -30px;
+	top: -34px;
 	left: calc(50% - 120px);
-	height: 60px;
+	height: 70px;
 	display: flex;
 	opacity: .4;
 	background-color: var(--bg7);
 	border-radius: 0 0 20px 20px;
 	transition: all .32s ease;
+	padding: 9px;
 }
 
 .navs:hover {
-	top: 0px;
+	top: -3px;
 	opacity: 1;
 }
 
 .navs-items {
-	width: 80px;
+	width: 70px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	transition: all 0.2s ease;
+	color: var(--secondary-text);
 	border-radius: 20px;
+}
+
+.navs-items:hover{
+	color: var(--primary-text);
 }
 
 .navs-items:hover {
@@ -40,4 +46,9 @@
 article {
 	flex-grow: 1;
 	overflow: auto;
+}
+
+.active{
+	border: solid 4px var(--bg4);
+	border-radius: 10px;
 }

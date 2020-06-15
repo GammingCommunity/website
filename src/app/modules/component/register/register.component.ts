@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 		this.registerHttpService.register(this.account).subscribe(result => {
 			if (result.status === AccountRegistrationResultStatus.SUCCESS) {
 				this.authService.setSessionToken(result.token);
-				window.location.href = '/client';
+				window.location.href = '/';
 			} else {
 				this.alertService.show(result.status);
 				console.log(result);

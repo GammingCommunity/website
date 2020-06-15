@@ -49,6 +49,6 @@ export class LoginComponent implements AfterViewInit {
 	}
 
 	redirectToGameChannelPage() {
-		window.location.href = "/client";
+		window.location.href = "/";
 	}
 }

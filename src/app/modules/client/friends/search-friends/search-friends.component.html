@@ -14,13 +14,15 @@
 		<div #loaderLocation></div>
 		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
 			<!-- avatar -->
-			<a class="mr-3" rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>
-				<div *ngIf='lookedAccount.avatarUrl' class="img rounded-lg"
-					[ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
-				<div *ngIf='!lookedAccount.avatarUrl' class="img rounded-lg"
-					[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
-			</a>
-			<div class="flex-grow-1 h-100">
+			<div class="h-100">
+				<a class="mr-3" rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>
+					<div *ngIf='lookedAccount.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+lookedAccount.avatarUrl+')'}"></div>
+					<div *ngIf='!lookedAccount.avatarUrl' class="img rounded-lg"
+						[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
+				</a>
+			</div>
+			<div class="flex-grow-1 h-100 mx-3">
 				<!-- name -->
 				<a rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>
 					<strong>{{ lookedAccount.name }}</strong>
@@ -28,7 +30,7 @@
 				<!-- describe -->
 				<p>{{ lookedAccount.describe }}</p>
 			</div>
-			<div class="">
+			<div class="" style="min-width: max-content;">
 				<!-- loader -->
 				<div *ngIf="lookedAccount.isRequesting; else notRequestingBlock">
 					{{ 'SearchFriendLanguage.REQUESTING' | translate}}
