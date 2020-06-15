@@ -12,7 +12,7 @@ export class AlertService extends DialogService {
 		super(factoryResolver);
 	}
 
-	show(message: string, buttonName: string = 'OK', callback: () => void = () => {}) {
+	show(message: string, buttonName: string = '', callback: () => void = () => {}) {
 		super.putDialogComponentToComponentWithOptions({
 			dialogType: AlertComponent,
 			useBackground: true,

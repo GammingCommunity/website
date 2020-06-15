@@ -1,7 +1,7 @@
 .navs {
 	position: fixed;
 	z-index: 20;
-	top: -34px;
+	top: -40px;
 	left: calc(50% - 120px);
 	height: 70px;
 	display: flex;
@@ -26,6 +26,7 @@
 	transition: all 0.2s ease;
 	color: var(--secondary-text);
 	border-radius: 20px;
+	cursor: pointer;
 }
 
 .navs-items:hover{

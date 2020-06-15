@@ -8,7 +8,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 		<div class="box">
 			<p class="text-wrap">{{ message }}</p>
 			<div class="d-flex">
-				<button class="btn mr-3" (click)='callback()' (click)='destroy()'>{{ buttonName }}</button>
+				<button *ngIf='buttonName.length > 0' class="btn mr-3" (click)='callback()' (click)='destroy()'>{{ buttonName }}</button>
 				<button class="btn btn-border" (click)='destroy()'>Cancel</button>
 			</div>
 		</div>

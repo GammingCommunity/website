@@ -4,12 +4,14 @@ export class HomeLanguage {
 	static define(translateService: TranslateService) {
 		translateService.setTranslation('en', {
 			'HomeLanguage': {
-				'SETTING': 'Setting',
+				'GAME_CHANNEL': 'Games:',
+				'ROOMS': 'room(s)',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'HomeLanguage': {
-				'SETTING': 'Cài đặt',
+				'GAME_CHANNEL': 'Trò chơi:',
+				'ROOMS': 'phòng',
 			}
 		}, true);
 	}

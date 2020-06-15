@@ -15,9 +15,9 @@
 		</div>
 
 		<!-- friends list -->
-		<div class="friends-list my-4 flex-grow-1 overflow-auto" *ngIf="friends">
+		<div class="friends-list my-4 flex-grow-1 overflow-auto" *ngIf="friends" [ngStyle]="{'margin-right': (friendsContainerState == 'expand') ? '-15px' : '0'}">
 			<!-- friend items -->
-			<div [ngClass]="{'friend-items-container rounded-lg d-flex align-items-center my-2': true, 'active': this.selectedFriend === friend}" *ngFor="let friend of friends">
+			<div [ngClass]="{'friend-items-container d-flex align-items-center my-2': true, 'active': this.selectedFriend === friend}" *ngFor="let friend of friends">
 				<div class="friends-items rounded-lg p-2 d-flex align-items-center flex-grow-1 overflow-hidden" (click)="openChatBox(friend)">
 					<!-- avatar -->
 					<div *ngIf='friend.avatarUrl' class="img rounded-lg"

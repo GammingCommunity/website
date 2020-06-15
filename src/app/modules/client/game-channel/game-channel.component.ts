@@ -3,8 +3,8 @@ import { RoomPrivateChatUIService } from './room-private-chat/room-private-chat.
 import { JoinedRoomsComponent } from './joined-rooms/joined-rooms.component';
 import { GameChannelLanguage } from './game-channel.language';
 import { ClientCommonComponent } from '../client.common-component';
-import { GameChannel } from './game-channel.dto';
 import { GameChannelHttpService } from './game-channel.http.service';
+import { LittleGameChannel } from './game-channel.dto';
 
 @Component({
 	selector: 'app-game-channel',
@@ -13,8 +13,8 @@ import { GameChannelHttpService } from './game-channel.http.service';
 })
 export class GameChannelComponent extends ClientCommonComponent implements AfterViewInit {
 	@ViewChild('joinedRooms', { static: true }) joinedRoomsComponent: JoinedRoomsComponent;
-	private gameChannels: GameChannel[];
-	private selectedGame: GameChannel;
+	private gameChannels: LittleGameChannel[];
+	private selectedGame: LittleGameChannel;
 
 	constructor(
 		protected injector: Injector,
@@ -25,6 +25,12 @@ export class GameChannelComponent extends ClientCommonComponent implements After
 		GameChannelLanguage.define(this.translateService);
 
 		this.fetchGameChannels();
+	}
+
+	initAutoFetchProfile(){
+		this.route.params.subscribe(param => {
+			// param.id
+		});
 	}
 
 	ngAfterViewInit() {

@@ -3,7 +3,7 @@ import { SearchRoomsHttpService } from './search-rooms.http.service';
 import { ClientCommonComponent } from '../../../client.common-component';
 import { SearchRoomsLanguage } from './search-rooms.language';
 import { Subscription } from 'rxjs';
-import { GameChannel } from '../../game-channel.dto';
+import { LittleGameChannel } from '../../game-channel.dto';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 
@@ -26,7 +26,7 @@ import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 })
 export class SearchRoomsComponent extends ClientCommonComponent implements OnInit, OnDestroy {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private gameChannels: GameChannel[];
+	private gameChannels: LittleGameChannel[];
 	private rooms: Room[] = [];
 	private destroy: () => void;
 	private searchKey: string = '';

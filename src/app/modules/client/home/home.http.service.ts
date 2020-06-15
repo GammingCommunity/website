@@ -4,13 +4,13 @@ import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { GameRoom } from './game-rooms.dto';
-import { ClientCommonService } from '../../client.common-service';
+import { ClientCommonService } from '../client.common-service';
+import { GameChannel } from './home.dto';
 
 @Injectable({
 	providedIn: "root"
 })
-export class GameRoomsHttpService extends ClientCommonService {
+export class HomeHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
@@ -22,21 +22,15 @@ export class GameRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	fetchGameRooms(gameChannelId: string) {
+	fetchGameChannels() {
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
-					getRoomByGame(limit:100, page:1, gameID:"${gameChannelId}"){
-						code
+					countRoomOnEachGame(sort: DESC){
 						_id
-						roomName
-						roomLogo
-						roomBackground
-						isJoin
-						isPrivate
-						isRequest
-						maxOfMember
-						countMember
+						name
+						count
+						background
 					}
 				}
 			`,
@@ -44,14 +38,14 @@ export class GameRoomsHttpService extends ClientCommonService {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
 		}).pipe(map(
-			({ data }): GameRoom[] => {
-				let rooms: GameRoom[] = [];
+			({ data }): GameChannel[] => {
+				let games: GameChannel[] = [];
 
-				data.getRoomByGame.forEach(room => {
-					rooms.push(new GameRoom(room));
+				data.countRoomOnEachGame.forEach(game => {
+					games.push(new GameChannel(game));
 				})
 
-				return rooms;
+				return games;
 			}
 		));
 	}

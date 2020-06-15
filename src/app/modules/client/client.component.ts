@@ -24,19 +24,23 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 	) {
 		super(injector);
 		ClientLanguage.define(this.translateService);
-		
+
 		this.fetchProfile();
 	}
 
 	ngOnInit() {
 	}
-	
-	ngAfterViewInit(){
+
+	ngAfterViewInit() {
 	}
 
-	checkExistUrl(url: string): boolean{
+	checkExistUrl(url: string): boolean {
 		const currentUrl = this.router.url;
-		return currentUrl.length >= url.length && currentUrl.substring(0, url.length).toLocaleUpperCase() === url.toLocaleUpperCase();	
+		return currentUrl.length >= url.length && currentUrl.substring(0, url.length).toLocaleUpperCase() === url.toLocaleUpperCase();
+	}
+
+	redirectToGameChannel() {
+		this.router.navigateByUrl(this.gameChannelUrl + '/' + this.clientDataService.getCurrentGameChannel(this.homeUrl).id);
 	}
 
 	protected fetchProfile() {

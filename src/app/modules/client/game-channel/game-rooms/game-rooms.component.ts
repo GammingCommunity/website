@@ -12,34 +12,35 @@ import { GameRoomsLanguage } from './game-rooms.language';
 })
 export class GameRoomsComponent extends ClientCommonComponent implements OnInit {
 	private gameRooms: GameRoom[] = [];
-	msgInput: string = 'lorem ipsum';
+	// msgInput: string = 'lorem ipsum';
 
 	constructor(
 		private injector: Injector,
-		private chatService: ChatService,
+		// private chatService: ChatService,
 		private gameRoomHttpService: GameRoomsHttpService
 	) {
 		super(injector);
 		GameRoomsLanguage.define(this.translateService);
+
+		this.fetchGameRooms();
 	}
 
 	ngOnInit() {
-		this.fetchGameRooms();
 
 		// this.chatService.requestId();
 		// this.sendButtonClick();
 	}
 
 	protected fetchGameRooms() {
-		this.gameRoomHttpService.fetchGameRooms().subscribe(data => {
+		this.gameRoomHttpService.fetchGameRooms(this.clientDataService.getCurrentGameChannel(this.homeUrl).id).subscribe(data => {
 			this.gameRooms = data;
 		});
 	}
 
-	sendButtonClick() {
-		this.chatService.onRequest().subscribe(data => {
-			console.log('data');
-			console.log(data);
-		});
-	}
+	// sendButtonClick() {
+	// 	this.chatService.onRequest().subscribe(data => {
+	// 		console.log('data');
+	// 		console.log(data);
+	// 	});
+	// }
 }

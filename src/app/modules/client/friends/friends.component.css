@@ -26,11 +26,6 @@ app-friend-chat {
 	border-left: 1px solid var(--bg10);
 }
 
-.friends-list {
-	margin-right: -15px;
-	padding-right: 15px;
-}
-
 .friends-items, .friends-options {
 	cursor: pointer;
 	transition: all .3s ease;
@@ -46,10 +41,11 @@ app-friend-chat {
 
 .friend-items-container{
 	transition: all .5s ease-out;
+	padding-right: 1px;
 }
 
 .friend-items-container.active {
-	border-left: solid 7px var(--highlight3);
+	border-right: solid 5px var(--highlight3);
 }
 
 .friends-items:hover, .friends-options:hover {

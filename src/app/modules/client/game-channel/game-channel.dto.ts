@@ -1,11 +1,9 @@
-export class GameChannel {
+export class LittleGameChannel {
 	id: string;
 	name: string;
-	roomNumber: number;
 
 	constructor(raw) {
 		this.id = raw._id;
 		this.name = raw.name;
-		this.roomNumber = raw.count;
 	}
 }

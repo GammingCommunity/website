@@ -22,6 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DialogComponent } from 'src/app/common/dialogs/dialog.component';
 import { LoaderComponent } from 'src/app/common/dialogs/loader/loader.component';
 import { HomeComponent } from './home/home.component';
+import { HomeGameDetailsComponent } from './home/home-game-details/home-game-details.component';
+import { ClientDataService } from './client.data.service';
 
 @NgModule({
 	declarations: [
@@ -38,6 +40,7 @@ import { HomeComponent } from './home/home.component';
 		SettingsComponent,
 		RoomPrivateChatOptionsComponent,
 		LookAccountComponent,
+		HomeGameDetailsComponent,
 	],
 	imports: [
 		IconsModule,
@@ -48,6 +51,7 @@ import { HomeComponent } from './home/home.component';
 	],
 	providers: [
 		ChatService,
+		ClientDataService,
 		FriendChatUIService,
 	]
 })

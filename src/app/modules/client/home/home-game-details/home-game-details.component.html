@@ -1,0 +1,11 @@
+<div *ngIf='!game' class=" d-flex flex-column ml-5 mt-5">
+	<div class="primary-title font-weight-bold">{{ 'HomeGameDetailsLanguage.WELCOME' | translate }}</div>
+	<div class="secondary-title font-weight-bold highlight-text">{{ 'HomeGameDetailsLanguage.BACK_HOME' | translate }}</div>
+</div>
+
+<div class="mr-4" *ngIf='game'>
+	<h2 class="my-2 font-weight-bold">{{game.name}}</h2>
+	<div class="img my-4 background rounded" [ngStyle]="{'background-image':'url('+game.backgroundUrl+')'}"></div>
+	<p class="font-weight-bold">{{ 'HomeGameDetailsLanguage.CURRENT_HAVE' | translate }}{{game.roomNumber}}{{ 'HomeGameDetailsLanguage.ROOMS' | translate }}</p>
+	<a routerLink='{{gameChannelUrl}}/{{game.id}}' class="btn mt-5 rounded-lg showdow-lg highlight-text highlight-bg p-3 float-right">{{ 'HomeGameDetailsLanguage.JOIN' | translate }}</a>
+</div>

@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ClientCommonService } from '../client.common-service';
-import { GameChannel } from './game-channel.dto';
+import { LittleGameChannel } from './game-channel.dto';
 
 
 @Injectable({
@@ -30,7 +30,6 @@ export class GameChannelHttpService extends ClientCommonService {
 					countRoomOnEachGame(sort: DESC){
 						_id
 						name
-						count
 					}
 				}
 			`,
@@ -38,11 +37,11 @@ export class GameChannelHttpService extends ClientCommonService {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
 		}).pipe(map(
-			({ data }): GameChannel[] => {
-				let games: GameChannel[] = [];
+			({ data }): LittleGameChannel[] => {
+				let games: LittleGameChannel[] = [];
 
 				data.countRoomOnEachGame.forEach(game => {
-					games.push(new GameChannel(game));
+					games.push(new LittleGameChannel(game));
 				})
 
 				return games;

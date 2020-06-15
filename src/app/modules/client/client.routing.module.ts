@@ -14,14 +14,14 @@ const routes: Routes = [
 		children: [
 			{
 				path: "",
-				redirectTo: "game-channel"
+				redirectTo: "home"
 			},
 			{
 				path: "home",
 				component: HomeComponent
 			},
 			{
-				path: "game-channel",
+				path: "game-channel/:id",
 				component: GameChannelComponent
 			},
 			{

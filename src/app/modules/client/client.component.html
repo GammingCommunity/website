@@ -5,7 +5,7 @@
 			<strong>Home</strong>
 		</span>
 	</a>
-	<a [routerLink]='gameChannelUrl' [ngClass]="{'navs-items mx-1 tooltip': true, 'active': checkExistUrl(gameChannelUrl)}">
+	<a (click)='redirectToGameChannel()' [ngClass]="{'navs-items mx-1 tooltip': true, 'active': checkExistUrl(gameChannelUrl)}">
 		<i-feather class="mb-2" name="box"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
 			<strong>{{ 'ClientLanguage.GAME' | translate }}</strong>
