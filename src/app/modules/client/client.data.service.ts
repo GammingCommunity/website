@@ -10,6 +10,7 @@ import { GameChannel } from './home/home.dto';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { Router } from '@angular/router';
+import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 
 @Injectable({
 	providedIn: "root"
@@ -34,7 +35,7 @@ export class ClientDataService extends ClientCommonService {
 		if (this.currentGameChannelId) {
 			return this.currentGameChannelId;
 		} else {
-			this.alertService.show(this.translateService.instant('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES'));
+			SwtAlert.display({ title: this.translateService.instant('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES'), icon: 'info' });
 			this.router.navigateByUrl(homeUrl);
 			return null;
 		}

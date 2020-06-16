@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector, Input } from '@angular/core';
+import { Component, OnInit, Injector, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { GameRoomsHttpService } from './game-rooms.http.service';
 import { GameRoom } from './game-rooms.dto';
 import { ChatService } from 'src/app/common/services/chat.service';
@@ -10,13 +10,41 @@ import { CssConfigs } from 'src/environments/environment';
 import { LookAccountOptionsDropdownComponent } from '../../look-account/look-account-options-dropdown/look-account-options-dropdown.component';
 import { GameRoomsItemOptionsDropdownComponent } from './game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
 import { finalize } from 'rxjs/operators';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
 	selector: 'app-game-rooms',
 	templateUrl: './game-rooms.component.html',
-	styleUrls: ['./game-rooms.component.css']
+	styleUrls: ['./game-rooms.component.css'],
+	animations: [
+		trigger('listAnimation', [
+			transition('* => *', [
+				query(':leave', [
+					stagger(100, [
+						animate('300ms ease', style({
+							opacity: 0,
+							transform: "translateY(100%)"
+						}))
+					])
+				], { optional: true }),
+				query(':enter', [
+					style({
+						opacity: 0,
+						transform: "translateY(100%)"
+					}),
+					stagger(100, [
+						animate('400ms ease', style({
+							opacity: 1,
+							transform: "translateY(0%)"
+						}))
+					])
+				], { optional: true })
+			])
+		])
+	]
 })
 export class GameRoomsComponent extends ClientCommonComponent implements OnInit {
+	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private gameRooms: GameRoom[] = [];
 
 	// msgInput: string = 'lorem ipsum';
@@ -59,7 +87,8 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	reloadRooms() {
 		const currentGameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
 		if (currentGameChannelId) {
-			this.gameRoomHttpService.reloadRooms(currentGameChannelId).subscribe(data => {
+			this.gameRooms = [];
+			this.gameRoomHttpService.reloadRooms(currentGameChannelId, this.loaderLocationVR).subscribe(data => {
 				this.gameRooms = data;
 			});
 		}

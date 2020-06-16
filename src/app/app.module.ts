@@ -32,6 +32,7 @@ import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms
 import { AutofocusDirective } from './common/directives/autofocus.derective';
 import { GameRoomsOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-options-dropdown/game-rooms-options-dropdown.component';
 import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
+import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms/create-rooms/create-rooms.component';
 
 @NgModule({
 	declarations: [
@@ -48,6 +49,7 @@ import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-cha
 		GameRoomsItemOptionsDropdownComponent,
 		GameRoomsOptionsDropdownComponent,
 		FriendItemDropdownComponent,
+		CreateRoomsComponent,
 		AutofocusDirective,
 	],
 	imports: [
@@ -84,6 +86,7 @@ import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-cha
 		SearchFriendsComponent,
 		SearchRoomsComponent,
 		DialogComponent,
+		CreateRoomsComponent,
 		AlertComponent
 	],
 	bootstrap: [AppComponent]

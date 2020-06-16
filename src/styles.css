@@ -7743,6 +7743,22 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	overflow: hidden !important;
 }
 
+.overflow-x-auto {
+	overflow-x: auto !important;
+}
+
+.overflow-y-hidden {
+	overflow-y: hidden !important;
+}
+
+.overflow-y-auto {
+	overflow-y: auto !important;
+}
+
+.overflow-x-hidden {
+	overflow-x: hidden !important;
+}
+
 .position-static {
 	position: static !important;
 }
@@ -9818,6 +9834,7 @@ select {
 
 .swal2-container.swal2-backdrop-show {
 	background-color: rgba(0, 0, 0, .7) !important;
+	z-index: 99999999999;
 }
 
 .swal2-popup {

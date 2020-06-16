@@ -10,12 +10,16 @@
 		</div>
 	</div>
 
+	<!-- loader location -->
+	<div class="loaderLocation" #loaderLocation></div>
+
 	<!-- list -->
-	<div class="pr-4 my-4 d-flex flex-column flex-grow-1 overflow-auto">
+	<div [@listAnimation]='gameRooms.length' class="pr-4 my-4 d-flex flex-column flex-grow-1 overflow-auto">
+
 		<!-- item -->
-		<div class="room-item img mb-4 rounded-lg overflow-hidden shadow" *ngFor='let room of gameRooms'
+		<div class="img mb-4 rounded-lg overflow-hidden shadow" *ngFor='let room of gameRooms'
 			[ngStyle]="{'background-image':'url('+room.backgroundUrl+')'}">
-			<div *ngIf="!room.isPrivate"
+			<div *ngIf="!room.isPrivate" class="room-item"
 				(click)="!room.isRequestingFromClient ? handleRoomItemsClick(room, $event) : null">
 				<!-- loader -->
 				<div *ngIf='room.isRequestingFromClient'
@@ -23,10 +27,10 @@
 					{{ 'GameRoomsLanguage.REQUESTING' | translate}}</div>
 				<!-- name -->
 				<h5
-					[ngClass]="{'room-title m-3 overflow-hidden font-weight-bold': true, 'highlight-text': !room.hasJoined && !room.isRequesting}">
+					[ngClass]="{'room-title p-3 overflow-hidden font-weight-bold': true, 'highlight-text': !room.hasJoined && !room.isRequesting}">
 					#{{room.code}} - {{room.name}}</h5>
 				<!-- info -->
-				<div class="m-3 d-flex align-items-center">
+				<div class="px-3 d-flex align-items-center">
 					<i-feather class="mr-1" name="users"></i-feather>
 					<p class="m-0 mr-3">{{room.countMember}}/{{room.maxMember}}</p>
 					<p *ngIf='room.hasJoined' class="m-0 highlight-text font-weight-bold">

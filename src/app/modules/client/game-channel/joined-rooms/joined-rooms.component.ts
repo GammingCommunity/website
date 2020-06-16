@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild, Injector, Input } from '@angular/core';
 import { JoinedRoom } from './joined-rooms.dto';
 import { JoinedRoomsHttpService } from './joined-rooms.http.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat.ui.service';
 import { TranslateService } from '@ngx-translate/core';
 import { JoinedRoomsLanguage } from './joined-rooms.language';
@@ -25,6 +25,30 @@ import { CssConfigs } from 'src/environments/environment';
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))
+		]),
+		trigger('listAnimation', [
+			transition('* => *', [
+				query(':leave', [
+					stagger(50, [
+						animate('500ms ease', style({
+							opacity: 0,
+							transform: "translateX(-100%)"
+						}))
+					])
+				], { optional: true }),
+				query(':enter', [
+					style({
+						opacity: 0,
+						transform: "translateX(-100%)"
+					}),
+					stagger(50, [
+						animate('500ms ease', style({
+							opacity: 1,
+							transform: "translateX(0%)"
+						}))
+					])
+				], { optional: true })
+			])
 		])
 	]
 })

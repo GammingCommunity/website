@@ -2,7 +2,7 @@
 	<app-home-game-details class="flex-grow-1 mr-4"></app-home-game-details>
 	<div class="d-flex flex-column border-left pl-4">
 		<h5>{{ 'HomeLanguage.GAME_CHANNEL' | translate }}</h5>
-		<div *ngIf='games' [@listAnimation]='games.length
+		<div [@listAnimation]='games.length
 		' class="game-channels overflow-auto mt-4 pr-3">
 			<!-- item -->
 			<div (click)='seeGameDetails(game)'

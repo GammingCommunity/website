@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef, Injector } 
 import { MyFriend } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
 import { FriendChatUIService } from './friend-chat/friend-chat.ui.service';
-import { trigger, state, transition, animate, style } from '@angular/animations';
+import { trigger, state, transition, animate, style, query, stagger } from '@angular/animations';
 import { ClientCommonComponent } from '../client.common-component';
 import { FriendsLanguage } from './friends.language';
 import { pipe } from 'rxjs';
@@ -39,8 +39,32 @@ import { CssConfigs } from 'src/environments/environment';
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))
+		]),
+		trigger('listAnimation', [
+			transition('* => *', [
+				query(':leave', [
+					stagger(50, [
+						animate('500ms ease', style({
+							opacity: 0,
+							transform: "translateX(100%)"
+						}))
+					])
+				], { optional: true }),
+				query(':enter', [
+					style({
+						opacity: 0,
+						transform: "translateX(100%)"
+					}),
+					stagger(50, [
+						animate('500ms ease', style({
+							opacity: 1,
+							transform: "translateX(0%)"
+						}))
+					])
+				], { optional: true })
+			])
 		])
-	]
+	],
 })
 export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	private mainContainerIsExpanding: boolean = true;

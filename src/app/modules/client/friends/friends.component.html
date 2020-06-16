@@ -15,7 +15,7 @@
 		</div>
 
 		<!-- friends list -->
-		<div class="friends-list my-4 flex-grow-1 overflow-auto" *ngIf="friends" [ngStyle]="{'margin-right': (friendsContainerState == 'expand') ? '-15px' : '0'}">
+		<div [@listAnimation]='friends.length' class="friends-list my-4 flex-grow-1 overflow-hidden overflow-y-auto" *ngIf="friends" [ngStyle]="{'margin-right': (friendsContainerState == 'expand') ? '-15px' : '0'}">
 			<!-- friend items -->
 			<div [ngClass]="{'friend-items-container d-flex align-items-center my-2': true, 'active': this.selectedFriend === friend}" *ngFor="let friend of friends">
 				<div class="friends-items rounded-lg p-2 d-flex align-items-center flex-grow-1 overflow-hidden" (click)="openChatBox(friend)">
@@ -32,7 +32,6 @@
 					<i-feather name="more-vertical"></i-feather>
 				</div>
 			</div>
-			
 		</div>
 		<!-- make friend button -->
 		<div (click)='showSearchPopup()'

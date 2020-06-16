@@ -1,9 +1,9 @@
-import { Injectable, Injector } from "@angular/core";
+import { Injectable, Injector, ComponentRef, ViewContainerRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { GameRoom, Approve, ResultCRUD } from './game-rooms.dto';
 import { ClientCommonService } from '../../client.common-service';
 
@@ -56,7 +56,9 @@ export class GameRoomsHttpService extends ClientCommonService {
 		));
 	}
 
-	reloadRooms(gameChannelId: string) {
+	reloadRooms(gameChannelId: string, viewContainerRef: ViewContainerRef) {
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
+
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
@@ -74,21 +76,27 @@ export class GameRoomsHttpService extends ClientCommonService {
 					}
 				}
 			`,
+			variables: {
+				isUseGlobalLoader: false
+			},
 			fetchPolicy: 'no-cache',
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
-		}).pipe(map(
-			({ data }): GameRoom[] => {
-				let rooms: GameRoom[] = [];
+		}).pipe(
+			map(
+				({ data }): GameRoom[] => {
+					let rooms: GameRoom[] = [];
 
-				data.getRoomByGame.forEach(room => {
-					rooms.push(new GameRoom(room));
-				})
+					data.getRoomByGame.forEach(room => {
+						rooms.push(new GameRoom(room));
+					})
 
-				return rooms;
-			}
-		));
+					return rooms;
+				}
+			),
+			finalize(() => loader.destroy())
+		);
 	}
 
 	getPendingJoinRoom() {

@@ -15,7 +15,7 @@ import { trigger, transition, style, animate, stagger, query } from '@angular/an
 			transition('* => *', [
 				query(':leave', [
 					stagger(100, [
-						animate('500ms ease', style({
+						animate('400ms ease', style({
 							opacity: 0,
 							transform: "translateY(100%)"
 						}))
@@ -27,7 +27,7 @@ import { trigger, transition, style, animate, stagger, query } from '@angular/an
 						transform: "translateY(100%)"
 					}),
 					stagger(100, [
-						animate('500ms ease', style({
+						animate('400ms ease', style({
 							opacity: 1,
 							transform: "translateY(0%)"
 						}))
@@ -38,7 +38,7 @@ import { trigger, transition, style, animate, stagger, query } from '@angular/an
 	],
 })
 export class HomeComponent extends ClientCommonComponent implements OnInit {
-	private games: GameChannel[];
+	private games: GameChannel[] = [];
 	private selectedGame: GameChannel;
 
 	constructor(

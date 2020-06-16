@@ -31,7 +31,7 @@ import { delay } from 'rxjs/operators';
 					marginRight: '-200px',
 					opacity: 0
 				}),
-				animate('520ms 200ms ease', style({
+				animate('920ms 200ms ease', style({
 					marginRight: '2px',
 					opacity: 1
 				}))

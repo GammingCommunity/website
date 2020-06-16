@@ -17,7 +17,7 @@
 	</div>
 
 	<!-- list -->
-	<div class="my-4 d-flex flex-column flex-grow-1" style="overflow:auto;">
+	<div [@listAnimation]='joinedRooms.length' class="my-4 d-flex flex-column flex-grow-1 overflow-hidden overflow-y-auto">
 		<!-- item -->
 		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(room.id)'
 			*ngFor="let room of joinedRooms">
