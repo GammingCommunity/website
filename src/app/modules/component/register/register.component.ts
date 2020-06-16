@@ -10,7 +10,7 @@ import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 	styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-	private account: RegistrationAccount = new RegistrationAccount();
+	account: RegistrationAccount = new RegistrationAccount();
 
 	constructor(
 		private registerHttpService: RegisterHttpService,

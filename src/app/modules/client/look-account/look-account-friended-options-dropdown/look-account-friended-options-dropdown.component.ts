@@ -8,7 +8,7 @@ import { LookAccountFriendedOptionsDropdownLanguage } from './look-account-frien
 }) 
 
 export class LookAccountFriendedOptionsDropdownComponent extends ClientCommonComponent implements OnInit {
-	private destroy: () => void;
+	destroy: () => void;
 
 	constructor(
 		protected injector: Injector,

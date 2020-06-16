@@ -9,8 +9,8 @@ import { ClientCommonComponent } from '../../../client.common-component';
 	templateUrl: './game-rooms-options-dropdown.component.html',
 })
 export class GameRoomsOptionsDropdownComponent extends ClientCommonComponent implements OnInit {
-	private reloadRooms: () => void;
-	private destroy: () => void;
+	reloadRooms: () => void;
+	destroy: () => void;
 
 	constructor(
 		private injector: Injector,

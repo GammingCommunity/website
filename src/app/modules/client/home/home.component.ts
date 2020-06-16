@@ -38,8 +38,8 @@ import { trigger, transition, style, animate, stagger, query } from '@angular/an
 	],
 })
 export class HomeComponent extends ClientCommonComponent implements OnInit {
-	private games: GameChannel[] = [];
-	private selectedGame: GameChannel;
+	games: GameChannel[] = [];
+	selectedGame: GameChannel;
 
 	constructor(
 		private homeHttpService: HomeHttpService,

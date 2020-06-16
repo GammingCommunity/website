@@ -13,9 +13,9 @@ import { SettingsLanguage } from './settings.language';
 	styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent extends ClientCommonComponent implements OnInit {
-	private oldSettings: Settings;
-	private newSettings: Settings;
-	private accountPrivacyList: string[];
+	oldSettings: Settings;
+	newSettings: Settings;
+	accountPrivacyList: string[];
 
 	constructor(
 		protected injector: Injector,

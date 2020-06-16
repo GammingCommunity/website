@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 	styleUrls: ['./room-global-chat.component.css']
 })
 export class RoomGlobalChatComponent extends ClientCommonComponent implements OnInit {
-	private searchKey: string;
+	searchKey: string;
 
 	constructor(protected injector: Injector) {
 		super(injector);

@@ -29,12 +29,12 @@ import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 })
 export class SearchRoomsComponent extends ClientCommonComponent implements OnInit, OnDestroy {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private rooms: Room[] = [];
-	private destroy: () => void;
-	private searchKey: string = '';
-	private searchSubscription: Subscription;
-	private searchOption: string;
-	private searchRoomOptionEnum = SearchRoomOptionEnum;
+	rooms: Room[] = [];
+	destroy: () => void;
+	searchKey: string = '';
+	searchSubscription: Subscription;
+	searchOption: string;
+	searchRoomOptionEnum = SearchRoomOptionEnum;
 
 	constructor(
 		protected injector: Injector,

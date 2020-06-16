@@ -13,8 +13,8 @@ import { ClientCommonComponent } from '../client.common-component';
 	styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent extends ClientCommonComponent implements OnInit {
-	private oldProfile: Profile;
-	private newProfile: Profile;
+	oldProfile: Profile;
+	newProfile: Profile;
 
 	constructor(
 		private profileHttpService: ProfileHttpService,

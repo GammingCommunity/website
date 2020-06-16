@@ -54,9 +54,9 @@ import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 	]
 })
 export class JoinedRoomsComponent extends ClientCommonComponent implements OnInit {
-	private joinedRooms: JoinedRoom[] = [];
-	private containerState: string = 'expand';
-	public showPrivateChat: (data: any) => void;
+	joinedRooms: JoinedRoom[] = [];
+	containerState: string = 'expand';
+	showPrivateChat: (data: any) => void;
 
 	constructor(
 		protected injector: Injector,

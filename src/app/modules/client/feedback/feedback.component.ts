@@ -12,8 +12,8 @@ import { ClientCommonComponent } from '../client.common-component';
 })
 export class FeedbackComponent extends ClientCommonComponent {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private destroy: () => void;
-	private feedback: Feedback = new Feedback();
+	destroy: () => void;
+	feedback: Feedback = new Feedback();
 
 	constructor(
 		protected injector: Injector,

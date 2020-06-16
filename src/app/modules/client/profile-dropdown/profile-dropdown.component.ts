@@ -16,7 +16,7 @@ import { truncate } from 'fs';
 	templateUrl: './profile-dropdown.component.html'
 })
 export class ProfileDropdownComponent extends ClientCommonComponent {
-	private destroy: () => void;
+	destroy: () => void;
 
 	constructor(
 		protected injector: Injector,

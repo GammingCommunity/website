@@ -67,12 +67,12 @@ import { CssConfigs } from 'src/environments/environment';
 	],
 })
 export class FriendsComponent extends ClientCommonComponent implements OnInit {
-	private mainContainerIsExpanding: boolean = true;
-	private chatBoxIsOpening: boolean = false;
-	private friendsContainerState: string = 'expand';
-	private chatBoxState: string = 'middle-expand';
-	private friends: MyFriend[] = [];
-	private selectedFriend: MyFriend;
+	mainContainerIsExpanding: boolean = true;
+	chatBoxIsOpening: boolean = false;
+	friendsContainerState: string = 'expand';
+	chatBoxState: string = 'middle-expand';
+	friends: MyFriend[] = [];
+	selectedFriend: MyFriend;
 
 	constructor(
 		protected injector: Injector,

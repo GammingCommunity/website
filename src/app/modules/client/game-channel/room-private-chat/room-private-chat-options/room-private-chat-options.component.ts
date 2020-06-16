@@ -23,7 +23,7 @@ import { ClientCommonComponent } from '../../../client.common-component';
 	]
 })
 export class RoomPrivateChatOptionsComponent extends ClientCommonComponent implements OnInit {
-	private containerState: string = 'expand';
+	containerState: string = 'expand';
 
 	constructor(protected injector: Injector) {
 		super(injector);

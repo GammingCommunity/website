@@ -45,7 +45,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 })
 export class GameRoomsComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private gameRooms: GameRoom[] = [];
+	gameRooms: GameRoom[] = [];
 
 	// msgInput: string = 'lorem ipsum';
 

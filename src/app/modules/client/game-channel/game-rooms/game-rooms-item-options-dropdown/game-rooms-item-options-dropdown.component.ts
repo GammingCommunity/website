@@ -10,10 +10,10 @@ import { GameRoomsItemOptionsDropdownLanguage } from './game-rooms-item-options-
 	templateUrl: './game-rooms-item-options-dropdown.component.html',
 })
 export class GameRoomsItemOptionsDropdownComponent extends ClientCommonComponent implements OnInit {
-	private room: GameRoom;
-	private destroy: () => void;
-	private joinRoomHandler: () => void;
-	private cancelRoomHandler: () => void;
+	room: GameRoom;
+	destroy: () => void;
+	joinRoomHandler: () => void;
+	cancelRoomHandler: () => void;
 
 	constructor(
 		private injector: Injector,

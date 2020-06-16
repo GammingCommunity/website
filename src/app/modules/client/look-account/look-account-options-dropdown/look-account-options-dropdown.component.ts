@@ -8,7 +8,7 @@ import { LookAccountOptionsDropdownLanguage } from './look-account-options-dropd
 }) 
 
 export class LookAccountOptionsDropdownComponent extends ClientCommonComponent implements OnInit {
-	private destroy: () => void;
+	destroy: () => void;
 
 	constructor(
 		protected injector: Injector,

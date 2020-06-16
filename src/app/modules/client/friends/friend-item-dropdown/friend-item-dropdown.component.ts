@@ -9,8 +9,8 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 }) 
 
 export class FriendItemDropdownComponent extends ClientCommonComponent implements OnInit {
-	private accountId: number;
-	private destroy: () => void;
+	accountId: number;
+	destroy: () => void;
 
 	constructor(
 		protected injector: Injector,

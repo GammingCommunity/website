@@ -21,10 +21,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
 	`]
 })
 export class AlertComponent {
-	private message: string = '';
-	private buttonName: string;
-	private callback: () => void;
-	private destroy: () => void;
+	message: string = '';
+	buttonName: string;
+	callback: () => void;
+	destroy: () => void;
 
 	constructor(private viewContainerRef: ViewContainerRef, private injector: Injector) {
 		const data = this.injector.get('data');

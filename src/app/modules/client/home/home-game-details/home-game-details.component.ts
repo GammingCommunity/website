@@ -40,7 +40,7 @@ import { delay } from 'rxjs/operators';
 	],
 })
 export class HomeGameDetailsComponent extends ClientCommonComponent implements OnInit {
-	private game: GameChannel;
+	game: GameChannel;
 
 	constructor(
 		protected injector: Injector,

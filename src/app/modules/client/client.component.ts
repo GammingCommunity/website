@@ -14,8 +14,8 @@ import { CssConfigs } from 'src/environments/environment';
 export class ClientComponent extends ClientCommonComponent implements OnInit, AfterViewInit {
 	// @ViewChild('profileDropdown', { static: true }) profileDropdownER: ElementRef;
 	// @ViewChild('profileDropdown', { static: true, read: ViewContainerRef }) profileDropdownVR: ViewContainerRef;
-	private redirectLink: string;
-	private profile: MyProfile;
+	redirectLink: string;
+	profile: MyProfile;
 
 	constructor(
 		protected injector: Injector,
@@ -52,7 +52,7 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 		});
 	}
 
-	protected showProfileDropdown(event) {
+	showProfileDropdown(event) {
 		this.dialogService.putDialogComponentToComponentWithOptions({
 			dialogType: ProfileDropdownComponent,
 			anchorElement: event.target,

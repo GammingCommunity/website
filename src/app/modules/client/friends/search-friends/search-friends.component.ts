@@ -30,11 +30,11 @@ import { finalize } from 'rxjs/operators';
 })
 export class SearchFriendsComponent extends ClientCommonComponent implements OnChanges, OnInit, OnDestroy {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private destroy: () => void;
-	private searchKey: string = '';
-	private lookedAccounts: AccountLookingResult[] = [];
-	private searchSubscription: Subscription;
-	private accountRelationShipType = AccountRelationShipType;
+	destroy: () => void;
+	searchKey: string = '';
+	lookedAccounts: AccountLookingResult[] = [];
+	searchSubscription: Subscription;
+	accountRelationShipType = AccountRelationShipType;
 
 	constructor(
 		protected injector: Injector,
@@ -48,11 +48,6 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnC
 
 	ngOnChanges() {
 		alert(this.lookedAccounts.length);
-	}
-
-	protected hideClickedELement(event) {
-		event.target.style.display = 'none';
-		event.target.parentElement.innerHTML = this.translateService.instant('SearchFriendLanguage.REQUESTED')
 	}
 
 	ngOnInit() {

@@ -26,9 +26,9 @@ import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 })
 export class CreateRoomsComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private roomInput: RoomInput;
-	private destroy: () => void;
-	private maxMemberList_temp: number[] = [2, 4, 6, 8, 10, 12, 16, 20, 30];
+	roomInput: RoomInput;
+	destroy: () => void;
+	maxMemberList_temp: number[] = [2, 4, 6, 8, 10, 12, 16, 20, 30];
 
 	constructor(
 		protected injector: Injector,

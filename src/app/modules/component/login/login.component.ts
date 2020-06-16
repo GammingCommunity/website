@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements AfterViewInit {
 	@ViewChild('focusing', { static: true }) focusingElementRef: ElementRef;
 
-	private loginName: string;
-	private password: string;
+	loginName: string;
+	password: string;
 
 	constructor(
 		private thisHttpService: LoginHttpService,

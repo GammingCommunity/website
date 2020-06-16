@@ -19,19 +19,19 @@ import { PopupOptions } from './dialog.dto';
 			])
 		])
 	],
-	host: { '[@fadeInOut]': 'in' }
+	host: { '[@fadeInOut]': '' }
 })
 export class DialogComponent implements OnInit, OnDestroy {
 	@ViewChild('popup', { static: true }) popupER: ElementRef;
 	@ViewChild('exitBtn', { static: true }) exitBtnER: ElementRef;
 	@ViewChild('insertedComponentLocation', { static: true, read: ViewContainerRef }) insertedComponentLocationVR: ViewContainerRef;
-	private data: any;
-	private destroyIfOutFocus: boolean;
-	private useBackground: boolean;
-	private dialogType: Type<any>;
-	private destroy: () => void;
-	private popup: PopupOptions;
-	private outFocusHandler: (event) => void;
+	data: any;
+	destroyIfOutFocus: boolean;
+	useBackground: boolean;
+	dialogType: Type<any>;
+	destroy: () => void;
+	popup: PopupOptions;
+	outFocusHandler: (event) => void;
 
 	constructor(
 		private dialogService: DialogService,

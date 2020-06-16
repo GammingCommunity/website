@@ -15,8 +15,8 @@ import { finalize } from 'rxjs/operators';
 	styleUrls: ['./look-account.component.css']
 })
 export class LookAccountComponent extends ClientCommonComponent implements OnInit {
-	private lookingAccount: AccountLookingResult;
-	private accountRelationShipType = AccountRelationShipType;
+	lookingAccount: AccountLookingResult;
+	accountRelationShipType = AccountRelationShipType;
 
 
 	constructor(
