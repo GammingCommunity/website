@@ -32,7 +32,7 @@ import { CssConfigs } from 'src/environments/environment';
 				width: '402px'
 			})),
 			state('middle-expand', style({
-				width: '298px'
+				width: '276px'
 			})),
 			state('collapse', style({
 				width: '0px'
@@ -153,7 +153,7 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			destroyIfOutFocus: true,
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
-				width: '900px',
+				
 			}
 		});
 	}

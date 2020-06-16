@@ -14,14 +14,18 @@ import { finalize } from 'rxjs/operators';
 	animations: [
 		trigger('containerSizeStyle', [
 			state('expand', style({
-				height: '700px'
+				height: '700px',
+				width: '900px',
+				opacity: 1,
 			})),
 			state('collapse', style({
-				height: '250px'
+				width: '600px',
+				height: '250px',
+				opacity: 1,
 			})),
 			transition('*=>expand', animate('200ms ease')),
-			transition('*=>collapse', animate('200ms ease'))
-		])
+			transition('*=>collapse', animate('200ms ease')),
+		]),
 	]
 })
 export class SearchFriendsComponent extends ClientCommonComponent implements OnChanges, OnInit, OnDestroy {

@@ -64,7 +64,7 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	) {
 		super(injector);
 		JoinedRoomsLanguage.define(this.translateService);
-		
+
 		this.fetchJoinedRooms();
 	}
 
@@ -86,7 +86,6 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 			destroyIfOutFocus: true,
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
-				width: '900px',
 			}
 		});
 	}

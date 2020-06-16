@@ -13,10 +13,14 @@ import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 	animations: [
 		trigger('containerSizeStyle', [
 			state('expand', style({
-				height: '800px'
+				height: '800px',
+				width: '900px',
+				opacity: 1,
 			})),
 			state('collapse', style({
-				height: '250px'
+				height: '250px',
+				width: '600px',
+				opacity: 1,
 			})),
 			transition('*=>expand', animate('200ms ease')),
 			transition('*=>collapse', animate('200ms ease'))

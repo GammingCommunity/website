@@ -1,7 +1,7 @@
 .search-container {
 	position: relative;
 	padding: 104px 90px 40px 90px;
-	height: 250px;
+	opacity: 0;
 }
 
 .container-head {
