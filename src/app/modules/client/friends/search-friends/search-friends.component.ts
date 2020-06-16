@@ -5,6 +5,7 @@ import { AccountLookingResult, AccountRelationShipType } from './search-friends.
 import { Subscription } from 'rxjs';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchFriendLanguage } from './search-friend.language';
+import { finalize } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-search-friends',
@@ -41,17 +42,17 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnC
 		SearchFriendLanguage.define(this.translateService);
 	}
 
-	ngOnChanges(){
+	ngOnChanges() {
 		alert(this.lookedAccounts.length);
 	}
 
 	protected hideClickedELement(event) {
 		event.target.style.display = 'none';
-		this.translateService.get('SearchFriendLanguage.REQUESTED').subscribe(text => event.target.parentElement.innerHTML = text);
+		event.target.parentElement.innerHTML = this.translateService.instant('SearchFriendLanguage.REQUESTED')
 	}
 
 	ngOnInit() {
-		
+
 	}
 
 	search() {
@@ -69,8 +70,8 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnC
 	ngOnDestroy() {
 		this.unsubcribeSearch();
 	}
-	
-	protected unsubcribeSearch(){
+
+	protected unsubcribeSearch() {
 		if (this.searchSubscription) {
 			this.searchSubscription.unsubscribe();
 			this.searchSubscription = null;
@@ -80,42 +81,50 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnC
 	sendFriendRequest(lookedAccount: AccountLookingResult) {
 		lookedAccount.isRequesting = true;
 
-		this.searchFriendsHttpService.sendFriendRequest(lookedAccount.id).subscribe(result => {
-			if (result) {
-				lookedAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
-			}
-			lookedAccount.isRequesting = false;
-		});
+		this.searchFriendsHttpService.sendFriendRequest(lookedAccount.id)
+			.pipe(finalize(() => {
+				lookedAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					lookedAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
+				}
+			});
 	}
 
 	acceptFriendRequest(lookedAccount: AccountLookingResult) {
 		lookedAccount.isRequesting = true;
-		this.searchFriendsHttpService.acceptFriendRequest(lookedAccount.id).subscribe(result => {
-			if (result) {
-				lookedAccount.relationship = this.accountRelationShipType.FRIEND;
-			}
-			lookedAccount.isRequesting = false;
-		});
+		this.searchFriendsHttpService.acceptFriendRequest(lookedAccount.id)
+			.pipe(finalize(() => {
+				lookedAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					lookedAccount.relationship = this.accountRelationShipType.FRIEND;
+				}
+			});
 	}
 
 	cancelFriendRequest(lookedAccount: AccountLookingResult) {
 		lookedAccount.isRequesting = true;
-		this.searchFriendsHttpService.cancelFriendRequest(lookedAccount.id).subscribe(result => {
-			if (result) {
-				lookedAccount.relationship = this.accountRelationShipType.STRANGER;
-			}
-			lookedAccount.isRequesting = false;
-		});
+		this.searchFriendsHttpService.cancelFriendRequest(lookedAccount.id)
+			.pipe(finalize(() => {
+				lookedAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					lookedAccount.relationship = this.accountRelationShipType.STRANGER;
+				}
+			});
 	}
 
 	unsendFriendRequest(lookedAccount: AccountLookingResult) {
 		lookedAccount.isRequesting = true;
-		this.searchFriendsHttpService.unsendFriendRequest(lookedAccount.id).subscribe(result => {
-			if (result) {
-				lookedAccount.relationship = this.accountRelationShipType.STRANGER;
-			}
-			lookedAccount.isRequesting = false;
-		});
+		this.searchFriendsHttpService.unsendFriendRequest(lookedAccount.id)
+			.pipe(finalize(() => {
+				lookedAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					lookedAccount.relationship = this.accountRelationShipType.STRANGER;
+				}
+			});
 	}
 
 	handleEnterToSearch(event: KeyboardEvent) {

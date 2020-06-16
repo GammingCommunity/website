@@ -1,11 +1,13 @@
 <div class="d-flex h-100 w-100 p-5">
-	<app-home-game-details class="flex-grow-1"></app-home-game-details>
+	<app-home-game-details class="flex-grow-1 mr-4"></app-home-game-details>
 	<div class="d-flex flex-column border-left pl-4">
 		<h5>{{ 'HomeLanguage.GAME_CHANNEL' | translate }}</h5>
-		<div class="game-channels overflow-auto mt-4 pr-3">
+		<div *ngIf='games' [@listAnimation]='games.length
+		' class="game-channels overflow-auto mt-4 pr-3">
 			<!-- item -->
-			<div (click)='seeGameDetails(game)' [ngClass]="{'img game-channels-item mb-4 rounded-lg shadow overflow-hidden': true, 'active': selectedGame === game}" *ngFor="let game of games"
-			[ngStyle]="{'background-image':'url('+game.backgroundUrl+')'}">
+			<div (click)='seeGameDetails(game)'
+				[ngClass]="{'img game-channels-item mb-4 rounded-lg shadow overflow-hidden': true, 'active': selectedGame === game}"
+				*ngFor="let game of games" [ngStyle]="{'background-image':'url('+game.backgroundUrl+')'}">
 				<!-- name -->
 				<h4 class="game-name m-3 overflow-hidden highlight-text"><strong>{{game.name}}</strong></h4>
 			</div>

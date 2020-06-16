@@ -3,7 +3,6 @@ import { SearchRoomsHttpService } from './search-rooms.http.service';
 import { ClientCommonComponent } from '../../../client.common-component';
 import { SearchRoomsLanguage } from './search-rooms.language';
 import { Subscription } from 'rxjs';
-import { LittleGameChannel } from '../../game-channel.dto';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 
@@ -26,7 +25,6 @@ import { SearchRoomOptionEnum, Room } from './search-rooms.dto';
 })
 export class SearchRoomsComponent extends ClientCommonComponent implements OnInit, OnDestroy {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	private gameChannels: LittleGameChannel[];
 	private rooms: Room[] = [];
 	private destroy: () => void;
 	private searchKey: string = '';
@@ -44,14 +42,8 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 		const data = this.injector.get('data');
 		SearchRoomsLanguage.define(this.translateService);
 
-		this.gameChannels = data.gameChannels;
 		this.searchOption = this.searchRoomOptionEnum.SEARCH_BY_NAME;
 	}
-
-	// protected hideClickedELement(event) {
-	// 	event.target.style.display = 'none';
-	// 	this.translateService.get('SearchFriendLanguage.REQUESTED').subscribe(text => event.target.parentElement.innerHTML = text);
-	// }
 
 	ngOnInit() {
 

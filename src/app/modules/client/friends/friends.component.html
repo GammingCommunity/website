@@ -39,7 +39,7 @@
 		[style.width]="friendsContainerState != 'expand' ? '48px' : 'unset'"
 			[style.height]="friendsContainerState != 'expand' ? '48px' : 'unset'"
 			[ngClass]="{'btn d-flex justify-content-center': true, 'm-2': friendsContainerState != 'expand', 'btn-border': friendsContainerState === 'expand'}">
-			<strong *ngIf="friendsContainerState === 'expand'">{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</strong>
+			<i-feather style="transform: scale(0.9);" class="mr-2" name="search"></i-feather><strong *ngIf="friendsContainerState === 'expand'">{{ 'FriendsLanguage.MAKE_FRIENDS' | translate}}</strong>
 			<i-feather *ngIf="friendsContainerState != 'expand'" name="user-plus">
 			</i-feather>
 		</div>

@@ -26,14 +26,24 @@ export class GameRoom {
 	}
 }
 
-export class JoiningRoomResult {
-	payload: string;
+export class ResultCRUD {
 	success: string;
 	message: string;
 
 	constructor(rawData){
-		this.payload = rawData.payload;
 		this.success = rawData.success;
 		this.message = rawData.message;
+	}
+}
+
+export class Approve {
+	requestId: string;
+	roomId: string;
+	isApprove: boolean;
+
+	constructor(rawData){
+		this.roomId = rawData.roomID;
+		this.requestId = rawData._id;
+		this.isApprove = rawData.isApprove;
 	}
 }

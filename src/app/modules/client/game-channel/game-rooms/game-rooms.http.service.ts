@@ -4,7 +4,7 @@ import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { GameRoom, JoiningRoomResult } from './game-rooms.dto';
+import { GameRoom, Approve, ResultCRUD } from './game-rooms.dto';
 import { ClientCommonService } from '../../client.common-service';
 
 @Injectable({
@@ -56,13 +56,77 @@ export class GameRoomsHttpService extends ClientCommonService {
 		));
 	}
 
+	reloadRooms(gameChannelId: string) {
+		return this.apollo.use('mainService').query<any>({
+			query: gql`
+				query{
+					getRoomByGame(limit:100, page:1, gameID:"${gameChannelId}"){
+						code
+						_id
+						roomName
+						roomLogo
+						roomBackground
+						isJoin
+						isPrivate
+						isRequest
+						maxOfMember
+						countMember
+					}
+				}
+			`,
+			fetchPolicy: 'no-cache',
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			}
+		}).pipe(map(
+			({ data }): GameRoom[] => {
+				let rooms: GameRoom[] = [];
+
+				data.getRoomByGame.forEach(room => {
+					rooms.push(new GameRoom(room));
+				})
+
+				return rooms;
+			}
+		));
+	}
+
+	getPendingJoinRoom() {
+		return this.apollo.use('mainService').query<any>({
+			query: gql`
+				query{
+					getPendingJoinRoom_User{
+						_id
+						roomID
+						isApprove
+					}
+				}
+			`,
+			fetchPolicy: 'no-cache',
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): Approve[] => {
+				let approveList: Approve[] = [];
+
+				data.getPendingJoinRoom_User.forEach(data => {
+					approveList.push(new Approve(data));
+				})
+
+				return approveList;
+			}
+		));
+	}
+
 	joinRoom(room: GameRoom) {
 		return this.apollo.use('mainService').mutate<any>({
 			mutation: gql`
 				mutation{
 					joinRoom(roomID:"${room.id}"){
-						payload
-						status
 						success
 						message
 					}
@@ -75,6 +139,26 @@ export class GameRoomsHttpService extends ClientCommonService {
 				isUseGlobalLoader: false
 			}
 		}).pipe(map(
-			({ data }): JoiningRoomResult => new JoiningRoomResult(data.joinRoom)));
+			({ data }): ResultCRUD => new ResultCRUD(data.joinRoom)));
+	}
+
+	cancelRoomRequest(approve: Approve) {
+		return this.apollo.use('mainService').mutate<any>({
+			mutation: gql`
+				mutation{
+					cancelRequest(roomID:"${approve.roomId}", requestID:"${approve.requestId}"){
+						success
+						message
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): ResultCRUD => new ResultCRUD(data.cancelRequest)));
 	}
 }

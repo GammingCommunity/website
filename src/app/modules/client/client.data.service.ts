@@ -34,9 +34,7 @@ export class ClientDataService extends ClientCommonService {
 		if (this.currentGameChannelId) {
 			return this.currentGameChannelId;
 		} else {
-			this.translateService.get('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES').subscribe(message => {
-				this.alertService.show(message);
-			});
+			this.alertService.show(this.translateService.instant('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES'));
 			this.router.navigateByUrl(homeUrl);
 			return null;
 		}

@@ -32,7 +32,7 @@ export class SearchRoomsHttpService extends ClientCommonService {
 			query: gql`
 				query 
 				{
-					getRoomJoin{
+					searchRoom(query:"${searchKey}", option:${searchOption}){
 						code
 						_id
 						roomName

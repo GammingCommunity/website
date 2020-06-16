@@ -1,7 +1,16 @@
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
-export class SweetAlert{
+export class SwtAlert{
 	static display(options){
-		return swal(options);
+		if(!options.hasOwnProperty('reverseButtons')){
+			options['reverseButtons'] = true;
+		};
+		if(!options.hasOwnProperty('showCancelButton')){
+			options['showCancelButton'] = true;
+		};
+		if(!options.hasOwnProperty('focusConfirm')){
+			options['focusConfirm'] = false;
+		};
+		return Swal.fire(options);
 	}
 }

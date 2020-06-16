@@ -8,7 +8,6 @@ export class SearchRoomsLanguage {
 				'TYPE_HERE': 'Type here...',
 				'BY_ROOM_NAME': 'Search by room name',
 				'BY_ROOM_ID': 'Search by room id',
-				'GAME': 'Game',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
@@ -17,7 +16,6 @@ export class SearchRoomsLanguage {
 				'TYPE_HERE': 'Nhập thông tin tìm kiếm...',
 				'BY_ROOM_NAME': 'Tìm theo tên phòng',
 				'BY_ROOM_ID': 'Tìm theo mã phòng',
-				'GAME': 'Tìm theo Game',
 			}
 		}, true);
 	}

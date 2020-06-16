@@ -7,6 +7,7 @@ import { LookAccountLanguage } from './look-account.language';
 import { LookAccountOptionsDropdownComponent } from './look-account-options-dropdown/look-account-options-dropdown.component';
 import { CssConfigs } from 'src/environments/environment';
 import { LookAccountFriendedOptionsDropdownComponent } from './look-account-friended-options-dropdown/look-account-friended-options-dropdown.component';
+import { finalize } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-look-account',
@@ -30,7 +31,7 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 
 	ngOnInit() {
 	}
-	
+
 	initAutoLook() {
 		this.route.params.subscribe(param => {
 			this.look(Number(param.id));
@@ -39,42 +40,50 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 
 	sendFriendRequest() {
 		this.lookingAccount.isRequesting = true;
-		this.lookAccountHttpService.sendFriendRequest(this.lookingAccount.id).subscribe(result => {
-			if (result) {
-				this.lookingAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
-			}
-			this.lookingAccount.isRequesting = false;
-		});
+		this.lookAccountHttpService.sendFriendRequest(this.lookingAccount.id)
+			.pipe(finalize(() => {
+				this.lookingAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					this.lookingAccount.relationship = this.accountRelationShipType.FRIEND_REQUEST;
+				}
+			});
 	}
 
 	acceptFriendRequest() {
 		this.lookingAccount.isRequesting = true;
-		this.lookAccountHttpService.acceptFriendRequest(this.lookingAccount.id).subscribe(result => {
-			if (result) {
-				this.lookingAccount.relationship = this.accountRelationShipType.FRIEND;
-			}
-			this.lookingAccount.isRequesting = false;
-		});
+		this.lookAccountHttpService.acceptFriendRequest(this.lookingAccount.id)
+			.pipe(finalize(() => {
+				this.lookingAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					this.lookingAccount.relationship = this.accountRelationShipType.FRIEND;
+				}
+			});
 	}
 
 	cancelFriendRequest() {
 		this.lookingAccount.isRequesting = true;
-		this.lookAccountHttpService.cancelFriendRequest(this.lookingAccount.id).subscribe(result => {
-			if (result) {
-				this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
-			}
-			this.lookingAccount.isRequesting = false;
-		});
+		this.lookAccountHttpService.cancelFriendRequest(this.lookingAccount.id)
+			.pipe(finalize(() => {
+				this.lookingAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
+				}
+			});
 	}
 
 	unsendFriendRequest() {
 		this.lookingAccount.isRequesting = true;
-		this.lookAccountHttpService.unsendFriendRequest(this.lookingAccount.id).subscribe(result => {
-			if (result) {
-				this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
-			}
-			this.lookingAccount.isRequesting = false;
-		});
+		this.lookAccountHttpService.unsendFriendRequest(this.lookingAccount.id)
+			.pipe(finalize(() => {
+				this.lookingAccount.isRequesting = false;
+			})).subscribe(result => {
+				if (result) {
+					this.lookingAccount.relationship = this.accountRelationShipType.STRANGER;
+				}
+			});
 	}
 
 	showLookAccountOptionsDropdown(event) {

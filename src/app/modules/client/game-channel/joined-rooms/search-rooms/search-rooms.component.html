@@ -9,12 +9,6 @@
 	</div>
 
 	<div class="mb-3 px-2 d-flex justify-content-between">
-		<div class="d-flex align-items-center">
-			<p class="m-0">{{'SearchRoomsLanguage.GAME' | translate}}:</p>
-			<select class="ml-2 btn-border bg8">
-				<option *ngFor="let game of gameChannels" [ngValue]="">{{game.name}}</option>
-			</select>
-		</div>
 		<select [(ngModel)]="searchOption" class="btn-border bg8">
 			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_NAME">{{'SearchRoomsLanguage.BY_ROOM_NAME' | translate}}</option>
 			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_ID">{{'SearchRoomsLanguage.BY_ROOM_ID' | translate}}</option>

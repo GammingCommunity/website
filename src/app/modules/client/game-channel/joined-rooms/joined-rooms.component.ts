@@ -8,7 +8,6 @@ import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
-import { LittleGameChannel } from '../game-channel.dto';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -30,7 +29,6 @@ import { LittleGameChannel } from '../game-channel.dto';
 	]
 })
 export class JoinedRoomsComponent extends ClientCommonComponent implements OnInit {
-	@Input() gameChannels: LittleGameChannel[];
 	private joinedRooms: JoinedRoom[] = [];
 	private containerState: string = 'expand';
 	public showPrivateChat: (data: any) => void;
@@ -64,9 +62,6 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
 				width: '900px',
-			},
-			data: {
-				gameChannels: this.gameChannels
 			}
 		});
 	}

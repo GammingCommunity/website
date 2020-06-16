@@ -4,11 +4,38 @@ import { HomeLanguage } from './home.language';
 import { HomeHttpService } from './home.http.service';
 import { GameChannel } from './home.dto';
 import { HomeGameDetailsUIService } from './home-game-details/home-game-details.ui.service';
+import { trigger, transition, style, animate, stagger, query } from '@angular/animations';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+	styleUrls: ['./home.component.css'],
+	animations: [
+		trigger('listAnimation', [
+			transition('* => *', [
+				query(':leave', [
+					stagger(100, [
+						animate('500ms ease', style({
+							opacity: 0,
+							transform: "translateY(100%)"
+						}))
+					])
+				], { optional: true }),
+				query(':enter', [
+					style({
+						opacity: 0,
+						transform: "translateY(100%)"
+					}),
+					stagger(100, [
+						animate('500ms ease', style({
+							opacity: 1,
+							transform: "translateY(0%)"
+						}))
+					])
+				], { optional: true })
+			])
+		])
+	],
 })
 export class HomeComponent extends ClientCommonComponent implements OnInit {
 	private games: GameChannel[];
@@ -28,7 +55,7 @@ export class HomeComponent extends ClientCommonComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	seeGameDetails(game: GameChannel){
+	seeGameDetails(game: GameChannel) {
 		this.homeGameDetailsUIService.seeGameDetailsFunc(game);
 		this.selectedGame = game;
 	}

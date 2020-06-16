@@ -4,7 +4,6 @@ import { JoinedRoomsComponent } from './joined-rooms/joined-rooms.component';
 import { GameChannelLanguage } from './game-channel.language';
 import { ClientCommonComponent } from '../client.common-component';
 import { GameChannelHttpService } from './game-channel.http.service';
-import { LittleGameChannel } from './game-channel.dto';
 
 @Component({
 	selector: 'app-game-channel',
@@ -13,8 +12,6 @@ import { LittleGameChannel } from './game-channel.dto';
 })
 export class GameChannelComponent extends ClientCommonComponent implements AfterViewInit {
 	@ViewChild('joinedRooms', { static: true }) joinedRoomsComponent: JoinedRoomsComponent;
-	private gameChannels: LittleGameChannel[];
-	private selectedGame: LittleGameChannel;
 
 	constructor(
 		protected injector: Injector,
@@ -24,23 +21,13 @@ export class GameChannelComponent extends ClientCommonComponent implements After
 		super(injector);
 		GameChannelLanguage.define(this.translateService);
 
-		this.fetchGameChannels();
 		this.route.params.subscribe(param => {
-			this.clientDataService.setCurrentGameChannelId(param.id);
+			this.clientDataService.setCurrentGameChannelId(this.route.snapshot.params.id);
 		});
+		
 	}
 
 	ngAfterViewInit() {
 		this.joinedRoomsComponent.showPrivateChat = this.roomPrivateChatUIService.showPrivateChatFunc;
-	}
-
-	handleGameChannelChange(){
-		console.log(this.selectedGame);
-	}
-
-	protected fetchGameChannels(){
-		this.gameChannelHttpService.fetchGameChannels().subscribe(data => {
-			this.gameChannels = data;
-		});
 	}
 }

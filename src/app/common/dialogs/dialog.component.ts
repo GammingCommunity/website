@@ -82,8 +82,6 @@ export class DialogComponent implements OnInit, OnDestroy {
 			if (this.popup.useExitBtn) {
 				this.exitBtnER.nativeElement.style.display = 'block';
 			}
-
-
 		}
 	}
 
