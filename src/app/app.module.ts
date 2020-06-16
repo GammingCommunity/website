@@ -33,6 +33,7 @@ import { AutofocusDirective } from './common/directives/autofocus.derective';
 import { GameRoomsOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-options-dropdown/game-rooms-options-dropdown.component';
 import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
 import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms/create-rooms/create-rooms.component';
+import { ClientDataService } from './modules/client/client.data.service';
 
 @NgModule({
 	declarations: [
@@ -65,6 +66,7 @@ import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms
 	],
 	providers: [
 		CookieService,
+		ClientDataService,
 		LoaderService,
 		AlertService,
 		DialogService,

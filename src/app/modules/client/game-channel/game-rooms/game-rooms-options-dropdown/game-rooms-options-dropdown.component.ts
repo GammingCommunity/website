@@ -19,9 +19,9 @@ export class GameRoomsOptionsDropdownComponent extends ClientCommonComponent imp
 		GameRoomsOptionsDropdownLanguage.define(this.translateService);
 		const data = this.injector.get('data');
 		this.destroy = this.injector.get('destroy');
-		this.reloadRooms = data.reloadRooms;
 	}
-
+	
 	ngOnInit() {
+		this.reloadRooms = () => this.clientDataService.reloadGameRooms();
 	}
 }

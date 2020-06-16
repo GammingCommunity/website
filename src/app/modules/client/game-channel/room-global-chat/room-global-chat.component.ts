@@ -29,8 +29,20 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 				case 'view':
 					console.log(this.dialogService.getViewContainerRef());
 					break;
-				case 'current url':
+				case 'url':
 					alert(this.router.url);
+					break;
+				case 'router':
+					console.log(this.router);
+					break;
+				case 'route':
+					console.log(this.route);
+					break;
+				case 'clientdata':
+					console.log(this.clientDataService);
+					break;
+				case 'reloadgamerooms':
+					this.clientDataService.reloadGameRooms();
 					break;
 			}
 			this.searchKey = '';

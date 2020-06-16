@@ -7,6 +7,7 @@ export class ClientLanguage {
 				'GAME': 'Games',
 				'COMMUNITY': 'Community',
 				'OPTIONS': 'Options',
+				'HOME': 'Home',
 				'YOU_HAVENT_CHOOSED_ANY_GAMES': "You haven't choosed any rooms!",
 			}
 		}, true);
@@ -15,6 +16,7 @@ export class ClientLanguage {
 				'GAME': 'Trò chơi',
 				'COMMUNITY': 'Cộng đồng',
 				'OPTIONS': 'Tùy chỉnh',
+				'HOME': 'Nhà',
 				'YOU_HAVENT_CHOOSED_ANY_GAMES': 'Bạn chưa chọn trò chơi',
 			}
 		}, true);

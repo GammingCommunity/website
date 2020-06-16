@@ -1,6 +1,4 @@
 import { Injectable, ViewContainerRef, ViewRef, Injector, ComponentRef } from "@angular/core";
-import { Apollo } from 'apollo-angular';
-import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { map, tap, finalize, switchMap } from 'rxjs/operators';
@@ -25,19 +23,26 @@ export class CreateRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	create(room: RoomInput) {
+	create(room: RoomInput, gameChannelId: string) {
 		return this.apollo.use('mainService').mutate<any>({
 			mutation: gql`
-				mutatation 
+				mutation 
 				{
 					createRoom(roomInput:{
 						roomName: "${room.name}"
-						isPrivate: ${room.isPrivate}
-						description: "${room.describe}"
-						maxOfMember: ${room.maxMember}
-					}){
+							isPrivate: ${room.isPrivate}
+							description: "${room.describe}"
+							maxOfMember: ${room.maxMember}
+							member: [null]
+							game: {
+								gameID: "${gameChannelId}"
+							}
+						},
+						needApproved: true
+					){
 						message
 						success
+						payload
 					}
 				}
 			`,

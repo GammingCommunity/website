@@ -61,7 +61,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	}
 
 	ngOnInit() {
-
+		this.clientDataService.setReloadGameRoomsHandler(() => this.reloadRooms());
 		// this.chatService.requestId();
 		// this.sendButtonClick();
 	}
@@ -77,9 +77,6 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 				classList: 'py-3 px-2 bg6',
 				width: 230,
 				useExitBtn: false
-			},
-			data: {
-				reloadRooms: () => this.reloadRooms()
 			}
 		});
 	}

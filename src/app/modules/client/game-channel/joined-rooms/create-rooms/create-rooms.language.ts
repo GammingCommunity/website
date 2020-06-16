@@ -4,18 +4,24 @@ export class CreateRoomsLanguage {
 	static define(translateService: TranslateService) {
 		translateService.setTranslation('en', {
 			'CreateRoomsLanguage': {
-				'SEARCH': 'Search',
-				'TYPE_HERE': 'Type here...',
-				'BY_ROOM_NAME': 'Search by room name',
-				'BY_ROOM_ID': 'Search by room id',
+				'ROOM_NAME': 'Room name:',
+				'CREATE': 'Create now',
+				'PUBLIC': 'Public',
+				'PRIVATE': 'Private',
+				'TYPE_ROOM_NAME': 'Room name...',
+				'TYPE_DESCRIPTION': 'Type a description...',
+				'MAX_MEMBER': 'Maximum members are: ',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'CreateRoomsLanguage': {
-				'SEARCH': 'Tìm ngay',
-				'TYPE_HERE': 'Nhập thông tin tìm kiếm...',
-				'BY_ROOM_NAME': 'Tìm theo tên phòng',
-				'BY_ROOM_ID': 'Tìm theo mã phòng',
+				'ROOM_NAME': 'Tên phòng:',
+				'CREATE': 'Tạo phòng ngay',
+				'PUBLIC': 'Phòng công khai',
+				'PRIVATE': 'Phòng ẩn',
+				'TYPE_ROOM_NAME': 'Tên phòng...',
+				'TYPE_DESCRIPTION': 'Mô tả phòng...',
+				'MAX_MEMBER': 'Số người tối đa là: ',
 			}
 		}, true);
 	}

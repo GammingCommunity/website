@@ -1,10 +1,11 @@
-import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, OnDestroy, AfterContentInit } from '@angular/core';
 import { ClientCommonComponent } from '../../../client.common-component';
 import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { RoomInput } from './create-rooms.dto';
 import { CreateRoomsLanguage } from './create-rooms.language';
 import { CreateRoomsHttpService } from './create-rooms.http.service';
+import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 
 @Component({
 	selector: 'app-create-rooms',
@@ -27,6 +28,7 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	private roomInput: RoomInput;
 	private destroy: () => void;
+	private maxMemberList_temp: number[] = [2, 4, 6, 8, 10, 12, 16, 20, 30];
 
 	constructor(
 		protected injector: Injector,
@@ -38,13 +40,29 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 		CreateRoomsLanguage.define(this.translateService);
 	}
 
-	ngOnInit() {
-
+	ngOnInit(){
+		this.roomInput = new RoomInput();
+		this.roomInput.maxMember = 8;
+		this.roomInput.isPrivate = false;
+		this.roomInput.describe = 'Tôi yêu quê hương Việt Nam';
 	}
-
+	
 	createRoom() {
-		this.createRoomsHttpService.create(this.roomInput).subscribe(data => {
-			console.log(data);
-		});
+		const gameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
+		if(gameChannelId){
+			this.createRoomsHttpService.create(this.roomInput, gameChannelId).subscribe(result => {
+				if(result.success){
+					this.clientDataService.reloadGameRooms();
+					this.destroy();
+				} else {
+					SwtAlert.display({
+						title: result.message,
+						icon: 'warning'
+					})
+				}
+			});
+		} else {
+			this.destroy();
+		}
 	}
 }

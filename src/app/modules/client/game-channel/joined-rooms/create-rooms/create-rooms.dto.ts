@@ -13,9 +13,11 @@ export class RoomInput {
 export class ResultCRUD {
 	success: string;
 	message: string;
+	payload: string;
 
 	constructor(rawData){
 		this.success = rawData.success;
 		this.message = rawData.message;
+		this.payload = rawData.payload;
 	}
 }

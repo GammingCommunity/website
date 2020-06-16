@@ -40,17 +40,15 @@
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
 		[ngClass]="{'btn btn-border mb-2 d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
-		<i-feather style="transform: scale(0.9);" class="mr-2" name="search"></i-feather><strong
+		<i-feather style="transform: scale(0.9);" name="search"></i-feather><strong class="pl-2"
 			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
-		<i-feather *ngIf="containerState != 'expand'" style="transform: scale(0.9);" name="search"></i-feather>
 	</div>
 	<!-- add room button -->
-	<div (click)='showSearchPopup()' [style.width]="containerState != 'expand' ? '85px' : 'unset'"
+	<div (click)='showCreateRoomsPopup()' [style.width]="containerState != 'expand' ? '85px' : 'unset'"
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
 		[ngClass]="{'btn btn-border d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
-		<i-feather style="transform: scale(0.9);" class="mr-2" name="plus-circle"></i-feather><strong
+		<i-feather style="transform: scale(0.9);" name="plus-circle"></i-feather><strong class="pl-2"
 			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.ADD_ROOM' | translate}}</strong>
-		<i-feather *ngIf="containerState != 'expand'" style="transform: scale(0.9);" name="plus-circle"></i-feather>
 	</div>
 </nav>

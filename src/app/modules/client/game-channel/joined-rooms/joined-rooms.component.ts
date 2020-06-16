@@ -8,6 +8,7 @@ import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
+import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -86,6 +87,19 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
 				width: '900px',
+			}
+		});
+	}
+
+	showCreateRoomsPopup() {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: CreateRoomsComponent,
+			useBackground: true,
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.popupZIndex,
+			popupOptions: {
+				classList: 'p-5',
+				width: '700px',
 			}
 		});
 	}

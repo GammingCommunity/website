@@ -2,7 +2,7 @@
 	<a [routerLink]='homeUrl' [ngClass]="{'navs-items tooltip': true, 'active': checkExistUrl(homeUrl)}">
 		<i-feather class="mb-2" name="home"></i-feather>
 		<span class="tooltiptext bg5 rounded-lg py-2 px-3 text-nowrap shadow">
-			<strong>Home</strong>
+			<strong>{{ 'ClientLanguage.HOME' | translate }}</strong>
 		</span>
 	</a>
 	<a (click)='redirectToGameChannel()' [ngClass]="{'navs-items mx-1 tooltip': true, 'active': checkExistUrl(gameChannelUrl)}">

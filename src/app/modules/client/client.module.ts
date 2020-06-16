@@ -51,7 +51,6 @@ import { ClientDataService } from './client.data.service';
 	],
 	providers: [
 		ChatService,
-		ClientDataService,
 		FriendChatUIService,
 	]
 })

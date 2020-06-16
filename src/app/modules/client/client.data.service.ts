@@ -16,7 +16,9 @@ import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 	providedIn: "root"
 })
 export class ClientDataService extends ClientCommonService {
+	private currentGameChannelIdTitle: string = 'currentGameChannelId';
 	private currentGameChannelId: string;
+	private reloadGameRoomsHandler: () => void = null;
 
 	constructor(
 		protected injector: Injector,
@@ -27,17 +29,37 @@ export class ClientDataService extends ClientCommonService {
 		super(injector);
 	}
 
+	reloadGameRooms(){
+		if(this.reloadGameRoomsHandler === null){
+			this.alertService.show('reloadGameRoomsHandler === null');
+		} else {
+			this.reloadGameRoomsHandler();
+		}
+	}
+
+	setReloadGameRoomsHandler(func: () => void){
+		this.reloadGameRoomsHandler = func;
+	}
+
 	setCurrentGameChannelId(id: string) {
 		this.currentGameChannelId = id;
+		localStorage.setItem(this.currentGameChannelIdTitle, id);
 	}
 
 	getCurrentGameChannelId(homeUrl: string): string {
 		if (this.currentGameChannelId) {
 			return this.currentGameChannelId;
 		} else {
-			SwtAlert.display({ title: this.translateService.instant('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES'), icon: 'info' });
-			this.router.navigateByUrl(homeUrl);
-			return null;
+			//check in localstore
+			const id = localStorage.getItem(this.currentGameChannelIdTitle);
+			if(id){
+				this.currentGameChannelId = id;
+				return this.currentGameChannelId;
+			} else {
+				SwtAlert.display({ title: this.translateService.instant('ClientLanguage.YOU_HAVENT_CHOOSED_ANY_GAMES'), icon: 'info' });
+				this.router.navigateByUrl(homeUrl);
+				return null;
+			}
 		}
 	}
 }

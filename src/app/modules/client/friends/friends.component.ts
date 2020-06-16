@@ -21,8 +21,8 @@ import { CssConfigs } from 'src/environments/environment';
 				width: '350px'
 			})),
 			state('collapse', style({
-				width: '64px',
-				padding: '0px',
+				width: '74px',
+				padding: '5px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))
