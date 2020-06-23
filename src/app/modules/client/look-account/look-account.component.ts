@@ -58,6 +58,7 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 			})).subscribe(result => {
 				if (result) {
 					this.lookingAccount.relationship = this.accountRelationShipType.FRIEND;
+					this.clientDataService.reloadFriends();
 				}
 			});
 	}

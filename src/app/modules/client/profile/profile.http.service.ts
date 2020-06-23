@@ -19,16 +19,6 @@ const PROFILE = gql`
 			phone
 			birthmonth
 			birthyear
-			# role
-			# setting {
-			# 	anonymous
-			# 	birthmonth_privacy
-			# 	birthyear_privacy
-			# 	email_privacy
-			# 	phone_privacy
-			# }
-			# status
-			# updated_at
 			created_at
 		}
 	}
@@ -55,7 +45,7 @@ export class ProfileHttpService extends ClientCommonService {
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			},
-			fetchPolicy: 'no-cache'
+			// fetchPolicy: 'no-cache'
 		}).pipe(map(
 			({ data }): Profile => new Profile(data.getThisAccount)
 		));

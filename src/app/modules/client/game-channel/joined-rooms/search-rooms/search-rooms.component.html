@@ -8,13 +8,6 @@
 		</button>
 	</div>
 
-	<div class="mb-3 px-2 d-flex justify-content-between">
-		<select [(ngModel)]="searchOption" class="btn-border bg8">
-			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_NAME">{{'SearchRoomsLanguage.BY_ROOM_NAME' | translate}}</option>
-			<option [ngValue]="searchRoomOptionEnum.SEARCH_BY_ID">{{'SearchRoomsLanguage.BY_ROOM_ID' | translate}}</option>
-		</select>
-	</div>
-
 	<!-- list -->
 	<div class="w-100 h-100 position-relative d-flex flex-column overflow-auto">
 		<!-- item -->

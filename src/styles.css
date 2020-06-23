@@ -141,14 +141,14 @@ sup {
 }
 
 a {
-	color: #007bff;
+	color: unset;
 	text-decoration: none;
 	background-color: transparent;
 }
 
 a:hover {
-	color: #0056b3;
-	text-decoration: underline;
+	color: unset;
+	text-decoration: none;
 }
 
 a:not([href]) {
@@ -1947,11 +1947,11 @@ pre code {
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.form-control {
 		transition: none;
 	}
-}
+} */
 
 .form-control::-ms-expand {
 	background-color: transparent;
@@ -2422,22 +2422,22 @@ textarea.form-control {
 }
 
 .btn-border {
-	border: solid 1px var(--bg7);
+	border: solid 1px var(--bg6);
 	background-color: rgba(0, 0, 0, 0);
 	font-weight: unset;
 }
-
+/* 
 @media (prefers-reduced-motion: reduce) {
 	.btn {
 		transition: none;
 	}
-}
+} */
 
 .btn:hover {
 	color: var(--primary-text);
-	background-color: var(--bg6);
+	background-color: var(--bg6) !important;
 	text-decoration: none;
-	border-color: var(--bg6);
+	border-color: var(--bg6) !important;
 }
 
 .btn:focus, .btn.focus {
@@ -2457,23 +2457,23 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-dark {
-	background-color: var(--bg8);
+	background-color: var(--bg8) !important;
 	color: var(--secondary-text);
 }
 
 .btn-dark:hover {
-	background-color: var(--bg7);
-	border-color: var(--bg7);
+	background-color: var(--bg7) !important;
+	border-color: var(--bg7) !important;
 }
 
 .btn-light {
-	background-color: var(--bg6);
+	background-color: var(--bg6) !important;
 	color: var(--secondary-text);
 }
 
 .btn-light:hover {
-	background-color: var(--bg5);
-	border-color: var(--bg5);
+	background-color: var(--bg5) !important;
+	border-color: var(--bg5) !important;
 }
 
 /* 
@@ -3048,11 +3048,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	transition: opacity 0.15s linear;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.fade {
 		transition: none;
 	}
-}
+} */
 
 .fade:not(.show) {
 	opacity: 0;
@@ -3069,11 +3069,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	transition: height 0.35s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.collapsing {
 		transition: none;
 	}
-}
+} */
 
 .dropup, .dropright, .dropdown, .dropleft {
 	position: relative;
@@ -3711,11 +3711,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.custom-switch .custom-control-label::after {
 		transition: none;
 	}
-}
+} */
 
 .custom-switch .custom-control-input:checked~.custom-control-label::after {
 	background-color: #fff;
@@ -3902,12 +3902,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	appearance: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.custom-range::-webkit-slider-thumb {
 		-webkit-transition: none;
 		transition: none;
 	}
-}
+} */
 
 .custom-range::-webkit-slider-thumb:active {
 	background-color: #b3d7ff;
@@ -3935,12 +3935,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	appearance: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.custom-range::-moz-range-thumb {
 		-moz-transition: none;
 		transition: none;
 	}
-}
+} */
 
 .custom-range::-moz-range-thumb:active {
 	background-color: #b3d7ff;
@@ -3970,12 +3970,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	appearance: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.custom-range::-ms-thumb {
 		-ms-transition: none;
 		transition: none;
 	}
-}
+} */
 
 .custom-range::-ms-thumb:active {
 	background-color: #b3d7ff;
@@ -4025,12 +4025,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .custom-control-label::before, .custom-file-label, .custom-select {
 	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
+/* 
 @media (prefers-reduced-motion: reduce) {
 	.custom-control-label::before, .custom-file-label, .custom-select {
 		transition: none;
 	}
-}
+} */
 
 .nav {
 	display: -ms-flexbox;
@@ -4895,11 +4895,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.badge {
 		transition: none;
 	}
-}
+} */
 
 a.badge:hover, a.badge:focus {
 	text-decoration: none;
@@ -5243,11 +5243,11 @@ a.badge-dark:focus, a.badge-dark.focus {
 	transition: width 0.6s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.progress-bar {
 		transition: none;
 	}
-}
+} */
 
 .progress-bar-striped {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -5259,12 +5259,12 @@ a.badge-dark:focus, a.badge-dark.focus {
 	animation: progress-bar-stripes 1s linear infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.progress-bar-animated {
 		-webkit-animation: none;
 		animation: none;
 	}
-}
+} */
 
 .media {
 	display: -ms-flexbox;
@@ -5731,11 +5731,11 @@ a.close.disabled {
 	transform: translate(0, -50px);
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.modal.fade .modal-dialog {
 		transition: none;
 	}
-}
+} */
 
 .modal.show .modal-dialog {
 	-webkit-transform: none;
@@ -6234,11 +6234,11 @@ a.close.disabled {
 	transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.carousel-item {
 		transition: none;
 	}
-}
+} */
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev {
 	display: block;
@@ -6272,11 +6272,11 @@ a.close.disabled {
 	transition: opacity 0s 0.6s;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.carousel-fade .active.carousel-item-left, .carousel-fade .active.carousel-item-right {
 		transition: none;
 	}
-}
+} */
 
 .carousel-control-prev, .carousel-control-next {
 	position: absolute;
@@ -6296,11 +6296,11 @@ a.close.disabled {
 	transition: opacity 0.15s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.carousel-control-prev, .carousel-control-next {
 		transition: none;
 	}
-}
+} */
 
 .carousel-control-prev:hover, .carousel-control-prev:focus, .carousel-control-next:hover, .carousel-control-next:focus {
 	color: #fff;
@@ -6366,11 +6366,11 @@ a.close.disabled {
 	transition: opacity 0.6s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 	.carousel-indicators li {
 		transition: none;
 	}
-}
+} */
 
 .carousel-indicators .active {
 	opacity: 1;
@@ -7825,15 +7825,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .shadow-sm {
-	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1) !important;
 }
 
 .shadow {
-	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
 }
 
 .shadow-lg {
-	box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3) !important;
 }
 
 .shadow-none {
@@ -9667,17 +9667,18 @@ a.text-dark:hover, a.text-dark:focus {
 	}
 }
 
+
 /*# sourceMappingURL=bootstrap.css.map */
 
 :root {
 	/* background color */
 	--bg10: black;
 	--bg9: rgb(19, 19, 20);
-	--bg8: rgb(32, 32, 36);
-	--bg7: rgb(53, 54, 58);
-	--bg6: rgb(65, 67, 73);
-	--bg5: rgb(77, 77, 92);
-	--bg4: rgb(115, 115, 138);
+	--bg8: rgb(35, 35, 39);
+	--bg7: rgb(56, 58, 65);
+	--bg6: rgb(67, 70, 83);
+	--bg5: rgb(81, 81, 109);
+	--bg4: rgb(98, 98, 138);
 	/* text color */
 	--primary-text: #ebedf3;
 	--secondary-text: #a6a8ad;
@@ -9707,7 +9708,7 @@ body {
 ::-webkit-scrollbar {
 	width: 7px;
 	height: 10px;
-	background-color: var(--bg9);
+	background-color: var(--bg8);
 	border-radius: 7px;
 }
 
@@ -9741,6 +9742,10 @@ a {
 	color: var(--primary-text);
 }
 
+strong, b, .font-weight-bold{
+	font-weight: 500 !important;
+}
+
 button, input[type="submit"] {
 	border: none;
 }
@@ -9757,11 +9762,15 @@ button, input[type="submit"] {
 }
 
 .highlight-text {
-	color: var(--primary-text);
+	color: var(--primary-text) !important;
 }
 
 .highlight-bg {
-	background-color: var(--highlight3);
+	background-color: var(--highlight4) !important;
+}
+
+.highlight-bg:hover {
+	background-color: var(--highlight3) !important;
 }
 
 .bg9 {
@@ -9868,7 +9877,7 @@ select {
 }
 
 .swal2-styled.swal2-cancel {
-	border: solid 1px var(--bg7)!important;
+	border: solid 1px var(--bg6)!important;
 	background-color: rgba(0, 0, 0, 0)!important;
 	font-weight: unset;
 }

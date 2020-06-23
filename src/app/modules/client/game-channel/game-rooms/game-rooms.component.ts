@@ -9,7 +9,7 @@ import { GameRoomsOptionsDropdownComponent } from './game-rooms-options-dropdown
 import { CssConfigs } from 'src/environments/environment';
 import { LookAccountOptionsDropdownComponent } from '../../look-account/look-account-options-dropdown/look-account-options-dropdown.component';
 import { GameRoomsItemOptionsDropdownComponent } from './game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
-import { finalize } from 'rxjs/operators';
+import { finalize, catchError, tap } from 'rxjs/operators';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
@@ -47,23 +47,17 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	gameRooms: GameRoom[] = [];
 
-	// msgInput: string = 'lorem ipsum';
-
 	constructor(
 		private injector: Injector,
-		// private chatService: ChatService,
 		private gameRoomHttpService: GameRoomsHttpService
 	) {
 		super(injector);
 		GameRoomsLanguage.define(this.translateService);
-
-		this.fetchGameRooms();
 	}
-
+	
 	ngOnInit() {
+		this.fetchGameRooms();
 		this.clientDataService.setReloadGameRoomsHandler(() => this.reloadRooms());
-		// this.chatService.requestId();
-		// this.sendButtonClick();
 	}
 
 	showGameRoomsOptionsDropdownDropdown(event) {
@@ -85,7 +79,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 		const currentGameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
 		if (currentGameChannelId) {
 			this.gameRooms = [];
-			this.gameRoomHttpService.reloadRooms(currentGameChannelId, this.loaderLocationVR).subscribe(data => {
+			this.gameRoomHttpService.fetchGameRooms(currentGameChannelId, this.loaderLocationVR, true).subscribe(data => {
 				this.gameRooms = data;
 			});
 		}
@@ -94,7 +88,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	protected fetchGameRooms() {
 		const currentGameChannelId = this.clientDataService.getCurrentGameChannelId(this.homeUrl);
 		if (currentGameChannelId) {
-			this.gameRoomHttpService.fetchGameRooms(currentGameChannelId).subscribe(data => {
+			this.gameRoomHttpService.fetchGameRooms(currentGameChannelId, this.loaderLocationVR).subscribe(data => {
 				this.gameRooms = data;
 			});
 		}
@@ -132,21 +126,19 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 				cancelRoomHandler: () => {
 					room.isRequestingFromClient = true;
 					this.gameRoomHttpService.getPendingJoinRoom()
-						.pipe(finalize(() => {
-							room.isRequestingFromClient = false;
-						})).subscribe(approveList => {
+						.pipe(tap(null, () => room.isRequestingFromClient = false)).subscribe(approveList => {
 							const approve = approveList.find(approve => approve.roomId === room.id);
 							if (approve) {
 								if (approve.isApprove) {
+									//reload if this is the old data
 									this.reloadRooms();
 								} else {
 									this.gameRoomHttpService.cancelRoomRequest(approve)
-										.pipe(finalize(() => {
-											room.isRequestingFromClient = false;
-										})).subscribe(result => {
+										.pipe(tap(null, () => room.isRequestingFromClient = false)).subscribe(result => {
 											if (result.success) {
 												room.isRequesting = false;
 											}
+											room.isRequestingFromClient = false;
 										})
 								}
 							} else {
@@ -157,11 +149,4 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 			}
 		});
 	}
-
-	// sendButtonClick() {
-	// 	this.chatService.onRequest().subscribe(data => {
-	// 		console.log('data');
-	// 		console.log(data);
-	// 	});
-	// }
 }

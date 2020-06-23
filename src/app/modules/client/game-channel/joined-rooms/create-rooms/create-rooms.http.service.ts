@@ -24,6 +24,10 @@ export class CreateRoomsHttpService extends ClientCommonService {
 	}
 
 	create(room: RoomInput, gameChannelId: string) {
+		if(room.name == null){
+			room.name = '';
+		}
+		
 		return this.apollo.use('mainService').mutate<any>({
 			mutation: gql`
 				mutation 

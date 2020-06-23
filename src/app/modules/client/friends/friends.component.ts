@@ -9,6 +9,7 @@ import { pipe } from 'rxjs';
 import { SearchFriendsComponent } from './search-friends/search-friends.component';
 import { FriendItemDropdownComponent } from './friend-item-dropdown/friend-item-dropdown.component';
 import { CssConfigs } from 'src/environments/environment';
+import { FriendsOptionsDropdownComponent } from './friends-options-dropdown/friends-options-dropdown.component';
 
 @Component({
 	selector: 'app-friends',
@@ -32,7 +33,7 @@ import { CssConfigs } from 'src/environments/environment';
 				width: '402px'
 			})),
 			state('middle-expand', style({
-				width: '276px'
+				width: '277px'
 			})),
 			state('collapse', style({
 				width: '0px'
@@ -67,6 +68,7 @@ import { CssConfigs } from 'src/environments/environment';
 	],
 })
 export class FriendsComponent extends ClientCommonComponent implements OnInit {
+	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	mainContainerIsExpanding: boolean = true;
 	chatBoxIsOpening: boolean = false;
 	friendsContainerState: string = 'expand';
@@ -85,6 +87,7 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 
 	ngOnInit() {
 		this.fetchFriends();
+		this.clientDataService.setReloadFriendsHandler(() => this.reloadFriends());
 	}
 
 	openChatBox(selectedFriend: MyFriend) {
@@ -100,13 +103,28 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			anchorTo: "right",
 			destroyIfOutFocus: true,
 			zIndex: CssConfigs.dropdownMenuZIndex,
-			popupOptions:{
+			popupOptions: {
 				classList: 'py-3 px-2 bg6',
 				width: 280,
 				useExitBtn: false
 			},
 			data: {
 				accountId: accountId
+			}
+		});
+	}
+
+	showFriendsOptionsDropdown(event) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: FriendsOptionsDropdownComponent,
+			anchorElement: event.target,
+			anchorTo: "right",
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.dropdownMenuZIndex,
+			popupOptions: {
+				classList: 'py-3 px-2 bg6',
+				width: 220,
+				useExitBtn: false
 			}
 		});
 	}
@@ -153,13 +171,22 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			destroyIfOutFocus: true,
 			zIndex: CssConfigs.popupZIndex,
 			popupOptions: {
-				
+
 			}
 		});
 	}
 
 	protected fetchFriends() {
-		this.friendsHttpService.fetchFriends()
+		this.friendsHttpService.fetchFriends(this.loaderLocationVR)
+			.pipe()
+			.subscribe(data => {
+				this.friends = data;
+			})
+	}
+
+	protected reloadFriends() {
+		this.friends = [];
+		this.friendsHttpService.fetchFriends(this.loaderLocationVR, true)
 			.pipe()
 			.subscribe(data => {
 				this.friends = data;

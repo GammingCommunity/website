@@ -4,3 +4,7 @@
 	min-width: 32px;
 	height: 32px;
 }
+
+.user-name{
+	color: var(--secondary-text);
+}

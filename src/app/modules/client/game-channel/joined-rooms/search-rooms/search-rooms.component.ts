@@ -33,8 +33,6 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 	destroy: () => void;
 	searchKey: string = '';
 	searchSubscription: Subscription;
-	searchOption: string;
-	searchRoomOptionEnum = SearchRoomOptionEnum;
 
 	constructor(
 		protected injector: Injector,
@@ -45,8 +43,6 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 		this.destroy = this.injector.get('destroy');
 		const data = this.injector.get('data');
 		SearchRoomsLanguage.define(this.translateService);
-
-		this.searchOption = this.searchRoomOptionEnum.SEARCH_BY_NAME;
 	}
 
 	ngOnInit() {
@@ -58,7 +54,7 @@ export class SearchRoomsComponent extends ClientCommonComponent implements OnIni
 		this.rooms = [];
 
 		if (this.searchKey) {
-			this.searchSubscription = this.searchRoomsHttpService.search(this.searchKey, this.searchOption, this.loaderLocationVR).subscribe(data => {
+			this.searchSubscription = this.searchRoomsHttpService.search(this.searchKey, this.loaderLocationVR).subscribe(data => {
 				this.rooms = data;
 			});
 		}

@@ -9,6 +9,7 @@ import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
 import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
+import { JoinedRoomsOptionsDropdownComponent } from './joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -18,10 +19,10 @@ import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 		trigger('changeContainerState', [
 			state('expand', style({
 				padding: '15px',
-				width: '300px'
+				width: '340px'
 			})),
 			state('collapse', style({
-				width: '101px',
+				width: '81px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
@@ -54,6 +55,7 @@ import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 	]
 })
 export class JoinedRoomsComponent extends ClientCommonComponent implements OnInit {
+	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	joinedRooms: JoinedRoom[] = [];
 	containerState: string = 'expand';
 	showPrivateChat: (data: any) => void;
@@ -64,11 +66,16 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	) {
 		super(injector);
 		JoinedRoomsLanguage.define(this.translateService);
-
-		this.fetchJoinedRooms();
 	}
-
+	
 	ngOnInit() {
+		this.fetchJoinedRooms();
+		this.clientDataService.setReloadJoinedRoomsHandler(
+			() => {
+				this.joinedRooms = [];
+				this.joinedRoomHttpService.fetchJoinedRooms(this.loaderLocationVR, true).subscribe(data => this.joinedRooms = data);
+			}
+		)
 	}
 
 	resizeContainer() {
@@ -90,6 +97,20 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 		});
 	}
 
+	showJoinedRoomsOptionsDropdown(event) {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: JoinedRoomsOptionsDropdownComponent,
+			anchorElement: event.target,
+			anchorTo: "left",
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.dropdownMenuZIndex,
+			popupOptions: {
+				classList: 'py-3 px-2 bg6',
+				useExitBtn: false
+			}
+		});
+	}
+
 	showCreateRoomsPopup() {
 		this.dialogService.putDialogComponentToComponentWithOptions({
 			dialogType: CreateRoomsComponent,
@@ -104,8 +125,6 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	}
 
 	protected fetchJoinedRooms() {
-		this.joinedRoomHttpService.fetchJoinedRooms().subscribe(data => {
-			this.joinedRooms = data;
-		});
+		this.joinedRoomHttpService.fetchJoinedRooms(this.loaderLocationVR).subscribe(data => this.joinedRooms = data);
 	}
 }

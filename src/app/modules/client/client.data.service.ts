@@ -19,6 +19,8 @@ export class ClientDataService extends ClientCommonService {
 	private currentGameChannelIdTitle: string = 'currentGameChannelId';
 	private currentGameChannelId: string;
 	private reloadGameRoomsHandler: () => void = null;
+	private reloadJoinedRoomsHandler: () => void = null;
+	private reloadFriendsHandler: () => void = null;
 
 	constructor(
 		protected injector: Injector,
@@ -29,6 +31,7 @@ export class ClientDataService extends ClientCommonService {
 		super(injector);
 	}
 
+	//reloadGameRoomsHandler
 	reloadGameRooms(){
 		if(this.reloadGameRoomsHandler === null){
 			this.alertService.show('reloadGameRoomsHandler === null');
@@ -40,7 +43,31 @@ export class ClientDataService extends ClientCommonService {
 	setReloadGameRoomsHandler(func: () => void){
 		this.reloadGameRoomsHandler = func;
 	}
+	//reloadJoinedRoomsHandler
+	reloadJoinedRooms(){
+		if(this.reloadJoinedRoomsHandler === null){
+			this.alertService.show('reloadJoinedRoomsHandler === null');
+		} else {
+			this.reloadJoinedRoomsHandler();
+		}
+	}
 
+	setReloadJoinedRoomsHandler(func: () => void){
+		this.reloadJoinedRoomsHandler = func;
+	}
+	//reloadFriendsHandler
+	reloadFriends(){
+		if(this.reloadFriendsHandler === null){
+			this.alertService.show('reloadFriendsHandler === null');
+		} else {
+			this.reloadFriendsHandler();
+		}
+	}
+
+	setReloadFriendsHandler(func: () => void){
+		this.reloadFriendsHandler = func;
+	}
+	//
 	setCurrentGameChannelId(id: string) {
 		this.currentGameChannelId = id;
 		localStorage.setItem(this.currentGameChannelIdTitle, id);
@@ -52,7 +79,7 @@ export class ClientDataService extends ClientCommonService {
 		} else {
 			//check in localstore
 			const id = localStorage.getItem(this.currentGameChannelIdTitle);
-			if(id){
+			if(id && id !== 'undefined'){
 				this.currentGameChannelId = id;
 				return this.currentGameChannelId;
 			} else {

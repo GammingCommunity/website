@@ -1,9 +1,9 @@
-import { Injectable, Injector } from "@angular/core";
+import { Injectable, Injector, ViewContainerRef, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { JoinedRoom } from './joined-rooms.dto';
 import { ClientCommonService } from '../../client.common-service';
 
@@ -22,7 +22,9 @@ export class JoinedRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	fetchJoinedRooms() {
+	fetchJoinedRooms(viewContainerRef: ViewContainerRef, reload: boolean = false) {
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-absolute w-100 h-100 bg9 d-flex justify-content-center align-items-center').loaderVR;
+
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
@@ -31,14 +33,17 @@ export class JoinedRoomsHttpService extends ClientCommonService {
 						_id
 						roomName
 						roomLogo
+						roomBackground
 					}
 				}
 			`,
+			fetchPolicy: reload ? 'no-cache' : null,
+			variables: { isUseGlobalLoader: false },
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
-		}).pipe(map(
-			({ data }): JoinedRoom[] => {
+		}).pipe(
+			map(({ data }): JoinedRoom[] => {
 				let rooms: JoinedRoom[] = [];
 
 				data.getRoomJoin.forEach(room => {
@@ -46,7 +51,12 @@ export class JoinedRoomsHttpService extends ClientCommonService {
 				})
 
 				return rooms;
-			}
-		));
+			}),
+			finalize(() => {
+				if (loader) {
+					loader.destroy();
+				}
+			})
+		);
 	}
 }

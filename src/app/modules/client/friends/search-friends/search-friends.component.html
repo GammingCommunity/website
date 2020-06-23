@@ -12,7 +12,7 @@
 	<div class="w-100 h-100 position-relative d-flex flex-column overflow-auto">
 		<!-- item -->
 		<div #loaderLocation></div>
-		<div class="border-bottom p-2 mb-4 d-flex align-items-end w-100" *ngFor='let lookedAccount of lookedAccounts'>
+		<div class="border-top p-2 mb-5 d-flex align-items-start w-100" *ngFor='let lookedAccount of lookedAccounts'>
 			<!-- avatar -->
 			<div class="h-100">
 				<a class="mr-3" rel="noopener noreferrer" routerLink="{{lookAccountUrl}}/{{lookedAccount.id}}" (click)='destroy()'>

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, AfterContentChecked, AfterViewChecked, AfterContentInit, DoCheck, OnChanges } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, AfterContentChecked, AfterViewChecked, AfterContentInit, DoCheck, OnChanges, Injector, ViewContainerRef } from "@angular/core";
 import { LineSvgMotion } from "svg-motion";
 import { CssConfigs } from 'src/environments/environment';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -30,17 +30,34 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class LoaderComponent implements OnInit, OnDestroy {
 	@ViewChild('spinner', { static: true }) private spinnerRef: ElementRef<HTMLElement>;
 	private motion: LineSvgMotion;
+	private classList: string;
 
-	constructor(){
+	constructor(
+		private injector: Injector,
+		private viewContainerRef: ViewContainerRef
+		){
+		const data = this.injector.get('data');
+
+		if(data){
+			this.classList = data.classList;
+		}
 		this.motion = new LineSvgMotion();
 	}
 	
 	ngOnInit() {
+		this.setClassList();
+		
 		const spinnerElement = this.spinnerRef.nativeElement;
 		this.motion.animateLineGroup(spinnerElement.getAttribute('d'), spinnerElement, {
 			mode: 'loading',
 			time: 700
 		});
+	}
+
+	protected setClassList(){
+		if(this.classList){
+			this.viewContainerRef.element.nativeElement.setAttribute('class', this.viewContainerRef.element.nativeElement.getAttribute('class') + ' ' + this.classList);
+		}
 	}
 	
 	ngOnDestroy() {

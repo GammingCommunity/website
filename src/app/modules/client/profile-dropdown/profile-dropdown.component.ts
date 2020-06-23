@@ -52,6 +52,6 @@ export class ProfileDropdownComponent extends ClientCommonComponent {
 
 	logOut() {
 		this.authService.removeSessionToken();
-		window.location.href = "/client";
+		window.location.href = "/";
 	}
 }

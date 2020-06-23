@@ -22,11 +22,13 @@ export class GameRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	fetchGameRooms(gameChannelId: string) {
+	fetchGameRooms(gameChannelId: string, viewContainerRef: ViewContainerRef, reload: boolean = false) {
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-absolute w-100 h-100 bg8 d-flex justify-content-center align-items-center').loaderVR;
+
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
-					getRoomByGame(limit:100, page:1, gameID:"${gameChannelId}"){
+					getRoomByGame(limit:20, page:1, gameID:"${gameChannelId}", groupSize: none){
 						code
 						_id
 						roomName
@@ -40,11 +42,13 @@ export class GameRoomsHttpService extends ClientCommonService {
 					}
 				}
 			`,
+			fetchPolicy: reload ? 'no-cache' : null,
+			variables: { isUseGlobalLoader: false },
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
-		}).pipe(map(
-			({ data }): GameRoom[] => {
+		}).pipe(
+			map(({ data }): GameRoom[] => {
 				let rooms: GameRoom[] = [];
 
 				data.getRoomByGame.forEach(room => {
@@ -52,50 +56,12 @@ export class GameRoomsHttpService extends ClientCommonService {
 				})
 
 				return rooms;
-			}
-		));
-	}
-
-	reloadRooms(gameChannelId: string, viewContainerRef: ViewContainerRef) {
-		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
-
-		return this.apollo.use('mainService').query<any>({
-			query: gql`
-				query{
-					getRoomByGame(limit:100, page:1, gameID:"${gameChannelId}"){
-						code
-						_id
-						roomName
-						roomLogo
-						roomBackground
-						isJoin
-						isPrivate
-						isRequest
-						maxOfMember
-						countMember
-					}
+			}),
+			finalize(() => {
+				if (loader) {
+					loader.destroy();
 				}
-			`,
-			variables: {
-				isUseGlobalLoader: false
-			},
-			fetchPolicy: 'no-cache',
-			context: {
-				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
-			}
-		}).pipe(
-			map(
-				({ data }): GameRoom[] => {
-					let rooms: GameRoom[] = [];
-
-					data.getRoomByGame.forEach(room => {
-						rooms.push(new GameRoom(room));
-					})
-
-					return rooms;
-				}
-			),
-			finalize(() => loader.destroy())
+			})
 		);
 	}
 

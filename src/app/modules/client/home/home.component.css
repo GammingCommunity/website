@@ -1,12 +1,17 @@
 
 
-
 .game-channels-item {
 	width: 520px;
-	height: 100px;
+	height: 110px;
+	min-height: 110px;
 	position: relative;
 	min-height: max-content;
 	cursor: pointer;
+	transition: all .25s ease;
+}
+
+.game-channels-item:hover{
+	transform: scale(1.019);
 }
 
 .game-channels-item>div {
@@ -23,7 +28,7 @@
 	height: 100%;
 	background-color: var(--bg10);
 	opacity: .6;
-	transition: all .3s ease;
+	transition: all .4s ease;
 }
 
 .game-channels-item:hover::after {

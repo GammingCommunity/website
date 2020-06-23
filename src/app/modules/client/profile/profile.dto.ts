@@ -8,10 +8,6 @@ export class Profile {
 	phone: string;
 	birthmonth: string;
 	birthyear: string;
-	// setting: Setting;
-	// role: string;
-	// status: string;
-	// updatedAt: Date;
 	createdAt: Date;
 
 	constructor(profile = null) {
@@ -25,10 +21,6 @@ export class Profile {
 			this.phone = profile.phone;
 			this.birthmonth = profile.birthmonth;
 			this.birthyear = profile.birthyear;
-			// this.setting = new Setting(profile.setting);
-			// this.role = profile.role;
-			// this.status = profile.status;
-			// this.updatedAt = profile.updated_at;
 			this.createdAt = profile.created_at;
 		}
 	}

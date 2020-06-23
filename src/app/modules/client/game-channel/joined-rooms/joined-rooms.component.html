@@ -11,32 +11,53 @@
 <nav class="h-100 d-flex flex-column" [@changeContainerState]="containerState">
 	<div class="d-flex align-items-center" *ngIf="containerState === 'expand'">
 		<!-- title -->
-		<strong>
+		<strong class="flex-grow-1">
 			<h5>{{'JoinedRoomsLanguage.JOINED_ROOMS' | translate}}</h5>
 		</strong>
+		<!-- options button -->
+		<div class="btn bg-transparent" (click)='showJoinedRoomsOptionsDropdown($event)'>
+			<i-feather name="more-horizontal"></i-feather>
+		</div>
 	</div>
 
+	<!-- loader location -->
+	<div class="loaderLocation" #loaderLocation></div>
+
 	<!-- list -->
-	<div [@listAnimation]='joinedRooms.length' class="my-4 d-flex flex-column flex-grow-1 overflow-hidden overflow-y-auto">
-		<!-- item -->
-		<div class="room-items d-flex p-2 my-1 rounded-lg" (click)='showPrivateChat(room.id)'
-			*ngFor="let room of joinedRooms">
+	<div [@listAnimation]='joinedRooms.length' [ngStyle]="{
+			'margin-left': (containerState == 'expand') ? '-15px' : '0px',
+			'padding-left': (containerState == 'expand') ? '15px' : '0px',
+			'margin-right': (containerState == 'expand') ? '-15px' : '0px'
+		}" class="my-4 d-flex flex-column flex-grow-1 overflow-hidden overflow-y-auto">
+
+
+		<div (click)='showPrivateChat(room.id)'
+			[ngClass]="{
+				'room-items d-flex rounded-lg overflow-hidden align-items-center': true, 
+				'p-3 my-2': containerState == 'expand',
+				'px-2': containerState != 'expand'
+			}"
+			*ngFor="let room of joinedRooms" [ngStyle]="{
+				'background-image': (containerState == 'expand') ? 'url('+room.backgroundUrl+')' : '',
+				'margin-right': (containerState == 'expand') ? '15px' : '0px'
+			}">
+			<div class="layout" [ngStyle]="{'display': (containerState == 'expand') ? 'block' : 'none'}"></div>
 			<!-- image -->
-			<div class="img rounded-lg" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}">
+			<div class="img rounded-circle" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}">
 			</div>
 			<!-- info -->
 			<div *ngIf="containerState === 'expand'" class="pl-2 flex-grow-1 overflow-hidden">
-				<div><strong class="highlight-text">{{room.name}}</strong></div>
+				<div class="overflow-hidden w-100 text-nowrap"><strong class="highlight-text">{{room.name}}</strong>
+				</div>
 				<p class="m-0">#{{room.code}}</p>
 			</div>
 		</div>
-		<!-- empty -->
 
 
 	</div>
 
 	<!-- quick search button -->
-	<div (click)='showSearchPopup()' [style.width]="containerState != 'expand' ? '85px' : 'unset'"
+	<div (click)='showSearchPopup()' [style.width]="containerState != 'expand' ? '65px' : 'unset'"
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
 		[ngClass]="{'btn btn-border mb-2 d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
@@ -44,9 +65,9 @@
 			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.QUICK_SEARCH_ROOMS' | translate}}</strong>
 	</div>
 	<!-- add room button -->
-	<div (click)='showCreateRoomsPopup()' [style.width]="containerState != 'expand' ? '85px' : 'unset'"
+	<div (click)='showCreateRoomsPopup()' [style.width]="containerState != 'expand' ? '65px' : 'unset'"
 		[style.height]="containerState != 'expand' ? '38px' : 'unset'"
-		[ngClass]="{'btn btn-border d-flex justify-content-center align-items-center': true, 'm-2': containerState != 'expand'}"
+		[ngClass]="{'btn bg8 d-flex justify-content-center align-items-center mb-2 mt-1': true, 'm-2': containerState != 'expand'}"
 		#searchFriendBtn>
 		<i-feather style="transform: scale(0.9);" name="plus-circle"></i-feather><strong class="pl-2"
 			*ngIf="containerState === 'expand'">{{ 'JoinedRoomsLanguage.ADD_ROOM' | translate}}</strong>

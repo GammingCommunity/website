@@ -21,6 +21,10 @@ const routes: Routes = [
 				component: HomeComponent
 			},
 			{
+				path: "game-channel",
+				component: GameChannelComponent
+			},
+			{
 				path: "game-channel/:id",
 				component: GameChannelComponent
 			},

@@ -53,6 +53,7 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 			this.createRoomsHttpService.create(this.roomInput, gameChannelId).subscribe(result => {
 				if(result.success){
 					this.clientDataService.reloadGameRooms();
+					this.clientDataService.reloadJoinedRooms();
 					this.destroy();
 				} else {
 					SwtAlert.display({

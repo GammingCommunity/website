@@ -98,6 +98,7 @@ export class SearchFriendsComponent extends ClientCommonComponent implements OnC
 			})).subscribe(result => {
 				if (result) {
 					lookedAccount.relationship = this.accountRelationShipType.FRIEND;
+					this.clientDataService.reloadFriends();
 				}
 			});
 	}

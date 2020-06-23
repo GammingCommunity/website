@@ -34,6 +34,8 @@ import { GameRoomsOptionsDropdownComponent } from './modules/client/game-channel
 import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
 import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms/create-rooms/create-rooms.component';
 import { ClientDataService } from './modules/client/client.data.service';
+import { JoinedRoomsOptionsDropdownComponent } from './modules/client/game-channel/joined-rooms/joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
+import { FriendsOptionsDropdownComponent } from './modules/client/friends/friends-options-dropdown/friends-options-dropdown.component';
 
 @NgModule({
 	declarations: [
@@ -47,8 +49,10 @@ import { ClientDataService } from './modules/client/client.data.service';
 		ProfileDropdownComponent,
 		LookAccountOptionsDropdownComponent,
 		LookAccountFriendedOptionsDropdownComponent,
+		FriendsOptionsDropdownComponent,
 		GameRoomsItemOptionsDropdownComponent,
 		GameRoomsOptionsDropdownComponent,
+		JoinedRoomsOptionsDropdownComponent,
 		FriendItemDropdownComponent,
 		CreateRoomsComponent,
 		AutofocusDirective,
@@ -84,6 +88,8 @@ import { ClientDataService } from './modules/client/client.data.service';
 		LookAccountOptionsDropdownComponent,
 		GameRoomsOptionsDropdownComponent,
 		GameRoomsItemOptionsDropdownComponent,
+		JoinedRoomsOptionsDropdownComponent,
+		FriendsOptionsDropdownComponent,
 		FeedbackComponent,
 		SearchFriendsComponent,
 		SearchRoomsComponent,

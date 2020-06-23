@@ -12,9 +12,9 @@
 	</div>
 	<div class="profile-tab pb-3 mb-5">
 		<!-- avatar -->
-		<div *ngIf='oldProfile.avatarUrl' class="img avatar"
+		<div *ngIf='oldProfile.avatarUrl' class="img avatar rounded-lg"
 			[ngStyle]="{'background-image':'url('+oldProfile.avatarUrl+')'}"></div>
-		<div *ngIf='!oldProfile.avatarUrl' class="img avatar"
+		<div *ngIf='!oldProfile.avatarUrl' class="img avatar rounded-lg"
 			[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
 
 		<div class="m-3">

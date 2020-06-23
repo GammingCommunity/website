@@ -13,7 +13,6 @@
 	right: 0;
 	z-index: 1;
 	height: 100%;
-	background-color: var(--bg8);
 }
 
 app-friend-chat {
@@ -28,7 +27,7 @@ app-friend-chat {
 
 .friends-items, .friends-options {
 	cursor: pointer;
-	transition: all .3s ease;
+	transition: all .15s ease;
 }
 
 .friends-options {
@@ -40,16 +39,16 @@ app-friend-chat {
 }
 
 .friend-items-container{
-	transition: all .5s ease-out;
+	transition: all .15s ease;
 	padding-right: 1px;
 }
 
 .friend-items-container.active {
-	border-right: solid 5px var(--highlight3);
+	border-left: solid 6px var(--highlight3);
 }
 
 .friends-items:hover, .friends-options:hover {
-	background-color: var(--bg7);
+	background-color: var(--bg5);
 }
 
 .friends-items .img {

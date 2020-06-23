@@ -10,7 +10,7 @@ export class RoomGlobalChatLanguage {
 		}, true);
 		translateService.setTranslation('vi', {
 			'RoomGlobalChatLanguage': {
-				'GLOBAL_CHAT': 'Chat chung',
+				'GLOBAL_CHAT': 'Chat thế giới',
 				'TYPE_HERE': 'Viết gì đó...',
 			}
 		}, true);

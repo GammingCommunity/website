@@ -1,9 +1,9 @@
-<div class="d-flex h-100 w-100 p-5">
+<div class="d-flex h-100 w-100 p-5 bg8">
 	<app-home-game-details class="flex-grow-1 mr-4"></app-home-game-details>
 	<div class="d-flex flex-column border-left pl-4">
 		<h5>{{ 'HomeLanguage.GAME_CHANNEL' | translate }}</h5>
 		<div [@listAnimation]='games.length
-		' class="game-channels overflow-auto mt-4 pr-3">
+		' class="game-channels overflow-auto mt-4 pl-2 pr-3">
 			<!-- item -->
 			<div (click)='seeGameDetails(game)'
 				[ngClass]="{'img game-channels-item mb-4 rounded-lg shadow overflow-hidden': true, 'active': selectedGame === game}"

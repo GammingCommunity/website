@@ -25,18 +25,19 @@ export class SearchRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	search(searchKey: string, searchOption: string, viewContainerRef: ViewContainerRef) {
+	search(searchKey: string, viewContainerRef: ViewContainerRef) {
 		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
 
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query 
 				{
-					searchRoom(query:"${searchKey}", option:${searchOption}){
+					searchRoom(query:"${searchKey}"){
 						code
 						_id
 						roomName
 						roomLogo
+						description
 					}
 				}
 			`,
