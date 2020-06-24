@@ -17,19 +17,17 @@
 	width: 66px;
 	min-width: 66px;
 	height: 66px;
-	transition: all .75s ease;
 }
 
 .room-items {
 	cursor: pointer;
-	transition: all .15s ease;
 	position: relative;
 	transition: all .25s ease;
 	height: 94px;
 	min-height: 94px;
 }
 
-.room-items *:not(.layout){
+.room-items > div:not(.layout){
 	z-index: 1;
 }
 
@@ -42,7 +40,7 @@
 	height: 100%;
 	background-color: var(--bg10);
 	opacity: .75;
-	transition: all .4s ease;
+	transition: all .25s ease;
 }
 
 .room-items:hover .layout {

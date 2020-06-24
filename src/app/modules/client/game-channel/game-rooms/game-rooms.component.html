@@ -1,5 +1,5 @@
 <div class="h-100 d-flex flex-column position-relative">
-	<div class="d-flex align-items-center mr-3">
+	<div class="d-flex align-items-center">
 		<!-- title -->
 		<strong class="flex-grow-1">
 			<h5>{{ 'GameRoomsLanguage.ROOMS_LIST' | translate}}</h5>
@@ -19,7 +19,7 @@
 		<!-- item -->
 		<div class="room-item-container img mb-4 rounded-lg overflow-hidden shadow" *ngFor='let room of gameRooms'
 			[ngStyle]="{'background-image':'url('+room.backgroundUrl+')'}">
-			<div *ngIf="!room.isPrivate" class="room-item px-3 d-flex align-items-center"
+			<div class="room-item px-3 d-flex align-items-center"
 				(click)="!room.isRequestingFromClient ? handleRoomItemsClick(room, $event) : null">
 				<!-- loader -->
 				<div *ngIf='room.isRequestingFromClient'
@@ -27,7 +27,7 @@
 					{{ 'GameRoomsLanguage.REQUESTING' | translate}}</div>
 				<!-- avatar -->
 				<div class="img logo rounded-circle" [ngStyle]="{'background-image':'url('+room.logoUrl+')'}"></div>
-				<div class="flex-grow-1 pl-2">
+				<div class="flex-grow-1 pl-2 overflow-hidden">
 					<!-- name -->
 					<h5 class="text-nowrap room-title mb-1 overflow-hidden font-weight-bold">{{room.name}}</h5>
 					<!-- id -->

@@ -1,36 +1,126 @@
-<div class="chat-rooms">
-
-	<div class="chat-rooms-head hr-bottom">
-		<button (click)='hide()'>Exit</button>
-		<div class="img" style="background-image: url(img/9.jpg)"></div>
-		<div class="chat-rooms-head-info">
-			<p class="chat-rooms-items-name">Nào mình cùng lên xe buýt</p>
-			<p class="chat-rooms-items-id">1</p>
+<div class="p-5 chat-container d-flex flex-column position-relative w-100 h-100 shadow-lg img"
+	[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+	<div class="border-bottom d-flex pb-2 mb-2">
+		<div class="img logo rounded-lg" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+		<div class="px-3 flex-grow-1 overflow-hidden">
+			<div class="overflow-hidden"><h4 class="text-nowrap mb-1">Nào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýt</h4></div>
+			<p class="m-0">#1</p>
 		</div>
+		<div><button class="border bg-transparent rounded-lg px-2 cursor-pointer pb-1 align-items-center" (click)='hide()'><i-feather class="highlight-text" name="x"></i-feather></button></div>
 	</div>
 
-	<div class="chat-rooms-body">
-		<div class="chat-rooms-boxs">
-			<div class="chat-rooms-views">
+	<div class="flex-grow-1 d-flex overflow-auto">
+		<div class="w-100 h-100">
+			<!-- messages list -->
+			<div class="d-flex flex-column">
 
-				<div class="messages">
-					<div class="messages-head">
-						<div class="messages-avatar img" style="background-image: url(img/101.jpg)"></div>
-						<p class="messages-name">awdawkduh</p>
-						<div class="messages-options">
-							<i class="fas fa-search mr-1 btn btn-sm rounded-circle"></i>
-							<i class="fas fa-ellipsis-h btn btn-sm rounded-circle mr-0"></i>
+				<!-- item -->
+				<div class="message d-flex mb-4">
+					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
+						<div class="d-flex mb-1">
+							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
+						</div>
+						<pre style="width: max-content;" class="highlight-text text-wrap rounded-lg shadow bg8 p-2 m-0">Content sdfsdf
+							asdfasdf
+						</pre>
+					</div>
+				</div>
+
+				<div class="message d-flex mb-4">
+					<div class="flex-grow-1 d-flex align-items-end flex-column overflow-hidden">
+						<pre style="width: max-content;" class="highlight-text text-wrap m-0 rounded-lg shadow bg7 p-2">Content sdfsdf
+							asdfasdf
+						</pre>
+						<div class="d-flex mt-1">
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
 						</div>
 					</div>
-					<pre class="messages-body wrap">awdawdawdawd</pre>
+				</div>
+
+				<div class="message d-flex mb-4">
+					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
+						<div class="d-flex mb-1">
+							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
+						</div>
+						<pre style="width: max-content;" class="highlight-text text-wrap rounded-lg shadow bg8 p-2 m-0">Content sdfsdf
+							asdfasdf
+						</pre>
+					</div>
+				</div>
+
+				<div class="message d-flex mb-4">
+					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
+						<div class="d-flex mb-1">
+							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
+						</div>
+						<pre style="width: max-content;" class="highlight-text text-wrap rounded-lg shadow bg8 p-2 m-0">Content sdfsdf
+							asdfasdf
+						</pre>
+					</div>
+				</div>
+
+				<div class="message d-flex mb-4">
+					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
+						<div class="d-flex mb-1">
+							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
+						</div>
+						<pre style="width: max-content;" class="highlight-text text-wrap rounded-lg shadow bg8 p-2 m-0">Content sdfsdf
+							asdfasdf
+						</pre>
+					</div>
+				</div>
+
+				<div class="message d-flex mb-4">
+					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
+						<div class="d-flex mb-1">
+							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="message-options">
+								<div class="ml-2 p-1 btn">
+									<i-feather name="more-horizontal"></i-feather>
+								</div>
+							</div>
+						</div>
+						<pre style="width: max-content;" class="highlight-text text-wrap rounded-lg shadow bg8 p-2 m-0">Content sdfsdf
+							asdfasdf
+						</pre>
+					</div>
 				</div>
 
 
 			</div>
-			<div class="chat-rooms-inputs hr-top">
+			<div class="border-top">
 				<textarea class="chat-rooms-input" placeholder="Viết gì đó..." onkeyup="updateMessagesBoxLength()"
 					onkeydown="send(event)"></textarea>
-				<p class="chat-rooms-input-length ml-2">0</p>
+				<p class="ml-2">0</p>
 				<i class="far fa-smile pl-2"></i>
 			</div>
 		</div>

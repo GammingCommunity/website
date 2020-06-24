@@ -3,6 +3,7 @@ import { ChatService } from 'src/app/common/services/chat.service';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 import { ClientCommonComponent } from '../../../client.common-component';
 import { JoinedRoomsOptionsDropdownLanguage } from './joined-rooms-options-dropdown.language';
+import { GameChannelDataService } from '../../game-channel.data.service';
 
 @Component({
 	selector: 'app-joined-rooms-options-dropdown',
@@ -14,6 +15,7 @@ export class JoinedRoomsOptionsDropdownComponent extends ClientCommonComponent i
 
 	constructor(
 		private injector: Injector,
+		private gameChannelDataService: GameChannelDataService
 	) {
 		super(injector);
 		JoinedRoomsOptionsDropdownLanguage.define(this.translateService);
@@ -22,6 +24,6 @@ export class JoinedRoomsOptionsDropdownComponent extends ClientCommonComponent i
 	}
 	
 	ngOnInit() {
-		this.reloadRooms = () => this.clientDataService.reloadJoinedRooms();
+		this.reloadRooms = () => this.gameChannelDataService.reloadJoinedRooms();
 	}
 }

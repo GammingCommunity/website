@@ -36,6 +36,7 @@ import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms
 import { ClientDataService } from './modules/client/client.data.service';
 import { JoinedRoomsOptionsDropdownComponent } from './modules/client/game-channel/joined-rooms/joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
 import { FriendsOptionsDropdownComponent } from './modules/client/friends/friends-options-dropdown/friends-options-dropdown.component';
+import { GameChannelDataService } from './modules/client/game-channel/game-channel.data.service';
 
 @NgModule({
 	declarations: [
@@ -71,6 +72,7 @@ import { FriendsOptionsDropdownComponent } from './modules/client/friends/friend
 	providers: [
 		CookieService,
 		ClientDataService,
+		GameChannelDataService,
 		LoaderService,
 		AlertService,
 		DialogService,

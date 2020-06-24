@@ -23,7 +23,7 @@ export class GameRoomsHttpService extends ClientCommonService {
 	}
 
 	fetchGameRooms(gameChannelId: string, viewContainerRef: ViewContainerRef, reload: boolean = false) {
-		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-absolute w-100 h-100 bg8 d-flex justify-content-center align-items-center').loaderVR;
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-top-left position-absolute w-100 h-100 bg8 d-flex justify-content-center align-items-center').loaderVR;
 
 		return this.apollo.use('mainService').query<any>({
 			query: gql`

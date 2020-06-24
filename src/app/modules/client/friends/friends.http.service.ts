@@ -30,7 +30,7 @@ export class FriendsHttpService extends ClientCommonService {
 	}
 
 	fetchFriends(viewContainerRef: ViewContainerRef, reload: boolean = false) {
-		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-absolute w-100 h-100 bg7 d-flex justify-content-center align-items-center').loaderVR;
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-top-left position-absolute w-100 h-100 bg7 d-flex justify-content-center align-items-center').loaderVR;
 
 		return this.apollo.use('accountManagementService').query<any>({
 			query: MY_FRIENDS,

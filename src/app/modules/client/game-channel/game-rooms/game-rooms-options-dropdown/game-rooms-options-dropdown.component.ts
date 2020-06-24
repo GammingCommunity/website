@@ -3,6 +3,7 @@ import { ChatService } from 'src/app/common/services/chat.service';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 import { GameRoomsOptionsDropdownLanguage } from './game-rooms-options-dropdown.language';
 import { ClientCommonComponent } from '../../../client.common-component';
+import { GameChannelDataService } from '../../game-channel.data.service';
 
 @Component({
 	selector: 'app-game-rooms-options-dropdown',
@@ -14,6 +15,7 @@ export class GameRoomsOptionsDropdownComponent extends ClientCommonComponent imp
 
 	constructor(
 		private injector: Injector,
+		private gameChannelDataService: GameChannelDataService,
 	) {
 		super(injector);
 		GameRoomsOptionsDropdownLanguage.define(this.translateService);
@@ -22,6 +24,6 @@ export class GameRoomsOptionsDropdownComponent extends ClientCommonComponent imp
 	}
 	
 	ngOnInit() {
-		this.reloadRooms = () => this.clientDataService.reloadGameRooms();
+		this.reloadRooms = () => this.gameChannelDataService.reloadGameRooms();
 	}
 }

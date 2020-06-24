@@ -6,6 +6,7 @@ import { RoomInput } from './create-rooms.dto';
 import { CreateRoomsLanguage } from './create-rooms.language';
 import { CreateRoomsHttpService } from './create-rooms.http.service';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
+import { GameChannelDataService } from '../../game-channel.data.service';
 
 @Component({
 	selector: 'app-create-rooms',
@@ -32,6 +33,7 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 
 	constructor(
 		protected injector: Injector,
+		private gameChannelDataService: GameChannelDataService,
 		private createRoomsHttpService: CreateRoomsHttpService
 	) {
 		super(injector);
@@ -52,8 +54,8 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 		if(gameChannelId){
 			this.createRoomsHttpService.create(this.roomInput, gameChannelId).subscribe(result => {
 				if(result.success){
-					this.clientDataService.reloadGameRooms();
-					this.clientDataService.reloadJoinedRooms();
+					this.gameChannelDataService.reloadGameRooms();
+					this.gameChannelDataService.reloadJoinedRooms();
 					this.destroy();
 				} else {
 					SwtAlert.display({

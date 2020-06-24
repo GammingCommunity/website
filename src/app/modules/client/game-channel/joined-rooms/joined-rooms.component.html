@@ -8,7 +8,8 @@
 </div>
 
 
-<nav class="h-100 d-flex flex-column" [@changeContainerState]="containerState">
+<nav [ngClass]="{'h-100 d-flex flex-column position-relative': true, 'align-items-center': containerState != 'expand'}"
+	[@changeContainerState]="containerState">
 	<div class="d-flex align-items-center" *ngIf="containerState === 'expand'">
 		<!-- title -->
 		<strong class="flex-grow-1">
@@ -31,13 +32,11 @@
 		}" class="my-4 d-flex flex-column flex-grow-1 overflow-hidden overflow-y-auto">
 
 
-		<div (click)='showPrivateChat(room.id)'
-			[ngClass]="{
-				'room-items d-flex rounded-lg overflow-hidden align-items-center': true, 
+		<div (click)='showPrivateChat(room.id)' [ngClass]="{
+				'room-items d-flex rounded-lg overflow-hidden align-items-center img': true, 
 				'p-3 my-2': containerState == 'expand',
 				'px-2': containerState != 'expand'
-			}"
-			*ngFor="let room of joinedRooms" [ngStyle]="{
+			}" *ngFor="let room of joinedRooms" [ngStyle]="{
 				'background-image': (containerState == 'expand') ? 'url('+room.backgroundUrl+')' : '',
 				'margin-right': (containerState == 'expand') ? '15px' : '0px'
 			}">

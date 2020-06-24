@@ -1,4 +1,4 @@
-import { NgModule, ViewContainerRef } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { ClientRoutingModule } from "./client.routing.module";
 import { ClientComponent } from "./client.component";
 import { CommonModule } from "@angular/common";
@@ -16,14 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { RoomGlobalChatComponent } from './game-channel/room-global-chat/room-global-chat.component';
 import { RoomPrivateChatComponent } from './game-channel/room-private-chat/room-private-chat.component';
 import { RoomPrivateChatOptionsComponent } from './game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
-import { SearchFriendsComponent } from './friends/search-friends/search-friends.component';
 import { LookAccountComponent } from './look-account/look-account.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { DialogComponent } from 'src/app/common/dialogs/dialog.component';
-import { LoaderComponent } from 'src/app/common/dialogs/loader/loader.component';
 import { HomeComponent } from './home/home.component';
 import { HomeGameDetailsComponent } from './home/home-game-details/home-game-details.component';
-import { ClientDataService } from './client.data.service';
 
 @NgModule({
 	declarations: [

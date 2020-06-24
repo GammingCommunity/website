@@ -7767,6 +7767,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .position-absolute {
 	position: absolute !important;
+
 }
 
 .position-fixed {
@@ -9816,6 +9817,12 @@ button, input[type="submit"] {
 	visibility: visible;
 }
 
+/* positoon */
+.position-top-left{
+	top: 0;
+	left: 0;
+}
+
 /*  */
 
 select {
@@ -9836,6 +9843,7 @@ select {
 	border-radius: 0.25rem;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 
 /* sweetalert */
 

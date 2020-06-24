@@ -52,7 +52,7 @@
 	height: 100%;
 	background-color: var(--bg10);
 	opacity: .75;
-	transition: all .4s ease;
+	transition: all .25s ease;
 }
 
 .room-item:hover::after {

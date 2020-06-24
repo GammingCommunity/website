@@ -1,15 +1,14 @@
-import { Component, OnInit, HostListener, ElementRef, ViewContainerRef, ViewChild, Injector, Input } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, Injector, Input } from '@angular/core';
 import { JoinedRoom } from './joined-rooms.dto';
 import { JoinedRoomsHttpService } from './joined-rooms.http.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
-import { RoomPrivateChatUIService } from '../room-private-chat/room-private-chat.ui.service';
-import { TranslateService } from '@ngx-translate/core';
 import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
 import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 import { JoinedRoomsOptionsDropdownComponent } from './joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
+import { GameChannelDataService } from '../game-channel.data.service';
 
 @Component({
 	selector: 'app-joined-rooms',
@@ -22,7 +21,7 @@ import { JoinedRoomsOptionsDropdownComponent } from './joined-rooms-options-drop
 				width: '340px'
 			})),
 			state('collapse', style({
-				width: '81px',
+				width: '94px',
 				padding: '0px',
 			})),
 			transition('*=>expand', animate('100ms ease')),
@@ -58,10 +57,10 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	joinedRooms: JoinedRoom[] = [];
 	containerState: string = 'expand';
-	showPrivateChat: (data: any) => void;
 
 	constructor(
 		protected injector: Injector,
+		protected gameChannelDataService: GameChannelDataService,
 		private joinedRoomHttpService: JoinedRoomsHttpService
 	) {
 		super(injector);
@@ -70,12 +69,16 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 	
 	ngOnInit() {
 		this.fetchJoinedRooms();
-		this.clientDataService.setReloadJoinedRoomsHandler(
+		this.gameChannelDataService.setReloadJoinedRoomsHandler(
 			() => {
 				this.joinedRooms = [];
 				this.joinedRoomHttpService.fetchJoinedRooms(this.loaderLocationVR, true).subscribe(data => this.joinedRooms = data);
 			}
 		)
+	}
+
+	showPrivateChat(roomID: string){
+		this.gameChannelDataService.showPrivateChat(roomID);
 	}
 
 	resizeContainer() {

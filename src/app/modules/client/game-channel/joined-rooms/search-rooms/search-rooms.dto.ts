@@ -6,7 +6,6 @@ export class Room {
 	describe: string;
 	isRequesting: boolean;
 	hasJoined: boolean;
-	isPrivate: boolean;
 
 	constructor(rawData){
 		this.id = rawData._id;
@@ -15,6 +14,5 @@ export class Room {
 		this.logoUrl = rawData.roomLogo;
 		this.hasJoined = rawData.isJoin;
 		this.isRequesting = rawData.isRequest;
-		this.isPrivate = rawData.isPrivate;
 	}
 }

@@ -7,7 +7,6 @@ export class GameRoom {
 	backgroundUrl: string;
 	isRequesting: boolean;
 	hasJoined: boolean;
-	isPrivate: boolean;
 	maxMember: number;
 	countMember: number;
 	isRequestingFromClient: boolean = false;
@@ -22,7 +21,6 @@ export class GameRoom {
 		this.isRequesting = rawData.isRequest;
 		this.maxMember = rawData.maxOfMember;
 		this.countMember = rawData.countMember;
-		this.isPrivate = rawData.isPrivate;
 	}
 }
 

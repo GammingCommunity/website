@@ -11,6 +11,7 @@ import { LookAccountOptionsDropdownComponent } from '../../look-account/look-acc
 import { GameRoomsItemOptionsDropdownComponent } from './game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
 import { finalize, catchError, tap } from 'rxjs/operators';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { GameChannelDataService } from '../game-channel.data.service';
 
 @Component({
 	selector: 'app-game-rooms',
@@ -49,6 +50,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 
 	constructor(
 		private injector: Injector,
+		private gameChannelDataService: GameChannelDataService,
 		private gameRoomHttpService: GameRoomsHttpService
 	) {
 		super(injector);
@@ -57,7 +59,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 	
 	ngOnInit() {
 		this.fetchGameRooms();
-		this.clientDataService.setReloadGameRoomsHandler(() => this.reloadRooms());
+		this.gameChannelDataService.setReloadGameRoomsHandler(() => this.reloadRooms());
 	}
 
 	showGameRoomsOptionsDropdownDropdown(event) {
@@ -109,7 +111,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 				room: room,
 				joinRoomHandler: () => {
 					if (room.hasJoined) {
-
+						this.gameChannelDataService.showPrivateChat(room.id);
 					} else {
 						room.isRequestingFromClient = true;
 						this.gameRoomHttpService.joinRoom(room)

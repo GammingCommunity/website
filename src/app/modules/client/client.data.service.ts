@@ -18,8 +18,6 @@ import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 export class ClientDataService extends ClientCommonService {
 	private currentGameChannelIdTitle: string = 'currentGameChannelId';
 	private currentGameChannelId: string;
-	private reloadGameRoomsHandler: () => void = null;
-	private reloadJoinedRoomsHandler: () => void = null;
 	private reloadFriendsHandler: () => void = null;
 
 	constructor(
@@ -31,30 +29,6 @@ export class ClientDataService extends ClientCommonService {
 		super(injector);
 	}
 
-	//reloadGameRoomsHandler
-	reloadGameRooms(){
-		if(this.reloadGameRoomsHandler === null){
-			this.alertService.show('reloadGameRoomsHandler === null');
-		} else {
-			this.reloadGameRoomsHandler();
-		}
-	}
-
-	setReloadGameRoomsHandler(func: () => void){
-		this.reloadGameRoomsHandler = func;
-	}
-	//reloadJoinedRoomsHandler
-	reloadJoinedRooms(){
-		if(this.reloadJoinedRoomsHandler === null){
-			this.alertService.show('reloadJoinedRoomsHandler === null');
-		} else {
-			this.reloadJoinedRoomsHandler();
-		}
-	}
-
-	setReloadJoinedRoomsHandler(func: () => void){
-		this.reloadJoinedRoomsHandler = func;
-	}
 	//reloadFriendsHandler
 	reloadFriends(){
 		if(this.reloadFriendsHandler === null){
