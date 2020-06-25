@@ -1,6 +1,6 @@
 .navs {
 	position: fixed;
-	z-index: 20;
+	z-index: 30;
 	top: -40px;
 	left: calc(50% - 120px);
 	height: 70px;

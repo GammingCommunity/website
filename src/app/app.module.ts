@@ -32,11 +32,11 @@ import { SearchRoomsComponent } from './modules/client/game-channel/joined-rooms
 import { AutofocusDirective } from './common/directives/autofocus.derective';
 import { GameRoomsOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-options-dropdown/game-rooms-options-dropdown.component';
 import { GameRoomsItemOptionsDropdownComponent } from './modules/client/game-channel/game-rooms/game-rooms-item-options-dropdown/game-rooms-item-options-dropdown.component';
-import { CreateRoomsComponent } from './modules/client/game-channel/joined-rooms/create-rooms/create-rooms.component';
 import { ClientDataService } from './modules/client/client.data.service';
 import { JoinedRoomsOptionsDropdownComponent } from './modules/client/game-channel/joined-rooms/joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
 import { FriendsOptionsDropdownComponent } from './modules/client/friends/friends-options-dropdown/friends-options-dropdown.component';
 import { GameChannelDataService } from './modules/client/game-channel/game-channel.data.service';
+import { CreateRoomsComponent } from './modules/client/game-channel/game-rooms/create-rooms/create-rooms.component';
 
 @NgModule({
 	declarations: [

@@ -5,7 +5,7 @@ export class HomeGameDetailsLanguage {
 		translateService.setTranslation('en', {
 			'HomeGameDetailsLanguage': {
 				'WELCOME': 'Welcome',
-				'BACK_HOME': 'back, homie!',
+				'BACK_HOME': 'Back, homie!',
 				'ROOMS': ' room(s).',
 				'CURRENT_HAVE': 'Currently exists ',
 				'JOIN': 'Join now',
@@ -14,7 +14,7 @@ export class HomeGameDetailsLanguage {
 		translateService.setTranslation('vi', {
 			'HomeGameDetailsLanguage': {
 				'WELCOME': 'Chào mừng',
-				'BACK_HOME': 'bạn đã về nhà!',
+				'BACK_HOME': 'Bạn đã về nhà!',
 				'ROOMS': ' phòng.',
 				'CURRENT_HAVE': 'Đang có ',
 				'JOIN': 'Tham gia ngay',

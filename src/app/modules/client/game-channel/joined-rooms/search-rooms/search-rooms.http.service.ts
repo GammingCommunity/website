@@ -8,7 +8,7 @@ import { ServiceUrls } from 'src/environments/environment';
 import { LoaderService } from 'src/app/common/dialogs/loader/loader.service';
 import { LocalLoader } from 'src/app/common/dialogs/loader/loader.dto';
 import { ClientCommonService } from '../../../client.common-service';
-import { Room } from './search-rooms.dto';
+import { Room, Approve, ResultCRUD } from './search-rooms.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -25,19 +25,20 @@ export class SearchRoomsHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	search(searchKey: string, viewContainerRef: ViewContainerRef) {
+	search(searchKey: string, gameId: string, viewContainerRef: ViewContainerRef) {
 		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false).loaderVR;
 
+		gameId = gameId ? '"' + gameId + '"' : 'null';
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query 
 				{
-					searchRoom(query:"${searchKey}"){
-						code
+					searchRoom(query:"${searchKey}", gameID:${gameId}){
 						_id
 						roomName
 						roomLogo
-						description
+						isJoin
+						isRequest
 					}
 				}
 			`,
@@ -62,5 +63,77 @@ export class SearchRoomsHttpService extends ClientCommonService {
 			),
 			finalize(() => loader.destroy())
 		);
+	}
+
+	joinRoom(room: Room) {
+		return this.apollo.use('mainService').mutate<any>({
+			mutation: gql`
+				mutation{
+					joinRoom(roomID:"${room.id}"){
+						success
+						message
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): ResultCRUD => new ResultCRUD(data.joinRoom)));
+	}
+
+	
+	getPendingJoinRoom() {
+		return this.apollo.use('mainService').query<any>({
+			query: gql`
+				query{
+					getPendingJoinRoom_User{
+						_id
+						roomID
+						isApprove
+					}
+				}
+			`,
+			fetchPolicy: 'no-cache',
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): Approve[] => {
+				let approveList: Approve[] = [];
+
+				data.getPendingJoinRoom_User.forEach(data => {
+					approveList.push(new Approve(data));
+				})
+
+				return approveList;
+			}
+		));
+	}
+
+	cancelRoomRequest(approve: Approve) {
+		return this.apollo.use('mainService').mutate<any>({
+			mutation: gql`
+				mutation{
+					cancelRequest(roomID:"${approve.roomId}", requestID:"${approve.requestId}"){
+						success
+						message
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+			variables: {
+				isUseGlobalLoader: false
+			}
+		}).pipe(map(
+			({ data }): ResultCRUD => new ResultCRUD(data.cancelRequest)));
 	}
 }

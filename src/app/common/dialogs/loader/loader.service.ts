@@ -42,7 +42,7 @@ export class LoaderService extends DialogService {
 			dialogType: LoaderComponent,
 			viewContainerRef: viewContainerRef,
 			useBackground: useBackground,
-			zIndex: CssConfigs.loaderZIndex,
+			zIndex: 10,
 			data: {
 				classList: classList
 			}

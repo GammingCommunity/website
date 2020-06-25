@@ -6,7 +6,6 @@ import { JoinedRoomsLanguage } from './joined-rooms.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 import { CssConfigs } from 'src/environments/environment';
-import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 import { JoinedRoomsOptionsDropdownComponent } from './joined-rooms-options-dropdown/joined-rooms-options-dropdown.component';
 import { GameChannelDataService } from '../game-channel.data.service';
 
@@ -104,7 +103,7 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 		this.dialogService.putDialogComponentToComponentWithOptions({
 			dialogType: JoinedRoomsOptionsDropdownComponent,
 			anchorElement: event.target,
-			anchorTo: "left",
+			anchorTo: "right",
 			destroyIfOutFocus: true,
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
@@ -114,18 +113,7 @@ export class JoinedRoomsComponent extends ClientCommonComponent implements OnIni
 		});
 	}
 
-	showCreateRoomsPopup() {
-		this.dialogService.putDialogComponentToComponentWithOptions({
-			dialogType: CreateRoomsComponent,
-			useBackground: true,
-			destroyIfOutFocus: true,
-			zIndex: CssConfigs.popupZIndex,
-			popupOptions: {
-				classList: 'p-5',
-				width: '700px',
-			}
-		});
-	}
+
 
 	protected fetchJoinedRooms() {
 		this.joinedRoomHttpService.fetchJoinedRooms(this.loaderLocationVR).subscribe(data => this.joinedRooms = data);

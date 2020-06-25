@@ -144,10 +144,10 @@ export class DialogService {
 			const bonus = 9;
 			const anchorElementRect = anchorElement.getBoundingClientRect();
 			const y = anchorElementRect.top + anchorElementRect.height + bonus;
-
+			//set y
 			result.componentRef.location.nativeElement.style.top = y + 'px';
 			result.componentRef.location.nativeElement.style.position = 'absolute';
-
+			//xet x
 			if (anchorTo.toUpperCase() === 'LEFT') {
 				const x = anchorElementRect.left + bonus;
 				result.componentRef.location.nativeElement.style.left = x + 'px';

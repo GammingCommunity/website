@@ -1,7 +1,7 @@
 <a *ngIf='!room.isRequesting' class="p-3 border-bottom btn btn-light d-flex" (click)='joinRoomHandler()'
 	(click)='destroy()'>
 	<i-feather class="mr-3" name="arrow-right-circle"></i-feather>
-	<strong class="text-nowrap highlight-text">{{ 'GameRoomsItemOptionsDropdownLanguage.JOIN' | translate}}</strong>
+	<strong class="text-nowrap highlight-text">{{ room.hasJoined ? ('GameRoomsItemOptionsDropdownLanguage.GO' | translate) : ('GameRoomsItemOptionsDropdownLanguage.JOIN' | translate)}}</strong>
 </a>
 <a *ngIf='room.isRequesting' class="p-3 border-bottom btn btn-light d-flex" (click)='cancelRoomHandler()'
 	(click)='destroy()'>

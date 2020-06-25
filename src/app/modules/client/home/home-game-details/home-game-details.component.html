@@ -1,8 +1,8 @@
 <div *ngIf='!game' class=" d-flex flex-column align-items-end ml-5 mt-5 overflow-hidden">
-	<div [@title1SlideIn] class="primary-title">{{ 'HomeGameDetailsLanguage.WELCOME' | translate }}
+	<div [@title1SlideIn] class="primary-title text-right">{{ 'HomeGameDetailsLanguage.WELCOME' | translate }}
 	</div>
 	<div [@title2SlideIn] class="secondary-title highlight-text">
-		{{ 'HomeGameDetailsLanguage.BACK_HOME' | translate }}</div>
+		<u>{{ 'HomeGameDetailsLanguage.BACK_HOME' | translate }}</u></div>
 </div>
 
 <div class="w-100 d-flex flex-column align-items-end" *ngIf='game'>

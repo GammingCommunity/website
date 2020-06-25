@@ -1,25 +1,40 @@
 <div class="p-5 chat-container d-flex flex-column position-relative w-100 h-100 shadow-lg img"
 	[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
 	<div class="border-bottom d-flex pb-2 mb-2">
-		<div class="img logo rounded-lg" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+		<div class="img logo rounded"
+			[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
 		<div class="px-3 flex-grow-1 overflow-hidden">
-			<div class="overflow-hidden"><h4 class="text-nowrap mb-1">Nào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýtNào mình cùng lên xe buýt</h4></div>
+			<div class="overflow-hidden">
+				<h5 class="text-nowrap mb-1">Nào mình cùng lên xe buýt</h5>
+			</div>
 			<p class="m-0">#1</p>
 		</div>
-		<div><button class="border bg-transparent rounded-lg px-2 cursor-pointer pb-1 align-items-center" (click)='hide()'><i-feather class="highlight-text" name="x"></i-feather></button></div>
+		<div><button class="btn bg-transparent rounded-lg mr-1 px-2 cursor-pointer pt-1 pb-2 align-items-center">
+				<i-feather name="settings"></i-feather>
+			</button></div>
+		<div><button class="btn bg-transparent rounded-lg px-2 cursor-pointer pt-1 pb-2 align-items-center"
+				(click)='hide()'>
+				<i-feather name="x"></i-feather>
+			</button></div>
 	</div>
 
 	<div class="flex-grow-1 d-flex overflow-auto">
-		<div class="w-100 h-100">
+		<app-room-private-chat-post class="border-right pr-3 mr-3"></app-room-private-chat-post>
+		
+		<div class="w-100 h-100 d-flex flex-column flex-grow-1 overflow-auto">
 			<!-- messages list -->
-			<div class="d-flex flex-column">
+			<div class="d-flex flex-column overflow-auto flex-grow-1 p-3">
 
 				<!-- item -->
 				<div class="message d-flex mb-4">
-					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="avatar img rounded-circle"
+						[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+					</div>
 					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
 						<div class="d-flex mb-1">
-							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="flex-shirk-1 overflow-hidden">
+								<p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p>
+							</div>
 							<div class="message-options">
 								<div class="ml-2 p-1 btn">
 									<i-feather name="more-horizontal"></i-feather>
@@ -34,7 +49,8 @@
 
 				<div class="message d-flex mb-4">
 					<div class="flex-grow-1 d-flex align-items-end flex-column overflow-hidden">
-						<pre style="width: max-content;" class="highlight-text text-wrap m-0 rounded-lg shadow bg7 p-2">Content sdfsdf
+						<pre style="width: max-content;"
+							class="highlight-text highlight-bg text-wrap m-0 rounded-lg shadow p-2">Content sdfsdf
 							asdfasdf
 						</pre>
 						<div class="d-flex mt-1">
@@ -48,10 +64,14 @@
 				</div>
 
 				<div class="message d-flex mb-4">
-					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="avatar img rounded-circle"
+						[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+					</div>
 					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
 						<div class="d-flex mb-1">
-							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="flex-shirk-1 overflow-hidden">
+								<p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p>
+							</div>
 							<div class="message-options">
 								<div class="ml-2 p-1 btn">
 									<i-feather name="more-horizontal"></i-feather>
@@ -65,10 +85,14 @@
 				</div>
 
 				<div class="message d-flex mb-4">
-					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="avatar img rounded-circle"
+						[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+					</div>
 					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
 						<div class="d-flex mb-1">
-							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="flex-shirk-1 overflow-hidden">
+								<p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p>
+							</div>
 							<div class="message-options">
 								<div class="ml-2 p-1 btn">
 									<i-feather name="more-horizontal"></i-feather>
@@ -82,10 +106,14 @@
 				</div>
 
 				<div class="message d-flex mb-4">
-					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="avatar img rounded-circle"
+						[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+					</div>
 					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
 						<div class="d-flex mb-1">
-							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="flex-shirk-1 overflow-hidden">
+								<p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p>
+							</div>
 							<div class="message-options">
 								<div class="ml-2 p-1 btn">
 									<i-feather name="more-horizontal"></i-feather>
@@ -99,10 +127,14 @@
 				</div>
 
 				<div class="message d-flex mb-4">
-					<div class="avatar img rounded-circle" [ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+					<div class="avatar img rounded-circle"
+						[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+					</div>
 					<div class="flex-grow-1 d-flex flex-column overflow-hidden pl-2">
 						<div class="d-flex mb-1">
-							<div class="flex-shirk-1 overflow-hidden"><p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p></div>
+							<div class="flex-shirk-1 overflow-hidden">
+								<p style="font-size: 15px;" class="m-0 text-nowrap font-weight-bold">Tện asdf</p>
+							</div>
 							<div class="message-options">
 								<div class="ml-2 p-1 btn">
 									<i-feather name="more-horizontal"></i-feather>
@@ -124,6 +156,6 @@
 				<i class="far fa-smile pl-2"></i>
 			</div>
 		</div>
-		<app-room-private-chat-options></app-room-private-chat-options>
+		
 	</div>
 </div>

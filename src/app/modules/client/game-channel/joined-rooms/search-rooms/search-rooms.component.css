@@ -1,11 +1,9 @@
 .search-container {
-	position: relative;
 	padding: 75px 90px 40px 90px;
 	opacity: 0;
 }
 
 .container-head {
-	position: absolute;
 	top: 0;
 	left: 10%;
 	width: 80%;
@@ -24,8 +22,8 @@
 	background-color: var(--bg5);
 }
 
-.img {
-	width: 64px;
-	min-width: 64px;
-	height: 64px;
+.logo {
+	width: 36px;
+	min-width: 36px;
+	height: 36px;
 }

@@ -1,14 +1,14 @@
 import { TranslateService } from '@ngx-translate/core';
 
-export class RoomPrivateChatOptionsLanguage {
+export class RoomPrivateChatPostLanguage {
 	static define(translateService: TranslateService) {
 		translateService.setTranslation('en', {
-			'RoomPrivateChatOptionsLanguage': {
+			'RoomPrivateChatPostLanguage': {
 				'aaaa': 'bbbbbb',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
-			'RoomPrivateChatOptionsLanguage': {
+			'RoomPrivateChatPostLanguage': {
 				'aaaa': 'bbbbbb',
 			}
 		}, true);

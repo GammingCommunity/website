@@ -3,6 +3,7 @@ import { LoginHttpService } from "./login.http.service";
 import { LoggingResultStatus, LoggingResult } from "./login.dto";
 import { AuthService } from "src/app/common/services/auth.service";
 import { Router } from '@angular/router';
+import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 
 @Component({
 	selector: "app-login",
@@ -34,11 +35,15 @@ export class LoginComponent implements AfterViewInit {
 					break;
 
 				case LoggingResultStatus.WRONG_PWD:
-					alert("Sai mat khau");
+					SwtAlert.display({
+						title: "Sai mat khau"
+					});
 					break;
 
 				case LoggingResultStatus.WRONG_USERNAME:
-					alert("Sai tai khoan");
+					SwtAlert.display({
+						title: "Sai tai khoan"
+					});
 					break;
 
 				default:

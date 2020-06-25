@@ -96,7 +96,6 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
 				classList: 'py-4 px-3 bg6',
-				width: 260,
 				useExitBtn: false
 			}
 		});
@@ -111,7 +110,6 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
 				classList: 'py-4 px-3 bg6',
-				width: 240,
 				useExitBtn: false
 			}
 		});

@@ -15,11 +15,11 @@ import { SettingsComponent } from './settings/settings.component';
 import { FormsModule } from '@angular/forms';
 import { RoomGlobalChatComponent } from './game-channel/room-global-chat/room-global-chat.component';
 import { RoomPrivateChatComponent } from './game-channel/room-private-chat/room-private-chat.component';
-import { RoomPrivateChatOptionsComponent } from './game-channel/room-private-chat/room-private-chat-options/room-private-chat-options.component';
 import { LookAccountComponent } from './look-account/look-account.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeComponent } from './home/home.component';
 import { HomeGameDetailsComponent } from './home/home-game-details/home-game-details.component';
+import { RoomPrivateChatPostComponent } from './game-channel/room-private-chat/room-private-chat-post/room-private-chat-post.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +34,7 @@ import { HomeGameDetailsComponent } from './home/home-game-details/home-game-det
 		RoomGlobalChatComponent,
 		RoomPrivateChatComponent,
 		SettingsComponent,
-		RoomPrivateChatOptionsComponent,
+		RoomPrivateChatPostComponent,
 		LookAccountComponent,
 		HomeGameDetailsComponent,
 	],

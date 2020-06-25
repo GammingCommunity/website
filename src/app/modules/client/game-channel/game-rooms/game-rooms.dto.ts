@@ -1,6 +1,5 @@
 export class GameRoom {
 	id: string;
-	code: string;
 	name: string;
 	logoUrl: string;
 	describe: string;
@@ -14,7 +13,7 @@ export class GameRoom {
 	constructor(rawData){
 		this.id = rawData._id;
 		this.name = rawData.roomName;
-		this.code = rawData.code;
+		this.describe = rawData.description;
 		this.logoUrl = rawData.roomLogo;
 		this.backgroundUrl = rawData.roomBackground;
 		this.hasJoined = rawData.isJoin;

@@ -29,14 +29,13 @@ export class GameRoomsHttpService extends ClientCommonService {
 			query: gql`
 				query{
 					getRoomByGame(limit:20, page:1, gameID:"${gameChannelId}", groupSize: none){
-						code
 						_id
 						roomName
 						roomLogo
 						roomBackground
 						isJoin
-						isPrivate
 						isRequest
+						description
 						maxOfMember
 						countMember
 					}

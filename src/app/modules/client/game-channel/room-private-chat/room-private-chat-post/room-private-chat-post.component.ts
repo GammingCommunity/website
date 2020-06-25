@@ -1,12 +1,12 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
-import { RoomPrivateChatOptionsLanguage } from './room-private-chat-options.language';
 import { ClientCommonComponent } from '../../../client.common-component';
+import { RoomPrivateChatPostLanguage } from './room-private-chat-post.language';
 
 @Component({
-	selector: 'app-room-private-chat-options',
-	templateUrl: './room-private-chat-options.component.html',
-	styleUrls: ['./room-private-chat-options.component.css'],
+	selector: 'app-room-private-chat-post',
+	templateUrl: './room-private-chat-post.component.html',
+	styleUrls: ['./room-private-chat-post.component.css'],
 	animations: [
 		trigger('changeContainerState', [
 			state('expand', style({
@@ -22,12 +22,14 @@ import { ClientCommonComponent } from '../../../client.common-component';
 		])
 	]
 })
-export class RoomPrivateChatOptionsComponent extends ClientCommonComponent implements OnInit {
+export class RoomPrivateChatPostComponent extends ClientCommonComponent implements OnInit {
 	containerState: string = 'expand';
 
-	constructor(protected injector: Injector) {
+	constructor(
+		protected injector: Injector,
+	) {
 		super(injector);
-		RoomPrivateChatOptionsLanguage.define(this.translateService);
+		RoomPrivateChatPostLanguage.define(this.translateService);
 	}
 
 	ngOnInit() {

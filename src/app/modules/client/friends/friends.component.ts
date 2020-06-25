@@ -105,7 +105,6 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
 				classList: 'py-3 px-2 bg6',
-				width: 280,
 				useExitBtn: false
 			},
 			data: {
@@ -123,7 +122,6 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
 				classList: 'py-3 px-2 bg6',
-				width: 220,
 				useExitBtn: false
 			}
 		});

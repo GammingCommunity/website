@@ -12,6 +12,7 @@ import { GameRoomsItemOptionsDropdownComponent } from './game-rooms-item-options
 import { finalize, catchError, tap } from 'rxjs/operators';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { GameChannelDataService } from '../game-channel.data.service';
+import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 
 @Component({
 	selector: 'app-game-rooms',
@@ -56,7 +57,7 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 		super(injector);
 		GameRoomsLanguage.define(this.translateService);
 	}
-	
+
 	ngOnInit() {
 		this.fetchGameRooms();
 		this.gameChannelDataService.setReloadGameRoomsHandler(() => this.reloadRooms());
@@ -71,7 +72,6 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 			zIndex: CssConfigs.dropdownMenuZIndex,
 			popupOptions: {
 				classList: 'py-3 px-2 bg6',
-				width: 230,
 				useExitBtn: false
 			}
 		});
@@ -94,6 +94,19 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 				this.gameRooms = data;
 			});
 		}
+	}
+
+	showCreateRoomsPopup() {
+		this.dialogService.putDialogComponentToComponentWithOptions({
+			dialogType: CreateRoomsComponent,
+			useBackground: true,
+			destroyIfOutFocus: true,
+			zIndex: CssConfigs.popupZIndex,
+			popupOptions: {
+				classList: 'p-5',
+				width: '700px',
+			}
+		});
 	}
 
 	handleRoomItemsClick(room: GameRoom, event: MouseEvent) {

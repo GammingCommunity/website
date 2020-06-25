@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { Router } from '@angular/router';
 import { ClientCommonService } from '../client.common-service';
+import { GameChannel } from './game-channel.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -11,6 +12,7 @@ export class GameChannelDataService extends ClientCommonService {
 	private reloadJoinedRoomsHandler: () => void = null;
 	private reloadGameRoomsHandler: () => void = null;
 	private showPrivateChatHandler: (roomID: string) => void = null;
+	gameChannels: GameChannel[];
 
 	constructor(
 		protected injector: Injector,

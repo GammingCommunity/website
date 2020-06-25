@@ -29,7 +29,6 @@ export class JoinedRoomsHttpService extends ClientCommonService {
 			query: gql`
 				query{
 					getRoomJoin{
-						code
 						_id
 						roomName
 						roomLogo

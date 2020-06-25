@@ -1,9 +1,9 @@
-import { Injectable, Injector } from "@angular/core";
+import { Injectable, Injector, ViewContainerRef, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { ClientCommonService } from '../client.common-service';
 import { GameChannel } from './home.dto';
 
@@ -22,7 +22,9 @@ export class HomeHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	fetchGameChannels() {
+	fetchGameChannels(viewContainerRef: ViewContainerRef) {
+		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, false, 'position-top-left position-absolute w-100 h-100 bg-transparent d-flex justify-content-center align-items-center').loaderVR;
+
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
@@ -34,11 +36,12 @@ export class HomeHttpService extends ClientCommonService {
 					}
 				}
 			`,
+			variables: { isUseGlobalLoader: false },
 			context: {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
-		}).pipe(map(
-			({ data }): GameChannel[] => {
+		}).pipe(
+			map(({ data }): GameChannel[] => {
 				let games: GameChannel[] = [];
 
 				data.countRoomOnEachGame.forEach(game => {
@@ -46,7 +49,12 @@ export class HomeHttpService extends ClientCommonService {
 				})
 
 				return games;
-			}
-		));
+			}),
+			finalize(() => {
+				if (loader) {
+					loader.destroy();
+				}
+			})
+		);
 	}
 }

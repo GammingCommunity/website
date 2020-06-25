@@ -3,6 +3,7 @@ import { JoinedRoomsComponent } from './joined-rooms/joined-rooms.component';
 import { GameChannelLanguage } from './game-channel.language';
 import { ClientCommonComponent } from '../client.common-component';
 import { GameChannelHttpService } from './game-channel.http.service';
+import { GameChannelDataService } from './game-channel.data.service';
 
 @Component({
 	selector: 'app-game-channel',
@@ -15,6 +16,7 @@ export class GameChannelComponent extends ClientCommonComponent {
 	constructor(
 		protected injector: Injector,
 		protected gameChannelHttpService: GameChannelHttpService,
+		protected gameChannelDataService: GameChannelDataService
 	) {
 		super(injector);
 		GameChannelLanguage.define(this.translateService);
@@ -22,6 +24,8 @@ export class GameChannelComponent extends ClientCommonComponent {
 		this.route.params.subscribe(param => {
 			this.clientDataService.setCurrentGameChannelId(this.route.snapshot.params.id);
 		});
-		
+		this.gameChannelHttpService.fetchGameChannels().subscribe(data => {
+			this.gameChannelDataService.gameChannels = data;
+		});
 	}
 }

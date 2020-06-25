@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild, ViewContainerRef } from '@angular/core';
 import { ClientCommonComponent } from '../client.common-component';
 import { HomeLanguage } from './home.language';
 import { HomeHttpService } from './home.http.service';
@@ -38,6 +38,7 @@ import { trigger, transition, style, animate, stagger, query } from '@angular/an
 	],
 })
 export class HomeComponent extends ClientCommonComponent implements OnInit {
+	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	games: GameChannel[] = [];
 	selectedGame: GameChannel;
 
@@ -49,10 +50,10 @@ export class HomeComponent extends ClientCommonComponent implements OnInit {
 		super(injector);
 		HomeLanguage.define(this.translateService);
 
-		this.fetchGameChannels();
 	}
-
+	
 	ngOnInit() {
+		this.fetchGameChannels();
 	}
 
 	seeGameDetails(game: GameChannel) {
@@ -61,7 +62,7 @@ export class HomeComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	fetchGameChannels() {
-		this.homeHttpService.fetchGameChannels().subscribe(data => {
+		this.homeHttpService.fetchGameChannels(this.loaderLocationVR).subscribe(data => {
 			this.games = data;
 		})
 	}

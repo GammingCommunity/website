@@ -10,7 +10,7 @@
 	border: none;
 	background-color: transparent;
 	transform: scale(1.1);
-	z-index: 9;
+	z-index: 29;
 }
 
 .room-items .img {
@@ -39,7 +39,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: var(--bg10);
-	opacity: .75;
+	opacity: .77;
 	transition: all .25s ease;
 }
 

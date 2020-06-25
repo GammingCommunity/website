@@ -41,9 +41,6 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 				case 'clientdata':
 					console.log(this.clientDataService);
 					break;
-				case 'reloadgamerooms':
-					this.clientDataService.reloadGameRooms();
-					break;
 			}
 			this.searchKey = '';
 		}

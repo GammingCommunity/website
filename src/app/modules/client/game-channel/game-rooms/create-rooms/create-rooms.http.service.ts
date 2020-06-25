@@ -37,7 +37,7 @@ export class CreateRoomsHttpService extends ClientCommonService {
 							isPrivate: ${room.isPrivate}
 							description: "${room.describe}"
 							maxOfMember: ${room.maxMember}
-							member: [null]
+							member: []
 							game: {
 								gameID: "${gameChannelId}"
 							}

@@ -57,7 +57,7 @@ export class ClientComponent extends ClientCommonComponent implements OnInit, Af
 			dialogType: ProfileDropdownComponent,
 			anchorElement: event.target,
 			destroyIfOutFocus: true,
-			anchorTo: 'left',
+			anchorTo: 'right',
 			popupOptions: {
 				classList: 'py-4 px-3 bg6',
 				useExitBtn: false
