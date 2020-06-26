@@ -40,6 +40,8 @@
 						{{room.name}}</h5>
 					<!-- info -->
 					<div class="d-flex align-items-center">
+						<i-feather *ngIf='room.type === ROOM_TYPE.PRIVATE' class="mr-3" name="shield"></i-feather>
+						<i-feather *ngIf='room.type === ROOM_TYPE.PUBLIC' class="mr-3" name="shield-off"></i-feather>
 						<i-feather class="mr-1" name="users"></i-feather>
 						<p class="m-0 mr-3">{{room.countMember}}/{{room.maxMember}}</p>
 						<p *ngIf='room.hasJoined' class="m-0 highlight-text font-weight-bold">

@@ -20,6 +20,7 @@ export class LookAccountLanguage {
 				'BIRTHMONTH': 'Birth month',
 				'CREATED_AT': 'Joined on',
 				'EMAIL': 'Email',
+				'FOLLOWERS': 'Followers',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
@@ -40,6 +41,7 @@ export class LookAccountLanguage {
 				'BIRTHMONTH': 'Tháng sinh',
 				'CREATED_AT': 'Đã tham gia từ',
 				'EMAIL': 'Email',
+				'FOLLOWERS': 'Người theo dõi',
 			}
 		}, true);
 	}

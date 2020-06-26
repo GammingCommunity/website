@@ -28,10 +28,11 @@ export class GameRoomsHttpService extends ClientCommonService {
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
-					getRoomByGame(limit:20, page:1, gameID:"${gameChannelId}", groupSize: none){
+					getRoomByGame(limit:20, page:1, gameID:"${gameChannelId}", groupSize: none, hideJoined: false){
 						_id
 						roomName
 						roomLogo
+						roomType
 						roomBackground
 						isJoin
 						isRequest
@@ -99,7 +100,7 @@ export class GameRoomsHttpService extends ClientCommonService {
 		return this.apollo.use('mainService').mutate<any>({
 			mutation: gql`
 				mutation{
-					joinRoom(roomID:"${room.id}"){
+					joinRoom(roomID:"${room.id}", roomType:${room.type}){
 						success
 						message
 					}

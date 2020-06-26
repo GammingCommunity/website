@@ -1,3 +1,13 @@
+export class RoomType {
+	static PUBLIC = 'public';
+	static PRIVATE = 'private';
+	static HIDDEN = 'hidden';
+
+	static getList(): string[] {
+		return ['public', 'private', 'hidden'];
+	}
+}
+
 export class GameRoom {
 	id: string;
 	name: string;
@@ -8,6 +18,7 @@ export class GameRoom {
 	hasJoined: boolean;
 	maxMember: number;
 	countMember: number;
+	type: string;
 	isRequestingFromClient: boolean = false;
 
 	constructor(rawData){
@@ -20,6 +31,7 @@ export class GameRoom {
 		this.isRequesting = rawData.isRequest;
 		this.maxMember = rawData.maxOfMember;
 		this.countMember = rawData.countMember;
+		this.type = rawData.roomType;
 	}
 }
 

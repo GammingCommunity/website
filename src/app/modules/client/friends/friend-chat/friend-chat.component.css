@@ -8,3 +8,7 @@
 	border: none;
 	resize: none;
 }
+
+:host{
+	position: relative;
+}

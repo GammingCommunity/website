@@ -2,7 +2,7 @@ import { Component, OnInit, Injector, ViewChild, ViewContainerRef, ElementRef, O
 import { ClientCommonComponent } from '../../../client.common-component';
 import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate, state } from '@angular/animations';
-import { RoomInput } from './create-rooms.dto';
+import { RoomInput, RoomType } from './create-rooms.dto';
 import { CreateRoomsLanguage } from './create-rooms.language';
 import { CreateRoomsHttpService } from './create-rooms.http.service';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
@@ -27,6 +27,7 @@ import { GameChannelDataService } from '../../game-channel.data.service';
 })
 export class CreateRoomsComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
+	ROOM_TYPE = RoomType;
 	roomInput: RoomInput;
 	destroy: () => void;
 	maxMemberList_temp: number[] = [2, 4, 6, 8, 10, 12, 16, 20, 30];
@@ -45,7 +46,7 @@ export class CreateRoomsComponent extends ClientCommonComponent implements OnIni
 	ngOnInit(){
 		this.roomInput = new RoomInput();
 		this.roomInput.maxMember = 8;
-		this.roomInput.isPrivate = false;
+		this.roomInput.type = this.ROOM_TYPE.getList()[0];
 		this.roomInput.describe = 'Tôi yêu quê hương Việt Nam';
 	}
 	

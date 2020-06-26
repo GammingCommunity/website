@@ -118,6 +118,7 @@ export class LookAccountComponent extends ClientCommonComponent implements OnIni
 	look(id: number) {
 		this.lookAccountHttpService.look(id).subscribe(lookedAccount => {
 			this.lookingAccount = lookedAccount;
+			console.log(lookedAccount);
 		});
 	}
 }

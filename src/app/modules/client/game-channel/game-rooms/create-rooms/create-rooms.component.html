@@ -8,12 +8,15 @@
 		<option *ngFor="let maxMember_temp of maxMemberList_temp" [ngValue]="maxMember_temp">
 			{{'CreateRoomsLanguage.MAX_MEMBER' | translate}}{{maxMember_temp}}</option>
 	</select>
-	<select [(ngModel)]="roomInput.isPrivate">
-		<option [ngValue]="true">{{'CreateRoomsLanguage.PRIVATE' | translate}}</option>
-		<option [ngValue]="false">{{'CreateRoomsLanguage.PUBLIC' | translate}}</option>
+	<select [(ngModel)]="roomInput.type">
+		<option [ngValue]="roomType" *ngFor='let roomType of ROOM_TYPE.getList()'>
+			{{(roomType === ROOM_TYPE.PUBLIC) ? ('CreateRoomsLanguage.PUBLIC' | translate) : (roomType === ROOM_TYPE.PRIVATE) ? ('CreateRoomsLanguage.PRIVATE' | translate) : ('CreateRoomsLanguage.HIDDEN' | translate)}}
+		</option>
 	</select>
 </div>
 <div class="pb-3 my-3">
-	<textarea class="w-100 describe form-control" placeholder="{{'CreateRoomsLanguage.TYPE_DESCRIPTION' | translate}}"></textarea>
+	<textarea class="w-100 describe form-control"
+		placeholder="{{'CreateRoomsLanguage.TYPE_DESCRIPTION' | translate}}"></textarea>
 </div>
-<button (click)='createRoom()' class="mt-4 btn btn-light float-right shadow-lg">{{'CreateRoomsLanguage.CREATE' | translate}}</button>
+<button (click)='createRoom()'
+	class="mt-4 btn btn-light float-right shadow-lg">{{'CreateRoomsLanguage.CREATE' | translate}}</button>

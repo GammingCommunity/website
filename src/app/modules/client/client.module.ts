@@ -6,7 +6,6 @@ import { GameChannelComponent } from './game-channel/game-channel.component';
 import { FriendsComponent } from './friends/friends.component';
 import { JoinedRoomsComponent } from './game-channel/joined-rooms/joined-rooms.component';
 import { GameRoomsComponent } from './game-channel/game-rooms/game-rooms.component';
-import { ChatService } from 'src/app/common/services/chat.service';
 import { ProfileComponent } from './profile/profile.component';
 import { FriendChatComponent } from './friends/friend-chat/friend-chat.component';
 import { FriendChatUIService } from './friends/friend-chat/friend-chat.ui.service';
@@ -46,7 +45,6 @@ import { RoomPrivateChatPostComponent } from './game-channel/room-private-chat/r
 		TranslateModule.forChild()
 	],
 	providers: [
-		ChatService,
 		FriendChatUIService,
 	]
 })

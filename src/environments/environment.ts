@@ -23,6 +23,7 @@ export const ServiceUrls = {
 	accountManagement: "http://hutech.tech/graphql",
 	chat: "https://socketchat.glitch.me",
 	feedback: "https://equal-spectacles.glitch.me",
+	post: "http://post-service.glitch.me/graphql",
 	main: "https://gmgraphql.glitch.me/graphql" 
 };
 

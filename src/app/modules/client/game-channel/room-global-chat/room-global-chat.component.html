@@ -411,7 +411,7 @@ Chúc ae ra trường đúng deadline 🎓🎓
 		</div>
 		<!-- content -->
 		<input contenteditable class="flex-grow-1 m-2 p-2"
-			placeholder="{{'RoomGlobalChatLanguage.TYPE_HERE' | translate}}" (keypress)='handleEnterToSearch($event)'  [(ngModel)]="searchKey">
+			placeholder="{{'RoomGlobalChatLanguage.TYPE_HERE' | translate}}" (keypress)='searchBoxKeyPressEvent($event)'  [(ngModel)]="searchKey">
 		<!-- send button -->
 		<i-feather name="send"></i-feather>
 	</div>

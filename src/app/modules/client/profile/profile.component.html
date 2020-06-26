@@ -25,31 +25,37 @@
 			</div>
 			<!-- birthyear -->
 			<p class="text-wrap mb-4" *ngIf='oldProfile.birthyear'>
-				<i-feather class="pr-1" name="calendar"></i-feather>
+				<i-feather class="mr-1" name="calendar"></i-feather>
 				{{ 'ProfileLanguage.BIRTHYEAR' | translate}}:
 				<span class="highlight-text">{{oldProfile.birthyear}}</span>
 			</p>
 			<!-- birthmonth -->
 			<p class="text-wrap mb-4" *ngIf='oldProfile.birthmonth'>
-				<i-feather class="pr-1" name="calendar"></i-feather>
+				<i-feather class="mr-1" name="calendar"></i-feather>
 				{{ 'ProfileLanguage.BIRTHMONTH' | translate}}:
 				<span class="highlight-text">{{oldProfile.birthmonth}}</span>
 			</p>
 			<!-- phone -->
 			<p class="text-wrap mb-4" *ngIf='oldProfile.phone'>
-				<i-feather class="pr-1" name="smartphone"></i-feather>
+				<i-feather class="mr-1" name="smartphone"></i-feather>
 				{{ 'ProfileLanguage.PHONE' | translate}}:
 				<span class="highlight-text">{{oldProfile.phone}}</span>
 			</p>
 			<!-- email -->
 			<p class="text-wrap mb-4" *ngIf='oldProfile.email'>
-				<i-feather class="pr-1" name="at-sign"></i-feather>
+				<i-feather class="mr-1" name="mail"></i-feather>
 				{{ 'ProfileLanguage.EMAIL' | translate}}:
 				<span class="highlight-text">{{oldProfile.email}}</span>
 			</p>
+			<!-- followers -->
+			<p class="text-wrap mb-4" *ngIf='oldProfile.countFollowers !== null'>
+				<i-feather class="mr-1" name="bar-chart"></i-feather>
+				{{ 'ProfileLanguage.FOLLOWERS' | translate}}:
+				<span class="highlight-text">{{oldProfile.countFollowers}}</span>
+			</p>
 			<!-- createdAt -->
 			<p class="text-wrap mb-4" *ngIf='oldProfile.createdAt'>
-				<i-feather class="pr-1" name="clock"></i-feather>
+				<i-feather class="mr-1" name="clock"></i-feather>
 				{{ 'ProfileLanguage.CREATED_AT' | translate}}:
 				<span class="highlight-text">{{oldProfile.createdAt}}</span>
 			</p>

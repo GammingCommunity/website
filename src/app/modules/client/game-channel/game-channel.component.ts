@@ -12,6 +12,7 @@ import { GameChannelDataService } from './game-channel.data.service';
 })
 export class GameChannelComponent extends ClientCommonComponent {
 	@ViewChild('joinedRooms', { static: true }) joinedRoomsComponent: JoinedRoomsComponent;
+	gameTitle: string;
 
 	constructor(
 		protected injector: Injector,
@@ -23,9 +24,10 @@ export class GameChannelComponent extends ClientCommonComponent {
 
 		this.route.params.subscribe(param => {
 			this.clientDataService.setCurrentGameChannelId(this.route.snapshot.params.id);
-		});
-		this.gameChannelHttpService.fetchGameChannels().subscribe(data => {
-			this.gameChannelDataService.gameChannels = data;
+			this.gameChannelHttpService.fetchGameChannels().subscribe(data => {
+				this.gameChannelDataService.gameChannels = data;
+				this.gameTitle = data.find(obs => obs.id === this.clientDataService.getCurrentGameChannelId(this.homeUrl)).name;
+			});
 		});
 	}
 }

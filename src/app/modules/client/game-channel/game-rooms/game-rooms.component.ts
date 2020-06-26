@@ -1,7 +1,6 @@
 import { Component, OnInit, Injector, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { GameRoomsHttpService } from './game-rooms.http.service';
-import { GameRoom } from './game-rooms.dto';
-import { ChatService } from 'src/app/common/services/chat.service';
+import { GameRoom, RoomType } from './game-rooms.dto';
 import { ClientCommonComponent } from '../../client.common-component';
 import { GameRoomsLanguage } from './game-rooms.language';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
@@ -48,6 +47,7 @@ import { CreateRoomsComponent } from './create-rooms/create-rooms.component';
 export class GameRoomsComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
 	gameRooms: GameRoom[] = [];
+	ROOM_TYPE = RoomType;
 
 	constructor(
 		private injector: Injector,
@@ -157,7 +157,11 @@ export class GameRoomsComponent extends ClientCommonComponent implements OnInit 
 										})
 								}
 							} else {
-								this.alertService.show('something went wrong!');
+								SwtAlert.display({
+									icon: 'error',
+									title: 'Something went wrong!',
+									text: `"cancelRoomHandler":"không tìm thấy approve match với roomId:${room.id}"`
+								});
 							}
 						})
 				},

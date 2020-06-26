@@ -19,6 +19,7 @@ const PROFILE = gql`
 			phone
 			birthmonth
 			birthyear
+			count_followers
 			created_at
 		}
 	}

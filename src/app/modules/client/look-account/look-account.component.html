@@ -23,31 +23,37 @@
 			</div>
 			<!-- birthyear -->
 			<p class="text-wrap" *ngIf='lookingAccount.birthyear'>
-				<i-feather class="pr-1" name="calendar"></i-feather>
+				<i-feather class="mr-1" name="calendar"></i-feather>
 				{{ 'LookAccountLanguage.BIRTHYEAR' | translate}}:
 				<span class="highlight-text">{{lookingAccount.birthyear}}</span>
 			</p>
 			<!-- birthmonth -->
 			<p class="text-wrap" *ngIf='lookingAccount.birthmonth'>
-				<i-feather class="pr-1" name="calendar"></i-feather>
+				<i-feather class="mr-1" name="calendar"></i-feather>
 				{{ 'LookAccountLanguage.BIRTHMONTH' | translate}}:
 				<span class="highlight-text">{{lookingAccount.birthmonth}}</span>
 			</p>
 			<!-- phone -->
 			<p class="text-wrap" *ngIf='lookingAccount.phone'>
-				<i-feather class="pr-1" name="smartphone"></i-feather>
+				<i-feather class="mr-1" name="smartphone"></i-feather>
 				{{ 'LookAccountLanguage.PHONE' | translate}}:
 				<span class="highlight-text">{{lookingAccount.phone}}</span>
 			</p>
 			<!-- email -->
 			<p class="text-wrap" *ngIf='lookingAccount.email'>
-				<i-feather class="pr-1" name="at-sign"></i-feather>
+				<i-feather class="mr-1" name="mail"></i-feather>
 				{{ 'LookAccountLanguage.EMAIL' | translate}}:
 				<span class="highlight-text">{{lookingAccount.email}}</span>
 			</p>
+			<!-- followers -->
+			<p class="text-wrap mb-4" *ngIf='lookingAccount.countFollowers !== null'>
+				<i-feather class="mr-1" name="bar-chart"></i-feather>
+				{{ 'LookAccountLanguage.FOLLOWERS' | translate}}:
+				<span class="highlight-text">{{lookingAccount.countFollowers}}</span>
+			</p>
 			<!-- createdAt -->
 			<p class="text-wrap" *ngIf='lookingAccount.createdAt'>
-				<i-feather class="pr-1" name="clock"></i-feather>
+				<i-feather class="mr-1" name="clock"></i-feather>
 				{{ 'LookAccountLanguage.CREATED_AT' | translate}}:
 				<span class="highlight-text">{{lookingAccount.createdAt}}</span>
 			</p>

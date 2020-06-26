@@ -30,7 +30,11 @@ export class RoomPrivateChatComponent extends ClientCommonComponent implements O
 		this.viewContainerRef.element.nativeElement.style.display = 'none';
 	}
 
-	show(roomID: string) {
+	protected show(roomID: string) {
 		this.viewContainerRef.element.nativeElement.style.display = 'block';
+	}
+
+	protected initSocket(){
+		
 	}
 }

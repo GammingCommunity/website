@@ -36,12 +36,14 @@ export class LoginComponent implements AfterViewInit {
 
 				case LoggingResultStatus.WRONG_PWD:
 					SwtAlert.display({
+						icon: 'info',
 						title: "Sai mat khau"
 					});
 					break;
 
 				case LoggingResultStatus.WRONG_USERNAME:
 					SwtAlert.display({
+						icon: 'info',
 						title: "Sai tai khoan"
 					});
 					break;

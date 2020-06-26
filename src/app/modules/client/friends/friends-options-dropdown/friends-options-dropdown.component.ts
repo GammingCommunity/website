@@ -1,5 +1,4 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { ChatService } from 'src/app/common/services/chat.service';
 import { SwtAlert } from 'src/app/common/helpers/sweet_alert';
 import { FriendsOptionsDropdownLanguage } from './friends-options-dropdown.language';
 import { ClientCommonComponent } from '../../client.common-component';

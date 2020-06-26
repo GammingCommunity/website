@@ -1,12 +1,17 @@
-// export class SearchRoomOptionEnum {
-// 	static SEARCH_BY_NAME = 'byName';
-//     static SEARCH_BY_ID = 'byID';
-// }
+export class RoomType {
+	static PUBLIC = 'public';
+	static PRIVATE = 'private';
+	static HIDDEN = 'hidden';
+
+	static getList(): string[] {
+		return ['public', 'private', 'hidden'];
+	}
+}
 
 export class RoomInput {
 	name: string;
 	describe: string = '';
-	isPrivate: boolean;
+	type: string;
 	maxMember: number;
 }
 
@@ -15,7 +20,7 @@ export class ResultCRUD {
 	message: string;
 	payload: string;
 
-	constructor(rawData){
+	constructor(rawData) {
 		this.success = rawData.success;
 		this.message = rawData.message;
 		this.payload = rawData.payload;

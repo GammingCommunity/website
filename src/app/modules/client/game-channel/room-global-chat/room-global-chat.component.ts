@@ -11,7 +11,9 @@ import { environment } from 'src/environments/environment';
 export class RoomGlobalChatComponent extends ClientCommonComponent implements OnInit {
 	searchKey: string;
 
-	constructor(protected injector: Injector) {
+	constructor(
+		protected injector: Injector,
+	) {
 		super(injector);
 		RoomGlobalChatLanguage.define(this.translateService);
 	}
@@ -20,7 +22,7 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 	}
 
 
-	handleEnterToSearch(event: KeyboardEvent) {
+	searchBoxKeyPressEvent(event: KeyboardEvent) {
 		if (event.keyCode === 13 && !environment.production) {
 			event.preventDefault();
 			event.stopPropagation();
@@ -44,5 +46,7 @@ export class RoomGlobalChatComponent extends ClientCommonComponent implements On
 			}
 			this.searchKey = '';
 		}
+
+		
 	}
 }

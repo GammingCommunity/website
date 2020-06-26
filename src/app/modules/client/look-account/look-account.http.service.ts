@@ -113,6 +113,8 @@ export class LookAccountHttpService extends ClientCommonService {
 							cover_url
 							describe
 							email
+							is_following
+							count_followers
 							phone
 							birthmonth
 							birthyear

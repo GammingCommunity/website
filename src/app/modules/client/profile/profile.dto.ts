@@ -9,6 +9,7 @@ export class Profile {
 	birthmonth: string;
 	birthyear: string;
 	createdAt: Date;
+	countFollowers: number;
 
 	constructor(profile = null) {
 		if (profile){
@@ -22,6 +23,7 @@ export class Profile {
 			this.birthmonth = profile.birthmonth;
 			this.birthyear = profile.birthyear;
 			this.createdAt = profile.created_at;
+			this.countFollowers = profile.count_followers;
 		}
 	}
 }

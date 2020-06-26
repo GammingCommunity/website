@@ -18,6 +18,8 @@ export class AccountLookingResult {
 	birthyear: string;
 	createdAt: string;
 	relationship: string;
+	isFollowing: boolean;
+	countFollowers: number;
 	isRequesting: boolean = false;
 
 	constructor(rawData = null){
@@ -32,6 +34,8 @@ export class AccountLookingResult {
 			this.birthmonth = rawData.account.birthmonth;
 			this.birthyear = rawData.account.birthyear;
 			this.createdAt = rawData.account.created_at;
+			this.isFollowing = rawData.account.is_following;
+			this.countFollowers = rawData.account.count_followers;
 			this.relationship = rawData.relationship;
 		}
 	}
