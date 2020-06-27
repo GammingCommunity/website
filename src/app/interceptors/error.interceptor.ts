@@ -41,12 +41,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 					}
 				},
 				error => {
-					if(error.hasOwnProperty('error')){
-						if (error.error.hasOwnProperty('errors')){
-							if(error.error.errors[0] && error.error.errors[0].hasOwnProperty('message')){
+					debugger;
+					if (error.hasOwnProperty('error')) {
+						if (error.error.hasOwnProperty('errors')) {
+							if (error.error.errors[0] && error.error.errors[0].hasOwnProperty('message')) {
 								const errors = error.error.errors;
 								let messages = '';
-	
+
 								errors.forEach(error => {
 									messages += error.message + '\n';
 								});
@@ -54,13 +55,17 @@ export class ErrorInterceptor implements HttpInterceptor {
 							} else {
 								this.alertError(JSON.stringify(error.error.errors), () => next.handle(req));
 							}
-						} else if (error.error.hasOwnProperty('message')){
+						} else if (error.error.hasOwnProperty('message')) {
 							this.alertError(error.error.message, () => next.handle(req));
 						} else {
-							this.alertError(JSON.stringify(error.error), () => next.handle(req));
+							if (error.error.isTrusted) {
+								this.alertError('Rớt mạng rồi :((', () => next.handle(req));
+							} else {
+								this.alertError(JSON.stringify(error.error), () => next.handle(req));
+							}
 						}
-					} else if (error.hasOwnProperty('errors')){
-						if(error.errors[0] && error.errors[0].hasOwnProperty('message')){
+					} else if (error.hasOwnProperty('errors')) {
+						if (error.errors[0] && error.errors[0].hasOwnProperty('message')) {
 							const errors = error.errors;
 							let messages = '';
 
@@ -71,7 +76,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 						} else {
 							this.alertError(JSON.stringify(error.errors), () => next.handle(req));
 						}
-					} else if (error.hasOwnProperty('message')){
+					} else if (error.hasOwnProperty('message')) {
 						this.alertError(error.message, () => next.handle(req));
 					} else {
 						this.alertError(JSON.stringify(error), () => next.handle(req));

@@ -35,7 +35,7 @@ export class FriendChatComponent extends ClientCommonComponent implements OnInit
 	}
 
 	ngOnInit() {
-		
+
 	}
 
 	protected initSocket() {
@@ -56,12 +56,12 @@ export class FriendChatComponent extends ClientCommonComponent implements OnInit
 		this.pushMessageToStore(messageContent);
 	}
 
-	protected pushMessageToStore(messageContent: string, isMyMessage: boolean = false){
+	protected pushMessageToStore(messageContent: string, isMyMessage: boolean = false) {
 		const message = new Message();
 		message.content = messageContent;
 		message.isMyMessage = isMyMessage;
 		message.messageType = MessageTypes.TEXT;
-		
+
 		this.messages.push(message);
 	}
 
@@ -82,9 +82,9 @@ export class FriendChatComponent extends ClientCommonComponent implements OnInit
 
 	handleMessagesSending() {
 		const sedingMessage = new SendingMessage();
-		sedingMessage.content = this.currentMessageContent		
+		sedingMessage.text = { content: this.currentMessageContent };
 
-		if(sedingMessage.content.length > 0){
+		if (sedingMessage.text.content.length > 0) {
 			sedingMessage.messageType = MessageTypes.TEXT;
 			sedingMessage.receiverId = this.chatFriend.id;
 

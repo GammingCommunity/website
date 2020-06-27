@@ -10,7 +10,7 @@ export class Friend {
 	}
 }
 
-export class MessageTypes{
+export class MessageTypes {
 	static readonly TEXT = 'text';
 	static readonly IMG = 'image';
 	static readonly VIDEO = 'video';
@@ -19,10 +19,10 @@ export class MessageTypes{
 	static readonly FILE = 'file';
 }
 
-export class SendingMessage{
+export class SendingMessage {
 	receiverId: number;
 	messageType: string;
-	content: string;
+	text: { content: string };
 	media: string;
 }
 
@@ -35,7 +35,7 @@ export class Message {
 	isMyMessage: boolean = false;
 
 	constructor(friend = null) {
-		if(friend){
+		if (friend) {
 			this.id = friend.id;
 			this.messageType = friend.messageType;
 			this.status = friend.status;

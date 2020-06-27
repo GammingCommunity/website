@@ -28,6 +28,7 @@ export class FriendChatSocketService extends ClientCommonService {
 		socket.emit('request-socket-id');
 		socket.on('get-socket-id', (chatId: string) => {
 			this.chatId = chatId;
+			socket.emit('join-chat-private', {roomID: this.chatId});
 			onChatId(chatId);
 		});
 		emitFunc((message: SendingMessage) => {
