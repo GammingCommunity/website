@@ -1,12 +1,24 @@
-export class Friend {
-	id: number;
-	name: string;
-	avatarUrl: string;
+// export class Friend {
+// 	id: number;
+// 	name: string;
+// 	avatarUrl: string;
 
-	constructor(friend) {
-		this.id = friend.id;
-		this.name = friend.name;
-		this.avatarUrl = friend.avatar_url;
+// 	constructor(friend) {
+// 		this.id = friend.id;
+// 		this.name = friend.name;
+// 		this.avatarUrl = friend.avatar_url;
+// 	}
+// }
+
+export class ResultCRUD {
+	success: string;
+	message: string;
+	payload: string;
+
+	constructor(rawData) {
+		this.success = rawData.success;
+		this.message = rawData.message;
+		this.payload = rawData.payload;
 	}
 }
 
@@ -34,13 +46,13 @@ export class Message {
 	content: string;
 	isMyMessage: boolean = false;
 
-	constructor(friend = null) {
-		if (friend) {
-			this.id = friend.id;
-			this.messageType = friend.messageType;
-			this.status = friend.status;
-			this.createdAt = friend.createAt;
-			this.content = friend.text.content;
+	constructor(raw = null) {
+		if (raw) {
+			this.id = raw.id;
+			this.messageType = raw.messageType;
+			this.status = raw.status;
+			this.createdAt = raw.createAt;
+			this.content = raw.text.content;
 		}
 	}
 }

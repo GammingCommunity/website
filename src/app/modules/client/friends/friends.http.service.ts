@@ -1,6 +1,6 @@
 import { Injectable, Injector, ViewContainerRef, ComponentRef } from "@angular/core";
 import { Apollo } from 'apollo-angular';
-import { MyFriend } from "./friends.dto";
+import { MyFriend, Chat } from "./friends.dto";
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
@@ -55,5 +55,48 @@ export class FriendsHttpService extends ClientCommonService {
 				}
 			})
 		);
+	}
+
+	protected convertFriendIdsToString(friends: MyFriend[]): string {
+		let result = '';
+
+		friends.forEach((friend: MyFriend) => {
+			result += `"${friend.id},"`;
+		});
+
+		return result.length > 0 ? result.substring(0, result.length - 1) : '';
+	}
+
+	fetchAllChats(friends: MyFriend[], reload: boolean = true) {
+		//, ids:[${this.convertFriendIdsToString(friends)}]
+		return this.apollo.use('mainService').query<any>({
+			query: gql`
+				query{
+					getAllPrivateChat(page:1, limit:20){
+						_id
+						member
+						latest_message{
+							text{
+								content
+							}
+						}
+					}
+				}
+			`,
+			fetchPolicy: reload ? 'no-cache' : null,
+			variables: { isUseGlobalLoader: false },
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			}
+		}).pipe(
+			map(({ data }): Chat[] => {
+				let chats: Chat[] = [];
+
+				data.getAllPrivateChat.forEach(chat => {
+					chats.push(new Chat(chat));
+				})
+
+				return chats;
+			}));
 	}
 }

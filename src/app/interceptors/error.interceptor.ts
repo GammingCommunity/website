@@ -41,7 +41,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 					}
 				},
 				error => {
-					debugger;
 					if (error.hasOwnProperty('error')) {
 						if (error.error.hasOwnProperty('errors')) {
 							if (error.error.errors[0] && error.error.errors[0].hasOwnProperty('message')) {

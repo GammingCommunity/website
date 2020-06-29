@@ -3,7 +3,7 @@ import { ClientCommonService } from '../../client.common-service';
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-import { Message } from './friend-chat.dto';
+import { Message, ResultCRUD } from './friend-chat.dto';
 
 @Injectable({
 	providedIn: "root"
@@ -18,6 +18,26 @@ export class FriendChatHttpService extends ClientCommonService {
 		super(injector);
 		this.ssToken = this.authService.getSessionToken();
 		this.tokenTitle = this.authService.getTokenTitle();
+	}
+
+	createPrivateChat(friendId: number) {
+		return this.apollo.use('mainService').mutate<any>({
+			mutation: gql`
+				mutation 
+				{
+					createPrivateChat(input:{friendID:"${friendId}"}){
+						payload
+						success
+						message
+					}
+				}
+			`,
+			context: {
+				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
+			},
+		}).pipe(map(
+			({ data }): ResultCRUD => new ResultCRUD(data.createPrivateChat)
+		));
 	}
 
 	fetchMessages(chatId: string, viewContainerRef: ViewContainerRef, reload: boolean = false) {

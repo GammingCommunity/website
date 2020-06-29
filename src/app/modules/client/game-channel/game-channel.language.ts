@@ -4,12 +4,14 @@ export class GameChannelLanguage {
 	static define(translateService: TranslateService) {
 		translateService.setTranslation('en', {
 			'GameChannelLanguage': {
-				'aaaa': 'bbbbbb',
+				'FIND_QUICKLY': 'Find quickly',
+				'FINDING': 'Finding...',
 			}
 		}, true);
 		translateService.setTranslation('vi', {
 			'GameChannelLanguage': {
-				'aaaa': 'bbbbbb',
+				'FIND_QUICKLY': 'Tìm phòng nhanh',
+				'FINDING': 'Đang tìm',
 			}
 		}, true);
 	}

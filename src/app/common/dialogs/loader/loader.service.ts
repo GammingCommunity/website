@@ -36,13 +36,13 @@ export class LoaderService extends DialogService {
 		}
 	}
 
-	addLocalLoader(viewContainerRef: ViewContainerRef, useBackground = true, classList: string = null): LocalLoader {
+	addLocalLoader(viewContainerRef: ViewContainerRef, useBackground = true, classList: string = null, backgroundZIndex = 10): LocalLoader {
 		const id = Date.now();
 		const loader = this.putDialogComponentToComponentWithOptions({
 			dialogType: LoaderComponent,
 			viewContainerRef: viewContainerRef,
 			useBackground: useBackground,
-			zIndex: 10,
+			zIndex: backgroundZIndex,
 			data: {
 				classList: classList
 			}

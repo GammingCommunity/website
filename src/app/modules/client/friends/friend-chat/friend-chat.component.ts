@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Injector, ViewChild, ViewContainerRef } from '@angular/core';
 import { FriendChatHttpService } from './friend-chat.http.service';
 import { FriendChatUIService } from './friend-chat.ui.service';
-import { Friend, SendingMessage, MessageTypes, Message } from './friend-chat.dto';
+import {  SendingMessage, MessageTypes, Message } from './friend-chat.dto';
 import { MyFriend } from '../friends.dto';
 import { TranslateService } from '@ngx-translate/core';
 import { FriendChatLanguage } from './friend-chat.language';
@@ -15,7 +15,7 @@ import { FriendChatSocketService } from './friend-chat.socket.service';
 })
 export class FriendChatComponent extends ClientCommonComponent implements OnInit {
 	@ViewChild('loaderLocation', { static: true, read: ViewContainerRef }) loaderLocationVR: ViewContainerRef;
-	chatFriend: Friend;
+	chatFriend: MyFriend;
 	messages: Message[] = [];
 	currentMessageContent: string;
 	protected sendMessage: (message: SendingMessage) => void;
@@ -40,15 +40,18 @@ export class FriendChatComponent extends ClientCommonComponent implements OnInit
 
 	protected initSocket() {
 		this.friendChatSocketService.initSocket(
-			(messageContent: string) => {
-				this.onMessages(messageContent);
+			this.chatFriend,
+			(text: string) => {
+				const message = new Message();
+				message.content = text;
+				this.messages.push(message);
 			},
 			(sendMessage: (message: SendingMessage) => void) => {
 				this.sendMessage = sendMessage;
 			},
-			(chatId: string) => {
-				this.fetchMessages(chatId);
-			}
+			// (chatId: string) => {
+			// 	this.fetchMessages(chatId);
+			// }
 		);
 	}
 

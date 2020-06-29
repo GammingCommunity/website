@@ -2,15 +2,15 @@ import { Injectable, Injector, ComponentRef, ViewContainerRef } from "@angular/c
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';
 import { map, finalize } from 'rxjs/operators';
-import { ClientCommonService } from '../client.common-service';
-import { GameChannel } from './game-channel.dto';
 import { CssConfigs } from 'src/environments/environment';
+import { ClientCommonService } from '../../client.common-service';
+import { RoomDetail } from './room-private-chat.dto';
 
 
 @Injectable({
 	providedIn: "root"
 })
-export class GameChannelHttpService extends ClientCommonService {
+export class RoomPrivateHttpService extends ClientCommonService {
 	readonly ssToken: string;
 	readonly tokenTitle: string;
 
@@ -22,15 +22,17 @@ export class GameChannelHttpService extends ClientCommonService {
 		this.tokenTitle = this.authService.getTokenTitle();
 	}
 
-	fetchGameChannels(viewContainerRef: ViewContainerRef) {
+	fetchRoomDetail(roomId: string, viewContainerRef: ViewContainerRef) {
 		const loader: ComponentRef<any> = this.loaderService.addLocalLoader(viewContainerRef, true, null, CssConfigs.loaderZIndex + 1).loaderVR;
 
 		return this.apollo.use('mainService').query<any>({
 			query: gql`
 				query{
-					countRoomOnEachGame(sort: DESC){
+					getRoomInfo(roomID:"${roomId}"){
 						_id
-						name
+						roomName
+						roomLogo
+						roomBackground
 					}
 				}
 			`,
@@ -39,15 +41,7 @@ export class GameChannelHttpService extends ClientCommonService {
 				headers: new HttpHeaders().set(this.tokenTitle, this.ssToken)
 			}
 		}).pipe(
-			map(({ data }): GameChannel[] => {
-				let games: GameChannel[] = [];
-
-				data.countRoomOnEachGame.forEach(game => {
-					games.push(new GameChannel(game));
-				})
-
-				return games;
-			}),
+			map(({ data }): RoomDetail => new RoomDetail(data.getRoomInfo)),
 			finalize(() => {
 				if (loader) {
 					loader.destroy();

@@ -1,6 +1,5 @@
 import { Injectable, Injector } from "@angular/core";
 import { Apollo } from 'apollo-angular';
-import { MyProfile } from "./client.dto";
 import { AuthService } from "src/app/common/services/auth.service";
 import gql from 'graphql-tag';
 import { HttpHeaders } from '@angular/common/http';

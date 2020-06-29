@@ -1,13 +1,12 @@
-<div class="p-5 chat-container d-flex flex-column position-relative w-100 h-100 shadow-lg img"
-	[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}">
+<div *ngIf='roomDetail' class="p-5 chat-container d-flex flex-column position-relative w-100 h-100 shadow-lg img"
+	[ngStyle]="{'background-image':'url(' + roomDetail.backgroundUrl + ')'}">
 	<div class="border-bottom d-flex pb-2 mb-2">
 		<div class="img logo rounded"
-			[ngStyle]="{'background-image':'url(https://i.ytimg.com/vi/-7pYKsf-V5A/maxresdefault.jpg)'}"></div>
+			[ngStyle]="{'background-image':'url(' + roomDetail.logoUrl + ')'}"></div>
 		<div class="px-3 flex-grow-1 overflow-hidden">
 			<div class="overflow-hidden">
-				<h5 class="text-nowrap mb-1">Nào mình cùng lên xe buýt</h5>
+				<h5 class="text-nowrap mb-1">{{roomDetail.name}}</h5>
 			</div>
-			<p class="m-0">#1</p>
 		</div>
 		<div><button class="btn bg-transparent rounded-lg mr-1 px-2 cursor-pointer pt-1 pb-2 align-items-center">
 				<i-feather name="settings"></i-feather>

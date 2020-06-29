@@ -2,6 +2,8 @@ import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
 import { RoomPrivateChatLanguage } from './room-private-chat.language';
 import { ClientCommonComponent } from '../../client.common-component';
 import { GameChannelDataService } from '../game-channel.data.service';
+import { RoomPrivateHttpService } from './room-private-chat.http.service';
+import { RoomDetail } from './room-private-chat.dto';
 
 @Component({
 	selector: 'app-room-private-chat',
@@ -9,10 +11,12 @@ import { GameChannelDataService } from '../game-channel.data.service';
 	styleUrls: ['./room-private-chat.component.css']
 })
 export class RoomPrivateChatComponent extends ClientCommonComponent implements OnInit {
+	roomDetail: RoomDetail;
 
 	constructor(
 		protected injector: Injector,
 		private viewContainerRef: ViewContainerRef,
+		private roomPrivateHttpService: RoomPrivateHttpService,
 		private gameChannelDataService: GameChannelDataService
 	) {
 		super(injector);
@@ -20,6 +24,7 @@ export class RoomPrivateChatComponent extends ClientCommonComponent implements O
 
 		this.gameChannelDataService.setShowPrivateChatHandler((roomID: string) => {
 			this.show(roomID);
+			this.roomPrivateHttpService.fetchRoomDetail(roomID, this.viewContainerRef).subscribe(data => this.roomDetail = data);
 		});
 	}
 
@@ -34,7 +39,7 @@ export class RoomPrivateChatComponent extends ClientCommonComponent implements O
 		this.viewContainerRef.element.nativeElement.style.display = 'block';
 	}
 
-	protected initSocket(){
-		
+	protected initSocket() {
+
 	}
 }

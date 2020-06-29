@@ -24,7 +24,12 @@ export class AuthService {
 	}
 
 	getAccountId(): number {
-		return parseInt(this.parseJwt(this.sessionToken).id);
+		if(this.sessionToken){
+			return parseInt(this.parseJwt(this.sessionToken).id);
+		} else {
+			window.location.href = "/component/login";
+			return null;
+		}
 	}
 
 	setSessionToken(token: string) {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef, Injector } from '@angular/core';
-import { MyFriend } from './friends.dto';
+import { MyFriend, Chat } from './friends.dto';
 import { FriendsHttpService } from './friends.http.service';
 import { FriendChatUIService } from './friend-chat/friend-chat.ui.service';
 import { trigger, state, transition, animate, style, query, stagger } from '@angular/animations';
@@ -175,19 +175,25 @@ export class FriendsComponent extends ClientCommonComponent implements OnInit {
 	}
 
 	protected fetchFriends() {
-		this.friendsHttpService.fetchFriends(this.loaderLocationVR)
-			.pipe()
-			.subscribe(data => {
-				this.friends = data;
-			})
+		this.friendsHttpService.fetchFriends(this.loaderLocationVR).subscribe(data => {
+			this.friends = data;
+			this.friendsHttpService.fetchAllChats(data).subscribe(chats => {
+				this.friends.forEach((friend: MyFriend) => {
+					chats.forEach((chat: Chat) => {
+						if (chat.members.find((memberId: string) => (memberId === friend.id.toString())) != null) {
+							friend.chatId = chat.id;
+							friend.latestMessage = chat.latestMessage;
+						}
+					});
+				});
+			});
+		});
 	}
 
 	protected reloadFriends() {
 		this.friends = [];
-		this.friendsHttpService.fetchFriends(this.loaderLocationVR, true)
-			.pipe()
-			.subscribe(data => {
-				this.friends = data;
-			})
+		this.friendsHttpService.fetchFriends(this.loaderLocationVR, true).subscribe(data => {
+			this.friends = data;
+		})
 	}
 }

@@ -10,12 +10,12 @@ import { RoomPrivateChatPostLanguage } from './room-private-chat-post.language';
 	animations: [
 		trigger('changeContainerState', [
 			state('expand', style({
-				width: '260px',
-				minWidth: '260px'
+				width: '360px',
+				minWidth: '360px'
 			})),
 			state('collapse', style({
-				width: '0px',
-				minWidth: '0px'
+				width: '15px',
+				minWidth: '15px'
 			})),
 			transition('*=>expand', animate('100ms ease')),
 			transition('*=>collapse', animate('100ms ease'))

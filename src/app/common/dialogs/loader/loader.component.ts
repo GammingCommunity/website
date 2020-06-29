@@ -1,12 +1,10 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, AfterContentChecked, AfterViewChecked, AfterContentInit, DoCheck, OnChanges, Injector, ViewContainerRef } from "@angular/core";
 import { LineSvgMotion } from "svg-motion";
-import { CssConfigs } from 'src/environments/environment';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
 	selector: "common-loader",
 	template: `
-		<div class='box d-flex justify-content-center align-items-center'>
+		<div class='box shadow d-flex justify-content-center align-items-center'>
 			<svg>
 				<g transform="translate(22 21) scale(0.9 1)">
 					<path #spinner stroke="#3700b3" stroke-width="3" fill="transparent"

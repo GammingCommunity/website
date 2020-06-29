@@ -42,8 +42,11 @@
 					<div *ngIf='!friend.avatarUrl' class="img rounded-lg"
 						[ngStyle]="{'background-image':'url('+defaultAvatarUrl+')'}"></div>
 					<!-- name -->
-					<strong class="pl-3 text-nowrap overflow-hidden flex-grow-1 highlight-text"
-						*ngIf="friendsContainerState === 'expand'">{{ friend.name }}</strong>
+					<div *ngIf="friendsContainerState === 'expand'"
+						class="pl-3 text-nowrap overflow-hidden flex-grow-1">
+						<strong class="highlight-text">{{ friend.name }}</strong>
+						<p class="m-0" *ngIf='friend.latestMessage'>{{friend.latestMessage}}</p>
+					</div>
 				</div>
 				<!-- options -->
 				<div (click)='showFriendItemDropdown($event, friend.id)' *ngIf="friendsContainerState === 'expand'"

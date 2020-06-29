@@ -1,15 +1,9 @@
 import { Component, OnInit, Injector, ViewContainerRef, ComponentRef, AfterViewInit, ElementRef } from '@angular/core';
 import { CssConfigs } from 'src/environments/environment';
-import { AuthService } from 'src/app/common/services/auth.service';
-import { Router } from '@angular/router';
-import { trigger, transition, animate, style } from '@angular/animations';
-import { MyProfile } from '../client.dto';
 import { ClientCommonComponent } from '../client.common-component';
-import { TranslateService } from '@ngx-translate/core';
 import { ProfileDropdownLanguage } from './profile-dropdown.language';
 import { LanguageService } from 'src/app/common/services/language.service';
 import { FeedbackComponent } from '../feedback/feedback.component';
-import { truncate } from 'fs';
 
 @Component({
 	selector: 'app-profile-dropdown',

@@ -2,7 +2,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Injector, ViewContainerRef, ElementRef } from '@angular/core';
 import { AlertService } from 'src/app/common/dialogs/alert/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MyProfile } from './client.dto';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { DialogService } from 'src/app/common/dialogs/dialog.service';
 import { ClientDataService } from './client.data.service';

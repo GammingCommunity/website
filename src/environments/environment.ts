@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: false,
+	production: true,
 	requestRetryTime: 0,
 	requestTimeOut: 8000
 };
@@ -24,6 +24,7 @@ export const ServiceUrls = {
 	chat: "https://socketchat.glitch.me",
 	feedback: "https://equal-spectacles.glitch.me",
 	post: "http://post-service.glitch.me/graphql",
+	roomFastFinding: "https://fast-finding-sv.glitch.me",
 	main: "https://gmgraphql.glitch.me/graphql" 
 };
 
